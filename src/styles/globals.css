@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+}
+
+input:disabled {
+  background-color: #ffffff;
+}
+
+html {
+  line-height: 1;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
