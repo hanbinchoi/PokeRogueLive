@@ -20,7 +20,7 @@ export const Button = ({
   return (
     <button
       type="button"
-      className="px-10 text-amber-100 bg-cyan-400"
+      className="px-10 text-amber-50 bg-cyan-400"
       {...props}>
       {label}
       <style jsx>{`
