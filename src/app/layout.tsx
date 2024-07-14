@@ -1,5 +1,7 @@
-import { Sidebar } from '@/components/Sidebar/Sidebar';
 import type { Metadata } from 'next';
+
+import { Header } from '@/components/Header/Header';
+import { Sidebar } from '@/components/Sidebar/Sidebar';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="flex flex-col bg-blue-10">
-          <div>header</div>
+          <Header />
           <div className="flex">
             <Sidebar />
             <div className="h-[2300px]">main</div>
