@@ -1,3 +1,4 @@
+import { Sidebar } from '@/components/Sidebar/Sidebar';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,7 +13,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="flex flex-col bg-blue-10">
+          <div>header</div>
+          <div className="flex">
+            <Sidebar />
+            <div className="h-[2300px]">main</div>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
