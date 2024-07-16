@@ -1,5 +1,4 @@
 import '../../styles/globals.css';
-import LogoSvg from '../../../public/icon/logo.svg';
 
 export interface LogoProps {
   size?: 'medium' | 'large';
@@ -7,8 +6,12 @@ export interface LogoProps {
 
 export const Logo = ({ size = 'medium' }: LogoProps) => {
   return (
-    <button type="button" className="bg-img">
-      <LogoSvg width="600" className="w-full" />
-    </button>
+    <div className="w-[98px] h-[34px]">
+      <img
+        src="/assets/icon/logo.png"
+        className="w-full h-full object-cover"
+        alt="로고"
+      />
+    </div>
   );
 };
