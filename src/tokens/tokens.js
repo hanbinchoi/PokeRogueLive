@@ -39,7 +39,7 @@ const tokens = {
       80: '#4d2113',
       90: '#261009',
     },
-    white: { 10: '#fefefe', 30: '#f9fafb', 50: '#f8f9fa' },
+    white: { 10: '#fefefe', 30: '#f9fafb', 50: '#f8f9fa', 100: '#ffffff' },
     gray: {
       10: '#c6c7c8',
       30: '#959596',
