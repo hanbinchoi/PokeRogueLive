@@ -1,11 +1,15 @@
 import { twMerge } from 'tailwind-merge';
 import '../../styles/globals.css';
+import { Logo } from '../Logo/Logo';
 
 export const Header = () => {
   return (
-    <header className={twMerge('w-full h-16 bg-gray-10')}>
-      <div className="mx-4 h-full flex justify-between items-center">
-        <div>logo</div>
+    <header
+      className={twMerge(
+        'border-b border-b-gray-10 px-4 py-2 w-full bg-white-100',
+      )}>
+      <div className="  flex justify-between items-center">
+        <Logo size="medium" />
         <div>login</div>
       </div>
     </header>

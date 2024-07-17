@@ -9,3 +9,5 @@ export type SearchInputSize = 'small' | 'medium';
 export type InputValues = {
   keyword: string;
 };
+
+export type sidebarMenu = 'pokemon' | 'type' | 'powerCalculator';

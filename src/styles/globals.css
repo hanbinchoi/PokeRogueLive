@@ -5,6 +5,9 @@
 @layer utilities {
 }
 
+* {
+  box-sizing: border-box;
+}
 input:disabled {
   background-color: #ffffff;
 }
