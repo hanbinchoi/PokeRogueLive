@@ -5,7 +5,7 @@ const nextConfig = {
   // 아래 부분 추가
   webpack: (config) => {
     config.module.rules.push({
-      test: /\.svg$/i,
+      test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
     return config;

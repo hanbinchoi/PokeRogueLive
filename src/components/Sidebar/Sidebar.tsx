@@ -1,12 +1,22 @@
-import { twMerge } from 'tailwind-merge';
 import '../../styles/globals.css';
+
+import { twMerge } from 'tailwind-merge';
 
 import { SidebarMenu } from '../SidebarMenu/SidebarMenu';
 
-export const Sidebar = () => {
+import { DefaultProps, sidebarMenu } from '@/types/common';
+
+export const Sidebar = ({ className }: DefaultProps) => {
+  const sideBarMenus: sidebarMenu[] = ['pokemon', 'type', 'powerCalculator'];
   return (
-    <nav className={twMerge('w-1/5 flex-grow-1 bg-red-10')}>
-      <SidebarMenu title="test" />
-    </nav>
+    <ul
+      className={twMerge(
+        'bg-white-100 px-4 py-8 border-r border-r-gray-10 flex flex-col gap-4',
+        className,
+      )}>
+      {sideBarMenus.map((menu) => (
+        <SidebarMenu menu={menu} />
+      ))}
+    </ul>
   );
 };

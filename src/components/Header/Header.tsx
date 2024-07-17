@@ -4,8 +4,11 @@ import { Logo } from '../Logo/Logo';
 
 export const Header = () => {
   return (
-    <header className={twMerge('w-full bg-white-100')}>
-      <div className="mx-4 my-2 flex justify-between items-center">
+    <header
+      className={twMerge(
+        'border-b border-b-gray-10 px-4 py-2 w-full bg-white-100',
+      )}>
+      <div className="  flex justify-between items-center">
         <Logo size="medium" />
         <div>login</div>
       </div>
