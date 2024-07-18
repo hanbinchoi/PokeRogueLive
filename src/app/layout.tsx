@@ -16,11 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="h-screen flex flex-col bg-blue-10">
+        <div className="h-screen flex flex-col ">
           <Header />
           <div className="grow flex">
             <Sidebar className="w-1/6 h-full" />
-            <div className="w-full">main</div>
+            <div className="w-full">{children}</div>
           </div>
         </div>
       </body>
