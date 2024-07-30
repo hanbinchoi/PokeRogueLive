@@ -1,9 +1,5 @@
 'use client';
 
-export default function Pokemon() {
-  return (
-    <main className="">
-      <div>메인 페이지</div>
-    </main>
-  );
+export default function Home({ children }: { children: React.ReactNode }) {
+  return <main className="">{children}</main>;
 }

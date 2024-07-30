@@ -6,8 +6,8 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 
 export type SearchInputSize = 'small' | 'medium';
 
-export type InputValues = {
+export interface InputValues {
   keyword: string;
-};
+}
 
-export type sidebarMenu = 'pokemon' | 'type' | 'powerCalculator';
+export type sidebarMenu = 'pokemon' | 'type-calculator' | 'power-calculator';
