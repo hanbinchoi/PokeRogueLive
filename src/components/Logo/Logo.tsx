@@ -6,7 +6,7 @@ export interface LogoProps {
 
 export const Logo = ({ size = 'medium' }: LogoProps) => {
   return (
-    <div className={`h-auto ${size === 'large' ? 'w-[144px]' : 'w-[122px]'}`}>
+    <div className={`h-auto ${size === 'large' ? 'w-[294px]' : 'w-[122px]'}`}>
       <img
         src="/assets/img/logo.png"
         className="w-full h-full object-cover"
