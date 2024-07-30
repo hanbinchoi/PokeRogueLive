@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <header
       className={twMerge(
-        'border-b border-b-gray-10 px-4 py-2 w-full bg-white-100',
+        'border-b border-b-gray-20 px-4 py-2 w-full bg-white-100',
       )}>
       <div className="  flex justify-between items-center">
         <Logo size="medium" />
