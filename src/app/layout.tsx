@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { Header } from '@/components/Header/Header';
 import { Sidebar } from '@/components/Sidebar/Sidebar';
+import ReactQueryProviders from '@/hooks/useReactQuery';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,13 +17,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="min-h-screen flex flex-col ">
-          <Header />
-          <div className="h-full grow flex">
-            <Sidebar className="w-1/5" />
-            <div className="w-full">{children}</div>
+        <ReactQueryProviders>
+          <div className="min-h-screen flex flex-col ">
+            <Header />
+            <div className="h-full grow flex">
+              <Sidebar className="w-1/5" />
+              <div className="w-full">{children}</div>
+            </div>
           </div>
-        </div>
+        </ReactQueryProviders>
       </body>
     </html>
   );

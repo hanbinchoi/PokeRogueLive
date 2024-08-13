@@ -1,9 +1,13 @@
 'use client';
+
+import { useForm } from 'react-hook-form';
+
 import { Button } from '@/components/Button/Button';
 import { Logo } from '@/components/Logo/Logo';
 import { SearchInput } from '@/components/SearchInput/SearchInput';
+
 import { InputValues } from '@/types/common';
-import { useForm } from 'react-hook-form';
+import { PokemonList } from '@/components/PokemonList/PokemonList';
 
 export default function Pokemon() {
   const { register, handleSubmit, reset } = useForm<InputValues>();
@@ -26,6 +30,7 @@ export default function Pokemon() {
           />
           <Button primary={true} size="small" label="검색" />
         </form>
+        <PokemonList />
       </div>
     </main>
   );
