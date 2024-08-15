@@ -1,18 +1,31 @@
-import { useQuery } from '@tanstack/react-query';
 import '../../styles/globals.css';
-import { getPokemon } from '@/api/pokemon';
+
+import { useQueries } from '@tanstack/react-query';
+
+import { getPokemon, getPokemonSpecies } from '@/api/pokemon';
 
 export interface PokemonProps {
   name: string;
 }
 
 export const Pokemon = ({ name }: PokemonProps) => {
-  const { isLoading, error, data } = useQuery<any>({
-    queryKey: [name],
-    queryFn: () => getPokemon(name),
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: ['detail', name],
+        queryFn: () => getPokemon(name),
+      },
+      {
+        queryKey: ['species', name],
+        queryFn: () => getPokemonSpecies(name),
+      },
+    ],
   });
-  console.log();
+
+  const isLoading = results.some((result) => result.isLoading);
+  const isError = results.some((result) => result.isError);
+
   if (isLoading) return <div>loading...</div>;
-  if (error) return <div>error</div>;
-  return <div>{data?.names[2].name}</div>;
+  if (isError) return <div>error</div>;
+  return <div></div>;
 };

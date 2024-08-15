@@ -9,9 +9,14 @@ export async function getPokemons() {
   return res.results;
 }
 
-export async function getPokemon(name: string) {
+export async function getPokemonSpecies(name: string) {
   const res = await commonAxios
     .get(`/pokemon-species/${name}`)
     .then((res) => res.data);
+  return res;
+}
+
+export async function getPokemon(name: string) {
+  const res = await commonAxios.get(`/pokemon/${name}`).then((res) => res.data);
   return res;
 }
