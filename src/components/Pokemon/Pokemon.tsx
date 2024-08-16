@@ -54,7 +54,7 @@ export const Pokemon = ({ name }: PokemonProps) => {
       <div className="px-8 py-4 text-sm font-bold flex flex-col items-center bg-white-100 border-2 rounded-lg">
         <div>{`No. ${String(pokemon.pokedex).padStart(3, '0')}`}</div>
         <img className="w-24" alt={name} src={pokemon.imageUrl} />
-        <div className="mb-3">{pokemon.name}</div>
+        <div className="mb-2 text-lg">{pokemon.name}</div>
         <div className="flex gap-2">
           {pokemon.type.map((t, i) => (
             <TypeBadge key={t + i} type={t} size="small" />

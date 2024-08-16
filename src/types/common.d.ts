@@ -6,6 +6,12 @@ export interface DefaultProps {
   className?: string;
 }
 
+export type addPrefixToHandler<T, P extends string> = {
+  [K in keyof T as K extends string
+    ? `${P}${K}`
+    : never]: React.MouseEventHandler<HTMLElement>;
+};
+
 export type ButtonSize = 'small' | 'medium' | 'large';
 
 export type SearchInputSize = 'small' | 'medium';
@@ -137,4 +143,10 @@ export interface PokemonDataProps {
   name: string;
   imageUrl: string;
   pokedex: number;
+}
+
+export interface PokemonsResponseProps {
+  count: number;
+  data: DataProps[];
+  next: string;
 }

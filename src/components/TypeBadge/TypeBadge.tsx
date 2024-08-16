@@ -30,7 +30,7 @@ export const TypeBadge = ({ type, size }: TypeBadgeProps) => {
 };
 
 const TYPE_BADGE_SIZE: TypeBadgeSizeProps = {
-  small: 'text-[12px] font-bold px-2 py-1 rounded-lg',
+  small: 'text-xs font-bold px-3 py-1 rounded-lg',
   medium: '',
 };
 
