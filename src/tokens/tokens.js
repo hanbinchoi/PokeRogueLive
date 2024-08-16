@@ -1,5 +1,26 @@
 const tokens = {
   colors: {
+    type: {
+      normal: '#949495',
+      fighting: '#E09C40',
+      flying: '#A2C3E7',
+      poison: '#735098',
+      ground: '#9C7643',
+      rock: '#BFB889',
+      bug: '#9FA244',
+      ghost: '#684770',
+      steel: '#69A8C7',
+      fire: '#E56C3E',
+      water: '#5185C5',
+      grass: '#67A844',
+      electric: '#FBB917',
+      psychic: '#DD6A7A',
+      ice: '#6CC8EB',
+      dragon: '#535CA8',
+      dark: '#4B4948',
+      fairy: '#DAB3D4',
+      unknown: '#008080',
+    },
     blue: {
       10: '#70cdff',
       30: '#4e8ff9',

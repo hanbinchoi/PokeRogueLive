@@ -1,3 +1,4 @@
+import { TypeBadge } from './../components/TypeBadge/TypeBadge';
 import { Pokemon } from './../components/Pokemon/Pokemon';
 import exp from 'constants';
 
