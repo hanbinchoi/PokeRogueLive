@@ -1,3 +1,4 @@
+import { PokemonDetailprops, PokemonSpeciesProps } from '@/types/common';
 import axios from 'axios';
 
 export const commonAxios = axios.create({
@@ -9,14 +10,16 @@ export async function getPokemons() {
   return res.results;
 }
 
-export async function getPokemonSpecies(name: string) {
+export async function getPokemonSpecies(
+  name: string,
+): Promise<PokemonSpeciesProps> {
   const res = await commonAxios
     .get(`/pokemon-species/${name}`)
     .then((res) => res.data);
   return res;
 }
 
-export async function getPokemon(name: string) {
+export async function getPokemon(name: string): Promise<PokemonDetailprops> {
   const res = await commonAxios.get(`/pokemon/${name}`).then((res) => res.data);
   return res;
 }

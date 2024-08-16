@@ -63,7 +63,7 @@ export interface PokemonSpeciesProps {
   is_mythical: boolean; // 환상인지
   name: string;
   names: PokemonNameProps[];
-  order: 1; // 정렬순서
+  order: number; // 정렬순서
   pokedex_numbers: PokedexNumbersProps[]; // 도감번호
 
   varieties: VarietiesProps[]; // 다른 형태, 종
@@ -130,4 +130,11 @@ export interface PokemonDetailprops {
   stats: StatProps[];
   types: TypeProps[];
   weight: number;
+}
+
+export interface PokemonDataProps {
+  type: string[];
+  name: string;
+  imageUrl: string;
+  pokedex: number;
 }

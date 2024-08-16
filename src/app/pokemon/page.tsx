@@ -17,11 +17,11 @@ export default function Pokemon() {
     reset();
   };
   return (
-    <main className="h-full flex flex-col gap-8 items-center  p-12 bg-gray-10">
+    <main className="h-full flex flex-col gap-2 items-center p-12 pt-4 bg-gray-10">
       <Logo size="large" />
       <div className="w-full">
         <form
-          className="flex justify-center gap-[10px] w-full px-80 py-2"
+          className="flex justify-center gap-[10px] w-full px-80 py-2 mb-6"
           onSubmit={handleSubmit(onSubmit)}>
           <SearchInput
             required={true}

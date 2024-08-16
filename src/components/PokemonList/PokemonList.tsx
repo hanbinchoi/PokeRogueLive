@@ -17,8 +17,10 @@ export const PokemonList = ({}) => {
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>error</div>;
   return (
-    <div className="bg-blue-10">
-      {data?.map((pokemon) => <Pokemon name={pokemon.name} />)}
+    <div className="flex flex-wrap py-2 px-14 gap-8">
+      {data?.map((pokemon) => (
+        <Pokemon key={pokemon.name} name={pokemon.name} />
+      ))}
     </div>
   );
 };
