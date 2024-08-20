@@ -1,11 +1,11 @@
 import {
   PokemonDataProps,
-  PokemonDetailprops,
+  PokemonDetailProps,
   PokemonSpeciesProps,
 } from '@/types/common';
 
 export default function extractPokemonDetails(
-  results: [PokemonDetailprops, PokemonSpeciesProps],
+  results: [PokemonDetailProps, PokemonSpeciesProps],
 ) {
   const [detail, species] = results;
   const { order, names } = species;

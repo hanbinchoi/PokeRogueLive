@@ -1,9 +1,9 @@
-import { twJoin } from 'tailwind-merge';
-
 import '../../styles/globals.css';
 
-import { DefaultProps, InputValues, SearchInputSize } from '@/types/common';
 import { UseFormRegister } from 'react-hook-form';
+import { twJoin } from 'tailwind-merge';
+
+import { DefaultProps, InputValues, SearchInputSize } from '@/types/common';
 
 export interface SearchInputProps extends DefaultProps {
   required?: boolean;

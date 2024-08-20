@@ -1,12 +1,12 @@
-import usePokemonsStore from '@/stores/pokemonsStore';
 import { useEffect, useState } from 'react';
+
+import usePokemonsStore from '@/stores/pokemonsStore';
+
+import { PageNumber } from '../PageNumber/PageNumber';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { FaAnglesLeft, FaAnglesRight } from 'react-icons/fa6';
-import { PageNumber } from '../PageNumber/PageNumber';
 
-export interface PagingDocumentsProps {}
-
-export const PagingDocuments = ({}: PagingDocumentsProps) => {
+export const PagingDocuments = () => {
   const { now, last, setNow, total, setLast } = usePokemonsStore();
 
   const [pages, setPages] = useState<number[]>([]);
@@ -14,7 +14,14 @@ export const PagingDocuments = ({}: PagingDocumentsProps) => {
   useEffect(() => {
     const totalDevideTen = Math.floor(total / 10);
 
+    if (totalDevideTen < 1) {
+      setLast(true);
+      setPages([1]);
+      return;
+    }
+
     if (now <= 3) {
+      setLast(false);
       return setPages([1, 2, 3, 4, 5]);
     }
 
@@ -27,8 +34,9 @@ export const PagingDocuments = ({}: PagingDocumentsProps) => {
         totalDevideTen + 1,
       ]);
 
+    setLast(false);
     setPages([now - 2, now - 1, now, now + 1, now + 2]);
-  }, [now]);
+  }, [now, total]);
 
   const handlePageClick = (event: React.MouseEvent<HTMLElement>) => {
     const pageNum = parseInt(event.currentTarget.textContent as string);

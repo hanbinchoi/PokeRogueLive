@@ -1,5 +1,5 @@
 import { TypeBadge } from './../components/TypeBadge/TypeBadge';
-import { Pokemon } from './../components/Pokemon/Pokemon';
+import { Pokemon } from '../components/Pokemon/PokemonCard';
 import exp from 'constants';
 
 export interface DefaultProps {
@@ -119,7 +119,7 @@ export interface TypeProps {
   type: DataProps;
 }
 
-export interface PokemonDetailprops {
+export interface PokemonDetailProps {
   abilities: AbilityProps[]; // 어빌리티 목록
   base_experience: number; // 얻는 경험치
   cries: CryProps; // 울음 소리
