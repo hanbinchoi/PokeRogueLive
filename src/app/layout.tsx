@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
+import ReactQueryProviders from '@/hooks/useReactQuery';
+
 import { Header } from '@/components/Header/Header';
 import { Sidebar } from '@/components/Sidebar/Sidebar';
-import ReactQueryProviders from '@/hooks/useReactQuery';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
