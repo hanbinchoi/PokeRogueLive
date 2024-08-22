@@ -1,6 +1,6 @@
 import '../../styles/globals.css';
 
-import { sidebarMenu } from '@/types/common';
+import { MenuItem } from '@/types/common';
 
 import { FaBook } from 'react-icons/fa';
 import { BsFire } from 'react-icons/bs';
@@ -8,7 +8,7 @@ import { BsCalculatorFill } from 'react-icons/bs';
 import Link from 'next/link';
 
 export interface SidebarMenuProps {
-  menu: sidebarMenu;
+  menu: MenuItem;
 }
 
 export const SidebarMenu = ({ menu }: SidebarMenuProps) => {

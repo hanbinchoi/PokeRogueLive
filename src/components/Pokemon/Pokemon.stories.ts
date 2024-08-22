@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { Pokemon } from './Pokemon';
+import { Pokemon } from './PokemonCard';
 
 const meta: Meta<typeof Pokemon> = {
   title: 'Components/Pokemon',
