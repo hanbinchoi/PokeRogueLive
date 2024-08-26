@@ -7,8 +7,8 @@ export interface TypeCalcAttackProps {}
 
 export const TypeCalcAttack = ({}: TypeCalcAttackProps) => {
   return (
-    <div className="grid grid-cols-2 gap-16">
-      <div className="flex flex-col gap-8">
+    <div className="grid grid-cols-2">
+      <div className="flex flex-col px-2 gap-6">
         <TypeCalcOption index={0} />
         <TypeCalcOption index={1} />
       </div>

@@ -19,7 +19,7 @@ export const TypeCalcOption = ({ index }: TypeCalcOptionProps) => {
       <p className="text-[16px] font-semibold">
         {TYPE_CALC_OPTION_TITLE[index]}
       </p>
-      <div className="flex gap-x-2 gap-y-3 flex-wrap">
+      <div className="flex gap-x-2 gap-y-4 flex-wrap">
         {POKEMON_TYPE.map((type) =>
           type === 'stellar' || type === 'unknown' ? null : (
             <TypeCalcButton
