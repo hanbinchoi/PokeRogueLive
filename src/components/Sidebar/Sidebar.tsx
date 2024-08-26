@@ -4,10 +4,10 @@ import { twMerge } from 'tailwind-merge';
 
 import { SidebarMenu } from '../SidebarMenu/SidebarMenu';
 
-import { DefaultProps, sidebarMenu } from '@/types/common';
+import { DefaultProps, MenuItem } from '@/types/common';
 
 export const Sidebar = ({ className }: DefaultProps) => {
-  const sideBarMenus: sidebarMenu[] = [
+  const sideBarMenus: MenuItem[] = [
     'pokemon',
     'type-calculator',
     'power-calculator',
@@ -19,7 +19,7 @@ export const Sidebar = ({ className }: DefaultProps) => {
         className,
       )}>
       {sideBarMenus.map((menu) => (
-        <SidebarMenu menu={menu} />
+        <SidebarMenu key={menu} menu={menu} />
       ))}
     </ul>
   );
