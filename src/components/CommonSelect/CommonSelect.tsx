@@ -29,7 +29,7 @@ export const CommonSelect = ({ usage }: CommonSelectProps) => {
       <label className="text-[16px] font-semibold">{label}</label>
       <select
         aria-label="특성을 선택하세요."
-        className="px-4 py-2 hover:opacity-60 outline-none focus:border-blue-70 focus:border-2"
+        className="px-4 py-2 border rounded-lg outline-none hover:opacity-60  focus:border-blue-70 focus:border-2"
         onChange={selectAbility}>
         <option value="">없음</option>
         <hr />
