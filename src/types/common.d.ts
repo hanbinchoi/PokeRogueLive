@@ -22,6 +22,8 @@ export interface InputValues {
 
 export type MenuItem = 'pokemon' | 'type-calculator' | 'power-calculator';
 
+export type selectUsage = 'defenceAbility' | 'teraType';
+
 export interface DataProps {
   name: string;
   url: string;

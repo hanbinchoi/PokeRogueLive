@@ -1,4 +1,7 @@
-import { POKEMON_TYPE, TYPE_CALC_OPTION_TITLE } from '@/constants/contents';
+import {
+  POKEMON_TYPE_ARRAY,
+  TYPE_CALC_OPTION_TITLE,
+} from '@/constants/contents';
 import '../../styles/globals.css';
 
 import { TypeCalcButton } from '../TypeCalcButton/TypeCalcButton';
@@ -13,14 +16,13 @@ export const TypeCalcOption = ({ index }: TypeCalcOptionProps) => {
     (state) => state.typeCalcOptions,
   );
   const checkedType = typeCalcOptions[index];
-  console.log(typeCalcOptions);
   return (
     <div className="flex flex-col gap-4">
       <p className="text-[16px] font-semibold">
         {TYPE_CALC_OPTION_TITLE[index]}
       </p>
       <div className="flex gap-x-2 gap-y-4 flex-wrap">
-        {POKEMON_TYPE.map((type) =>
+        {POKEMON_TYPE_ARRAY.map((type) =>
           type === 'stellar' || type === 'unknown' ? null : (
             <TypeCalcButton
               key={type}
