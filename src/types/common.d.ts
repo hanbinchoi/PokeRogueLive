@@ -1,6 +1,8 @@
+import exp from 'constants';
+
 import { TypeBadge } from './../components/TypeBadge/TypeBadge';
 import { Pokemon } from '../components/Pokemon/PokemonCard';
-import exp from 'constants';
+import { POKEMON_TYPE } from '@/constants/contents';
 
 export interface DefaultProps {
   className?: string;
@@ -152,3 +154,17 @@ export interface PokemonsResponseProps {
   data: DataProps[];
   next: string;
 }
+
+type PokemonType = keyof typeof POKEMON_TYPE;
+
+interface PokemonTypeDetails {
+  backgroundColor: string;
+  name: string;
+  doubleDamage: string[];
+  halfDamage: string[];
+  noDamage: string[];
+}
+
+type PokemonTypeProps = {
+  [key: PokemonType]: PokemonTypeDetails;
+};

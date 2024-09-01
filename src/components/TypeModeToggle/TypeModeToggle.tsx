@@ -6,7 +6,6 @@ export interface TypeModeToggleProps {}
 export const TypeModeToggle = ({}: TypeModeToggleProps) => {
   const { current, setCurrent } = useTypeCalculatorStore();
   const changeCurrent = () => {
-    console.log(1);
     setCurrent(!current);
   };
   return (

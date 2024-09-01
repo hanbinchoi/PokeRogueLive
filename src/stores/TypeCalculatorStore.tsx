@@ -1,15 +1,16 @@
+import { PokemonType } from '@/types/common';
 import { create } from 'zustand';
 
 interface TypeCalculatorState {
   current: boolean;
-  typeCalcOptions: (string | null)[];
+  typeCalcOptions: (PokemonType | null)[];
 
   setCurrent: (current: boolean) => void;
-  setTypeCalcOptions: (typeCalcOptions: (string | null)[]) => void;
+  setTypeCalcOptions: (typeCalcOptions: (PokemonType | null)[]) => void;
 }
 
 const useTypeCalculatorStore = create<TypeCalculatorState>((set) => ({
-  current: false,
+  current: true,
   typeCalcOptions: [null, null],
 
   setCurrent: (current) => set(() => ({ current })),
