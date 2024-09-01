@@ -168,3 +168,12 @@ interface PokemonTypeDetails {
 type PokemonTypeProps = {
   [key: PokemonType]: PokemonTypeDetails;
 };
+
+interface calcDefendTypeProps {
+  doubleDamage: string[] | [];
+  halfDamage: string[] | [];
+  noDamage: string[] | [];
+  quarterDamage?: string[] | [];
+  damage?: string[] | [];
+  quadrupleDamage?: string[] | [];
+}

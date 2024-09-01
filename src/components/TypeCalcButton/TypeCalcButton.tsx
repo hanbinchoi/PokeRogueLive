@@ -2,9 +2,11 @@ import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 import '../../styles/globals.css';
 
 import { twJoin } from 'tailwind-merge';
+import calcDefendType from '@/utils/calcDefendType';
+import { PokemonType } from '@/types/common';
 
 export interface TypeCalcButtonProps {
-  type: string;
+  type: PokemonType;
   index: number;
   checked: boolean;
 }
@@ -21,11 +23,12 @@ export const TypeCalcButton = ({
   index,
   checked,
 }: TypeCalcButtonProps) => {
-  const { setTypeCalcOptions, typeCalcOptions } = useTypeCalculatorStore();
+  const { setTypeCalcOptions, typeCalcOptions, setDefendResult } =
+    useTypeCalculatorStore();
   const { backgroundColor, name } = TYPE_BADGE_STYLES[type];
 
   const selectType = (index: number) => {
-    return setTypeCalcOptions(
+    setTypeCalcOptions(
       typeCalcOptions.map((item, i) =>
         i === index ? (type === item ? null : type) : item,
       ),

@@ -1,4 +1,4 @@
-import { PokemonTypeProps } from '@/types/common';
+import { PokemonType, PokemonTypeProps } from '@/types/common';
 
 export const TOTAL_POKEMON_NUM = 1025;
 
@@ -181,7 +181,9 @@ export const POKEMON_TYPE = {
   },
 };
 
-export const POKEMON_TYPE_ARRAY = Object.keys(POKEMON_TYPE);
+export const POKEMON_TYPE_ARRAY: PokemonType[] = Object.keys(
+  POKEMON_TYPE,
+) as PokemonType[];
 
 export const POKEMON_TYPE_ARRAY_KR = Object.keys(POKEMON_TYPE).map(
   (key) => (POKEMON_TYPE as any)[key].name,
