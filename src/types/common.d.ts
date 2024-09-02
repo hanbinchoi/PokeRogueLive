@@ -169,11 +169,4 @@ type PokemonTypeProps = {
   [key: PokemonType]: PokemonTypeDetails;
 };
 
-interface calcDefendTypeProps {
-  doubleDamage: PokemonType[] | [];
-  halfDamage: PokemonType[] | [];
-  noDamage: PokemonType[] | [];
-  quarterDamage?: PokemonType[] | [];
-  damage?: PokemonType[] | [];
-  quadrupleDamage?: PokemonType[] | [];
-}
+type calcDefendTypeProps = Map<string, PokemonType[]> | null;

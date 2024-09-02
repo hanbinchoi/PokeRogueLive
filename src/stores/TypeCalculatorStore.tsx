@@ -4,11 +4,11 @@ import { create } from 'zustand';
 interface TypeCalculatorState {
   current: boolean;
   typeCalcOptions: (PokemonType | null)[];
-  defendResult: calcDefendTypeProps | null;
+  defendResult: calcDefendTypeProps;
 
   setCurrent: (current: boolean) => void;
   setTypeCalcOptions: (typeCalcOptions: (PokemonType | null)[]) => void;
-  setDefendResult: (defendResult: calcDefendTypeProps | null) => void;
+  setDefendResult: (defendResult: calcDefendTypeProps) => void;
 }
 
 const useTypeCalculatorStore = create<TypeCalculatorState>((set) => ({
