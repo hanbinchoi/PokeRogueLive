@@ -22,6 +22,19 @@ li {
   list-style: none;
 }
 
+.rainbow-bg {
+  @apply bg-gradient-to-r;
+  background-image: linear-gradient(
+    to right,
+    #f56565,
+    #f6e05e,
+    #48bb78,
+    #4299e1,
+    #667eea,
+    #9f7aea
+  );
+}
+
 .type-calc-menu {
   position: relative;
   display: flex;

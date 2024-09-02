@@ -2,9 +2,10 @@ import { POKEMON_TYPE } from '@/constants/contents';
 import '../../styles/globals.css';
 
 import { twJoin } from 'tailwind-merge';
+import { PokemonType } from '@/types/common';
 
 export interface TypeBadgeProps {
-  type: keyof typeof POKEMON_TYPE;
+  type: PokemonType;
   size: 'small' | 'medium';
 }
 export interface TypeBadgeStyleProps {
@@ -22,6 +23,19 @@ export interface TypeBadgeSizeProps {
 export const TypeBadge = ({ type, size }: TypeBadgeProps) => {
   const { backgroundColor, name } = POKEMON_TYPE[type];
 
+  if (type === 'stellar') {
+    return (
+      <span
+        className={twJoin(
+          'rainbow-bg',
+          'text-white-100',
+          TYPE_BADGE_SIZE[size],
+        )}>
+        {name}
+      </span>
+    );
+  }
+
   return (
     <span
       className={twJoin(
@@ -36,5 +50,5 @@ export const TypeBadge = ({ type, size }: TypeBadgeProps) => {
 
 const TYPE_BADGE_SIZE: TypeBadgeSizeProps = {
   small: 'text-xs font-bold px-3 py-1 rounded-lg',
-  medium: '',
+  medium: 'text-[16px] px-4 py-2 rounded-lg font-bold w-fit',
 };

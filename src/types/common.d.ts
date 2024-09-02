@@ -160,9 +160,9 @@ type PokemonType = keyof typeof POKEMON_TYPE;
 interface PokemonTypeDetails {
   backgroundColor: string;
   name: string;
-  doubleDamage: string[];
-  halfDamage: string[];
-  noDamage: string[];
+  doubleDamage: PokemonType[];
+  halfDamage: PokemonType[];
+  noDamage: PokemonType[];
 }
 
 type PokemonTypeProps = {
@@ -170,10 +170,10 @@ type PokemonTypeProps = {
 };
 
 interface calcDefendTypeProps {
-  doubleDamage: string[] | [];
-  halfDamage: string[] | [];
-  noDamage: string[] | [];
-  quarterDamage?: string[] | [];
-  damage?: string[] | [];
-  quadrupleDamage?: string[] | [];
+  doubleDamage: PokemonType[] | [];
+  halfDamage: PokemonType[] | [];
+  noDamage: PokemonType[] | [];
+  quarterDamage?: PokemonType[] | [];
+  damage?: PokemonType[] | [];
+  quadrupleDamage?: PokemonType[] | [];
 }

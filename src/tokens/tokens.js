@@ -20,6 +20,7 @@ const tokens = {
       dark: '#4B4948',
       fairy: '#DAB3D4',
       unknown: '#008080',
+      stellar: '#000000',
     },
     blue: {
       10: '#70cdff',
