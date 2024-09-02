@@ -1,8 +1,14 @@
 import '../../styles/globals.css';
 
-import { selectUsage } from '@/types/common';
+import { PokemonType, selectUsage } from '@/types/common';
 
-import { DEFENCE_ABILITY, POKEMON_TYPE_ARRAY_KR } from '@/constants/contents';
+import {
+  DEFENCE_ABILITY,
+  POKEMON_TYPE,
+  POKEMON_TYPE_ARRAY,
+  POKEMON_TYPE_ARRAY_KR,
+} from '@/constants/contents';
+import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 export interface CommonSelectProps {
   usage: selectUsage;
@@ -19,22 +25,32 @@ export type SelectConstantProps = {
 
 export const CommonSelect = ({ usage }: CommonSelectProps) => {
   const { label, options } = selectConstant[usage];
+  const { setTeraType } = useTypeCalculatorStore();
 
   const selectAbility = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(event.target.value);
+    const value = event.target.value;
+
+    if (usage === 'teraType') setTeraType(value);
   };
 
   return (
-    <form className="flex flex-col gap-2">
+    <form className="flex flex-col gap-2 w-full pr-16">
       <label className="text-[16px] font-semibold">{label}</label>
       <select
         aria-label="특성을 선택하세요."
+        name={label}
         className="px-4 py-2 border rounded-lg outline-none hover:opacity-60  focus:border-blue-70 focus:border-2"
         onChange={selectAbility}>
         <option value="">없음</option>
         <hr />
         {options.map((option) =>
-          option === '스텔라' || option === '???' ? null : (
+          usage === 'teraType' ? (
+            option === 'stellar' || option === 'unknown' ? null : (
+              <option key={option} value={option}>
+                {POKEMON_TYPE[option as PokemonType].name}
+              </option>
+            )
+          ) : (
             <option key={option} value={option}>
               {option}
             </option>
@@ -51,6 +67,6 @@ export const selectConstant: SelectConstantProps = {
   },
   teraType: {
     label: '테라 타입',
-    options: POKEMON_TYPE_ARRAY_KR,
+    options: POKEMON_TYPE_ARRAY,
   },
 };

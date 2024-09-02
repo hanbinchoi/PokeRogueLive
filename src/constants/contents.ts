@@ -185,6 +185,6 @@ export const POKEMON_TYPE_ARRAY: PokemonType[] = Object.keys(
   POKEMON_TYPE,
 ) as PokemonType[];
 
-export const POKEMON_TYPE_ARRAY_KR = Object.keys(POKEMON_TYPE).map(
-  (key) => (POKEMON_TYPE as any)[key].name,
-);
+export const POKEMON_TYPE_ARRAY_KR: PokemonType[] = Object.keys(
+  POKEMON_TYPE,
+).map((key) => (POKEMON_TYPE as any)[key].name);

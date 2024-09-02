@@ -3,18 +3,18 @@ import calcDefendType from '@/utils/calcDefendType';
 import { useEffect } from 'react';
 import { TypeCalcButton } from '../TypeCalcButton/TypeCalcButton';
 import { TypeBadge } from '../TypeBadge/TypeBadge';
+import { PokemonType } from '@/types/common';
 
 export const TypeCalcDefendResult = () => {
-  const { defendResult, typeCalcOptions, setDefendResult } =
+  const { defendResult, typeCalcOptions, setDefendResult, teraType } =
     useTypeCalculatorStore();
 
   useEffect(() => {
-    setDefendResult(calcDefendType(typeCalcOptions[0], typeCalcOptions[1]));
-  }, [typeCalcOptions]);
+    teraType
+      ? setDefendResult(calcDefendType(teraType as PokemonType, null))
+      : setDefendResult(calcDefendType(typeCalcOptions[0], typeCalcOptions[1]));
+  }, [typeCalcOptions, teraType]);
 
-  defendResult?.forEach((value, key) => {
-    console.log(key);
-  });
   if (defendResult) {
     return (
       <div className="flex flex-col gap-8 py-8">
