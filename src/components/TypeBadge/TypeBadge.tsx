@@ -1,21 +1,17 @@
-import { POKEMON_TYPE } from '@/constants/contents';
 import '../../styles/globals.css';
 
 import { twJoin } from 'tailwind-merge';
+
 import { PokemonType } from '@/types/common';
 
-export interface TypeBadgeProps {
+import { POKEMON_TYPE } from '@/constants/contents';
+
+interface TypeBadgeProps {
   type: PokemonType;
   size: 'small' | 'medium';
 }
-export interface TypeBadgeStyleProps {
-  [key: string]: {
-    name: string;
-    backgroundColor: string;
-  };
-}
 
-export interface TypeBadgeSizeProps {
+interface TypeBadgeSizeProps {
   small: string;
   medium: string;
 }

@@ -1,13 +1,14 @@
 import '../../styles/globals.css';
+
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-export interface TypeModeToggleProps {}
-
-export const TypeModeToggle = ({}: TypeModeToggleProps) => {
+export const TypeModeToggle = () => {
   const { current, setCurrent } = useTypeCalculatorStore();
+
   const changeCurrent = () => {
     setCurrent(!current);
   };
+
   return (
     <nav className="type-calc-menu text-lg font-bold flex justify-center">
       <li

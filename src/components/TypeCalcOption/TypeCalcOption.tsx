@@ -1,13 +1,15 @@
+import '../../styles/globals.css';
+
+import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
+
+import { TypeCalcButton } from '../TypeCalcButton/TypeCalcButton';
+
 import {
   POKEMON_TYPE_ARRAY,
   TYPE_CALC_OPTION_TITLE,
 } from '@/constants/contents';
-import '../../styles/globals.css';
 
-import { TypeCalcButton } from '../TypeCalcButton/TypeCalcButton';
-import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
-
-export interface TypeCalcOptionProps {
+interface TypeCalcOptionProps {
   index: number;
 }
 
@@ -16,6 +18,7 @@ export const TypeCalcOption = ({ index }: TypeCalcOptionProps) => {
     (state) => state.typeCalcOptions,
   );
   const checkedType = typeCalcOptions[index];
+
   return (
     <div className="flex flex-col gap-4">
       <p className="text-[16px] font-semibold">

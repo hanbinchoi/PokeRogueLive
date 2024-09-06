@@ -1,16 +1,16 @@
 import '../../styles/globals.css';
 
+import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
+
 import { PokemonType, selectUsage } from '@/types/common';
 
 import {
   DEFENCE_ABILITY,
   POKEMON_TYPE,
   POKEMON_TYPE_ARRAY,
-  POKEMON_TYPE_ARRAY_KR,
 } from '@/constants/contents';
-import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-export interface CommonSelectProps {
+interface CommonSelectProps {
   usage: selectUsage;
 }
 
@@ -19,7 +19,7 @@ type SelectOptionProps = {
   options: string[];
 };
 
-export type SelectConstantProps = {
+type SelectConstantProps = {
   [key in selectUsage]: SelectOptionProps;
 };
 
@@ -61,7 +61,8 @@ export const CommonSelect = ({ usage }: CommonSelectProps) => {
     </form>
   );
 };
-export const selectConstant: SelectConstantProps = {
+
+const selectConstant: SelectConstantProps = {
   defenceAbility: {
     label: '특성 선택',
     options: DEFENCE_ABILITY,
