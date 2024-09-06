@@ -25,12 +25,13 @@ export type SelectConstantProps = {
 
 export const CommonSelect = ({ usage }: CommonSelectProps) => {
   const { label, options } = selectConstant[usage];
-  const { setTeraType } = useTypeCalculatorStore();
+  const { setTeraType, setDefendAbility } = useTypeCalculatorStore();
 
   const selectAbility = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
 
     if (usage === 'teraType') setTeraType(value);
+    if (usage === 'defenceAbility') setDefendAbility(value);
   };
 
   return (

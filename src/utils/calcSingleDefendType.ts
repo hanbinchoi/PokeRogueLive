@@ -7,9 +7,11 @@ import {
 import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';
+import calcDefendAbility from './calcDefendAbility';
 
 export default function calcSingleDefendType(
   defendType: PokemonTypeDetails,
+  ability?: string | null,
 ): calcDefendTypeProps {
   const damageMap = new Map<string, PokemonType[]>();
 
@@ -26,7 +28,9 @@ export default function calcSingleDefendType(
     if (defendType.doubleDamage.find((t) => t === type)) {
       score *= 2;
     }
-
+    if (ability) {
+      score = calcDefendAbility(ability, score, type, defendType.name);
+    }
     addToMap(damageMap, '' + score, type);
   });
   return sortedMap(damageMap);

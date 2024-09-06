@@ -159,7 +159,7 @@ type PokemonType = keyof typeof POKEMON_TYPE;
 
 interface PokemonTypeDetails {
   backgroundColor: string;
-  name: string;
+  name: PokemonType;
   doubleDamage: PokemonType[];
   halfDamage: PokemonType[];
   noDamage: PokemonType[];

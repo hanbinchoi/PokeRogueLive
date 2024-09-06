@@ -8,28 +8,39 @@ import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
 import calcSingleDefendType from './calcSingleDefendType';
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';
+import calcDefendAbility from './calcDefendAbility';
 
 export default function calcDefendType(
   first: PokemonType | null,
   second: PokemonType | null,
+  ability?: string | null,
 ): calcDefendTypeProps {
   const damageMap = new Map<string, PokemonType[]>();
 
   if (first === null) {
     if (second)
-      return calcSingleDefendType(POKEMON_TYPE[second] as PokemonTypeDetails);
+      return calcSingleDefendType(
+        POKEMON_TYPE[second] as PokemonTypeDetails,
+        ability,
+      );
 
     return null;
   }
   if (second === null) {
     if (first)
-      return calcSingleDefendType(POKEMON_TYPE[first] as PokemonTypeDetails);
+      return calcSingleDefendType(
+        POKEMON_TYPE[first] as PokemonTypeDetails,
+        ability,
+      );
 
     return null;
   }
 
   if (first === second) {
-    return calcSingleDefendType(POKEMON_TYPE[first] as PokemonTypeDetails);
+    return calcSingleDefendType(
+      POKEMON_TYPE[first] as PokemonTypeDetails,
+      ability,
+    );
   }
 
   const firstType = POKEMON_TYPE[first];
@@ -45,7 +56,6 @@ export default function calcDefendType(
     ) {
       score = 0;
     }
-
     if (firstType.halfDamage.find((t) => t === type)) {
       score *= 0.5;
     }
@@ -58,7 +68,9 @@ export default function calcDefendType(
     if (secondType.doubleDamage.find((t) => t === type)) {
       score *= 2;
     }
-
+    if (ability) {
+      score = calcDefendAbility(ability, score, type, [first, second]);
+    }
     addToMap(damageMap, '' + score, type);
   });
 
