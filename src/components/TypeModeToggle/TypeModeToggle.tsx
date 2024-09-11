@@ -3,10 +3,10 @@ import '../../styles/globals.css';
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 export const TypeModeToggle = () => {
-  const { current, setCurrent } = useTypeCalculatorStore();
+  const { mode, setMode } = useTypeCalculatorStore();
 
   const changeCurrent = () => {
-    setCurrent(!current);
+    setMode(mode === 'defend' ? 'attack' : 'defend');
   };
 
   return (
@@ -14,13 +14,13 @@ export const TypeModeToggle = () => {
       <li
         role="button"
         onClick={changeCurrent}
-        className={current ? ' ' : 'is-current text-blue-70'}>
+        className={mode === 'defend' ? ' ' : 'is-current text-blue-70'}>
         공격
       </li>
       <li
         role="button"
         onClick={changeCurrent}
-        className={current ? 'is-current text-blue-70' : ''}>
+        className={mode === 'defend' ? 'is-current text-blue-70' : ''}>
         방어
       </li>
       <div className="nav-underline"></div>

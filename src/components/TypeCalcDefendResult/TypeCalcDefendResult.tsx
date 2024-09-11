@@ -11,7 +11,7 @@ import calcDefendType from '@/utils/calcDefendType';
 export const TypeCalcDefendResult = () => {
   const {
     defendResult,
-    typeCalcOptions,
+    typeCalcDefendOptions,
     setDefendResult,
     teraType,
     defendAbility,
@@ -23,9 +23,13 @@ export const TypeCalcDefendResult = () => {
           calcDefendType(teraType as PokemonType, null, defendAbility),
         )
       : setDefendResult(
-          calcDefendType(typeCalcOptions[0], typeCalcOptions[1], defendAbility),
+          calcDefendType(
+            typeCalcDefendOptions[0],
+            typeCalcDefendOptions[1],
+            defendAbility,
+          ),
         );
-  }, [typeCalcOptions, teraType, defendAbility]);
+  }, [typeCalcDefendOptions, teraType, defendAbility]);
 
   return defendResult ? (
     <div className="flex flex-col gap-8 py-8">

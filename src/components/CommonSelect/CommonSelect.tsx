@@ -64,7 +64,7 @@ export const CommonSelect = ({ usage }: CommonSelectProps) => {
 
 const selectConstant: SelectConstantProps = {
   defenceAbility: {
-    label: '특성 선택',
+    label: '특성',
     options: DEFENCE_ABILITY,
   },
   teraType: {

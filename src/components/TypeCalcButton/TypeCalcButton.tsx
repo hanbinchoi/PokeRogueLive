@@ -26,14 +26,26 @@ export const TypeCalcButton = ({
   index,
   checked,
 }: TypeCalcButtonProps) => {
-  const { setTypeCalcOptions, typeCalcOptions } = useTypeCalculatorStore();
+  const {
+    setTypeCalcDefendOptions,
+    typeCalcDefendOptions,
+    setTypeCalcAttackOptions,
+    typeCalcAttackOptions,
+    mode,
+  } = useTypeCalculatorStore();
   const { backgroundColor, name } = POKEMON_TYPE[type];
 
-  const selectType = (index: number) => {
-    setTypeCalcOptions(
-      typeCalcOptions.map((item, i) =>
-        i === index ? (type === item ? null : type) : item,
-      ),
+  const selectType = () => {
+    if (mode === 'defend') {
+      setTypeCalcDefendOptions(
+        typeCalcDefendOptions.map((item, i) =>
+          i === index ? (type === item ? null : type) : item,
+        ),
+      );
+      return;
+    }
+    setTypeCalcAttackOptions(
+      typeCalcAttackOptions ? [...typeCalcAttackOptions, type] : [type],
     );
   };
 
@@ -43,7 +55,7 @@ export const TypeCalcButton = ({
         backgroundColor,
         'flex items-center gap-2 w-[98px] p-2 border rounded-3xl hover:opacity-70 text-white-100',
       )}
-      onClick={() => selectType(index)}>
+      onClick={selectType}>
       <div
         className={
           'w-[20px] h-[20px] rounded-full bg-white-100 flex justify-center items-center'
@@ -59,7 +71,7 @@ export const TypeCalcButton = ({
   ) : (
     <button
       className="flex items-center gap-2 w-[98px] p-2 bg-white-100 border rounded-3xl hover:opacity-70"
-      onClick={() => selectType(index)}>
+      onClick={selectType}>
       <div
         className={twJoin(
           backgroundColor,

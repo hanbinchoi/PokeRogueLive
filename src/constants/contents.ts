@@ -2,8 +2,6 @@ import { PokemonType, PokemonTypeProps } from '@/types/common';
 
 export const TOTAL_POKEMON_NUM = 1025;
 
-export const TYPE_CALC_OPTION_TITLE = ['첫번째', '두번째'];
-
 export const DEFENCE_ABILITY = [
   '건조피부',
   '내열',

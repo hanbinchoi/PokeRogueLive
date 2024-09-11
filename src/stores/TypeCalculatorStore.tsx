@@ -2,29 +2,39 @@ import { calcDefendTypeProps, PokemonType } from '@/types/common';
 import { create } from 'zustand';
 
 interface TypeCalculatorState {
-  current: boolean;
-  typeCalcOptions: (PokemonType | null)[];
+  mode: 'attack' | 'defend';
+  typeCalcDefendOptions: (PokemonType | null)[];
+  typeCalcAttackOptions: PokemonType[] | null;
   defendResult: calcDefendTypeProps;
   teraType: null | string;
   defendAbility: null | string;
 
-  setCurrent: (current: boolean) => void;
+  setMode: (mode: 'attack' | 'defend') => void;
   setTeraType: (teraType: null | string) => void;
-  setTypeCalcOptions: (typeCalcOptions: (PokemonType | null)[]) => void;
+  setTypeCalcDefendOptions: (
+    typeCalcDefendOptions: (PokemonType | null)[],
+  ) => void;
+  setTypeCalcAttackOptions: (
+    typeCalcAttackOptions: PokemonType[] | null,
+  ) => void;
   setDefendResult: (defendResult: calcDefendTypeProps) => void;
   setDefendAbility: (defendAbility: string | null) => void;
 }
 
 const useTypeCalculatorStore = create<TypeCalculatorState>((set) => ({
-  current: true,
-  typeCalcOptions: [null, null],
+  mode: 'defend',
+  typeCalcDefendOptions: [null, null],
+  typeCalcAttackOptions: null,
   defendResult: null,
   teraType: null,
   defendAbility: null,
 
-  setCurrent: (current) => set(() => ({ current })),
+  setMode: (mode) => set(() => ({ mode })),
   setTeraType: (teraType) => set(() => ({ teraType })),
-  setTypeCalcOptions: (typeCalcOptions) => set(() => ({ typeCalcOptions })),
+  setTypeCalcDefendOptions: (typeCalcDefendOptions) =>
+    set(() => ({ typeCalcDefendOptions })),
+  setTypeCalcAttackOptions: (typeCalcAttackOptions) =>
+    set(() => ({ typeCalcAttackOptions })),
   setDefendResult: (defendResult) => set(() => ({ defendResult })),
   setDefendAbility: (defendAbility) => set(() => ({ defendAbility })),
 }));
