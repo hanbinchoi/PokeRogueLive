@@ -2,7 +2,7 @@ import '../../styles/globals.css';
 
 import { TypeCalcOption } from '../TypeCalcOption/TypeCalcOption';
 import { CommonSelect } from '../CommonSelect/CommonSelect';
-import { TypeCalcDefendResult } from '../TypeCalcDefendResult/TypeCalcDefendResult';
+import { TypeCalcAttackResult } from '../TypeCalcAttackResult/TypeCalcAttackResult';
 
 export const TypeCalcAttack = () => {
   return (
@@ -12,7 +12,7 @@ export const TypeCalcAttack = () => {
         <CommonSelect usage="defenceAbility" />
         <CommonSelect usage="teraType" />
       </div>
-      <TypeCalcDefendResult />
+      <TypeCalcAttackResult />
     </div>
   );
 };

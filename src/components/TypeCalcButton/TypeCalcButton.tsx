@@ -37,16 +37,20 @@ export const TypeCalcButton = ({
 
   const selectType = () => {
     if (mode === 'defend') {
-      setTypeCalcDefendOptions(
-        typeCalcDefendOptions.map((item, i) =>
-          i === index ? (type === item ? null : type) : item,
-        ),
+      const newOptions = typeCalcDefendOptions.map((item, i) =>
+        i === index ? (type === item ? null : type) : item,
       );
-      return;
+
+      return setTypeCalcDefendOptions(newOptions);
     }
-    setTypeCalcAttackOptions(
-      typeCalcAttackOptions ? [...typeCalcAttackOptions, type] : [type],
-    );
+
+    const newOptions = typeCalcAttackOptions;
+
+    if (!newOptions) return setTypeCalcAttackOptions([type]);
+
+    return newOptions?.includes(type)
+      ? setTypeCalcAttackOptions(newOptions.filter((option) => option !== type))
+      : setTypeCalcAttackOptions([...typeCalcAttackOptions, type]);
   };
 
   return checked ? (
