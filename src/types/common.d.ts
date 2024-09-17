@@ -20,11 +20,15 @@ export type SearchInputSize = 'small' | 'medium';
 
 export interface InputValues {
   keyword: string;
+  move: string;
+  ability: string;
 }
 
 export type MenuItem = 'pokemon' | 'type-calculator' | 'power-calculator';
 
 export type selectUsage = 'defenceAbility' | 'teraType';
+
+export type checkboxUsage = 'attackMove' | 'attackAbility';
 
 export interface DataProps {
   name: string;

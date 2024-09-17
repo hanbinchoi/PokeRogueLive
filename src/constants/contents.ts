@@ -48,10 +48,8 @@ export const POKEMON_TYPE = {
       'fighting',
       'psychic',
       'bug',
-      'rock',
       'dragon',
       'dark',
-      'steel',
       'fairy',
     ],
   },
@@ -72,7 +70,6 @@ export const POKEMON_TYPE = {
       'electric',
       'grass',
       'ice',
-      'poison',
       'ground',
       'steel',
       'dragon',
@@ -137,7 +134,6 @@ export const POKEMON_TYPE = {
       'fire',
       'fighting',
       'ground',
-      'flying',
       'psychic',
       'bug',
       'ghost',
@@ -276,12 +272,16 @@ export const POKEMON_TYPE = {
     noEffect: [],
     normalEffect: [
       'normal',
+      'fighting',
+      'poison',
+      'steel',
+      'electric',
+      'ice',
       'ground',
       'flying',
       'bug',
       'psychic',
       'ghost',
-      'dragon',
       'dark',
       'fairy',
     ],
@@ -416,6 +416,7 @@ export const POKEMON_TYPE = {
     noEffect: [],
     normalEffect: [
       'normal',
+      'bug',
       'fire',
       'water',
       'electric',
@@ -485,3 +486,7 @@ export const POKEMON_TYPE_ARRAY: PokemonType[] = Object.keys(
 export const POKEMON_TYPE_ARRAY_KR: PokemonType[] = Object.keys(
   POKEMON_TYPE,
 ).map((key) => (POKEMON_TYPE as any)[key].name);
+
+export const ATTACK_SPECIAL_MOVES = ['사우전드 에로우', '프리즈 드라이'];
+
+export const ATTACK_SPECIAL_ABILITIES = ['배짱', '색안경'];

@@ -5,6 +5,8 @@ import sortedMap from './sortedMap';
 
 export default function calcAttackType(
   checkedType: PokemonType[] | null,
+  attackAbility: string | null,
+  attackMove: string | null,
 ): Map<string, PokemonType[]> | null {
   if (!checkedType) return null;
 
@@ -32,6 +34,7 @@ export default function calcAttackType(
     );
   });
 
+  console.log(combinedDoubleEffect, combinedHalfEffect, combinedNormalEffect);
   POKEMON_TYPE_ARRAY.forEach((type) => {
     if (type === 'stellar' || type === 'unknown') return;
 
@@ -45,10 +48,31 @@ export default function calcAttackType(
     }
 
     if (combinedHalfEffect.has(type)) {
+      if (attackAbility === '색안경') {
+        addToMap(effectMap, '1', type);
+        return;
+      }
       addToMap(effectMap, '0.5', type);
       return;
     }
 
+    if (attackMove) {
+      if (attackMove === '사우전드 에로우' && type === 'flying') {
+        addToMap(effectMap, '1', type);
+        return;
+      }
+      if (attackMove === '프리즈 드라이' && type === 'water') {
+        addToMap(effectMap, '2', type);
+        return;
+      }
+    }
+
+    if (attackAbility) {
+      if (attackAbility === '배짱' && type === 'ghost') {
+        addToMap(effectMap, '1', type);
+        return;
+      }
+    }
     addToMap(effectMap, '0', type);
   });
 

@@ -6,18 +6,17 @@ import { TypeBadge } from '../TypeBadge/TypeBadge';
 
 import { PokemonType } from '@/types/common';
 
-import calcDefendType from '@/utils/calcDefendType';
 import calcAttackType from '@/utils/calcAttackType';
 
 export const TypeCalcAttackResult = () => {
-  const { typeCalcAttackOptions } = useTypeCalculatorStore();
+  const { typeCalcAttackOptions, attackAbility, attackMove } =
+    useTypeCalculatorStore();
 
   const [result, setResult] = useState<Map<string, PokemonType[]> | null>();
-
   useEffect(() => {
-    setResult(calcAttackType(typeCalcAttackOptions));
-  }, [typeCalcAttackOptions]);
-  console.log(result);
+    setResult(calcAttackType(typeCalcAttackOptions, attackAbility, attackMove));
+  }, [typeCalcAttackOptions, attackAbility, attackMove]);
+
   return (
     result && (
       <div className="flex flex-col gap-8 py-8">

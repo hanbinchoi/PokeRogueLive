@@ -1,3 +1,4 @@
+import { Button } from './../Button/Button';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { TypeModeToggle } from './TypeModeToggle';

@@ -8,6 +8,8 @@ interface TypeCalculatorState {
   defendResult: calcDefendTypeProps;
   teraType: null | string;
   defendAbility: null | string;
+  attackMove: null | string;
+  attackAbility: null | string;
 
   setMode: (mode: 'attack' | 'defend') => void;
   setTeraType: (teraType: null | string) => void;
@@ -19,6 +21,8 @@ interface TypeCalculatorState {
   ) => void;
   setDefendResult: (defendResult: calcDefendTypeProps) => void;
   setDefendAbility: (defendAbility: string | null) => void;
+  setAttackMove: (attackMove: string | null) => void;
+  setAttackAbility: (attackAbility: string | null) => void;
 }
 
 const useTypeCalculatorStore = create<TypeCalculatorState>((set) => ({
@@ -28,6 +32,8 @@ const useTypeCalculatorStore = create<TypeCalculatorState>((set) => ({
   defendResult: null,
   teraType: null,
   defendAbility: null,
+  attackMove: null,
+  attackAbility: null,
 
   setMode: (mode) => set(() => ({ mode })),
   setTeraType: (teraType) => set(() => ({ teraType })),
@@ -37,6 +43,8 @@ const useTypeCalculatorStore = create<TypeCalculatorState>((set) => ({
     set(() => ({ typeCalcAttackOptions })),
   setDefendResult: (defendResult) => set(() => ({ defendResult })),
   setDefendAbility: (defendAbility) => set(() => ({ defendAbility })),
+  setAttackMove: (attackMove) => set(() => ({ attackMove })),
+  setAttackAbility: (attackAbility) => set(() => ({ attackAbility })),
 }));
 
 export default useTypeCalculatorStore;
