@@ -33,7 +33,8 @@ export const TypeCalcButton = ({
     typeCalcAttackOptions,
     mode,
   } = useTypeCalculatorStore();
-  const { backgroundColor, name } = POKEMON_TYPE[type];
+
+  const pokemonType = POKEMON_TYPE[type];
 
   const selectType = () => {
     if (mode === 'defend') {
@@ -56,7 +57,7 @@ export const TypeCalcButton = ({
   return checked ? (
     <button
       className={twJoin(
-        backgroundColor,
+        pokemonType.backgroundColor,
         'flex items-center gap-2 w-[98px] p-2 border rounded-3xl hover:opacity-70 text-white-100',
       )}
       onClick={selectType}>
@@ -66,11 +67,11 @@ export const TypeCalcButton = ({
         }>
         <div
           className={twJoin(
-            backgroundColor,
+            pokemonType.backgroundColor,
             'w-[10px] h-[10px] rounded-full',
           )}></div>
       </div>
-      <div className="font-semibold">{name}</div>
+      <div className="font-semibold">{pokemonType.name}</div>
     </button>
   ) : (
     <button
@@ -78,10 +79,10 @@ export const TypeCalcButton = ({
       onClick={selectType}>
       <div
         className={twJoin(
-          backgroundColor,
+          pokemonType.backgroundColor,
           'w-[20px] h-[20px] rounded-full',
         )}></div>
-      <div className="font-semibold">{name}</div>
+      <div className="font-semibold">{pokemonType.name}</div>
     </button>
   );
 };
