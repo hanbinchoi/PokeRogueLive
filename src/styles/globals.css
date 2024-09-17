@@ -21,3 +21,50 @@ ol,
 li {
   list-style: none;
 }
+
+.rainbow-bg {
+  @apply bg-gradient-to-r;
+  background-image: linear-gradient(
+    to right,
+    #f56565,
+    #f6e05e,
+    #48bb78,
+    #4299e1,
+    #667eea,
+    #9f7aea
+  );
+}
+
+.type-calc-menu {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+.type-calc-menu li {
+  display: block;
+  width: 20%;
+  padding-bottom: 4px;
+  text-align: center;
+}
+.nav-underline {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 10%;
+  height: 2px;
+  background: rgb(47, 161, 211);
+  transition: all 0.3s ease-in-out;
+}
+
+.type-calc-menu li:nth-child(1).is-current ~ .nav-underline {
+  left: 35%;
+}
+.type-calc-menu li:nth-child(2).is-current ~ .nav-underline {
+  left: 55%;
+}
+.type-calc-menu li:nth-child(1):hover ~ .nav-underline {
+  left: 35%;
+}
+.type-calc-menu li:nth-child(2):hover ~ .nav-underline {
+  left: 55%;
+}

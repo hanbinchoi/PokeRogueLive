@@ -1,6 +1,8 @@
+import exp from 'constants';
+
 import { TypeBadge } from './../components/TypeBadge/TypeBadge';
 import { Pokemon } from '../components/Pokemon/PokemonCard';
-import exp from 'constants';
+import { POKEMON_TYPE } from '@/constants/contents';
 
 export interface DefaultProps {
   className?: string;
@@ -18,9 +20,15 @@ export type SearchInputSize = 'small' | 'medium';
 
 export interface InputValues {
   keyword: string;
+  move: string;
+  ability: string;
 }
 
 export type MenuItem = 'pokemon' | 'type-calculator' | 'power-calculator';
+
+export type selectUsage = 'defenceAbility' | 'teraType';
+
+export type checkboxUsage = 'attackMove' | 'attackAbility';
 
 export interface DataProps {
   name: string;
@@ -150,3 +158,19 @@ export interface PokemonsResponseProps {
   data: DataProps[];
   next: string;
 }
+
+type PokemonType = keyof typeof POKEMON_TYPE;
+
+interface PokemonTypeDetails {
+  backgroundColor: string;
+  name: PokemonType;
+  doubleDamage: PokemonType[];
+  halfDamage: PokemonType[];
+  noDamage: PokemonType[];
+}
+
+type PokemonTypeProps = {
+  [key: PokemonType]: PokemonTypeDetails;
+};
+
+type calcDefendTypeProps = Map<string, PokemonType[]> | null;
