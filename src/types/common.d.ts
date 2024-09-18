@@ -147,7 +147,7 @@ export interface PokemonDetailProps {
 }
 
 export interface PokemonDataProps {
-  type: string[];
+  type: PokemonType[];
   name: string;
   imageUrl: string;
   pokedex: number;

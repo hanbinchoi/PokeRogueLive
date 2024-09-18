@@ -27,7 +27,6 @@ export const PokemonList = ({ pokemonId }: PokemonListProps) => {
 
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>error</div>;
-
   if (data)
     return (
       <>

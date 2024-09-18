@@ -14,6 +14,8 @@ import {
 } from '@/types/common';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
+import Link from 'next/link';
+import usePokemonsStore from '@/stores/pokemonsStore';
 
 export interface PokemonCardProps {
   id: number;
@@ -23,7 +25,7 @@ export const PokemonCard = ({ id }: PokemonCardProps) => {
   if (id === null) return;
 
   const [pokemon, setPokemon] = useState<PokemonDataProps>();
-
+  const { setTargetPokemon } = usePokemonsStore();
   const {
     data: pokemonData,
     isLoading: isLoadingPokemon,
@@ -54,15 +56,17 @@ export const PokemonCard = ({ id }: PokemonCardProps) => {
 
   if (pokemon)
     return (
-      <div className="px-8 py-4 text-sm font-bold flex flex-col items-center bg-white-100 border-2 rounded-lg">
-        <div>{`No. ${String(pokemon.pokedex).padStart(3, '0')}`}</div>
-        <img className="w-24" alt={pokemon.name} src={pokemon.imageUrl} />
-        <div className="mb-2 text-lg">{pokemon.name}</div>
-        <div className="flex gap-2">
-          {pokemon.type.map((t, i) => (
-            <TypeBadge key={t + i} type={t} size="small" />
-          ))}
+      <Link href={`/pokemon/${id}`} onClick={() => setTargetPokemon(pokemon)}>
+        <div className="px-8 py-4 text-sm font-bold flex flex-col items-center bg-white-100 border-2 rounded-lg">
+          <div>{`No. ${String(pokemon.pokedex).padStart(3, '0')}`}</div>
+          <img className="w-24" alt={pokemon.name} src={pokemon.imageUrl} />
+          <div className="mb-2 text-lg">{pokemon.name}</div>
+          <div className="flex gap-2">
+            {pokemon.type.map((t, i) => (
+              <TypeBadge key={t + i} type={t} size="small" />
+            ))}
+          </div>
         </div>
-      </div>
+      </Link>
     );
 };
