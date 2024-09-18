@@ -5,7 +5,7 @@ import '../../styles/globals.css';
 
 import { getPokemons } from '@/api/pokemon';
 
-import { Pokemon } from '../Pokemon/PokemonCard';
+import { Pokemon } from '../Pokemon/Pokemon';
 
 import { DataProps, PokemonsResponseProps } from '@/types/common';
 import { useEffect, useState } from 'react';

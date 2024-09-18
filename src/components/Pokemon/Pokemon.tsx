@@ -5,8 +5,6 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getPokemon, getPokemonSpecies } from '@/api/pokemon';
 
-import { TypeBadge } from '../TypeBadge/TypeBadge';
-
 import {
   PokemonDataProps,
   PokemonDetailProps,
@@ -16,16 +14,18 @@ import {
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
 import Link from 'next/link';
 import usePokemonsStore from '@/stores/pokemonsStore';
+import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
 
-export interface PokemonCardProps {
+export interface PokemonProps {
   id: number;
 }
 
-export const PokemonCard = ({ id }: PokemonCardProps) => {
+export const Pokemon = ({ id }: PokemonProps) => {
   if (id === null) return;
 
   const [pokemon, setPokemon] = useState<PokemonDataProps>();
   const { setTargetPokemon } = usePokemonsStore();
+
   const {
     data: pokemonData,
     isLoading: isLoadingPokemon,
@@ -57,16 +57,7 @@ export const PokemonCard = ({ id }: PokemonCardProps) => {
   if (pokemon)
     return (
       <Link href={`/pokemon/${id}`} onClick={() => setTargetPokemon(pokemon)}>
-        <div className="px-8 py-4 text-sm font-bold flex flex-col items-center bg-white-100 border-2 rounded-lg">
-          <div>{`No. ${String(pokemon.pokedex).padStart(3, '0')}`}</div>
-          <img className="w-24" alt={pokemon.name} src={pokemon.imageUrl} />
-          <div className="mb-2 text-lg">{pokemon.name}</div>
-          <div className="flex gap-2">
-            {pokemon.type.map((t, i) => (
-              <TypeBadge key={t + i} type={t} size="small" />
-            ))}
-          </div>
-        </div>
+        <PokemonImgBox pokemon={pokemon} usage="list" />
       </Link>
     );
 };

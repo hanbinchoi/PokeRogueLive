@@ -1,7 +1,7 @@
 import exp from 'constants';
 
 import { TypeBadge } from './../components/TypeBadge/TypeBadge';
-import { Pokemon } from '../components/Pokemon/PokemonCard';
+import { Pokemon } from '../components/Pokemon/Pokemon';
 import { POKEMON_TYPE } from '@/constants/contents';
 
 export interface DefaultProps {
