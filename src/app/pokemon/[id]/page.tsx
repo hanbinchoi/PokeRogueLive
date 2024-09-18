@@ -1,12 +1,7 @@
 'use client';
 import usePokemonsStore from '@/stores/pokemonsStore';
-import { useParams } from 'next/navigation';
 
-interface PokemonDetailProps {
-  params: { id: string };
-}
-export default function PokemonDetail({ params }: PokemonDetailProps) {
-  const { id } = useParams();
+export default function PokemonDetail() {
   const { targetPokemon } = usePokemonsStore();
   console.log(targetPokemon);
   return (

@@ -144,6 +144,28 @@ export interface PokemonDetailProps {
   stats: StatProps[];
   types: TypeProps[];
   weight: number;
+  evolution_chain: string;
+  flavorText: string;
+}
+
+export interface AbilityInfoProps {
+  ability: DataProps;
+  is_hidden: Boolean;
+  slot: number;
+}
+
+export interface MoveInfoProps {
+  move: DataProps;
+  version_group_details: {
+    level_learned_at: number;
+    move_learn_method: DataProps;
+  }[];
+}
+
+export interface StatInfoProps {
+  base_stat: number;
+  effort: number;
+  stat: DataProps;
 }
 
 export interface PokemonDataProps {
@@ -151,6 +173,19 @@ export interface PokemonDataProps {
   name: string;
   imageUrl: string;
   pokedex: number;
+  abilitiesInfo: AbilityInfoProps[];
+  base_experience: number;
+  cries: string;
+  height: number;
+  moves: MoveInfoProps[];
+  stats: StatInfoProps[];
+  weight: number;
+  capture_rate: number;
+  evolution_chain: string;
+  flavor_text: string;
+  genera: string;
+  is_legendary: boolean;
+  is_mythical: boolean;
 }
 
 export interface PokemonsResponseProps {
