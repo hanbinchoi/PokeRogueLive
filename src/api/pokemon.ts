@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {
+  EvolutionChainProps,
   PokemonDetailProps,
   PokemonNameProps,
   PokemonSpeciesProps,
@@ -54,4 +55,11 @@ export async function getPokemonByKoreanName(
     }
   }
   return null;
+}
+
+export async function getPokemonEvolutionChain(
+  url: string,
+): Promise<EvolutionChainProps> {
+  const res = await axios.get(url).then((res) => res.data);
+  return res;
 }

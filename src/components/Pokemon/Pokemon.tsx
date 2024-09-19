@@ -1,20 +1,17 @@
 import '../../styles/globals.css';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
-import { getPokemon, getPokemonSpecies } from '@/api/pokemon';
+import { PokemonDataProps } from '@/types/common';
 
-import {
-  PokemonDataProps,
-  PokemonDetailProps,
-  PokemonSpeciesProps,
-} from '@/types/common';
+import usePokemonsStore from '@/stores/pokemonsStore';
+
+import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
+
+import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
-import Link from 'next/link';
-import usePokemonsStore from '@/stores/pokemonsStore';
-import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
 
 export interface PokemonProps {
   id: number;
@@ -27,23 +24,13 @@ export const Pokemon = ({ id }: PokemonProps) => {
   const { setTargetPokemon } = usePokemonsStore();
 
   const {
-    data: pokemonData,
-    isLoading: isLoadingPokemon,
-    isError: isErrorPokemon,
-  } = useQuery<PokemonDetailProps>({
-    queryKey: ['detail', id],
-    queryFn: () => getPokemon(id),
-  });
-
-  const {
-    data: speciesData,
-    isLoading: isLoadingSpecies,
-    isError: isErrorSpecies,
-  } = useQuery<PokemonSpeciesProps>({
-    queryKey: ['species', pokemonData?.id],
-    queryFn: () => getPokemonSpecies(pokemonData!.species.url),
-    enabled: !!pokemonData,
-  });
+    pokemonData,
+    speciesData,
+    isLoadingPokemon,
+    isLoadingSpecies,
+    isErrorPokemon,
+    isErrorSpecies,
+  } = usePokemonDetailQuery(String(id));
 
   useEffect(() => {
     if (pokemonData && speciesData)

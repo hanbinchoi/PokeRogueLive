@@ -209,3 +209,40 @@ type PokemonTypeProps = {
 };
 
 type calcDefendTypeProps = Map<string, PokemonType[]> | null;
+
+interface EvolutionDetailProps {
+  gender: number | null;
+  held_item: string | null;
+  item: DataProps | null;
+  known_move: string | null;
+  known_move_type: string | null;
+  location: string | null;
+  min_affection: number | null;
+  min_beauty: number | null;
+  min_happiness: number | null;
+  min_level: number | null;
+  needs_overworld_rain: boolean;
+  party_species: string | null;
+  party_type: string | null;
+  relative_physical_stats: number | null;
+  time_of_day: string;
+  trade_species: string | null;
+  trigger: {
+    name: string;
+    url: string;
+  };
+  turn_upside_down: boolean;
+}
+
+interface EvolutionChainNodeProps {
+  is_baby: boolean;
+  species: DataProps;
+  evolution_details: EvolutionDetailProps[];
+  evolves_to: EvolutionChainNodeProps[];
+}
+
+interface EvolutionChainProps {
+  id: number;
+  baby_trigger_item: string | null;
+  chain: EvolutionChainNodeProps;
+}

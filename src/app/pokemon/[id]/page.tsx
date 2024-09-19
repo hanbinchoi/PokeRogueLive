@@ -1,17 +1,17 @@
 'use client';
-import { getPokemon, getPokemonSpecies } from '@/api/pokemon';
+
+import { useParams } from 'next/navigation';
+import { useEffect } from 'react';
+
+import usePokemonsStore from '@/stores/pokemonsStore';
+
+import { EvolutionChain } from '@/components/EvolutionChain/EvolutionChain';
 import { PokemonBasicInfo } from '@/components/PokemonBasicInfo/PokemonBasicInfo';
 import { PokemonImgBox } from '@/components/PokemonImgBox/PokemonImgBox';
-import usePokemonsStore from '@/stores/pokemonsStore';
-import {
-  PokemonDataProps,
-  PokemonDetailProps,
-  PokemonSpeciesProps,
-} from '@/types/common';
+
+import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
+
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 export default function PokemonDetail() {
   const { id } = useParams();
@@ -20,35 +20,23 @@ export default function PokemonDetail() {
   const { setTargetPokemon, targetPokemon } = usePokemonsStore();
 
   const {
-    data: pokemonData,
-    isLoading: isLoadingPokemon,
-    isError: isErrorPokemon,
-  } = useQuery<PokemonDetailProps>({
-    queryKey: ['detail', id],
-    queryFn: () => getPokemon(+id),
-    enabled: !targetPokemon,
-  });
-
-  const {
-    data: speciesData,
-    isLoading: isLoadingSpecies,
-    isError: isErrorSpecies,
-  } = useQuery<PokemonSpeciesProps>({
-    queryKey: ['species', pokemonData?.id],
-    queryFn: () => getPokemonSpecies(pokemonData!.species.url),
-    enabled: !!pokemonData,
-  });
+    pokemonData,
+    speciesData,
+    isLoadingPokemon,
+    isLoadingSpecies,
+    isErrorPokemon,
+    isErrorSpecies,
+  } = usePokemonDetailQuery(String(id));
 
   useEffect(() => {
     if (pokemonData && speciesData)
       setTargetPokemon(extractPokemonDetails([pokemonData, speciesData]));
   }, [pokemonData, speciesData]);
 
+  if (!targetPokemon) return <div>포켓몬이 없어요.</div>;
   if (isLoadingPokemon || isLoadingSpecies) return <div>Loading...</div>;
   if (isErrorPokemon) return <div>Error loading Pokemon data.</div>;
   if (isErrorSpecies) return <div>Error loading Pokemon species data.</div>;
-
-  if (!targetPokemon) return <div>포켓몬이 없어요.</div>;
 
   if (targetPokemon)
     return (
@@ -59,6 +47,12 @@ export default function PokemonDetail() {
           </div>
           <div className="col-span-2 ">
             <PokemonBasicInfo pokemon={targetPokemon} />
+          </div>
+          <div>
+            <EvolutionChain
+              url={targetPokemon.evolution_chain}
+              pokedex={targetPokemon.pokedex}
+            />
           </div>
         </div>
       </main>
