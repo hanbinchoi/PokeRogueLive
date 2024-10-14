@@ -490,3 +490,23 @@ export const POKEMON_TYPE_ARRAY_KR: PokemonType[] = Object.keys(
 export const ATTACK_SPECIAL_MOVES = ['사우전드 에로우', '프리즈 드라이'];
 
 export const ATTACK_SPECIAL_ABILITIES = ['배짱', '색안경'];
+
+export const abilityTranslations = {
+  overgrow: '심록',
+  chlorophyll: '엽록소',
+  blaze: '맹화',
+  'solar-power': '선파워',
+  torrent: '급류',
+  'rain-dish': '젖은접시',
+  'shed-skin': '탈피',
+  'compound-eyes': '복안',
+  intimidate: '위협',
+  static: '정전기',
+  limber: '유연',
+  'sand-veil': '모래숨기',
+  pressure: '프레셔',
+  'flash-fire': '타오르는불꽃',
+  'water-absorb': '저수',
+  'volt-absorb': '축전',
+  immunity: '면역',
+};

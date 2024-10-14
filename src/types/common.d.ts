@@ -246,3 +246,21 @@ interface EvolutionChainProps {
   baby_trigger_item: string | null;
   chain: EvolutionChainNodeProps;
 }
+
+interface EffectEntryProps {
+  effect: string;
+  short_effect: string;
+  language: DataProps;
+}
+
+interface AbilityDetailProps {
+  id: number;
+  name: string;
+  names: PokemonNameProps[];
+  flavor_text_entries: FlavorTextEntryProps[];
+}
+
+export interface AbilityNameProps {
+  language: DataProps;
+  name: string;
+}
