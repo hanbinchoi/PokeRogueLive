@@ -11,7 +11,7 @@ export interface AbilityBoxProps {
 
 export const AbilityBox = ({ abilities }: AbilityBoxProps) => {
   return (
-    <div className="flex flex-col gap-4 col-span-2 ">
+    <div className="flex flex-col gap-4 ">
       <div className="flex gap-1">
         <p className="text-xl font-bold">특성</p>
         <Tooltip text={'숨겨진 특성은 노란색으로 표기돼요'} />

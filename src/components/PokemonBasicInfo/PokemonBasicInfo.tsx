@@ -18,8 +18,8 @@ export const PokemonBasicInfo = ({ pokemon }: PokemonBasicInfoProps) => {
           </div>
         </div>
         <div className="flex gap-3 mt-[-8px]">
-          {pokemon.type.map((t) => (
-            <TypeBadge size="small" type={t} />
+          {pokemon.type.map((t, i) => (
+            <TypeBadge key={t + i} size="small" type={t} />
           ))}
         </div>
         <div className="leading-5">{pokemon.flavor_text}</div>

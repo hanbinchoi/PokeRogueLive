@@ -1,6 +1,8 @@
-import { getItemInfo } from '@/api/pokemon';
-import { EvolutionDetailProps, ItemInfoProps } from '@/types/common';
 import { useQuery } from '@tanstack/react-query';
+
+import { getItemInfo } from '@/api/pokemon';
+
+import { EvolutionDetailProps, ItemInfoProps } from '@/types/common';
 
 export interface EvolutionDescriptionProps {
   evolutionDetails: EvolutionDetailProps[];
@@ -9,11 +11,15 @@ export interface EvolutionDescriptionProps {
 export const EvolutionDescription = ({
   evolutionDetails,
 }: EvolutionDescriptionProps) => {
-  const description = evolutionDetails.map((detail) => {
-    if (detail.min_happiness) return `행복도 ${detail.min_happiness}`;
-    if (detail.min_level) return `레벨 ${detail.min_level}`;
-    if (detail.item) return <ItemNameComponent url={detail.item.url} />;
-    return '';
+  const description = evolutionDetails.map((detail, index) => {
+    const key =
+      detail.min_happiness || detail.min_level || detail.item?.url || index;
+    if (detail.min_happiness)
+      return <span key={key}>행복도 {detail.min_happiness}</span>;
+    if (detail.min_level) return <span key={key}>레벨 {detail.min_level}</span>;
+    if (detail.item)
+      return <ItemNameComponent key={key} url={detail.item.url} />;
+    return <span key={key}></span>;
   });
   return <div>{description}</div>;
 };

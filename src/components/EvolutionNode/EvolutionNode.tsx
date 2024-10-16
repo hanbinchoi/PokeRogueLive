@@ -2,16 +2,16 @@ import '../../styles/globals.css';
 
 import { useEffect, useState } from 'react';
 
+import { FaArrowDown } from 'react-icons/fa';
+
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
+
+import { EvolutionDescription } from '../EvolutionDescription/EvolutionDescription';
 
 import { EvolutionChainNodeProps, PokemonDataProps } from '@/types/common';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
-import getEvolutionDescription from '@/utils/getEvolutionDescription';
-
-import { FaArrowDown } from 'react-icons/fa';
-import { EvolutionDescription } from '../EvolutionDescription/EvolutionDescription';
 
 export interface EvolutionNodeProps {
   node: EvolutionChainNodeProps;

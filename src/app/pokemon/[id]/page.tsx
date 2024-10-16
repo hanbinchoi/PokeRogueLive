@@ -13,6 +13,7 @@ import { AbilityBox } from '@/components/AbilityBox/AbilityBox';
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
+import { EggMoveBox } from '@/components/EggMoveBox/EggMoveBox';
 
 export default function PokemonDetail() {
   const { id } = useParams();
@@ -50,12 +51,16 @@ export default function PokemonDetail() {
           <div className="col-span-2">
             <PokemonBasicInfo pokemon={targetPokemon} />
           </div>
-
-          <EvolutionChain
-            url={targetPokemon.evolution_chain}
-            pokedex={targetPokemon.pokedex}
-          />
-          <AbilityBox abilities={targetPokemon.abilitiesInfo} />
+          <div className="col-span-1">
+            <EvolutionChain
+              url={targetPokemon.evolution_chain}
+              pokedex={targetPokemon.pokedex}
+            />
+          </div>
+          <div className="col-span-2">
+            <AbilityBox abilities={targetPokemon.abilitiesInfo} />
+            <EggMoveBox />
+          </div>
         </div>
       </main>
     );
