@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   AbilityDetailProps,
   EvolutionChainProps,
+  ItemInfoProps,
   PokemonDetailProps,
   PokemonNameProps,
   PokemonSpeciesProps,
@@ -68,6 +69,12 @@ export async function getPokemonEvolutionChain(
 export async function getPokemonAbilityInfo(
   url: string,
 ): Promise<AbilityDetailProps> {
+  const res = await axios.get(url).then((res) => res.data);
+
+  return res;
+}
+
+export async function getItemInfo(url: string): Promise<ItemInfoProps> {
   const res = await axios.get(url).then((res) => res.data);
 
   return res;

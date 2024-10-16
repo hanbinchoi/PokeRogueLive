@@ -11,6 +11,7 @@ import extractPokemonDetails from '@/utils/extractPokemonDetails';
 import getEvolutionDescription from '@/utils/getEvolutionDescription';
 
 import { FaArrowDown } from 'react-icons/fa';
+import { EvolutionDescription } from '../EvolutionDescription/EvolutionDescription';
 
 export interface EvolutionNodeProps {
   node: EvolutionChainNodeProps;
@@ -49,8 +50,8 @@ export const EvolutionNode = ({ node, isLast }: EvolutionNodeProps) => {
             {!isLast && <FaArrowDown className="w-6 h-6" />}
           </div>
           {node.evolves_to.map((e) => (
-            <div className="absolute top-1 left-[60%] whitespace-nowrap">
-              {getEvolutionDescription(e.evolution_details)}
+            <div className="absolute top-1 left-[60%] whitespace-nowrap flex gap-1">
+              <EvolutionDescription evolutionDetails={e.evolution_details} />
             </div>
           ))}
         </div>

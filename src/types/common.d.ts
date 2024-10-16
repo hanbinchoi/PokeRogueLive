@@ -194,9 +194,9 @@ export interface PokemonsResponseProps {
   next: string;
 }
 
-type PokemonType = keyof typeof POKEMON_TYPE;
+export type PokemonType = keyof typeof POKEMON_TYPE;
 
-interface PokemonTypeDetails {
+export interface PokemonTypeDetails {
   backgroundColor: string;
   name: PokemonType;
   doubleDamage: PokemonType[];
@@ -204,13 +204,13 @@ interface PokemonTypeDetails {
   noDamage: PokemonType[];
 }
 
-type PokemonTypeProps = {
+export type PokemonTypeProps = {
   [key: PokemonType]: PokemonTypeDetails;
 };
 
-type calcDefendTypeProps = Map<string, PokemonType[]> | null;
+export type calcDefendTypeProps = Map<string, PokemonType[]> | null;
 
-interface EvolutionDetailProps {
+export interface EvolutionDetailProps {
   gender: number | null;
   held_item: string | null;
   item: DataProps | null;
@@ -234,26 +234,26 @@ interface EvolutionDetailProps {
   turn_upside_down: boolean;
 }
 
-interface EvolutionChainNodeProps {
+export interface EvolutionChainNodeProps {
   is_baby: boolean;
   species: DataProps;
   evolution_details: EvolutionDetailProps[];
   evolves_to: EvolutionChainNodeProps[];
 }
 
-interface EvolutionChainProps {
+export interface EvolutionChainProps {
   id: number;
   baby_trigger_item: string | null;
   chain: EvolutionChainNodeProps;
 }
 
-interface EffectEntryProps {
+export interface EffectEntryProps {
   effect: string;
   short_effect: string;
   language: DataProps;
 }
 
-interface AbilityDetailProps {
+export interface AbilityDetailProps {
   id: number;
   name: string;
   names: PokemonNameProps[];
@@ -263,4 +263,9 @@ interface AbilityDetailProps {
 export interface AbilityNameProps {
   language: DataProps;
   name: string;
+}
+export interface ItemInfoProps {
+  id: number;
+  name: string;
+  names: PokemonNameProps[];
 }
