@@ -1,7 +1,7 @@
 import exp from 'constants';
 
 import { TypeBadge } from './../components/TypeBadge/TypeBadge';
-import { Pokemon } from '../components/Pokemon/PokemonCard';
+import { Pokemon } from '../components/Pokemon/Pokemon';
 import { POKEMON_TYPE } from '@/constants/contents';
 
 export interface DefaultProps {
@@ -144,13 +144,48 @@ export interface PokemonDetailProps {
   stats: StatProps[];
   types: TypeProps[];
   weight: number;
+  evolution_chain: string;
+  flavorText: string;
+}
+
+export interface AbilityInfoProps {
+  ability: DataProps;
+  is_hidden: Boolean;
+  slot: number;
+}
+
+export interface MoveInfoProps {
+  move: DataProps;
+  version_group_details: {
+    level_learned_at: number;
+    move_learn_method: DataProps;
+  }[];
+}
+
+export interface StatInfoProps {
+  base_stat: number;
+  effort: number;
+  stat: DataProps;
 }
 
 export interface PokemonDataProps {
-  type: string[];
+  type: PokemonType[];
   name: string;
   imageUrl: string;
   pokedex: number;
+  abilitiesInfo: AbilityInfoProps[];
+  base_experience: number;
+  cries: string;
+  height: number;
+  moves: MoveInfoProps[];
+  stats: StatInfoProps[];
+  weight: number;
+  capture_rate: number;
+  evolution_chain: string;
+  flavor_text: string;
+  genera: string;
+  is_legendary: boolean;
+  is_mythical: boolean;
 }
 
 export interface PokemonsResponseProps {
@@ -159,9 +194,9 @@ export interface PokemonsResponseProps {
   next: string;
 }
 
-type PokemonType = keyof typeof POKEMON_TYPE;
+export type PokemonType = keyof typeof POKEMON_TYPE;
 
-interface PokemonTypeDetails {
+export interface PokemonTypeDetails {
   backgroundColor: string;
   name: PokemonType;
   doubleDamage: PokemonType[];
@@ -169,8 +204,83 @@ interface PokemonTypeDetails {
   noDamage: PokemonType[];
 }
 
-type PokemonTypeProps = {
+export type PokemonTypeProps = {
   [key: PokemonType]: PokemonTypeDetails;
 };
 
-type calcDefendTypeProps = Map<string, PokemonType[]> | null;
+export type calcDefendTypeProps = Map<string, PokemonType[]> | null;
+
+export interface EvolutionDetailProps {
+  gender: number | null;
+  held_item: string | null;
+  item: DataProps | null;
+  known_move: string | null;
+  known_move_type: string | null;
+  location: string | null;
+  min_affection: number | null;
+  min_beauty: number | null;
+  min_happiness: number | null;
+  min_level: number | null;
+  needs_overworld_rain: boolean;
+  party_species: string | null;
+  party_type: string | null;
+  relative_physical_stats: number | null;
+  time_of_day: string;
+  trade_species: string | null;
+  trigger: {
+    name: string;
+    url: string;
+  };
+  turn_upside_down: boolean;
+}
+
+export interface EvolutionChainNodeProps {
+  is_baby: boolean;
+  species: DataProps;
+  evolution_details: EvolutionDetailProps[];
+  evolves_to: EvolutionChainNodeProps[];
+}
+
+export interface EvolutionChainProps {
+  id: number;
+  baby_trigger_item: string | null;
+  chain: EvolutionChainNodeProps;
+}
+
+export interface EffectEntryProps {
+  effect: string;
+  short_effect: string;
+  language: DataProps;
+}
+
+export interface AbilityDetailProps {
+  id: number;
+  name: string;
+  names: PokemonNameProps[];
+  flavor_text_entries: FlavorTextEntryProps[];
+}
+
+export interface AbilityNameProps {
+  language: DataProps;
+  name: string;
+}
+export interface ItemInfoProps {
+  id: number;
+  name: string;
+  names: PokemonNameProps[];
+}
+
+export interface MoveTypeProps {
+  name: PokemonType;
+  url: string;
+}
+
+export interface MoveDetailProps {
+  accuracy: number;
+  damage_class: DataProps;
+  flavor_text_entries: FlavorTextEntryProps[];
+  names: PokemonNameProps[];
+  power: number;
+  pp: number;
+  type: MoveTypeProps;
+}
