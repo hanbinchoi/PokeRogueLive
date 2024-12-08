@@ -2,11 +2,10 @@ import '../../styles/globals.css';
 
 import { useEffect, useState } from 'react';
 
-import { FaArrowDown } from 'react-icons/fa';
-
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import { EvolutionDescription } from '../EvolutionDescription/EvolutionDescription';
+import { FaArrowDown } from 'react-icons/fa';
 
 import { EvolutionChainNodeProps, PokemonDataProps } from '@/types/common';
 

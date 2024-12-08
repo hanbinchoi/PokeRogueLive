@@ -1,8 +1,12 @@
-import { MoveInfoProps } from '@/types/common';
+import { useEffect } from 'react';
+
+import usePokemonDetailStore from '@/stores/pokemonDetailStore';
+
 import { Move } from '../Move/Move';
 import { MovePagingDocuments } from '../MovePagingDocuments/MovePagingDocuments';
-import { useEffect } from 'react';
-import usePokemonDetailStore from '@/stores/pokemonDetailStore';
+
+import { MoveInfoProps } from '@/types/common';
+
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
 
 export interface EggMoveBoxProps {
@@ -15,7 +19,6 @@ export const MoveBox = ({ moves }: EggMoveBoxProps) => {
   useEffect(() => {
     setTotal(moves.length);
   }, []);
-  console.log(moves);
   return (
     <div className="flex flex-col gap-4">
       <p className="text-xl font-bold w-full">배우는 기술</p>

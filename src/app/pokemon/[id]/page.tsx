@@ -19,8 +19,6 @@ import extractMoveList from '@/utils/extractMoveList';
 export default function PokemonDetail() {
   const { id } = useParams();
 
-  if (id === null) return;
-
   const { setTargetPokemon, targetPokemon } = usePokemonsStore();
 
   const {

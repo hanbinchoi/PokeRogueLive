@@ -14,7 +14,8 @@ export default function extractMoveList(moves: MoveInfoProps[]) {
     const lastLevelB =
       b.version_group_details[b.version_group_details.length - 1]
         .level_learned_at;
-    return lastLevelA - lastLevelB; // 오름차순 정렬
+    return lastLevelA - lastLevelB;
   });
+
   return sortedMoves;
 }

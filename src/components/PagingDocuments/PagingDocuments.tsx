@@ -1,103 +1,67 @@
-import { useEffect, useState } from 'react';
+import { usePagination } from '@/hooks/usePagination';
 
 import usePokemonsStore from '@/stores/pokemonsStore';
 
-import { PageNumber } from '../PageNumber/PageNumber';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { FaAnglesLeft, FaAnglesRight } from 'react-icons/fa6';
+import { IconButton, PageButton } from '../PageButton/PageButton';
+import {
+  FaAngleLeft,
+  FaAngleRight,
+  FaAnglesLeft,
+  FaAnglesRight,
+} from 'react-icons/fa6';
 
 export const PagingDocuments = () => {
   const { now, last, setNow, total, setLast } = usePokemonsStore();
 
-  const [pages, setPages] = useState<number[]>([]);
-
-  useEffect(() => {
-    const totalDevideTen = Math.floor(total / 10);
-
-    if (totalDevideTen < 1) {
-      setLast(true);
-      setPages([1]);
-      return;
-    }
-
-    if (now <= 3) {
-      setLast(false);
-      return setPages([1, 2, 3, 4, 5]);
-    }
-
-    if (Math.floor(totalDevideTen) - 1 < now)
-      return setPages([
-        totalDevideTen - 3,
-        totalDevideTen - 2,
-        totalDevideTen - 1,
-        totalDevideTen,
-        totalDevideTen + 1,
-      ]);
-
-    setLast(false);
-    setPages([now - 2, now - 1, now, now + 1, now + 2]);
-  }, [now, total]);
-
-  const handlePageClick = (event: React.MouseEvent<HTMLElement>) => {
-    const pageNum = parseInt(event.currentTarget.textContent as string);
-    if (total / 10 < pageNum) setLast(true);
-    setNow(pageNum);
-  };
-
-  const handleFirstPageClick = () => {
-    setLast(false);
-    setNow(1);
-  };
-
-  const handlePrevPageClick = () => {
-    setLast(false);
-    setNow(now - 1);
-  };
-
-  const handleLastPageClick = () => {
-    setLast(true);
-    setNow(Math.floor(total / 10) + 1);
-  };
-
-  const handleNextPageClick = () => {
-    setLast(false);
-    setNow(now + 1);
-  };
-
+  const { pages, goToPage } = usePagination(
+    total,
+    now,
+    PAGE_ITEM_SIZE,
+    setNow,
+    setLast,
+  );
   return (
     <ul className="mt-5 px-14 text-lg flex justify-center items-center gap-2">
       {now > 1 && (
         <>
-          <PageNumber primary={false}>
-            <FaAnglesLeft onClick={handleFirstPageClick} className="w-3" />
-          </PageNumber>
-          <PageNumber primary={false}>
-            <FaAngleLeft onClick={handlePrevPageClick} className="w-2" />
-          </PageNumber>
+          <IconButton
+            primary={false}
+            Icon={FaAnglesLeft}
+            onClick={() => goToPage(1)}
+          />
+          <IconButton
+            primary={false}
+            Icon={FaAngleLeft}
+            onClick={() => goToPage(now - 1)}
+          />
         </>
       )}
 
-      {pages.map((ele) =>
-        ele === now ? (
-          <PageNumber key={ele} primary={true} onClick={handlePageClick}>
-            {ele}
-          </PageNumber>
-        ) : (
-          <PageNumber key={ele} primary={false} onClick={handlePageClick}>
-            {ele}
-          </PageNumber>
-        ),
-      )}
+      {pages.map((pageNum) => (
+        <PageButton
+          key={pageNum}
+          primary={pageNum === now}
+          onClick={() => goToPage(pageNum)}>
+          {pageNum}
+        </PageButton>
+      ))}
+
       {!last && (
         <>
-          <PageNumber primary={false}>
-            <FaAngleRight onClick={handleNextPageClick} className="w-2" />
-          </PageNumber>
-          <PageNumber primary={false}>
-            <FaAnglesRight onClick={handleLastPageClick} className="w-3" />
-          </PageNumber>
+          <IconButton
+            primary={false}
+            Icon={FaAngleRight}
+            onClick={() => goToPage(now + 1)}
+          />
+          <IconButton
+            primary={false}
+            Icon={FaAnglesRight}
+            onClick={() => goToPage(Math.ceil(total / PAGE_ITEM_SIZE))}
+          />
         </>
       )}
     </ul>
   );
 };
+
+export const PAGE_ITEM_SIZE = 10;

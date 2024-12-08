@@ -1,7 +1,7 @@
 import '../../styles/globals.css';
 
-import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import { getPokemonEvolutionChain } from '@/api/pokemon';
 

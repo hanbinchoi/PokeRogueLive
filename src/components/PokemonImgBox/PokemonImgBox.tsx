@@ -1,6 +1,7 @@
 import '../../styles/globals.css';
 
 import { TypeBadge } from '../TypeBadge/TypeBadge';
+import { AiFillSound } from 'react-icons/ai';
 
 import { PokemonDataProps } from '@/types/common';
 
@@ -10,6 +11,11 @@ export interface PokemonImgBoxProps {
 }
 
 export const PokemonImgBox = ({ pokemon, usage }: PokemonImgBoxProps) => {
+  const handleAudioClick = () => {
+    const audio = new Audio(pokemon.cries);
+    audio.play();
+  };
+
   if (pokemon)
     return usage === 'list' ? (
       <div className="px-8 py-4 text-sm font-bold flex flex-col items-center bg-white-100 border-2 rounded-lg">
@@ -26,7 +32,12 @@ export const PokemonImgBox = ({ pokemon, usage }: PokemonImgBoxProps) => {
       <div className="flex flex-col items-center bg-white-100 border-2 rounded-lg">
         <div className="text-lg self-start font-bold flex justify-between w-full pt-3 px-5">
           <p>No. {String(pokemon.pokedex).padStart(3, '0')}</p>
-          <div>소리</div>
+          <AiFillSound
+            className=" cursor-pointer"
+            onClick={handleAudioClick}
+            role="button"
+            tabIndex={0}
+          />
         </div>
         <img
           className="w-full max-w-[200px]"

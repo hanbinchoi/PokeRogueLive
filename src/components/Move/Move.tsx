@@ -1,7 +1,10 @@
-import { POKEMON_TYPE } from '@/constants/contents';
-import usePokemonMoveQuery from '@/hooks/usePokemonMoveQuery';
-import getDamageClassInKorean from '@/utils/getDamageClassInKorean';
 import { twJoin } from 'tailwind-merge';
+
+import usePokemonMoveQuery from '@/hooks/usePokemonMoveQuery';
+
+import { POKEMON_TYPE } from '@/constants/contents';
+
+import extractMove from '@/utils/extractMove';
 
 export interface MoveProps {
   levelLearnedAt: number;
@@ -14,17 +17,9 @@ export const Move = ({ levelLearnedAt, url }: MoveProps) => {
   if (isLoading) return <div>move detail loading</div>;
 
   if (data) {
-    const { name, accuracy, flavorText, damageClass, pp, power, type } = {
-      name: data.names.find((name) => name.language.name === 'ko')?.name,
-      accuracy: data.accuracy,
-      flavorText: data.flavor_text_entries.find(
-        (flavorText) => flavorText.language.name === 'ko',
-      )?.flavor_text,
-      damageClass: getDamageClassInKorean(data.damage_class.name),
-      pp: data.pp,
-      power: data.power,
-      type: data.type.name,
-    };
+    const { name, accuracy, flavorText, damageClass, pp, power, type } =
+      extractMove(data);
+
     const { backgroundColor, name: typeName } = POKEMON_TYPE[type];
 
     return (

@@ -11,17 +11,22 @@ export interface EvolutionDescriptionProps {
 export const EvolutionDescription = ({
   evolutionDetails,
 }: EvolutionDescriptionProps) => {
+  console.log(evolutionDetails);
   const description = evolutionDetails.map((detail, index) => {
     const key =
       detail.min_happiness || detail.min_level || detail.item?.url || index;
+
     if (detail.min_happiness)
       return <span key={key}>행복도 {detail.min_happiness}</span>;
+
     if (detail.min_level) return <span key={key}>레벨 {detail.min_level}</span>;
+
     if (detail.item)
       return <ItemNameComponent key={key} url={detail.item.url} />;
+
     return <span key={key}></span>;
   });
-  return <div>{description}</div>;
+  return <div>{description[0]}</div>;
 };
 
 function ItemNameComponent({ url }: { url: string }) {
