@@ -49,9 +49,12 @@ export const EvolutionNode = ({ node, isLast }: EvolutionNodeProps) => {
           <div className="flex flex-col items-center mb-4">
             {!isLast && <FaArrowDown className="w-6 h-6" />}
           </div>
-          {node.evolves_to.map((e) => (
+          {node.evolves_to.map((e, i) => (
             <div className="absolute top-1 left-[60%] whitespace-nowrap flex gap-1">
-              <EvolutionDescription evolutionDetails={e.evolution_details} />
+              <EvolutionDescription
+                evolutionDetails={e.evolution_details}
+                key={extractIdFromUrl(e.species.url)}
+              />
             </div>
           ))}
         </div>

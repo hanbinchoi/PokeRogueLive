@@ -269,3 +269,18 @@ export interface ItemInfoProps {
   name: string;
   names: PokemonNameProps[];
 }
+
+export interface MoveTypeProps {
+  name: PokemonType;
+  url: string;
+}
+
+export interface MoveDetailProps {
+  accuracy: number;
+  damage_class: DataProps;
+  flavor_text_entries: FlavorTextEntryProps[];
+  names: PokemonNameProps[];
+  power: number;
+  pp: number;
+  type: MoveTypeProps;
+}

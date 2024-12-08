@@ -16,6 +16,7 @@ import extractIdFromUrl from '@/utils/extractIdFromUrl';
 export interface PokemonListProps {
   pokemonId: number | undefined | null;
 }
+
 export const PokemonList = ({ pokemonId }: PokemonListProps) => {
   const now = usePokemonsStore((state) => state.now);
 

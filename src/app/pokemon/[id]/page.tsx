@@ -9,11 +9,12 @@ import { EvolutionChain } from '@/components/EvolutionChain/EvolutionChain';
 import { PokemonBasicInfo } from '@/components/PokemonBasicInfo/PokemonBasicInfo';
 import { PokemonImgBox } from '@/components/PokemonImgBox/PokemonImgBox';
 import { AbilityBox } from '@/components/AbilityBox/AbilityBox';
+import { MoveBox } from '@/components/MoveBox/MoveBox';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
-import { EggMoveBox } from '@/components/EggMoveBox/EggMoveBox';
+import extractMoveList from '@/utils/extractMoveList';
 
 export default function PokemonDetail() {
   const { id } = useParams();
@@ -57,9 +58,9 @@ export default function PokemonDetail() {
               pokedex={targetPokemon.pokedex}
             />
           </div>
-          <div className="col-span-2">
+          <div className="col-span-2 flex flex-col gap-8">
             <AbilityBox abilities={targetPokemon.abilitiesInfo} />
-            <EggMoveBox />
+            <MoveBox moves={extractMoveList(targetPokemon.moves)} />
           </div>
         </div>
       </main>
