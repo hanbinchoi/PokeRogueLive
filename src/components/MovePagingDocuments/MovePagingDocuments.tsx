@@ -1,6 +1,6 @@
 import { usePagination } from '@/hooks/usePagination';
 
-import usePokemonsStore from '@/stores/pokemonsStore';
+import usePokemonDetailStore from '@/stores/pokemonDetailStore';
 
 import { IconButton, PageButton } from '../PageButton/PageButton';
 import {
@@ -10,8 +10,8 @@ import {
   FaAnglesRight,
 } from 'react-icons/fa6';
 
-export const PagingDocuments = () => {
-  const { now, last, setNow, total, setLast } = usePokemonsStore();
+export const MovePagingDocuments = () => {
+  const { now, last, setNow, total, setLast } = usePokemonDetailStore();
 
   const { pages, goToPage } = usePagination(
     total,
@@ -20,6 +20,7 @@ export const PagingDocuments = () => {
     setNow,
     setLast,
   );
+
   return (
     <ul className="mt-5 px-14 text-lg flex justify-center items-center gap-2">
       {now > 1 && (
@@ -64,4 +65,4 @@ export const PagingDocuments = () => {
   );
 };
 
-export const PAGE_ITEM_SIZE = 10;
+export const PAGE_ITEM_SIZE = 4;

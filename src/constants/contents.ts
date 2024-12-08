@@ -1,4 +1,4 @@
-import { PokemonType, PokemonTypeProps } from '@/types/common';
+import { PokemonType } from '@/types/common';
 
 export const TOTAL_POKEMON_NUM = 1025;
 
