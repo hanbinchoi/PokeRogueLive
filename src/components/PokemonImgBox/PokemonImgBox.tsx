@@ -7,19 +7,20 @@ import { PokemonDataProps } from '@/types/common';
 
 export interface PokemonImgBoxProps {
   pokemon: PokemonDataProps;
+  id: number;
   usage: 'detail' | 'list';
 }
 
-export const PokemonImgBox = ({ pokemon, usage }: PokemonImgBoxProps) => {
+export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
   const handleAudioClick = () => {
     const audio = new Audio(pokemon.cries);
     audio.play();
   };
-
+  console.log(pokemon);
   if (pokemon)
     return usage === 'list' ? (
       <div className="px-8 py-4 text-sm font-bold flex flex-col items-center bg-white-100 border-2 rounded-lg">
-        <div>{`No. ${String(pokemon.pokedex).padStart(3, '0')}`}</div>
+        <div>{`No. ${String(id).padStart(3, '0')}`}</div>
         <img className="w-24" alt={pokemon.name} src={pokemon.imageUrl} />
         <div className="mb-2 text-lg">{pokemon.name}</div>
         <div className="flex gap-2">
@@ -31,7 +32,7 @@ export const PokemonImgBox = ({ pokemon, usage }: PokemonImgBoxProps) => {
     ) : (
       <div className="flex flex-col items-center bg-white-100 border-2 rounded-lg">
         <div className="text-lg self-start font-bold flex justify-between w-full pt-3 px-5">
-          <p>No. {String(pokemon.pokedex).padStart(3, '0')}</p>
+          <p>No. {String(id).padStart(3, '0')}</p>
           <AiFillSound
             className=" cursor-pointer"
             onClick={handleAudioClick}

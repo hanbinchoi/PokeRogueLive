@@ -45,7 +45,7 @@ export default function PokemonDetail() {
       <main className="bg-gray-10  flex min-h-screen flex-col items-center justify-between p-24">
         <div className="grid grid-cols-3 gap-16">
           <div className="col-span-1">
-            <PokemonImgBox pokemon={targetPokemon} usage="detail" />
+            <PokemonImgBox pokemon={targetPokemon} usage="detail" id={+id} />
           </div>
           <div className="col-span-2">
             <PokemonBasicInfo pokemon={targetPokemon} />
