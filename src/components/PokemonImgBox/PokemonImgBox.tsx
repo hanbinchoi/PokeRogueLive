@@ -4,6 +4,8 @@ import { TypeBadge } from '../TypeBadge/TypeBadge';
 import { AiFillSound } from 'react-icons/ai';
 
 import { PokemonDataProps } from '@/types/common';
+import usePokemonsStore from '@/stores/pokemonsStore';
+import { useEffect } from 'react';
 
 export interface PokemonImgBoxProps {
   pokemon: PokemonDataProps;
@@ -16,6 +18,7 @@ export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
     const audio = new Audio(pokemon.cries);
     audio.play();
   };
+
   if (pokemon)
     return usage === 'list' ? (
       <div className="px-8 py-4 text-sm font-bold flex flex-col items-center bg-white-100 border-2 rounded-lg">

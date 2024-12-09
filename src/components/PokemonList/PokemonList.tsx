@@ -12,7 +12,6 @@ import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
 import { PokemonsResponseProps } from '@/types/common';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
-import { TOTAL_POKEMON_NUM } from '@/constants/contents';
 
 export interface PokemonListProps {
   pokemonId: number | undefined | null;
