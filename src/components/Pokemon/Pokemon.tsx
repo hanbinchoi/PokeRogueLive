@@ -10,6 +10,7 @@ import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
+
 import { TOTAL_POKEMON_NUM } from '@/constants/contents';
 
 export interface PokemonProps {
