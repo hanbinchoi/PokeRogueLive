@@ -32,7 +32,6 @@ export const usePagination = (
 
   const goToPage = (pageNum: number) => {
     const totalPages = Math.ceil(total / size);
-    console.log(pageNum, totalPages);
     if (pageNum < 0) return setNow(1);
     if (pageNum > totalPages) {
       setNow(totalPages);

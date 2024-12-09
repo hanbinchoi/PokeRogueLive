@@ -34,7 +34,6 @@ export default function calcAttackType(
     );
   });
 
-  console.log(combinedDoubleEffect, combinedHalfEffect, combinedNormalEffect);
   POKEMON_TYPE_ARRAY.forEach((type) => {
     if (type === 'stellar' || type === 'unknown') return;
 
