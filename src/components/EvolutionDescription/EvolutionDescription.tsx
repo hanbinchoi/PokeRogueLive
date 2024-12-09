@@ -11,7 +11,6 @@ export interface EvolutionDescriptionProps {
 export const EvolutionDescription = ({
   evolutionDetails,
 }: EvolutionDescriptionProps) => {
-  console.log(evolutionDetails);
   const description = evolutionDetails.map((detail, index) => {
     const key =
       detail.min_happiness || detail.min_level || detail.item?.url || index;
@@ -26,7 +25,7 @@ export const EvolutionDescription = ({
 
     return <span key={key}></span>;
   });
-  return <div>{description[0]}</div>;
+  return <div>{description}</div>;
 };
 
 function ItemNameComponent({ url }: { url: string }) {

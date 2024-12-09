@@ -43,8 +43,8 @@ export const Pokemon = ({ id }: PokemonProps) => {
 
   if (pokemon)
     return (
-      <Link href={`/pokemon/${id}`} onClick={() => setTargetPokemon(pokemon)}>
-        <PokemonImgBox pokemon={pokemon} usage="list" />
+      <Link href={`/pokemon/${id}`}>
+        <PokemonImgBox pokemon={pokemon} usage="list" id={id} />
       </Link>
     );
 };

@@ -10,7 +10,6 @@ export interface AbilityBoxProps {
 }
 
 export const AbilityBox = ({ abilities }: AbilityBoxProps) => {
-  console.log(abilities);
   return (
     <div className="flex flex-col gap-4 ">
       <div className="flex gap-1">
