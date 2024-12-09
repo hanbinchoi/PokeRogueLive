@@ -12,6 +12,7 @@ import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
 import { PokemonsResponseProps } from '@/types/common';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
+import { TOTAL_POKEMON_NUM } from '@/constants/contents';
 
 export interface PokemonListProps {
   pokemonId: number | undefined | null;
@@ -25,7 +26,6 @@ export const PokemonList = ({ pokemonId }: PokemonListProps) => {
     queryFn: () => getPokemons(now),
     enabled: !pokemonId,
   });
-
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>error</div>;
   if (data)

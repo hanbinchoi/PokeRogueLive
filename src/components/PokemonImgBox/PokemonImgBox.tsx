@@ -16,7 +16,6 @@ export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
     const audio = new Audio(pokemon.cries);
     audio.play();
   };
-  console.log(pokemon);
   if (pokemon)
     return usage === 'list' ? (
       <div className="px-8 py-4 text-sm font-bold flex flex-col items-center bg-white-100 border-2 rounded-lg">

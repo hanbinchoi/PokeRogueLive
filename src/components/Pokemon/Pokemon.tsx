@@ -5,23 +5,21 @@ import { useEffect, useState } from 'react';
 
 import { PokemonDataProps } from '@/types/common';
 
-import usePokemonsStore from '@/stores/pokemonsStore';
-
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
+import { TOTAL_POKEMON_NUM } from '@/constants/contents';
 
 export interface PokemonProps {
   id: number;
 }
 
 export const Pokemon = ({ id }: PokemonProps) => {
-  if (id === null) return;
+  if (id === null || id >= TOTAL_POKEMON_NUM) return;
 
   const [pokemon, setPokemon] = useState<PokemonDataProps>();
-  const { setTargetPokemon } = usePokemonsStore();
 
   const {
     pokemonData,
