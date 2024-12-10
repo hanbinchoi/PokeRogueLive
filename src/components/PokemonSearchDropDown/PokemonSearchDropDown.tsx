@@ -1,13 +1,16 @@
 import { useState } from 'react';
 
 import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
+import { PokemonDataProps } from '@/types/common';
 
 export interface PokemonSearchDropDownProps {
   setPokemonId: (attackPokemonId: number | null) => void;
+  setPokemon: (attackPokemon: PokemonDataProps | null) => void;
 }
 
 export const PokemonSearchDropDown = ({
   setPokemonId,
+  setPokemon,
 }: PokemonSearchDropDownProps) => {
   const [options] = useState(POKEMON_LIST_IN_KOREAN); // 전체 select option list
   const [filteredOptions, setFilteredOptions] = useState(options); // 검색 후 필터링된 Option list
@@ -32,6 +35,7 @@ export const PokemonSearchDropDown = ({
     setInputValue('');
     setFilteredOptions(options);
     setPokemonId(null);
+    setPokemon(null);
   };
 
   return (

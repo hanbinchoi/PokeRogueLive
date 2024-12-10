@@ -1,11 +1,12 @@
-import { PokemonDetailProps } from '@/types/common';
 import { create } from 'zustand';
 
+import { PokemonDataProps } from '@/types/common';
+
 interface powerCalculatorState {
-  attackPokemon: PokemonDetailProps | null;
+  attackPokemon: PokemonDataProps | null;
   attackPokemonId: number | null;
 
-  setAttackPokemon: (attackPokemon: PokemonDetailProps | null) => void;
+  setAttackPokemon: (attackPokemon: PokemonDataProps | null) => void;
   setAttackPokemonId: (attackPokemonId: number | null) => void;
 }
 

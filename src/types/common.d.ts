@@ -155,6 +155,7 @@ export interface AbilityInfoProps {
 }
 
 export interface MoveInfoProps {
+  krName: string;
   move: DataProps;
   version_group_details: {
     level_learned_at: number;
