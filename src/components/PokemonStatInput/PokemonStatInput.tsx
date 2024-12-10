@@ -12,7 +12,7 @@ export const PokemonStatInput = ({ stat }: PokemonStatInputProps) => {
       </div>
       <input
         type="text"
-        className="border rounded p-2 h-[32px]"
+        className="border rounded p-2 h-[32px] w-[120px]"
         value={stat.base_stat}
         placeholder="포켓몬 입력"
       />
