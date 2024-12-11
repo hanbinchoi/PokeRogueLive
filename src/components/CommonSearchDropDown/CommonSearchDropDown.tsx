@@ -1,20 +1,17 @@
 import { useState } from 'react';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+import { FieldType, WeatherType } from '@/types/common';
 
 export interface CommonSearchDropDownProps {
   label: string;
-  options: string[];
-  pokemonId: number | null;
+  options: FieldType[] | WeatherType[];
 }
 
 export const CommonSearchDropDown = ({
   label,
   options,
-  pokemonId,
 }: CommonSearchDropDownProps) => {
-  if (!pokemonId) return;
-
   const [filteredOptions, setFilteredOptions] = useState<string[] | null>(
     options,
   );
@@ -29,19 +26,20 @@ export const CommonSearchDropDown = ({
     setFilteredOptions(
       options.filter((opt) => opt.toLowerCase().includes(value.toLowerCase())),
     );
-
-    if (label === '날씨') return setWeather(value);
-    if (label === '필드') return setField(value);
   };
 
   const handleOptionSelect = (option: string) => {
     setInputValue(option);
     setShowDropdown(false);
+    if (label === '날씨') return setWeather(option);
+    if (label === '필드') return setField(option);
   };
 
   const clearSearch = () => {
     setInputValue('');
     setFilteredOptions(options);
+    if (label === '날씨') return setWeather(null);
+    if (label === '필드') return setField(null);
   };
 
   return (

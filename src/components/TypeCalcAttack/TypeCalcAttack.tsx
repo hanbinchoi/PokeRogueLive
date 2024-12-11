@@ -3,7 +3,7 @@ import '../../styles/globals.css';
 import { useForm } from 'react-hook-form';
 import { TypeCalcOption } from '../TypeCalcOption/TypeCalcOption';
 import { TypeCalcAttackResult } from '../TypeCalcAttackResult/TypeCalcAttackResult';
-import { CommonRadioButton } from '../CommonCheckbox/CommonRadioButton';
+import { CommonRadioButton } from '../CommonRadioButton/CommonRadioButton';
 import { InputValues } from '@/types/common';
 import {
   ATTACK_SPECIAL_ABILITIES,

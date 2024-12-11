@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { MoveInfoProps } from '@/types/common';
 
 import extractPokemonMoves from '@/utils/extractPokemonMoves';
+import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 export interface MoveSearchDropDownProps {
   moves: MoveInfoProps[] | undefined;
@@ -17,6 +18,8 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
   >();
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const { setMove } = usePowerCalculatorStore();
 
   useEffect(() => {
     if (moves) {
@@ -44,11 +47,13 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
   const handleOptionSelect = (option: string) => {
     setInputValue(option);
     setShowDropdown(false);
+    setMove(options?.find((opt) => opt.krName === option) ?? null);
   };
 
   const clearSearch = () => {
     setInputValue('');
     setFilteredOptions(options);
+    setMove(null);
   };
 
   return (

@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 import { PokemonDataProps } from '@/types/common';
+import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 export interface PokemonSearchDropDownProps {
   setPokemonId: (attackPokemonId: number | null) => void;
@@ -12,10 +13,12 @@ export const PokemonSearchDropDown = ({
   setPokemonId,
   setPokemon,
 }: PokemonSearchDropDownProps) => {
-  const [options] = useState(POKEMON_LIST_IN_KOREAN); // 전체 select option list
-  const [filteredOptions, setFilteredOptions] = useState(options); // 검색 후 필터링된 Option list
+  const options = POKEMON_LIST_IN_KOREAN;
+  const [filteredOptions, setFilteredOptions] = useState(options);
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const { setField, setWeather, setMove } = usePowerCalculatorStore();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -36,6 +39,9 @@ export const PokemonSearchDropDown = ({
     setFilteredOptions(options);
     setPokemonId(null);
     setPokemon(null);
+    setWeather(null);
+    setField(null);
+    setMove(null);
   };
 
   return (
