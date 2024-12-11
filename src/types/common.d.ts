@@ -1,7 +1,6 @@
-import exp from 'constants';
-
 import { TypeBadge } from './../components/TypeBadge/TypeBadge';
 import { Pokemon } from '../components/Pokemon/Pokemon';
+
 import { POKEMON_TYPE } from '@/constants/contents';
 
 export interface DefaultProps {
@@ -285,3 +284,6 @@ export interface MoveDetailProps {
   pp: number;
   type: MoveTypeProps;
 }
+
+export type FieldType = (typeof FIELD_LIST)[number];
+export type WeatherType = (typeof WEATHER_LIST)[number];

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+
 export interface CommonSearchDropDownProps {
   label: string;
   options: string[];
@@ -19,12 +21,17 @@ export const CommonSearchDropDown = ({
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const { setField, setWeather } = usePowerCalculatorStore();
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
     setFilteredOptions(
       options.filter((opt) => opt.toLowerCase().includes(value.toLowerCase())),
     );
+
+    if (label === '날씨') return setWeather(value);
+    if (label === '필드') return setField(value);
   };
 
   const handleOptionSelect = (option: string) => {
