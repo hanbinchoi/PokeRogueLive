@@ -5747,3 +5747,13 @@ export const WEATHER_LIST = [
 ];
 
 export const FIELD_LIST = ['일렉트릭', '미스트', '사이코', '그래스'];
+
+export const POKEMON_STAT_KOREAN_MAP = {
+  lv: '레벨',
+  hp: 'HP',
+  attack: '공격',
+  defense: '방어',
+  'special-attack': '특수공격',
+  'special-defense': '특수방어',
+  speed: '스피드',
+};

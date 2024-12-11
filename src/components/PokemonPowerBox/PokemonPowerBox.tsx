@@ -1,20 +1,28 @@
+import { useEffect } from 'react';
+
+import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
-import { PokemonDataProps, PokemonDetailProps } from '@/types/common';
-import extractPokemonDetails from '@/utils/extractPokemonDetails';
-import { useEffect, useState } from 'react';
+
 import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
 import { PokemonStatBox } from '../PokemonStatBox/PokemonStatBox';
+
+import { PokemonDataProps } from '@/types/common';
+
+import extractPokemonDetails from '@/utils/extractPokemonDetails';
 
 export interface PokemonPowerBoxProps {
   id: number | null;
   pokemon: PokemonDataProps | null;
   setPokemon: (pokemon: PokemonDataProps | null) => void;
+  usage: 'attack' | 'defend';
 }
 
 export const PokemonPowerBox = ({
   id,
   pokemon,
   setPokemon,
+  usage,
 }: PokemonPowerBoxProps) => {
   if (!id) return;
 
@@ -26,6 +34,13 @@ export const PokemonPowerBox = ({
     isErrorPokemon,
     isErrorSpecies,
   } = usePokemonDetailQuery(String(id));
+
+  const {
+    attackPokemonStats,
+    setAttackPokemonStats,
+    defendPokemonStats,
+    setDefendPokemonStats,
+  } = usePowerCalculatorStore();
 
   useEffect(() => {
     if (pokemonData && speciesData)
@@ -40,7 +55,15 @@ export const PokemonPowerBox = ({
   return (
     <div className="flex gap-8">
       <PokemonImgBox pokemon={pokemon} id={id} usage="power" />
-      <PokemonStatBox stats={pokemon.stats} />
+      <PokemonStatBox
+        stats={pokemon.stats}
+        pokemonStats={
+          usage === 'attack' ? attackPokemonStats : defendPokemonStats
+        }
+        setPokemonStats={
+          usage === 'attack' ? setAttackPokemonStats : setDefendPokemonStats
+        }
+      />
     </div>
   );
 };

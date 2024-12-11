@@ -286,4 +286,24 @@ export interface MoveDetailProps {
 }
 
 export type FieldType = (typeof FIELD_LIST)[number];
+
 export type WeatherType = (typeof WEATHER_LIST)[number];
+
+type StatKey =
+  | 'lv'
+  | 'hp'
+  | 'attack'
+  | 'defense'
+  | 'special-attack'
+  | 'special-defense'
+  | 'speed';
+
+export interface PokemonStatsProps {
+  lv?: number;
+  hp?: number;
+  attack?: number;
+  defense?: number;
+  'special-attack'?: number;
+  'special-defense'?: number;
+  speed?: number;
+}

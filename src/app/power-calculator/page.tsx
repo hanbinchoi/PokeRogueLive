@@ -39,6 +39,7 @@ export default function PowerCalculator() {
                 id={attackPokemonId}
                 setPokemon={setAttackPokemon}
                 pokemon={attackPokemon}
+                usage="attack"
               />
               <MoveSearchDropDown moves={attackPokemon?.moves} />
               <CommonSearchDropDown label="날씨" options={WEATHER_LIST} />
@@ -63,6 +64,7 @@ export default function PowerCalculator() {
                 id={defendPokemonId}
                 setPokemon={setDefendPokemon}
                 pokemon={defendPokemon}
+                usage="defend"
               />
             </>
           )}
