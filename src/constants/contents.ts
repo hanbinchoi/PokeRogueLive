@@ -5735,3 +5735,15 @@ export const POKEMON_MOVE_LIST = [
     krName: '악독사슬',
   },
 ];
+
+export const WEATHER_LIST = [
+  '쾌청',
+  '비',
+  '모래바람',
+  '눈',
+  '강한 햇살',
+  '강한 비',
+  '강한 바람',
+];
+
+export const FIELD_LIST = ['일렉트릭', '미스트', '사이코', '그래스'];
