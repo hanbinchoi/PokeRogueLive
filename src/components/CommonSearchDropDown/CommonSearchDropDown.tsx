@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+
+import useOutsideClick from '@/hooks/useOutsideClick';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+
 import { FieldType, WeatherType } from '@/types/common';
 
 export interface CommonSearchDropDownProps {
@@ -19,6 +22,10 @@ export const CommonSearchDropDown = ({
   const [showDropdown, setShowDropdown] = useState(false);
 
   const { setField, setWeather } = usePowerCalculatorStore();
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useOutsideClick(dropdownRef, () => setShowDropdown(false));
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -45,7 +52,7 @@ export const CommonSearchDropDown = ({
   return (
     <div className="w-full">
       <div className="text-lg mb-1">{label}</div>
-      <div className="relative w-[240px]">
+      <div className="relative w-[240px]" ref={dropdownRef}>
         <input
           type="text"
           className="w-full border rounded p-2"

@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { MoveInfoProps } from '@/types/common';
 
 import extractPokemonMoves from '@/utils/extractPokemonMoves';
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+import useOutsideClick from '@/hooks/useOutsideClick';
 
 export interface MoveSearchDropDownProps {
   moves: MoveInfoProps[] | undefined;
@@ -21,17 +22,21 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
 
   const { setMove } = usePowerCalculatorStore();
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useOutsideClick(dropdownRef, () => setShowDropdown(false));
+
   useEffect(() => {
     if (moves) {
       const extractedMoves = extractPokemonMoves(moves);
       setOptions(extractedMoves);
       setFilteredOptions(extractedMoves);
-      return;
+    } else {
+      setOptions(null);
+      setFilteredOptions(null);
+      setInputValue('');
+      setShowDropdown(false);
     }
-    setOptions(null);
-    setFilteredOptions(null);
-    setInputValue('');
-    setShowDropdown(false);
   }, [moves]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +64,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
   return (
     <div className="w-full">
       <div className="text-lg mb-1">기술</div>
-      <div className="relative w-[240px]">
+      <div className="relative w-[240px]" ref={dropdownRef}>
         <input
           type="text"
           className="w-full border rounded p-2"

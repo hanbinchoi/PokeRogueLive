@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+
+import useOutsideClick from '@/hooks/useOutsideClick';
+
+import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+
+import { PokemonDataProps } from '@/types/common';
 
 import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
-import { PokemonDataProps } from '@/types/common';
-import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 export interface PokemonSearchDropDownProps {
   setPokemonId: (attackPokemonId: number | null) => void;
@@ -19,6 +23,10 @@ export const PokemonSearchDropDown = ({
   const [showDropdown, setShowDropdown] = useState(false);
 
   const { setField, setWeather, setMove } = usePowerCalculatorStore();
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useOutsideClick(dropdownRef, () => setShowDropdown(false));
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -45,7 +53,7 @@ export const PokemonSearchDropDown = ({
   };
 
   return (
-    <div className="relative w-[200px]">
+    <div className="relative w-[200px]" ref={dropdownRef}>
       <input
         type="text"
         className="w-[full] border rounded p-2"
