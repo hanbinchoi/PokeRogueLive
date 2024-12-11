@@ -16,6 +16,10 @@ export default function PowerCalculator() {
     setAttackPokemon,
     attackPokemonId,
     setAttackPokemonId,
+    defendPokemon,
+    defendPokemonId,
+    setDefendPokemon,
+    setDefendPokemonId,
     isWeaknessHit,
     setIsWeaknessHit,
   } = usePowerCalculatorStore();
@@ -50,14 +54,18 @@ export default function PowerCalculator() {
         <div className="flex flex-col gap-6 w-full">
           <h2 className="text-xl font-bold -mb-2">방어</h2>
           <PokemonSearchDropDown
-            setPokemonId={setAttackPokemonId}
-            setPokemon={setAttackPokemon}
+            setPokemonId={setDefendPokemonId}
+            setPokemon={setDefendPokemon}
           />
-          <PokemonPowerBox
-            id={attackPokemonId}
-            setPokemon={setAttackPokemon}
-            pokemon={attackPokemon}
-          />
+          {attackPokemonId && (
+            <>
+              <PokemonPowerBox
+                id={defendPokemonId}
+                setPokemon={setDefendPokemon}
+                pokemon={defendPokemon}
+              />
+            </>
+          )}
         </div>
       </div>
     </main>
