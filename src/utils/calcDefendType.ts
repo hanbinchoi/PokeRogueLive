@@ -5,6 +5,7 @@ import {
 } from '@/types/common';
 
 import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
+
 import calcSingleDefendType from './calcSingleDefendType';
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';

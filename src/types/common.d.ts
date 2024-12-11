@@ -299,11 +299,11 @@ type StatKey =
   | 'speed';
 
 export interface PokemonStatsProps {
-  lv?: number;
-  hp?: number;
-  attack?: number;
-  defense?: number;
-  'special-attack'?: number;
-  'special-defense'?: number;
-  speed?: number;
+  lv: number;
+  hp: number;
+  attack: number;
+  defense: number;
+  'special-attack': number;
+  'special-defense': number;
+  speed: number;
 }

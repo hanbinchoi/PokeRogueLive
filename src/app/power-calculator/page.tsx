@@ -9,6 +9,7 @@ import { CommonSearchDropDown } from '@/components/CommonSearchDropDown/CommonSe
 
 import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
 import { CommonCheckBox } from '@/components/CommonCheckBox/CommonCheckBox';
+import { PowerDamage } from '@/components/PowerDamage/PowerDamage';
 
 export default function PowerCalculator() {
   const {
@@ -22,6 +23,7 @@ export default function PowerCalculator() {
     setDefendPokemonId,
     isWeaknessHit,
     setIsWeaknessHit,
+    move,
   } = usePowerCalculatorStore();
 
   return (
@@ -30,6 +32,7 @@ export default function PowerCalculator() {
         <div className="flex flex-col gap-6 w-full">
           <h2 className="text-xl font-bold -mb-2">공격</h2>
           <PokemonSearchDropDown
+            usage="attack"
             setPokemonId={setAttackPokemonId}
             setPokemon={setAttackPokemon}
           />
@@ -55,10 +58,11 @@ export default function PowerCalculator() {
         <div className="flex flex-col gap-6 w-full">
           <h2 className="text-xl font-bold -mb-2">방어</h2>
           <PokemonSearchDropDown
+            usage={'defend'}
             setPokemonId={setDefendPokemonId}
             setPokemon={setDefendPokemon}
           />
-          {attackPokemonId && (
+          {defendPokemonId && (
             <>
               <PokemonPowerBox
                 id={defendPokemonId}
@@ -66,6 +70,7 @@ export default function PowerCalculator() {
                 pokemon={defendPokemon}
                 usage="defend"
               />
+              {move && <PowerDamage moveUrl={move.move.url} />}
             </>
           )}
         </div>

@@ -11,11 +11,13 @@ import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 export interface PokemonSearchDropDownProps {
   setPokemonId: (attackPokemonId: number | null) => void;
   setPokemon: (attackPokemon: PokemonDataProps | null) => void;
+  usage: 'attack' | 'defend';
 }
 
 export const PokemonSearchDropDown = ({
   setPokemonId,
   setPokemon,
+  usage,
 }: PokemonSearchDropDownProps) => {
   const options = POKEMON_LIST_IN_KOREAN;
   const [filteredOptions, setFilteredOptions] = useState(options);
@@ -47,9 +49,11 @@ export const PokemonSearchDropDown = ({
     setFilteredOptions(options);
     setPokemonId(null);
     setPokemon(null);
-    setWeather(null);
-    setField(null);
-    setMove(null);
+    if (usage === 'attack') {
+      setWeather(null);
+      setField(null);
+      setMove(null);
+    }
   };
 
   return (

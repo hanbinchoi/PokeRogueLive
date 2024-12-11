@@ -1,5 +1,7 @@
-import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
 import { PokemonType } from '@/types/common';
+
+import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
+
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';
 
