@@ -13,12 +13,14 @@ interface powerCalculatorState {
   move: MoveInfoProps | null;
   field: FieldType | null;
   weather: WeatherType | null;
+  isWeaknessHit: boolean;
 
   setAttackPokemon: (attackPokemon: PokemonDataProps | null) => void;
   setAttackPokemonId: (attackPokemonId: number | null) => void;
   setMove: (move: MoveInfoProps | null) => void;
   setField: (field: FieldType | null) => void;
   setWeather: (field: WeatherType | null) => void;
+  setIsWeaknessHit: (isWeaknessHit: boolean) => void;
 }
 
 const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
@@ -27,12 +29,14 @@ const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
   move: null,
   field: null,
   weather: null,
+  isWeaknessHit: false,
 
   setAttackPokemon: (attackPokemon) => set(() => ({ attackPokemon })),
   setAttackPokemonId: (attackPokemonId) => set(() => ({ attackPokemonId })),
   setMove: (move) => set(() => ({ move })),
   setField: (field) => set(() => ({ field })),
   setWeather: (weather) => set(() => ({ weather })),
+  setIsWeaknessHit: (isWeaknessHit) => set(() => ({ isWeaknessHit })),
 }));
 
 export default usePowerCalculatorStore;

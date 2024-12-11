@@ -8,6 +8,7 @@ import { MoveSearchDropDown } from '@/components/MoveSearchDropDown/MoveSearchDr
 import { CommonSearchDropDown } from '@/components/CommonSearchDropDown/CommonSearchDropDown';
 
 import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
+import { CommonCheckBox } from '@/components/CommonCheckBox/CommonCheckBox';
 
 export default function PowerCalculator() {
   const {
@@ -15,11 +16,10 @@ export default function PowerCalculator() {
     setAttackPokemon,
     attackPokemonId,
     setAttackPokemonId,
-    move,
-    field,
-    weather,
+    isWeaknessHit,
+    setIsWeaknessHit,
   } = usePowerCalculatorStore();
-  console.log(move, field, weather);
+
   return (
     <main className="h-full flex flex-col gap-2 items-center p-8  bg-gray-10">
       <div className="w-full flex gap-20 h-full">
@@ -39,6 +39,11 @@ export default function PowerCalculator() {
               <MoveSearchDropDown moves={attackPokemon?.moves} />
               <CommonSearchDropDown label="날씨" options={WEATHER_LIST} />
               <CommonSearchDropDown label="필드" options={FIELD_LIST} />
+              <CommonCheckBox
+                label="급소에 맞았습니다."
+                isChecked={isWeaknessHit}
+                setIsChecked={setIsWeaknessHit}
+              />
             </>
           )}
         </div>
