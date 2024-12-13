@@ -8,7 +8,6 @@ interface PowerDamageProps {
   moveUrl: string;
 }
 export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
-  const [damage, setDamage] = useState(0);
   const {
     attackPokemon,
     defendPokemon,
@@ -17,6 +16,8 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
     weather,
     field,
     isWeaknessHit,
+    damages,
+    setDamages,
   } = usePowerCalculatorStore();
 
   // usePokemonMoveQuery 훅을 항상 호출하고, move가 없다면 빈 URL을 전달
@@ -34,7 +35,9 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
       field,
       isWeaknessHit,
     );
-    setDamage(calculatedDamage);
+    if (calculatedDamage === 0) return;
+    damages.push(calculatedDamage);
+    setDamages(damages);
   }, [
     MoveDetail,
     attackPokemon,
@@ -55,7 +58,11 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
   return (
     <div className="py-9 flex items-center flex-col">
       <div className="text-2xl mb-2">데미지</div>
-      <div className="text-4xl font-bold">{damage}</div>
+      <div className="text-4xl font-bold">
+        {damages.map((d) => (
+          <p>{d}</p>
+        ))}
+      </div>
     </div>
   );
 };
