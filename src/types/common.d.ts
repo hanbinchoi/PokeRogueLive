@@ -307,3 +307,12 @@ export interface PokemonStatsProps {
   'special-defense': number;
   speed: number;
 }
+
+export interface damageContextProps {
+  sameTypeEffectiveness: string | null;
+  defendTypeEffectiveness: string | null;
+  mod1: string | null;
+  fieldValue: string | null;
+  weaknessPower: string | null;
+  random: string;
+}
