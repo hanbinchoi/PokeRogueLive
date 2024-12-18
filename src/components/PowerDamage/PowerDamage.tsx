@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import usePokemonMoveQuery from '@/hooks/usePokemonMoveQuery';
+
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+
 import calcPower from '@/utils/calcPower';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 interface PowerDamageProps {
   moveUrl: string;
@@ -20,49 +23,47 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
     setDamages,
   } = usePowerCalculatorStore();
 
-  // usePokemonMoveQuery 훅을 항상 호출하고, move가 없다면 빈 URL을 전달
   const { data: MoveDetail, isLoading, isError } = usePokemonMoveQuery(moveUrl);
 
   useEffect(() => {
-    const calculatedDamage = calcPower(
-      attackPokemon,
-      defendPokemon,
-      attackPokemonStats,
-      defendPokemonStats,
+    const newDamages = [];
+    for (let i = 0; i < 10; i++) {
+      const calculatedDamage = calcPower(
+        attackPokemon,
+        defendPokemon,
+        attackPokemonStats,
+        defendPokemonStats,
+        MoveDetail,
+        weather,
+        field,
+        isWeaknessHit,
+      );
+      if (!calculatedDamage) return;
+      newDamages.push(calculatedDamage);
+    }
+    if (newDamages.length === 10) setDamages(newDamages);
+  }, [MoveDetail]);
 
-      MoveDetail,
-      weather,
-      field,
-      isWeaknessHit,
-    );
-    if (calculatedDamage === 0) return;
-    damages.push(calculatedDamage);
-    setDamages(damages);
-  }, [
-    MoveDetail,
-    attackPokemon,
-    defendPokemon,
-    attackPokemonStats,
-    defendPokemonStats,
-    weather,
-    field,
-    isWeaknessHit,
-  ]);
-
-  // 로딩 중일 때 처리
   if (isLoading) return <div>로딩 중...</div>;
 
-  // 에러가 발생했을 때 처리
   if (isError) return <div>데이터 오류 발생</div>;
+
+  if (MoveDetail?.damage_class.name === 'status')
+    return (
+      <div className="py-9 flex items-center justify-center flex-col h-full">
+        <div className="text-2xl font-bold">
+          <p>상태변화 기술은 데미지가 표시되지 않아요 😤</p>
+        </div>
+      </div>
+    );
 
   return (
     <div className="py-9 flex items-center flex-col">
-      <div className="text-2xl mb-2">데미지</div>
-      <div className="text-4xl font-bold">
-        {damages.map((d) => (
-          <p>{d}</p>
-        ))}
+      <div className="text-2xl mb-2 flex gap-1">
+        데미지
+        <Tooltip text={'해당 기술로 10회 타격 시 계산 결과입니다.'} />
       </div>
+      <div className="text-3xl font-bold">{damages.join(', ')}</div>
     </div>
   );
 };

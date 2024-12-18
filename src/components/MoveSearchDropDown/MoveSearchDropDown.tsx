@@ -20,7 +20,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const { setMove } = usePowerCalculatorStore();
+  const { setMove, setDamages } = usePowerCalculatorStore();
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -59,6 +59,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
     setInputValue('');
     setFilteredOptions(options);
     setMove(null);
+    setDamages([]);
   };
 
   return (

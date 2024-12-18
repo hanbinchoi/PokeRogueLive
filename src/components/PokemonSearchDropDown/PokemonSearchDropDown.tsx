@@ -24,7 +24,7 @@ export const PokemonSearchDropDown = ({
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const { setField, setWeather, setMove, setIsWeaknessHit } =
+  const { setField, setWeather, setMove, setIsWeaknessHit, setDamages } =
     usePowerCalculatorStore();
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -50,6 +50,7 @@ export const PokemonSearchDropDown = ({
     setFilteredOptions(options);
     setPokemonId(null);
     setPokemon(null);
+    setDamages([]);
     if (usage === 'attack') {
       setWeather(null);
       setField(null);
