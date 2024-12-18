@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
+import useOutsideClick from '@/hooks/useOutsideClick';
+
+import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+
 import { MoveInfoProps } from '@/types/common';
 
 import extractPokemonMoves from '@/utils/extractPokemonMoves';
-import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
-import useOutsideClick from '@/hooks/useOutsideClick';
 
 export interface MoveSearchDropDownProps {
   moves: MoveInfoProps[] | undefined;
