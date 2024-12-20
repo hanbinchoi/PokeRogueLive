@@ -6,10 +6,10 @@ import { PokemonSearchDropDown } from '@/components/PokemonSearchDropDown/Pokemo
 import { PokemonPowerBox } from '@/components/PokemonPowerBox/PokemonPowerBox';
 import { MoveSearchDropDown } from '@/components/MoveSearchDropDown/MoveSearchDropDown';
 import { CommonSearchDropDown } from '@/components/CommonSearchDropDown/CommonSearchDropDown';
-
-import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
 import { CommonCheckBox } from '@/components/CommonCheckBox/CommonCheckBox';
 import { PowerDamage } from '@/components/PowerDamage/PowerDamage';
+
+import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
 
 export default function PowerCalculator() {
   const {
@@ -32,7 +32,6 @@ export default function PowerCalculator() {
         <div className="flex flex-col gap-6 w-full">
           <h2 className="text-xl font-bold -mb-2">공격</h2>
           <PokemonSearchDropDown
-            usage="attack"
             setPokemonId={setAttackPokemonId}
             setPokemon={setAttackPokemon}
           />
@@ -58,7 +57,6 @@ export default function PowerCalculator() {
         <div className="flex flex-col gap-6 w-full">
           <h2 className="text-xl font-bold -mb-2">방어</h2>
           <PokemonSearchDropDown
-            usage={'defend'}
             setPokemonId={setDefendPokemonId}
             setPokemon={setDefendPokemon}
           />

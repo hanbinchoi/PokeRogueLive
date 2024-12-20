@@ -1,42 +1,33 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
-
-import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 import { PokemonDataProps } from '@/types/common';
 
 import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 
 export interface PokemonSearchDropDownProps {
-  setPokemonId: (attackPokemonId: number | null) => void;
-  setPokemon: (attackPokemon: PokemonDataProps | null) => void;
-  usage: 'attack' | 'defend';
+  setPokemonId: (pokemonId: number | null) => void;
+  setPokemon: (pokemon: PokemonDataProps | null) => void;
 }
 
 export const PokemonSearchDropDown = ({
   setPokemonId,
   setPokemon,
-  usage,
 }: PokemonSearchDropDownProps) => {
-  const options = POKEMON_LIST_IN_KOREAN;
-  const [filteredOptions, setFilteredOptions] = useState(options);
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-
-  const { setField, setWeather, setMove, setIsWeaknessHit, setDamages } =
-    usePowerCalculatorStore();
+  const filteredOptions = useMemo(() => {
+    return POKEMON_LIST_IN_KOREAN.filter((opt) => opt.includes(inputValue));
+  }, [inputValue]);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useOutsideClick(dropdownRef, () => setShowDropdown(false));
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInputValue(value);
-    setFilteredOptions(
-      options.filter((opt) => opt.toLowerCase().includes(value.toLowerCase())),
-    );
+    setInputValue(e.target.value);
+    setShowDropdown(true);
   };
 
   const handleOptionSelect = (option: string) => {
@@ -47,16 +38,8 @@ export const PokemonSearchDropDown = ({
 
   const clearSearch = () => {
     setInputValue('');
-    setFilteredOptions(options);
     setPokemonId(null);
     setPokemon(null);
-    setDamages([]);
-    if (usage === 'attack') {
-      setWeather(null);
-      setField(null);
-      setMove(null);
-      setIsWeaknessHit(false);
-    }
   };
 
   return (
