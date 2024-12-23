@@ -10,7 +10,7 @@ import { PokemonDataProps } from '@/types/common';
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
 
 export interface PokemonPowerBoxProps {
-  id: number | null;
+  id: number;
   pokemon: PokemonDataProps | null;
   setPokemon: (pokemon: PokemonDataProps | null) => void;
   usage: 'attack' | 'defend';
@@ -22,8 +22,6 @@ export const PokemonPowerBox = ({
   setPokemon,
   usage,
 }: PokemonPowerBoxProps) => {
-  if (!id) return;
-
   const {
     pokemonData,
     speciesData,
@@ -33,15 +31,17 @@ export const PokemonPowerBox = ({
     isErrorSpecies,
   } = usePokemonDetailQuery(String(id));
 
+  const isLoading = isLoadingPokemon || isLoadingSpecies;
+  const isError = isErrorPokemon || isErrorSpecies;
+
   useEffect(() => {
     if (pokemonData && speciesData)
       setPokemon(extractPokemonDetails([pokemonData, speciesData]));
   }, [pokemonData, speciesData]);
 
   if (!pokemon) return <div>포켓몬이 없어요.</div>;
-  if (isLoadingPokemon || isLoadingSpecies) return <div>Loading...</div>;
-  if (isErrorPokemon) return <div>Error loading Pokemon data.</div>;
-  if (isErrorSpecies) return <div>Error loading Pokemon species data.</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error loading Pokemon data.</div>;
 
   return (
     <div className="flex gap-8">

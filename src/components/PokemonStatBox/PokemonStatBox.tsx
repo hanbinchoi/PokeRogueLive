@@ -16,22 +16,18 @@ export const PokemonStatBox = ({
   pokemon,
 }: PokemonStatBoxProps) => {
   const { setAttackPokemon, setDefendPokemon } = usePowerCalculatorStore();
+  const setPokemon = usage === 'attack' ? setAttackPokemon : setDefendPokemon;
+
   return (
     <div className="flex flex-col gap-2 justify-center">
-      {stats.map((stat, i) => {
-        if (stat)
-          return (
-            <PokemonStatInput
-              key={i}
-              label={stat.stat.name}
-              stat={stat}
-              pokemon={pokemon}
-              setPokemon={
-                usage === 'attack' ? setAttackPokemon : setDefendPokemon
-              }
-            />
-          );
-      })}
+      {stats.map((stat) => (
+        <PokemonStatInput
+          key={stat.stat.name}
+          stat={stat}
+          pokemon={pokemon}
+          setPokemon={setPokemon}
+        />
+      ))}
     </div>
   );
 };
