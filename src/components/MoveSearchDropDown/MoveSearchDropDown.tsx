@@ -4,12 +4,12 @@ import useOutsideClick from '@/hooks/useOutsideClick';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { MoveInfoProps } from '@/types/common';
+import { MoveInfoProps, MoveProps } from '@/types/common';
 
 import extractPokemonMoves from '@/utils/extractPokemonMoves';
 
 export interface MoveSearchDropDownProps {
-  moves: MoveInfoProps[] | undefined;
+  moves: MoveProps[] | undefined;
 }
 
 export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {

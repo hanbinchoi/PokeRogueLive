@@ -33,6 +33,12 @@ export default function extractPokemonDetails(
     weight,
   } = detail;
 
+  stats.unshift({
+    base_stat: 50,
+    effort: 0,
+    stat: { name: 'lv', url: 'unknown' },
+  });
+
   const pokemonData: PokemonDataProps = {
     type: types.map((type) => type.type.name as PokemonType),
     pokedex: order,

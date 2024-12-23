@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
 
-import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
-
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
@@ -35,13 +33,6 @@ export const PokemonPowerBox = ({
     isErrorSpecies,
   } = usePokemonDetailQuery(String(id));
 
-  const {
-    attackPokemonStats,
-    setAttackPokemonStats,
-    defendPokemonStats,
-    setDefendPokemonStats,
-  } = usePowerCalculatorStore();
-
   useEffect(() => {
     if (pokemonData && speciesData)
       setPokemon(extractPokemonDetails([pokemonData, speciesData]));
@@ -55,15 +46,7 @@ export const PokemonPowerBox = ({
   return (
     <div className="flex gap-8">
       <PokemonImgBox pokemon={pokemon} id={id} usage="power" />
-      <PokemonStatBox
-        stats={pokemon.stats}
-        pokemonStats={
-          usage === 'attack' ? attackPokemonStats : defendPokemonStats
-        }
-        setPokemonStats={
-          usage === 'attack' ? setAttackPokemonStats : setDefendPokemonStats
-        }
-      />
+      <PokemonStatBox stats={pokemon.stats} usage={usage} pokemon={pokemon} />
     </div>
   );
 };

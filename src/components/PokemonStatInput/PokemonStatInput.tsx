@@ -1,45 +1,37 @@
-import { useState } from 'react';
-
-import { PokemonStatsProps, StatKey } from '@/types/common';
+import { PokemonDataProps, StatInfoProps, StatKey } from '@/types/common';
 
 import { POKEMON_STAT_KOREAN_MAP } from '@/constants/contents';
 
 export interface PokemonStatInputProps {
   label: string;
-  initialStat: number;
-  pokemonStats: PokemonStatsProps | null;
-  setPokemonStats: (pokemonStats: PokemonStatsProps | null) => void;
+  stat: StatInfoProps;
+  pokemon: PokemonDataProps;
+  setPokemon: (pokemon: PokemonDataProps) => void;
 }
 
 export const PokemonStatInput = ({
   label,
-  initialStat,
-  pokemonStats,
-  setPokemonStats,
+  stat,
+  pokemon,
+  setPokemon,
 }: PokemonStatInputProps) => {
-  const [stat, setStat] = useState(initialStat);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-    const key = Object.keys(POKEMON_STAT_KOREAN_MAP).find(
-      (k) => POKEMON_STAT_KOREAN_MAP[k as StatKey] === label,
+    const updatedStats = pokemon.stats.map((stat) =>
+      stat.stat.name === label ? { ...stat, base_stat: value } : stat,
     );
-
-    if (key) {
-      const newPokemonStats = { ...pokemonStats, [key]: value };
-
-      setStat(value);
-      setPokemonStats(newPokemonStats);
-    }
+    setPokemon({ ...pokemon, stats: updatedStats });
   };
 
   return (
     <div className="flex items-center h-full">
-      <div className="w-[72px] text-lg">{label}</div>
+      <div className="w-[72px] text-lg">
+        {POKEMON_STAT_KOREAN_MAP[stat.stat.name as StatKey]}
+      </div>
       <input
         type="number"
         className="border rounded p-2 h-[32px] w-[120px]"
-        value={stat}
+        value={stat.base_stat}
         onChange={handleInputChange}
         placeholder="포켓몬 입력"
       />

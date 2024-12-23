@@ -1,8 +1,10 @@
-import { MoveInfoProps } from '@/types/common';
+import { MoveInfoProps, MoveProps } from '@/types/common';
 
 import { POKEMON_MOVE_LIST } from '@/constants/contents';
 
-export default function extractPokemonMoves(moves: MoveInfoProps[]) {
+export default function extractPokemonMoves(
+  moves: MoveProps[],
+): MoveInfoProps[] {
   return moves?.map((move) => {
     const match = POKEMON_MOVE_LIST.find(
       (krMove) => krMove.name === move.move.name,
@@ -10,6 +12,6 @@ export default function extractPokemonMoves(moves: MoveInfoProps[]) {
     if (match) {
       return { ...move, krName: match.krName };
     }
-    return move;
+    return { ...move, krName: move.move.name };
   });
 }

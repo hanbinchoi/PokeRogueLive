@@ -9,9 +9,10 @@ import { PowerDamageContext } from '../PowerDamageContext/PowerDamageContext';
 import { PowerDamageValue } from '../PowerDamageValue/PowerDamageValue';
 import { PowerDamageStatusResult } from '../PowerDamageStatusResult/PowerDamageStatusResult';
 
-import { damageContextProps } from '@/types/common';
+import { DamageContextProps } from '@/types/common';
 
 import calcPower from '@/utils/calcPower';
+import { getPokemonStatMap } from '@/utils/getPokemonStatMap';
 
 interface PowerDamageProps {
   moveUrl: string;
@@ -20,28 +21,28 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
   const {
     attackPokemon,
     defendPokemon,
-    attackPokemonStats,
-    defendPokemonStats,
     weather,
     field,
     isWeaknessHit,
     damages,
     setDamages,
   } = usePowerCalculatorStore();
-  const [damageContext, setDamageContext] = useState<damageContextProps>();
+  const [damageContext, setDamageContext] = useState<DamageContextProps>();
 
   const { data: MoveDetail, isLoading, isError } = usePokemonMoveQuery(moveUrl);
 
   useEffect(() => {
     if (
-      !attackPokemonStats ||
-      !defendPokemonStats ||
       !attackPokemon ||
       !defendPokemon ||
       !MoveDetail ||
       MoveDetail.damage_class.name === 'status'
     )
       return;
+
+    const attackPokemonStats = getPokemonStatMap(attackPokemon);
+    const defendPokemonStats = getPokemonStatMap(defendPokemon);
+
     const { newDamages, damageContext: newDamageContext } = calcPower({
       attackPokemon,
       defendPokemon,
@@ -74,7 +75,10 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
           <PowerDamageValue
             key={i}
             damage={damage}
-            hp={defendPokemonStats?.hp}
+            hp={
+              defendPokemon?.stats.find((stat) => stat.stat.name === 'hp')
+                ?.base_stat
+            }
           />
         ))}
       </div>

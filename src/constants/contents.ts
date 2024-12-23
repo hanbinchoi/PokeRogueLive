@@ -1,4 +1,4 @@
-import { PokemonType } from '@/types/common';
+import { PokemonType, StatKey } from '@/types/common';
 
 export const TOTAL_POKEMON_NUM = 1025;
 
@@ -5748,7 +5748,7 @@ export const WEATHER_LIST = [
 
 export const FIELD_LIST = ['일렉트릭', '미스트', '사이코', '그래스'];
 
-export const POKEMON_STAT_KOREAN_MAP = {
+export const POKEMON_STAT_KOREAN_MAP: Record<StatKey, string> = {
   lv: '레벨',
   hp: 'HP',
   attack: '공격',

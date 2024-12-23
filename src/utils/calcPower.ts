@@ -4,7 +4,7 @@ import getDefendEffectiveness from './getDefendEffectiveness';
 import getFieldValue from './getFieldValue';
 
 import {
-  damageContextProps,
+  DamageContextProps,
   FieldType,
   MoveDetailProps,
   PokemonDataProps,
@@ -34,7 +34,7 @@ export default function calcPower({
   isWeaknessHit,
 }: calcPowerProps) {
   const { power, type, damage_class } = MoveDetail;
-  const damageContext: damageContextProps = {
+  const damageContext: DamageContextProps = {
     sameTypeEffectiveness: null,
     defendTypeEffectiveness: null,
     mod1: null,

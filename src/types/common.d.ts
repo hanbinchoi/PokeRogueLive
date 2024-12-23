@@ -177,7 +177,7 @@ export interface PokemonDataProps {
   base_experience: number;
   cries: string;
   height: number;
-  moves: MoveInfoProps[];
+  moves: MoveProps[];
   stats: StatInfoProps[];
   weight: number;
   capture_rate: number;
@@ -289,7 +289,7 @@ export type FieldType = (typeof FIELD_LIST)[number];
 
 export type WeatherType = (typeof WEATHER_LIST)[number];
 
-type StatKey =
+export type StatKey =
   | 'lv'
   | 'hp'
   | 'attack'
@@ -308,11 +308,11 @@ export interface PokemonStatsProps {
   speed: number;
 }
 
-export interface damageContextProps {
-  sameTypeEffectiveness: string | null;
-  defendTypeEffectiveness: string | null;
-  mod1: string | null;
-  fieldValue: string | null;
-  weaknessPower: string | null;
+export interface DamageContextProps {
+  sameTypeEffectiveness: null | string;
+  defendTypeEffectiveness: null | string;
+  mod1: null | string;
+  fieldValue: null | string;
+  weaknessPower: null | string;
   random: string;
 }
