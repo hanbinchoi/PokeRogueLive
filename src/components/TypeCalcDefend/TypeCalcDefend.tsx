@@ -1,5 +1,3 @@
-import '../../styles/globals.css';
-
 import { TypeCalcOption } from '../TypeCalcOption/TypeCalcOption';
 import { CommonSelect } from '../CommonSelect/CommonSelect';
 import { TypeCalcDefendResult } from '../TypeCalcDefendResult/TypeCalcDefendResult';

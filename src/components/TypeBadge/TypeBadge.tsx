@@ -1,5 +1,3 @@
-import '../../styles/globals.css';
-
 import { twJoin } from 'tailwind-merge';
 
 import { PokemonType } from '@/types/common';

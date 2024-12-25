@@ -1,13 +1,9 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
 
-import { getPokemon, getPokemonMove, getPokemonSpecies } from '@/api/pokemon';
+import { getPokemonMove } from '@/api/pokemon';
 
-import {
-  MoveDetailProps,
-  PokemonDetailProps,
-  PokemonSpeciesProps,
-} from '@/types/common';
+import { MoveDetailProps } from '@/types/common';
 
 export default function usePokemonMoveQuery(url: string) {
   const { data, isLoading, isError } = useQuery<MoveDetailProps>({

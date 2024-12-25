@@ -1,5 +1,3 @@
-import '../../styles/globals.css';
-
 import { useEffect, useState } from 'react';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';

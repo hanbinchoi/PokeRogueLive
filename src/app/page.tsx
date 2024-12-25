@@ -1,5 +1,5 @@
 'use client';
 
 export default function Home({ children }: { children: React.ReactNode }) {
-  return <main className="">{children}</main>;
+  return <main>{children}</main>;
 }

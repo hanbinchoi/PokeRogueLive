@@ -1,5 +1,7 @@
-import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
 import { PokemonType } from '@/types/common';
+
+import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
+
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';
 
@@ -34,7 +36,6 @@ export default function calcAttackType(
     );
   });
 
-  console.log(combinedDoubleEffect, combinedHalfEffect, combinedNormalEffect);
   POKEMON_TYPE_ARRAY.forEach((type) => {
     if (type === 'stellar' || type === 'unknown') return;
 

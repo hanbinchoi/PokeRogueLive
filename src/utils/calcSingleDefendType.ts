@@ -4,7 +4,7 @@ import {
   PokemonTypeDetails,
 } from '@/types/common';
 
-import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
+import { POKEMON_TYPE_ARRAY } from '@/constants/contents';
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';
 import calcDefendAbility from './calcDefendAbility';

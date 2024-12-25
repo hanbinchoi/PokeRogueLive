@@ -1,5 +1,3 @@
-import '../../styles/globals.css';
-
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import { PokemonType, selectUsage } from '@/types/common';

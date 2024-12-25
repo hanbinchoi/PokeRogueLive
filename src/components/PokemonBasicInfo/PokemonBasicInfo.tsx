@@ -1,5 +1,3 @@
-import '../../styles/globals.css';
-
 import { TypeBadge } from '../TypeBadge/TypeBadge';
 
 import { PokemonDataProps } from '@/types/common';

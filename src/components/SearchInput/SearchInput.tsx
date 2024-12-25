@@ -1,5 +1,3 @@
-import '../../styles/globals.css';
-
 import { UseFormRegister } from 'react-hook-form';
 import { twJoin } from 'tailwind-merge';
 
