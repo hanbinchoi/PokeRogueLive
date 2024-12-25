@@ -32,6 +32,7 @@ export const SearchInput = ({
         className,
       )}
       placeholder={placeholder}
+      autoComplete="off"
       {...register('keyword', {
         required: '포켓몬을 입력해주세요.',
         validate: (value) => value.trim() !== '' || '공백은 검색할 수 없어요.',
