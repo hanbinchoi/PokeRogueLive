@@ -1,5 +1,3 @@
-import '../../styles/globals.css';
-
 import { useQuery } from '@tanstack/react-query';
 
 import { getPokemons } from '@/api/pokemon';

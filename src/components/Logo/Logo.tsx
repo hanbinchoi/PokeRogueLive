@@ -1,17 +1,13 @@
-import '../../styles/globals.css';
+import Link from 'next/link';
 
-export interface LogoProps {
-  size?: 'medium' | 'large';
-}
-
-export const Logo = ({ size = 'medium' }: LogoProps) => {
+export const Logo = () => {
   return (
-    <div className={`h-auto ${size === 'large' ? 'w-[294px]' : 'w-[122px]'}`}>
+    <Link href={'/pokemon'} className={`h-auto w-[122px]`}>
       <img
         src="/assets/img/logo.png"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover aspect-[2/1]"
         alt="로고"
       />
-    </div>
+    </Link>
   );
 };

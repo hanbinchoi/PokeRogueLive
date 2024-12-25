@@ -1,6 +1,6 @@
 import { PokemonDataProps, PokemonStatsProps } from '@/types/common';
 
-export function getPokemonStatMap(
+export default function getPokemonStatMap(
   pokemon: PokemonDataProps,
 ): PokemonStatsProps {
   const initialStats: PokemonStatsProps = {

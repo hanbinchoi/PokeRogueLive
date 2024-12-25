@@ -1,5 +1,3 @@
-import '../../styles/globals.css';
-
 import { useForm } from 'react-hook-form';
 import { TypeCalcOption } from '../TypeCalcOption/TypeCalcOption';
 import { TypeCalcAttackResult } from '../TypeCalcAttackResult/TypeCalcAttackResult';

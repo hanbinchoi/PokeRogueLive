@@ -1,5 +1,3 @@
-import '../../styles/globals.css';
-
 import { twJoin } from 'tailwind-merge';
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
@@ -63,7 +61,7 @@ export const TypeCalcButton = ({
       onClick={selectType}>
       <div
         className={
-          'w-[20px] h-[20px] rounded-full bg-white-100 flex justify-center items-center'
+          'w-[20px] h-[20px] rounded-full bg-white flex justify-center items-center'
         }>
         <div
           className={twJoin(
@@ -75,7 +73,7 @@ export const TypeCalcButton = ({
     </button>
   ) : (
     <button
-      className="flex items-center gap-2 w-[98px] p-2 bg-white-100 border rounded-3xl hover:opacity-70"
+      className="flex items-center gap-2 w-[98px] p-2 bg-white border rounded-3xl hover:opacity-70"
       onClick={selectType}>
       <div
         className={twJoin(

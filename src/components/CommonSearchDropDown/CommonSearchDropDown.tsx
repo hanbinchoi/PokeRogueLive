@@ -4,56 +4,59 @@ import useOutsideClick from '@/hooks/useOutsideClick';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { FieldType, WeatherType } from '@/types/common';
-
 export interface CommonSearchDropDownProps {
   label: string;
-  options: FieldType[] | WeatherType[];
+  options: string[];
 }
 
 export const CommonSearchDropDown = ({
   label,
   options,
 }: CommonSearchDropDownProps) => {
-  const [filteredOptions, setFilteredOptions] = useState<string[] | null>(
-    options,
-  );
+  const [filteredOptions, setFilteredOptions] = useState<string[]>(options);
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
 
   const { setField, setWeather } = usePowerCalculatorStore();
-
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useOutsideClick(dropdownRef, () => setShowDropdown(false));
 
+  const updateState = (value: string | null) => {
+    if (label === '날씨') {
+      return setWeather(value);
+    } else if (label === '필드') {
+      return setField(value);
+    }
+    return;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     setInputValue(value);
-    setFilteredOptions(
-      options.filter((opt) => opt.toLowerCase().includes(value.toLowerCase())),
-    );
+    setFilteredOptions(options.filter((opt) => opt.includes(value)));
   };
 
   const handleOptionSelect = (option: string) => {
     setInputValue(option);
     setShowDropdown(false);
-    if (label === '날씨') return setWeather(option);
-    if (label === '필드') return setField(option);
+    updateState(option);
   };
 
   const clearSearch = () => {
     setInputValue('');
     setFilteredOptions(options);
-    if (label === '날씨') return setWeather(null);
-    if (label === '필드') return setField(null);
+    updateState(null);
   };
 
   return (
     <div className="w-full">
-      <div className="text-lg mb-1">{label}</div>
+      <label className="text-lg mb-1" htmlFor={`dropdown-${label}`}>
+        {label}
+      </label>
       <div className="relative w-[240px]" ref={dropdownRef}>
         <input
+          id={`dropdown-${label}`}
           type="text"
           className="w-full border rounded p-2"
           value={inputValue}
@@ -64,12 +67,12 @@ export const CommonSearchDropDown = ({
         {inputValue && (
           <button
             onClick={clearSearch}
-            className="absolute m-2 p-2 right-1 inset-y-0 flex items-center rounded-md text-gray-90 hover:bg-gray-20">
+            className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2 rounded-md text-gray-90 hover:bg-gray-20">
             ✕
           </button>
         )}
         {showDropdown && filteredOptions && (
-          <div className="absolute z-10 w-full bg-white rounded shadow max-h-40 overflow-y-auto bg-white-100 border-2">
+          <div className="absolute z-10 w-full bg-white rounded shadow max-h-40 overflow-y-auto bg-white border-2">
             {filteredOptions?.map((option, i) => (
               <div
                 key={i}

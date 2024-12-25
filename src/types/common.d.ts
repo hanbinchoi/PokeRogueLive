@@ -23,7 +23,11 @@ export interface InputValues {
   ability: string;
 }
 
-export type MenuItem = 'pokemon' | 'type-calculator' | 'power-calculator';
+interface SidebarMenuItemProps {
+  title: 'pokemon' | 'type-calculator' | 'power-calculator';
+  label: string;
+  icon: JSX.Element;
+}
 
 export type selectUsage = 'defenceAbility' | 'teraType';
 

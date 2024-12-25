@@ -60,7 +60,7 @@ export const PokemonSearchDropDown = ({
         </button>
       )}
       {showDropdown && (
-        <div className="absolute z-10 w-full bg-white rounded shadow max-h-40 overflow-y-auto bg-white-100 border-2">
+        <div className="absolute z-10 w-full bg-white rounded shadow max-h-40 overflow-y-auto bg-white border-2">
           {filteredOptions.map((option) => (
             <div
               key={option}

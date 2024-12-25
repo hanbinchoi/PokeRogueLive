@@ -38,7 +38,7 @@ export async function getPokemon(id: number): Promise<PokemonDetailProps> {
   return res;
 }
 
-export async function getPokemonByKoreanName(
+export async function getPokemonIdByKoreanName(
   koreanName: string,
 ): Promise<number | null> {
   const speciesResponse = await commonAxios.get(

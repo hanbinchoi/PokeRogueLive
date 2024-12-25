@@ -1,22 +1,18 @@
-import { damageContextProps } from '@/types/common';
+import { DamageContextProps } from '@/types/common';
 
 interface PowerDamageContextProps {
-  damageContext: damageContextProps | undefined;
+  damageContext: DamageContextProps | undefined;
 }
 
 export const PowerDamageContext = ({
   damageContext,
 }: PowerDamageContextProps) => {
   return (
-    <div className="text-center">
+    <div className="text-center text-sm text-gray-50">
       {damageContext &&
         Object.entries(damageContext)
           .filter(([_, value]) => value !== null)
-          .map(([key, value]) => (
-            <p key={key} className="text-sm text-gray-50">
-              {value}
-            </p>
-          ))}
+          .map(([key, value]) => <p key={`${key}-${value}`}>{value}</p>)}
     </div>
   );
 };
