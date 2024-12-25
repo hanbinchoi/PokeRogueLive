@@ -1,7 +1,6 @@
-import exp from 'constants';
-
 import { TypeBadge } from './../components/TypeBadge/TypeBadge';
 import { Pokemon } from '../components/Pokemon/Pokemon';
+
 import { POKEMON_TYPE } from '@/constants/contents';
 
 export interface DefaultProps {
@@ -24,7 +23,11 @@ export interface InputValues {
   ability: string;
 }
 
-export type MenuItem = 'pokemon' | 'type-calculator' | 'power-calculator';
+interface SidebarMenuItemProps {
+  title: 'pokemon' | 'type-calculator' | 'power-calculator';
+  label: string;
+  icon: JSX.Element;
+}
 
 export type selectUsage = 'defenceAbility' | 'teraType';
 
@@ -155,6 +158,7 @@ export interface AbilityInfoProps {
 }
 
 export interface MoveInfoProps {
+  krName: string;
   move: DataProps;
   version_group_details: {
     level_learned_at: number;
@@ -177,7 +181,7 @@ export interface PokemonDataProps {
   base_experience: number;
   cries: string;
   height: number;
-  moves: MoveInfoProps[];
+  moves: MoveProps[];
   stats: StatInfoProps[];
   weight: number;
   capture_rate: number;
@@ -283,4 +287,36 @@ export interface MoveDetailProps {
   power: number;
   pp: number;
   type: MoveTypeProps;
+}
+
+export type FieldType = (typeof FIELD_LIST)[number];
+
+export type WeatherType = (typeof WEATHER_LIST)[number];
+
+export type StatKey =
+  | 'lv'
+  | 'hp'
+  | 'attack'
+  | 'defense'
+  | 'special-attack'
+  | 'special-defense'
+  | 'speed';
+
+export interface PokemonStatsProps {
+  lv: number;
+  hp: number;
+  attack: number;
+  defense: number;
+  'special-attack': number;
+  'special-defense': number;
+  speed: number;
+}
+
+export interface DamageContextProps {
+  sameTypeEffectiveness: null | string;
+  defendTypeEffectiveness: null | string;
+  mod1: null | string;
+  fieldValue: null | string;
+  weaknessPower: null | string;
+  random: string;
 }

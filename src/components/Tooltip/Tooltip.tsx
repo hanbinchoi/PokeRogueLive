@@ -21,12 +21,16 @@ export const Tooltip = ({ text }: AbilityBoxProps) => {
       className="relative inline-block"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
-      <FaQuestionCircle className="text-blue-70 -right-5 top-0 w-[14px]" />
-      {visible && (
-        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-max bg-black-10 text-white-100 text-xs rounded px-2 py-1 z-10">
-          {text}
-        </div>
-      )}
+      <FaQuestionCircle
+        className="text-blue-70 -right-5 top-0 w-[14px]"
+        aria-label="Tooltip trigger"
+      />
+      <div
+        className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-max bg-black-10 text-white-100 text-xs rounded px-2 py-1 z-10 transition-opacity duration-400 ${
+          visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}>
+        {text}
+      </div>
     </div>
   );
 };

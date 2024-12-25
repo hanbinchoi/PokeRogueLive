@@ -1,5 +1,3 @@
-import '../../styles/globals.css';
-
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 export const TypeModeToggle = () => {

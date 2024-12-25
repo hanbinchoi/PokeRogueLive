@@ -1,3 +1,5 @@
+import '../styles/globals.css';
+
 import type { Metadata } from 'next';
 
 import ReactQueryProviders from '@/hooks/useReactQuery';
@@ -16,15 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
         <ReactQueryProviders>
           <div className="min-h-screen flex flex-col ">
             <Header />
-            <div className="h-full grow flex">
+            <main className="h-full grow flex">
               <Sidebar className="w-1/5" />
               <div className="w-full">{children}</div>
-            </div>
+            </main>
           </div>
         </ReactQueryProviders>
       </body>

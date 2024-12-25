@@ -6,7 +6,6 @@ export default function calcDefendAbility(
   type: PokemonType,
   myType: PokemonType | PokemonType[],
 ) {
-  console.log(ability, type, myType, score);
   if (ability === '건조피부') {
     if (type === 'fire') return score * 1.25;
     if (type === 'water') return 0;

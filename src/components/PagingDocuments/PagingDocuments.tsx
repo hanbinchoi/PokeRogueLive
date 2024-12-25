@@ -32,7 +32,7 @@ export const PagingDocuments = () => {
           <IconButton
             primary={false}
             Icon={FaAngleLeft}
-            onClick={() => goToPage(now - 1)}
+            onClick={() => goToPage(now - 5)}
           />
         </>
       )}
@@ -51,7 +51,7 @@ export const PagingDocuments = () => {
           <IconButton
             primary={false}
             Icon={FaAngleRight}
-            onClick={() => goToPage(now + 1)}
+            onClick={() => goToPage(now + 5)}
           />
           <IconButton
             primary={false}
