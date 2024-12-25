@@ -8,6 +8,7 @@ import { SearchInput } from '../SearchInput/SearchInput';
 import { Button } from '../Button/Button';
 import { PokemonList } from '../PokemonList/PokemonList';
 import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 import { InputValues } from '@/types/common';
 
@@ -17,19 +18,10 @@ import {
   POKEMON_PAGE_ITEM_SIZE,
   TOTAL_POKEMON_NUM,
 } from '@/constants/contents';
-import { Tooltip } from '../Tooltip/Tooltip';
 
 export const PokemonSearchForm = () => {
-  const {
-    now,
-    total,
-    last,
-    searchIdsList,
-    setNow,
-    setTotal,
-    setLast,
-    setSearchIdsList,
-  } = usePokemonsStore();
+  const { now, total, searchIdsList, setNow, setTotal, setSearchIdsList } =
+    usePokemonsStore();
 
   const {
     register,
@@ -64,9 +56,6 @@ export const PokemonSearchForm = () => {
     setNow(1);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value === '') clearErrors('keyword'); // 입력값 변경 시 에러 초기화
-  };
   return (
     <>
       <form
@@ -77,7 +66,6 @@ export const PokemonSearchForm = () => {
             placeholder="포켓몬 검색"
             register={register}
             setValue={setValue}
-            onChange={handleChange}
             className="min-w-[297px]"
           />
           {errors.keyword && (
@@ -92,7 +80,6 @@ export const PokemonSearchForm = () => {
           type="reset"
           size="small"
           label="초기화"
-          disabled={pokemonIdsList === null}
           onClick={handleResetSubmit}
         />
         <Tooltip
@@ -103,10 +90,8 @@ export const PokemonSearchForm = () => {
       <PokemonList pokemonIdsList={pokemonIdsList} now={now} />
       <PagingDocuments
         now={now}
-        last={last}
         total={total}
         setNow={setNow}
-        setLast={setLast}
         pageSize={POKEMON_PAGE_ITEM_SIZE}
       />
     </>

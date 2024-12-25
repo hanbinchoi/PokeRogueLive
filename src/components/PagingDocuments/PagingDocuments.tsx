@@ -10,29 +10,21 @@ import {
 
 export interface PagingDocumentsProps {
   now: number;
-  last: boolean;
   total: number;
   pageSize: number;
 
   setNow: (now: number) => void;
-  setLast: (last: boolean) => void;
 }
 
 export const PagingDocuments = ({
   now,
-  last,
   total,
   pageSize,
   setNow,
-  setLast,
 }: PagingDocumentsProps) => {
-  const { pages, goToPage } = usePagination(
-    total,
-    now,
-    pageSize,
-    setNow,
-    setLast,
-  );
+  const { pages, goToPage } = usePagination(total, now, pageSize, setNow);
+  const lastPage = Math.ceil(total / pageSize);
+
   return (
     <ul className="mt-5 px-14 text-lg flex justify-center items-center gap-2">
       {now > 1 && (
@@ -59,7 +51,7 @@ export const PagingDocuments = ({
         </PageButton>
       ))}
 
-      {!last && (
+      {now < lastPage && (
         <>
           <IconButton
             primary={false}
@@ -69,7 +61,7 @@ export const PagingDocuments = ({
           <IconButton
             primary={false}
             Icon={FaAnglesRight}
-            onClick={() => goToPage(Math.ceil(total / pageSize))}
+            onClick={() => goToPage(lastPage)}
           />
         </>
       )}
