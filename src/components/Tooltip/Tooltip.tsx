@@ -4,21 +4,22 @@ import { FaQuestionCircle } from 'react-icons/fa';
 
 export interface AbilityBoxProps {
   text: string;
+  visible?: boolean;
 }
 
-export const Tooltip = ({ text }: AbilityBoxProps) => {
-  const [visible, setVisible] = useState(false);
+export const Tooltip = ({ text, visible = true }: AbilityBoxProps) => {
+  const [show, setShow] = useState(false);
 
   const handleMouseEnter = () => {
-    setVisible(true);
+    setShow(true);
   };
 
   const handleMouseLeave = () => {
-    setVisible(false);
+    setShow(false);
   };
   return (
     <div
-      className="relative inline-block"
+      className={`relative inline-block ${visible ? ' visible' : 'invisible'}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
       <FaQuestionCircle
@@ -27,7 +28,7 @@ export const Tooltip = ({ text }: AbilityBoxProps) => {
       />
       <div
         className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-max bg-black-10 text-white-100 text-xs rounded px-2 py-1 z-10 transition-opacity duration-400 ${
-          visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          show ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
         {text}
       </div>

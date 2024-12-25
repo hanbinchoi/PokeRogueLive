@@ -1,10 +1,9 @@
 import { twJoin } from 'tailwind-merge';
 
-import { ButtonSize } from '@/types/common';
+import { ButtonSize, DefaultProps } from '@/types/common';
 
-export interface ButtonProps {
+export interface ButtonProps extends DefaultProps {
   primary?: boolean;
-  backgroundColor?: string;
   size?: ButtonSize;
   type: 'button' | 'submit' | 'reset';
   label: string;
@@ -16,9 +15,9 @@ export const Button = ({
   primary = false,
   size = 'medium',
   type = 'button',
-  backgroundColor,
-  label,
   disabled = false,
+  label,
+  className,
   ...props
 }: ButtonProps) => {
   const ButtonStyle: string = primary
@@ -36,7 +35,12 @@ export const Button = ({
   return (
     <button
       type={type}
-      className={twJoin(buttonSizeClasses[size], ButtonStyle, disabledStyle)}
+      className={twJoin(
+        buttonSizeClasses[size],
+        ButtonStyle,
+        disabledStyle,
+        className,
+      )}
       disabled={disabled}
       {...props}>
       {label}

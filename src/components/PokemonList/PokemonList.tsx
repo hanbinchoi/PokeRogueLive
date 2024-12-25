@@ -26,18 +26,16 @@ export const PokemonList = ({ pokemonIdsList, now }: PokemonListProps) => {
   return (
     <>
       <div className="grid grid-cols-5 py-2 px-14 gap-8">
-        {pokemonIdsList &&
-          pokemonIdsList?.map((pokemonId) => (
-            <Pokemon key={pokemonId} id={pokemonId} />
-          ))}
-        {!pokemonIdsList &&
-          data &&
-          data?.data.map((pokemon) => (
-            <Pokemon
-              key={extractIdFromUrl(pokemon.url)}
-              id={extractIdFromUrl(pokemon.url) as number}
-            />
-          ))}
+        {pokemonIdsList?.length
+          ? pokemonIdsList.map((pokemonId) => (
+              <Pokemon key={pokemonId} id={pokemonId} />
+            ))
+          : data?.data.map((pokemon) => (
+              <Pokemon
+                key={extractIdFromUrl(pokemon.url)}
+                id={extractIdFromUrl(pokemon.url)}
+              />
+            ))}
       </div>
     </>
   );

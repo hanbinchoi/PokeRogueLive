@@ -13,7 +13,11 @@ import { InputValues } from '@/types/common';
 
 import getPokemonsByPartialName from '@/utils/getPokemonsIdByPartialName';
 
-import { TOTAL_POKEMON_NUM } from '@/constants/contents';
+import {
+  POKEMON_PAGE_ITEM_SIZE,
+  TOTAL_POKEMON_NUM,
+} from '@/constants/contents';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 export const PokemonSearchForm = () => {
   const {
@@ -27,16 +31,23 @@ export const PokemonSearchForm = () => {
     setSearchIdsList,
   } = usePokemonsStore();
 
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    clearErrors,
+    formState: { errors },
+  } = useForm<InputValues>();
+
   const [pokemonIdsList, setPokemonIdsList] = useState<number[] | null>(null);
-  const { register, handleSubmit, reset } = useForm<InputValues>();
 
   useEffect(() => {
     if (searchIdsList) {
-      return setPokemonIdsList(
-        searchIdsList.slice((now - 1) * 10, (now - 1) * 10 + 10),
-      );
+      setPokemonIdsList(searchIdsList.slice((now - 1) * 10, now * 10));
+    } else {
+      setPokemonIdsList(null);
     }
-    return setPokemonIdsList(null);
   }, [searchIdsList, now]);
 
   const handleSearchSubmit = (input: InputValues) => {
@@ -53,29 +64,40 @@ export const PokemonSearchForm = () => {
     setNow(1);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    if (value.trim() === '') handleResetSubmit();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === '') clearErrors('keyword'); // 입력값 변경 시 에러 초기화
   };
-
   return (
     <>
       <form
         className="flex justify-center gap-[10px] w-full px-80 py-2 mb-6"
         onSubmit={handleSubmit(handleSearchSubmit)}>
-        <SearchInput
-          required={true}
-          register={register}
-          className="min-w-[297px]"
-          onChange={handleInputChange}
-        />
+        <div className="relative">
+          <SearchInput
+            placeholder="포켓몬 검색"
+            register={register}
+            setValue={setValue}
+            onChange={handleChange}
+            className="min-w-[297px]"
+          />
+          {errors.keyword && (
+            <p className="text-red-10 font-bold text-sm absolute left-0 mt-1">
+              {errors.keyword.message}
+            </p>
+          )}
+        </div>
         <Button primary={true} type="submit" size="small" label="검색" />
         <Button
           primary={false}
           type="reset"
           size="small"
           label="초기화"
-          onClick={handleSubmit(handleResetSubmit)}
+          disabled={pokemonIdsList === null}
+          onClick={handleResetSubmit}
+        />
+        <Tooltip
+          text="전체 목록으로 돌아가시려면 초기화 버튼을 클릭해주세요."
+          visible={!!errors.keyword}
         />
       </form>
       <PokemonList pokemonIdsList={pokemonIdsList} now={now} />
@@ -85,10 +107,8 @@ export const PokemonSearchForm = () => {
         total={total}
         setNow={setNow}
         setLast={setLast}
-        pageSize={PAGE_ITEM_SIZE}
+        pageSize={POKEMON_PAGE_ITEM_SIZE}
       />
     </>
   );
 };
-
-const PAGE_ITEM_SIZE = 10;
