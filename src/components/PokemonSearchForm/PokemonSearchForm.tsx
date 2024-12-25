@@ -10,20 +10,26 @@ import usePokemonsStore from '@/stores/pokemonsStore';
 import { SearchInput } from '../SearchInput/SearchInput';
 import { Button } from '../Button/Button';
 import { PokemonList } from '../PokemonList/PokemonList';
+import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
 
 import { InputValues } from '@/types/common';
+
+import getPokemonsByPartialName from '@/utils/getPokemonsIdByPartialName';
 
 import { TOTAL_POKEMON_NUM } from '@/constants/contents';
 
 export const PokemonSearchForm = () => {
   const {
-    setTotal,
-    setSearch,
-    setNow,
-    setLast,
+    now,
+    total,
+    last,
     search,
-    searchId,
-    setSearchId,
+    searchIdsList,
+    setNow,
+    setTotal,
+    setLast,
+    setSearch,
+    setSearchIdsList,
   } = usePokemonsStore();
 
   const { register, handleSubmit, reset } = useForm<InputValues>();
@@ -36,13 +42,12 @@ export const PokemonSearchForm = () => {
   });
 
   useEffect(() => {
-    if (search && data) {
-      setSearchId(data);
+    if (search) {
+      setSearchIdsList(getPokemonsByPartialName(search));
       return;
     }
-
-    setSearchId(null);
-  }, [search, data]);
+    setSearchIdsList(null);
+  }, [search]);
 
   const handleSearchSubmit = (input: InputValues) => {
     setSearch(input.keyword.trim());
@@ -86,7 +91,14 @@ export const PokemonSearchForm = () => {
           onClick={handleSubmit(handleResetSubmit)}
         />
       </form>
-      <PokemonList pokemonId={searchId} />
+      <PokemonList pokemonIdsList={searchIdsList} now={now} />
+      <PagingDocuments
+        now={now}
+        last={last}
+        total={total}
+        setNow={setNow}
+        setLast={setLast}
+      />
     </>
   );
 };

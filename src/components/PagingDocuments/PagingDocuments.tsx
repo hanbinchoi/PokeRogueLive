@@ -1,7 +1,5 @@
 import { usePagination } from '@/hooks/usePagination';
 
-import usePokemonsStore from '@/stores/pokemonsStore';
-
 import { IconButton, PageButton } from '../PageButton/PageButton';
 import {
   FaAngleLeft,
@@ -10,9 +8,22 @@ import {
   FaAnglesRight,
 } from 'react-icons/fa6';
 
-export const PagingDocuments = () => {
-  const { now, last, setNow, total, setLast } = usePokemonsStore();
+export interface PagingDocumentsProps {
+  now: number;
+  last: boolean;
+  total: number;
 
+  setNow: (now: number) => void;
+  setLast: (last: boolean) => void;
+}
+
+export const PagingDocuments = ({
+  now,
+  last,
+  total,
+  setNow,
+  setLast,
+}: PagingDocumentsProps) => {
   const { pages, goToPage } = usePagination(
     total,
     now,

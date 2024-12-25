@@ -2,36 +2,34 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getPokemons } from '@/api/pokemon';
 
-import usePokemonsStore from '@/stores/pokemonsStore';
-
 import { Pokemon } from '../Pokemon/Pokemon';
-import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
 
 import { PokemonsResponseProps } from '@/types/common';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
 
 export interface PokemonListProps {
-  pokemonId: number | undefined | null;
+  pokemonIdsList: number[] | null;
+  now: number;
 }
 
-export const PokemonList = ({ pokemonId }: PokemonListProps) => {
-  const now = usePokemonsStore((state) => state.now);
-
+export const PokemonList = ({ pokemonIdsList, now }: PokemonListProps) => {
   const { isLoading, error, data } = useQuery<PokemonsResponseProps>({
     queryKey: ['pokemons', now],
     queryFn: () => getPokemons(now),
-    enabled: !pokemonId,
+    enabled: !pokemonIdsList,
   });
-
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>error</div>;
   if (data)
     return (
       <>
         <div className="grid grid-cols-5 py-2 px-14 gap-8">
-          {pokemonId && <Pokemon id={pokemonId} />}
-          {!pokemonId &&
+          {pokemonIdsList &&
+            pokemonIdsList.map((pokemonId) => (
+              <Pokemon key={pokemonId} id={pokemonId} />
+            ))}
+          {!pokemonIdsList &&
             data.data.map((pokemon) => (
               <Pokemon
                 key={extractIdFromUrl(pokemon.url)}
@@ -39,8 +37,6 @@ export const PokemonList = ({ pokemonId }: PokemonListProps) => {
               />
             ))}
         </div>
-
-        <PagingDocuments />
       </>
     );
 };
