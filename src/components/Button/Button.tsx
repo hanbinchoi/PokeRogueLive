@@ -8,7 +8,7 @@ export interface ButtonProps {
   size?: ButtonSize;
   type: 'button' | 'submit' | 'reset';
   label: string;
-  disabled: boolean;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
@@ -18,7 +18,7 @@ export const Button = ({
   type = 'button',
   backgroundColor,
   label,
-  disabled,
+  disabled = false,
   ...props
 }: ButtonProps) => {
   const ButtonStyle: string = primary

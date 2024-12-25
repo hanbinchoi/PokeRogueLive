@@ -12,6 +12,7 @@ export interface PagingDocumentsProps {
   now: number;
   last: boolean;
   total: number;
+  pageSize: number;
 
   setNow: (now: number) => void;
   setLast: (last: boolean) => void;
@@ -21,13 +22,14 @@ export const PagingDocuments = ({
   now,
   last,
   total,
+  pageSize,
   setNow,
   setLast,
 }: PagingDocumentsProps) => {
   const { pages, goToPage } = usePagination(
     total,
     now,
-    PAGE_ITEM_SIZE,
+    pageSize,
     setNow,
     setLast,
   );
@@ -67,12 +69,10 @@ export const PagingDocuments = ({
           <IconButton
             primary={false}
             Icon={FaAnglesRight}
-            onClick={() => goToPage(Math.ceil(total / PAGE_ITEM_SIZE))}
+            onClick={() => goToPage(Math.ceil(total / pageSize))}
           />
         </>
       )}
     </ul>
   );
 };
-
-export const PAGE_ITEM_SIZE = 10;

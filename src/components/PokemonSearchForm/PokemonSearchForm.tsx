@@ -1,9 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
-import { useQuery } from '@tanstack/react-query';
-
-import { getPokemonIdByKoreanName } from '@/api/pokemon';
 
 import usePokemonsStore from '@/stores/pokemonsStore';
 
@@ -23,47 +20,43 @@ export const PokemonSearchForm = () => {
     now,
     total,
     last,
-    search,
     searchIdsList,
     setNow,
     setTotal,
     setLast,
-    setSearch,
     setSearchIdsList,
   } = usePokemonsStore();
 
+  const [pokemonIdsList, setPokemonIdsList] = useState<number[] | null>(null);
   const { register, handleSubmit, reset } = useForm<InputValues>();
 
-  const { isLoading: isSearchLoading, data } = useQuery({
-    queryKey: ['searchPokemon', search],
-    queryFn: () => getPokemonIdByKoreanName(search as string),
-    retry: 1,
-    enabled: search !== null,
-  });
-
   useEffect(() => {
-    if (search) {
-      setSearchIdsList(getPokemonsByPartialName(search));
-      return;
+    if (searchIdsList) {
+      return setPokemonIdsList(
+        searchIdsList.slice((now - 1) * 10, (now - 1) * 10 + 10),
+      );
     }
-    setSearchIdsList(null);
-  }, [search]);
+    return setPokemonIdsList(null);
+  }, [searchIdsList, now]);
 
   const handleSearchSubmit = (input: InputValues) => {
-    setSearch(input.keyword.trim());
-    setTotal(1);
-    setLast(true);
+    const pokemonIds = getPokemonsByPartialName(input.keyword.trim());
+    setSearchIdsList(pokemonIds);
+    setTotal(pokemonIds.length);
+    setNow(1);
   };
 
   const handleResetSubmit = () => {
     reset();
-    setLast(false);
-    setNow(1);
+    setSearchIdsList(null);
     setTotal(TOTAL_POKEMON_NUM);
-    setSearch(null);
+    setNow(1);
   };
 
-  if (isSearchLoading) return <div>search loading...</div>;
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    if (value.trim() === '') handleResetSubmit();
+  };
 
   return (
     <>
@@ -74,31 +67,28 @@ export const PokemonSearchForm = () => {
           required={true}
           register={register}
           className="min-w-[297px]"
+          onChange={handleInputChange}
         />
-        <Button
-          primary={true}
-          type="submit"
-          size="small"
-          label="검색"
-          disabled={isSearchLoading}
-        />
+        <Button primary={true} type="submit" size="small" label="검색" />
         <Button
           primary={false}
           type="reset"
           size="small"
           label="초기화"
-          disabled={isSearchLoading}
           onClick={handleSubmit(handleResetSubmit)}
         />
       </form>
-      <PokemonList pokemonIdsList={searchIdsList} now={now} />
+      <PokemonList pokemonIdsList={pokemonIdsList} now={now} />
       <PagingDocuments
         now={now}
         last={last}
         total={total}
         setNow={setNow}
         setLast={setLast}
+        pageSize={PAGE_ITEM_SIZE}
       />
     </>
   );
 };
+
+const PAGE_ITEM_SIZE = 10;

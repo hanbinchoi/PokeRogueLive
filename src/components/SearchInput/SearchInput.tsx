@@ -9,6 +9,7 @@ export interface SearchInputProps extends DefaultProps {
   placeholder?: string;
   register: UseFormRegister<InputValues>;
   onClick?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const SearchInput = ({
@@ -17,6 +18,7 @@ export const SearchInput = ({
   placeholder,
   className,
   register,
+  onChange,
 }: SearchInputProps) => {
   const SearchInputSize: Record<SearchInputSize, string> = {
     small: 'px-2 py-1 rounded-lg text-xs border',
@@ -33,6 +35,7 @@ export const SearchInput = ({
         className,
       )}
       {...register('keyword')}
+      onChange={onChange}
     />
   );
 };
