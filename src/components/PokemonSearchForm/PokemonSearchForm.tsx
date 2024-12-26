@@ -1,92 +1,99 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
-import { useQuery } from '@tanstack/react-query';
-
-import { getPokemonIdByKoreanName } from '@/api/pokemon';
 
 import usePokemonsStore from '@/stores/pokemonsStore';
 
 import { SearchInput } from '../SearchInput/SearchInput';
 import { Button } from '../Button/Button';
 import { PokemonList } from '../PokemonList/PokemonList';
+import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 import { InputValues } from '@/types/common';
 
-import { TOTAL_POKEMON_NUM } from '@/constants/contents';
+import getPokemonsByPartialName from '@/utils/getPokemonsIdByPartialName';
+
+import {
+  POKEMON_PAGE_ITEM_SIZE,
+  TOTAL_POKEMON_NUM,
+} from '@/constants/contents';
 
 export const PokemonSearchForm = () => {
+  const { now, total, searchIdsList, setNow, setTotal, setSearchIdsList } =
+    usePokemonsStore();
+
   const {
-    setTotal,
-    setSearch,
-    setNow,
-    setLast,
-    search,
-    searchId,
-    setSearchId,
-  } = usePokemonsStore();
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    clearErrors,
+    formState: { errors },
+  } = useForm<InputValues>();
 
-  const { register, handleSubmit, reset } = useForm<InputValues>();
-
-  const { isLoading: isSearchLoading, data } = useQuery({
-    queryKey: ['searchPokemon', search],
-    queryFn: () => getPokemonIdByKoreanName(search as string),
-    retry: 1,
-    enabled: search !== null,
-  });
+  const [pokemonIdsList, setPokemonIdsList] = useState<number[] | null>(null);
 
   useEffect(() => {
-    if (search && data) {
-      setSearchId(data);
-      return;
+    if (searchIdsList) {
+      setPokemonIdsList(searchIdsList.slice((now - 1) * 10, now * 10));
+    } else {
+      setPokemonIdsList(null);
     }
-
-    setSearchId(null);
-  }, [search, data]);
+  }, [searchIdsList, now]);
 
   const handleSearchSubmit = (input: InputValues) => {
-    setSearch(input.keyword.trim());
-    setTotal(1);
-    setLast(true);
+    const pokemonIds = getPokemonsByPartialName(input.keyword.trim());
+    setSearchIdsList(pokemonIds);
+    setTotal(pokemonIds.length);
+    setNow(1);
   };
 
   const handleResetSubmit = () => {
     reset();
-    setLast(false);
-    setNow(1);
+    setSearchIdsList(null);
     setTotal(TOTAL_POKEMON_NUM);
-    setSearch(null);
+    setNow(1);
   };
-
-  if (isSearchLoading) return <div>search loading...</div>;
 
   return (
     <>
       <form
         className="flex justify-center gap-[10px] w-full px-80 py-2 mb-6"
         onSubmit={handleSubmit(handleSearchSubmit)}>
-        <SearchInput
-          required={true}
-          register={register}
-          className="min-w-[297px]"
-        />
-        <Button
-          primary={true}
-          type="submit"
-          size="small"
-          label="검색"
-          disabled={isSearchLoading}
-        />
+        <div className="relative">
+          <SearchInput
+            placeholder="포켓몬 검색"
+            register={register}
+            setValue={setValue}
+            className="min-w-[297px]"
+          />
+          {errors.keyword && (
+            <p className="text-red-10 font-bold text-sm absolute left-0 mt-1">
+              {errors.keyword.message}
+            </p>
+          )}
+        </div>
+        <Button primary={true} type="submit" size="small" label="검색" />
         <Button
           primary={false}
           type="reset"
           size="small"
           label="초기화"
-          disabled={isSearchLoading}
-          onClick={handleSubmit(handleResetSubmit)}
+          onClick={handleResetSubmit}
+        />
+        <Tooltip
+          text="전체 목록으로 돌아가시려면 초기화 버튼을 클릭해주세요."
+          visible={!!errors.keyword}
         />
       </form>
-      <PokemonList pokemonId={searchId} />
+      <PokemonList pokemonIdsList={pokemonIdsList} now={now} />
+      <PagingDocuments
+        now={now}
+        total={total}
+        setNow={setNow}
+        pageSize={POKEMON_PAGE_ITEM_SIZE}
+      />
     </>
   );
 };

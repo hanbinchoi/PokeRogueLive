@@ -2,6 +2,8 @@ import { PokemonType, StatKey } from '@/types/common';
 
 export const TOTAL_POKEMON_NUM = 1025;
 
+export const POKEMON_PAGE_ITEM_SIZE = 10;
+
 export const DEFENCE_ABILITY = [
   '건조피부',
   '내열',

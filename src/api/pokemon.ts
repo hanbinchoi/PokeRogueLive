@@ -60,6 +60,17 @@ export async function getPokemonIdByKoreanName(
   return null;
 }
 
+export async function getPokemonsByIds(ids: number[]) {
+  console.log(ids);
+  return Promise.all(
+    ids.map((id) =>
+      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
+        res.json(),
+      ),
+    ),
+  );
+}
+
 export async function getPokemonEvolutionChain(
   url: string,
 ): Promise<EvolutionChainProps> {

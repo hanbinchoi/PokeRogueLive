@@ -16,9 +16,9 @@ export interface PokemonProps {
 }
 
 export const Pokemon = ({ id }: PokemonProps) => {
-  if (id === null || id >= TOTAL_POKEMON_NUM) return;
+  if (id >= TOTAL_POKEMON_NUM) return;
 
-  const [pokemon, setPokemon] = useState<PokemonDataProps>();
+  const [pokemon, setPokemon] = useState<PokemonDataProps | null>(null);
 
   const {
     pokemonData,
@@ -35,13 +35,14 @@ export const Pokemon = ({ id }: PokemonProps) => {
   }, [pokemonData, speciesData]);
 
   if (isLoadingPokemon || isLoadingSpecies) return <div>Loading...</div>;
-  if (isErrorPokemon) return <div>Error loading Pokemon data.</div>;
-  if (isErrorSpecies) return <div>Error loading Pokemon species data.</div>;
+  if (isErrorPokemon || isErrorSpecies)
+    return <div>Failed to load data. Please try again later.</div>;
 
-  if (pokemon)
-    return (
-      <Link href={`/pokemon/${id}`}>
-        <PokemonImgBox pokemon={pokemon} usage="list" id={id} />
-      </Link>
-    );
+  if (!pokemon) return null;
+
+  return (
+    <Link href={`/pokemon/${id}`}>
+      <PokemonImgBox pokemon={pokemon} usage="list" id={id} />
+    </Link>
+  );
 };
