@@ -6,7 +6,7 @@ export interface UseDropdownProps {
   options: string[];
 }
 
-export const useDropdown = ({ options }: UseDropdownProps) => {
+const useDropdown = ({ options }: UseDropdownProps) => {
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -51,3 +51,5 @@ export const useDropdown = ({ options }: UseDropdownProps) => {
     clearSearch,
   };
 };
+
+export default useDropdown;

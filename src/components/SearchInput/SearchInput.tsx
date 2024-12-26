@@ -6,7 +6,7 @@ import {
 } from 'react-hook-form';
 import { twJoin } from 'tailwind-merge';
 
-import { useDropdown } from '@/hooks/useDropDown';
+import useDropdown from '@/hooks/useDropDown';
 
 import { DropDown } from '../DropDown/DropDown';
 
