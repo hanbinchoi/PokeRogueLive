@@ -1,14 +1,26 @@
-import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
+import {
+  UseFormRegister,
+  UseFormReset,
+  UseFormSetValue,
+  UseFormWatch,
+} from 'react-hook-form';
 import { twJoin } from 'tailwind-merge';
 
+import { useDropdown } from '@/hooks/useDropDown';
+
+import { DropDown } from '../DropDown/DropDown';
+
 import { DefaultProps, InputValues, SearchInputSize } from '@/types/common';
+
+import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 
 export interface SearchInputProps extends DefaultProps {
   size?: SearchInputSize;
   placeholder?: string;
   register: UseFormRegister<InputValues>;
-  setValue: UseFormSetValue<InputValues>; // react-hook-form의 setValue 추가
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  reset: UseFormReset<InputValues>;
+  setValue: UseFormSetValue<InputValues>;
+  watch: UseFormWatch<InputValues>;
 }
 
 export const SearchInput = ({
@@ -16,32 +28,72 @@ export const SearchInput = ({
   placeholder,
   className,
   register,
+  reset,
   setValue,
-  onChange,
+  watch,
 }: SearchInputProps) => {
+  const {
+    dropdownRef,
+    showDropdown,
+    filteredOptions,
+    handleInputChange: dropdownHandleInputChange,
+    handleOptionSelect,
+    setShowDropdown,
+    clearSearch,
+  } = useDropdown({ options: POKEMON_LIST_IN_KOREAN });
+
+  const keyword = watch('keyword');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    dropdownHandleInputChange(e);
+    setValue('keyword', value);
+  };
+  const handleSelect = (option: string) => {
+    handleOptionSelect(option);
+    setValue('keyword', option);
+  };
+
+  const handleClear = () => {
+    clearSearch();
+    reset();
+  };
+
   const SearchInputSize: Record<SearchInputSize, string> = {
     small: 'px-2 py-1 rounded-lg text-xs border',
     medium: 'px-3 py-2 rounded-lg text-sm border',
   };
-
   return (
-    <input
-      className={twJoin(
-        'w-full border-gray-30 focus:outline-blue-30 font-light shadow-md',
-        SearchInputSize[size],
-        className,
+    <div ref={dropdownRef}>
+      <input
+        className={twJoin(
+          'w-full border-gray-30 focus:outline-blue-30 font-light shadow-md',
+          SearchInputSize[size],
+          className,
+        )}
+        placeholder={placeholder}
+        onFocus={() => setShowDropdown(true)}
+        autoComplete="off"
+        {...register('keyword', {
+          required: '포켓몬을 입력해주세요.',
+          validate: (value) =>
+            value.trim() !== '' || '공백은 검색할 수 없어요.',
+          onChange: handleInputChange,
+        })}
+      />
+      {keyword && (
+        <button
+          onClick={handleClear}
+          className="absolute right-4 inset-y-0 flex items-center rounded-md text-gray-90 ">
+          ✕
+        </button>
       )}
-      placeholder={placeholder}
-      autoComplete="off"
-      {...register('keyword', {
-        required: '포켓몬을 입력해주세요.',
-        validate: (value) => value.trim() !== '' || '공백은 검색할 수 없어요.',
-        onChange: (e) => {
-          // react-hook-form의 동작과 커스텀 핸들러 병합
-          setValue('keyword', e.target.value); // react-hook-form 상태 업데이트
-          onChange?.(e); // 커스텀 onChange 실행
-        },
-      })}
-    />
+      <DropDown
+        filteredOptions={filteredOptions}
+        handleSelect={handleSelect}
+        showDropdown={showDropdown}
+        noFoundMessage="입력한 포켓몬을 찾을 수 없어요."
+      />
+    </div>
   );
 };

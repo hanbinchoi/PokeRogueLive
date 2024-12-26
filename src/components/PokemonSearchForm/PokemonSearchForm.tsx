@@ -8,7 +8,6 @@ import { SearchInput } from '../SearchInput/SearchInput';
 import { Button } from '../Button/Button';
 import { PokemonList } from '../PokemonList/PokemonList';
 import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
-import { Tooltip } from '../Tooltip/Tooltip';
 
 import { InputValues } from '@/types/common';
 
@@ -26,9 +25,9 @@ export const PokemonSearchForm = () => {
   const {
     register,
     handleSubmit,
-    setValue,
     reset,
-    clearErrors,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<InputValues>();
 
@@ -65,11 +64,13 @@ export const PokemonSearchForm = () => {
           <SearchInput
             placeholder="포켓몬 검색"
             register={register}
+            watch={watch}
+            reset={reset}
             setValue={setValue}
             className="min-w-[297px]"
           />
           {errors.keyword && (
-            <p className="text-red-10 font-bold text-sm absolute left-0 mt-1">
+            <p className="pl-2 text-red-10 font-bold text-sm absolute left-0 mt-1">
               {errors.keyword.message}
             </p>
           )}
@@ -81,10 +82,6 @@ export const PokemonSearchForm = () => {
           size="small"
           label="초기화"
           onClick={handleResetSubmit}
-        />
-        <Tooltip
-          text="전체 목록으로 돌아가시려면 초기화 버튼을 클릭해주세요."
-          visible={!!errors.keyword}
         />
       </form>
       <PokemonList pokemonIdsList={pokemonIdsList} now={now} />
