@@ -92,7 +92,7 @@ export const SearchInput = ({
         filteredOptions={filteredOptions}
         handleSelect={handleSelect}
         showDropdown={showDropdown}
-        noFoundMessage="입력한 포켓몬을 찾을 수 없어요."
+        noFoundMessage="포켓몬을 찾을 수 없어요"
       />
     </div>
   );

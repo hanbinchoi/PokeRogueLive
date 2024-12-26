@@ -5,6 +5,7 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 import { MoveProps } from '@/types/common';
 
 import extractPokemonMoves from '@/utils/extractPokemonMoves';
+import { DropDown } from '../DropDown/DropDown';
 
 export interface MoveSearchDropDownProps {
   moves: MoveProps[] | undefined;
@@ -61,23 +62,12 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
             ✕
           </button>
         )}
-        {showDropdown && (
-          <div className="absolute z-10 w-full bg-white  shadow max-h-40 overflow-y-auto bg-white-100 border border-t-0">
-            {filteredOptions?.map((option, i) => (
-              <div
-                key={i}
-                className="p-2 cursor-pointer hover:bg-gray-50"
-                onClick={() => handleSelect(option)}>
-                {option}
-              </div>
-            ))}
-            {filteredOptions.length === 0 && (
-              <div className="p-2 text-gray-500">
-                검색한 옵션을 찾을 수 없어요.
-              </div>
-            )}
-          </div>
-        )}
+        <DropDown
+          filteredOptions={filteredOptions}
+          handleSelect={handleSelect}
+          showDropdown={showDropdown}
+          noFoundMessage="기술을 찾을 수 없어요"
+        />
       </div>
     </div>
   );

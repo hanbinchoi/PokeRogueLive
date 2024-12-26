@@ -1,6 +1,7 @@
 import { useDropdown } from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+import { DropDown } from '../DropDown/DropDown';
 
 export interface CommonSearchDropDownProps {
   label: string;
@@ -65,21 +66,12 @@ export const CommonSearchDropDown = ({
             ✕
           </button>
         )}
-        {showDropdown && filteredOptions && (
-          <div className="absolute z-10 w-full bg-white rounded shadow max-h-40 overflow-y-auto bg-white-100 border-2">
-            {filteredOptions?.map((option, i) => (
-              <div
-                key={i}
-                className="p-2 cursor-pointer hover:bg-gray-100"
-                onClick={() => handleSelect(option)}>
-                {option}
-              </div>
-            ))}
-            {filteredOptions.length === 0 && (
-              <div className="p-2 text-gray-500">No options found</div>
-            )}
-          </div>
-        )}
+        <DropDown
+          filteredOptions={filteredOptions}
+          handleSelect={handleSelect}
+          showDropdown={showDropdown}
+          noFoundMessage="옵션을 찾을 수 없어요"
+        />
       </div>
     </div>
   );
