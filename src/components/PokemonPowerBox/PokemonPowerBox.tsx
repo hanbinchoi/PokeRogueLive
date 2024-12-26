@@ -2,26 +2,19 @@ import { useEffect } from 'react';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
+import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+
 import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
 import { PokemonStatBox } from '../PokemonStatBox/PokemonStatBox';
-
-import { PokemonDataProps } from '@/types/common';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
 
 export interface PokemonPowerBoxProps {
   id: number;
-  pokemon: PokemonDataProps | null;
-  setPokemon: (pokemon: PokemonDataProps | null) => void;
   usage: 'attack' | 'defend';
 }
 
-export const PokemonPowerBox = ({
-  id,
-  pokemon,
-  setPokemon,
-  usage,
-}: PokemonPowerBoxProps) => {
+export const PokemonPowerBox = ({ id, usage }: PokemonPowerBoxProps) => {
   const {
     pokemonData,
     speciesData,
@@ -30,6 +23,15 @@ export const PokemonPowerBox = ({
     isErrorPokemon,
     isErrorSpecies,
   } = usePokemonDetailQuery(String(id));
+
+  const pokemon =
+    usage === 'attack'
+      ? usePowerCalculatorStore((state) => state.attackPokemon)
+      : usePowerCalculatorStore((state) => state.defendPokemon);
+  const setPokemon =
+    usage === 'attack'
+      ? usePowerCalculatorStore((state) => state.setAttackPokemon)
+      : usePowerCalculatorStore((state) => state.setDefendPokemon);
 
   const isLoading = isLoadingPokemon || isLoadingSpecies;
   const isError = isErrorPokemon || isErrorSpecies;
