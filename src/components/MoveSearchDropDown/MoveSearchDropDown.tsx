@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-
-import useOutsideClick from '@/hooks/useOutsideClick';
+import { useDropdown } from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { MoveInfoProps, MoveProps } from '@/types/common';
+import { MoveProps } from '@/types/common';
 
 import extractPokemonMoves from '@/utils/extractPokemonMoves';
 
@@ -15,48 +13,30 @@ export interface MoveSearchDropDownProps {
 export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
   if (!moves) return;
 
-  const [options, setOptions] = useState<MoveInfoProps[]>([]);
-  const [filteredOptions, setFilteredOptions] = useState<MoveInfoProps[]>([]);
-  const [inputValue, setInputValue] = useState('');
-  const [showDropdown, setShowDropdown] = useState(false);
-
   const { setMove, setDamages } = usePowerCalculatorStore();
 
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const extractMoves = extractPokemonMoves(moves);
 
-  useOutsideClick(dropdownRef, () => setShowDropdown(false));
+  const {
+    dropdownRef,
+    inputValue,
+    showDropdown,
+    filteredOptions,
+    handleInputChange,
+    handleOptionSelect,
+    setShowDropdown,
+    clearSearch,
+  } = useDropdown({ options: extractMoves.map((m) => m.krName) });
 
-  useEffect(() => {
-    if (moves) {
-      const extractedMoves = extractPokemonMoves(moves);
-      setOptions(extractedMoves);
-      setFilteredOptions(extractedMoves);
-    } else {
-      clearSearch();
-    }
-  }, [moves]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
-    if (value === '') clearSearch();
-    setInputValue(value);
-    setFilteredOptions(
-      options?.filter((opt) => opt.krName.includes(value.toLowerCase())),
-    );
+  const handleSelect = (option: string) => {
+    handleOptionSelect(option);
+    setMove(extractMoves?.find((moves) => moves.krName === option) ?? null);
   };
 
-  const handleOptionSelect = (selectedOption: string) => {
-    setInputValue(selectedOption);
-    setShowDropdown(false);
-    setMove(options?.find((opt) => opt.krName === selectedOption) ?? null);
-  };
-
-  const clearSearch = () => {
-    setInputValue('');
-    setFilteredOptions(options);
+  const handleClear = () => {
+    clearSearch();
     setMove(null);
     setDamages([]);
-    setShowDropdown(false);
   };
 
   return (
@@ -76,19 +56,19 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
         />
         {inputValue && (
           <button
-            onClick={clearSearch}
+            onClick={handleClear}
             className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2 rounded-md text-gray-90 hover:bg-gray-20">
             ✕
           </button>
         )}
         {showDropdown && (
-          <div className="absolute z-10 w-full bg-white  shadow max-h-40 overflow-y-auto bg-white border border-t-0">
-            {filteredOptions?.map((option) => (
+          <div className="absolute z-10 w-full bg-white  shadow max-h-40 overflow-y-auto bg-white-100 border border-t-0">
+            {filteredOptions?.map((option, i) => (
               <div
-                key={option.krName}
+                key={i}
                 className="p-2 cursor-pointer hover:bg-gray-50"
-                onClick={() => handleOptionSelect(option.krName)}>
-                {option.krName}
+                onClick={() => handleSelect(option)}>
+                {option}
               </div>
             ))}
             {filteredOptions.length === 0 && (

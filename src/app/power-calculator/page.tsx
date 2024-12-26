@@ -14,13 +14,8 @@ import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
 export default function PowerCalculator() {
   const {
     attackPokemon,
-    setAttackPokemon,
     attackPokemonId,
-    setAttackPokemonId,
-    defendPokemon,
     defendPokemonId,
-    setDefendPokemon,
-    setDefendPokemonId,
     isWeaknessHit,
     setIsWeaknessHit,
     move,
@@ -31,18 +26,10 @@ export default function PowerCalculator() {
       <div className="w-full flex gap-20 h-full">
         <div className="flex flex-col gap-6 w-full">
           <h2 className="text-xl font-bold -mb-2">공격</h2>
-          <PokemonSearchDropDown
-            setPokemonId={setAttackPokemonId}
-            setPokemon={setAttackPokemon}
-          />
+          <PokemonSearchDropDown usage="attack" />
           {attackPokemonId && (
             <>
-              <PokemonPowerBox
-                id={attackPokemonId}
-                setPokemon={setAttackPokemon}
-                pokemon={attackPokemon}
-                usage="attack"
-              />
+              <PokemonPowerBox id={attackPokemonId} usage="attack" />
               <MoveSearchDropDown moves={attackPokemon?.moves} />
               <CommonSearchDropDown label="날씨" options={WEATHER_LIST} />
               <CommonSearchDropDown label="필드" options={FIELD_LIST} />
@@ -56,18 +43,10 @@ export default function PowerCalculator() {
         </div>
         <div className="flex flex-col gap-6 w-full">
           <h2 className="text-xl font-bold -mb-2">방어</h2>
-          <PokemonSearchDropDown
-            setPokemonId={setDefendPokemonId}
-            setPokemon={setDefendPokemon}
-          />
+          <PokemonSearchDropDown usage="defend" />
           {defendPokemonId && (
             <>
-              <PokemonPowerBox
-                id={defendPokemonId}
-                setPokemon={setDefendPokemon}
-                pokemon={defendPokemon}
-                usage="defend"
-              />
+              <PokemonPowerBox id={defendPokemonId} usage="defend" />
               {move && <PowerDamage moveUrl={move.move.url} />}
             </>
           )}

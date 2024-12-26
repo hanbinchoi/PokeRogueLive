@@ -1,6 +1,4 @@
-import { useRef, useState } from 'react';
-
-import useOutsideClick from '@/hooks/useOutsideClick';
+import { useDropdown } from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
@@ -13,14 +11,18 @@ export const CommonSearchDropDown = ({
   label,
   options,
 }: CommonSearchDropDownProps) => {
-  const [filteredOptions, setFilteredOptions] = useState<string[]>(options);
-  const [inputValue, setInputValue] = useState('');
-  const [showDropdown, setShowDropdown] = useState(false);
+  const {
+    dropdownRef,
+    inputValue,
+    showDropdown,
+    filteredOptions,
+    handleInputChange,
+    handleOptionSelect,
+    setShowDropdown,
+    clearSearch,
+  } = useDropdown({ options });
 
   const { setField, setWeather } = usePowerCalculatorStore();
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useOutsideClick(dropdownRef, () => setShowDropdown(false));
 
   const updateState = (value: string | null) => {
     if (label === '날씨') {
@@ -31,21 +33,13 @@ export const CommonSearchDropDown = ({
     return;
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
-    setInputValue(value);
-    setFilteredOptions(options.filter((opt) => opt.includes(value)));
-  };
-
-  const handleOptionSelect = (option: string) => {
-    setInputValue(option);
-    setShowDropdown(false);
+  const handleSelect = (option: string) => {
+    handleOptionSelect(option);
     updateState(option);
   };
 
-  const clearSearch = () => {
-    setInputValue('');
-    setFilteredOptions(options);
+  const handleClear = () => {
+    clearSearch();
     updateState(null);
   };
 
@@ -66,18 +60,18 @@ export const CommonSearchDropDown = ({
         />
         {inputValue && (
           <button
-            onClick={clearSearch}
+            onClick={handleClear}
             className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2 rounded-md text-gray-90 hover:bg-gray-20">
             ✕
           </button>
         )}
         {showDropdown && filteredOptions && (
-          <div className="absolute z-10 w-full bg-white rounded shadow max-h-40 overflow-y-auto bg-white border-2">
+          <div className="absolute z-10 w-full bg-white rounded shadow max-h-40 overflow-y-auto bg-white-100 border-2">
             {filteredOptions?.map((option, i) => (
               <div
                 key={i}
                 className="p-2 cursor-pointer hover:bg-gray-100"
-                onClick={() => handleOptionSelect(option)}>
+                onClick={() => handleSelect(option)}>
                 {option}
               </div>
             ))}
