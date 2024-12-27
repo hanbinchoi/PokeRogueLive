@@ -1,4 +1,4 @@
-import { useDropdown } from '@/hooks/useDropDown';
+import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
@@ -54,6 +54,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
           onChange={handleInputChange}
           onFocus={() => setShowDropdown(true)}
           placeholder="기술 선택"
+          autoComplete="off"
         />
         {inputValue && (
           <button

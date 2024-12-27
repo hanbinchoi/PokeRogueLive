@@ -3,18 +3,20 @@ import { useEffect } from 'react';
 import usePokemonDetailStore from '@/stores/pokemonDetailStore';
 
 import { Move } from '../Move/Move';
-import { MovePagingDocuments } from '../MovePagingDocuments/MovePagingDocuments';
+import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
 
-import { MoveInfoProps } from '@/types/common';
+import { MoveProps } from '@/types/common';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
 
+import { MOVE_PAGE_ITEM_SIZE } from '@/constants/contents';
+
 export interface EggMoveBoxProps {
-  moves: MoveInfoProps[];
+  moves: MoveProps[];
 }
 
 export const MoveBox = ({ moves }: EggMoveBoxProps) => {
-  const { setTotal, now } = usePokemonDetailStore();
+  const { setTotal, now, total, setNow } = usePokemonDetailStore();
 
   useEffect(() => {
     setTotal(moves.length);
@@ -34,7 +36,12 @@ export const MoveBox = ({ moves }: EggMoveBoxProps) => {
           />
         ))}
       </div>
-      <MovePagingDocuments />
+      <PagingDocuments
+        now={now}
+        total={total}
+        setNow={setNow}
+        pageSize={MOVE_PAGE_ITEM_SIZE}
+      />
     </div>
   );
 };

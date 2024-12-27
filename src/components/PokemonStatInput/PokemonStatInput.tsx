@@ -32,6 +32,7 @@ export const PokemonStatInput = ({
         value={stat.base_stat}
         onChange={handleInputChange}
         placeholder="포켓몬 입력"
+        autoComplete="off"
       />
     </div>
   );
