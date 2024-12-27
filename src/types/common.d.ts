@@ -283,6 +283,7 @@ export interface MoveDetailProps {
   accuracy: number;
   damage_class: DataProps;
   flavor_text_entries: FlavorTextEntryProps[];
+  name: string;
   names: PokemonNameProps[];
   power: number;
   pp: number;

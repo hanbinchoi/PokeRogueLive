@@ -1,4 +1,4 @@
-import { useDropdown } from '@/hooks/useDropDown';
+import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
@@ -56,6 +56,7 @@ export const PokemonSearchDropDown = ({
         onChange={handleInputChange}
         onFocus={() => setShowDropdown(true)}
         placeholder="포켓몬 입력"
+        autoComplete="off"
       />
       {inputValue && (
         <button

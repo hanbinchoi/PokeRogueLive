@@ -4,7 +4,8 @@ import getDamageClassInKorean from './getDamageClassInKorean';
 
 export default function extractMove(data: MoveDetailProps) {
   const { name, accuracy, flavorText, damageClass, pp, power, type } = {
-    name: data.names.find((name) => name.language.name === 'ko')?.name,
+    name:
+      data.names.find((name) => name.language.name === 'ko')?.name || data.name,
     accuracy: data.accuracy,
     flavorText: data.flavor_text_entries.find(
       (flavorText) => flavorText.language.name === 'ko',

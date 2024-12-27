@@ -58,7 +58,7 @@ export default function PokemonDetail() {
           </div>
           <div className="col-span-2 flex flex-col gap-8">
             <AbilityBox abilities={targetPokemon.abilitiesInfo} />
-            <MoveBox moves={extractMoveList(targetPokemon.moves)} />
+            <MoveBox moves={targetPokemon.moves} />
           </div>
         </div>
       </main>
