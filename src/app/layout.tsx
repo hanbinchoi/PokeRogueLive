@@ -70,7 +70,7 @@ export default function RootLayout({
             <Header />
             <main className="grow grid md:grid-cols-[1fr_6fr] lg:grid-cols-[1fr_5fr]">
               <Sidebar className="hidden md:flex flex-col gap-4" />
-              {/* {children} */}
+              {children}
             </main>
           </div>
         </ReactQueryProviders>

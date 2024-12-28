@@ -5,7 +5,8 @@ import { DefaultProps } from './common';
 export interface MenuItemProps extends DefaultProps {
   title: 'pokemon' | 'type-calculator' | 'power-calculator';
   label: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; // 아이콘 컴포넌트 타입
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  onClick?: () => void;
 }
 
 export const MENUS: MenuItemProps[] = [

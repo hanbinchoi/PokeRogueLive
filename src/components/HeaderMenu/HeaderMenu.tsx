@@ -7,6 +7,7 @@ export const HeaderMenu = ({
   title,
   label,
   icon: Icon,
+  onClick,
   className,
 }: MenuItemProps) => {
   return (
@@ -16,7 +17,8 @@ export const HeaderMenu = ({
           'group flex items-center gap-2 text-sm font-bold text-gray-100 md:w-[14px] md:h-[14px] lg:w-[20px] lg:h-[20px]',
           className,
         )}
-        href={`/${title}`}>
+        href={`/${title}`}
+        onClick={onClick}>
         <Icon className="group-hover:text-blue-70" />
         <p className="group-hover:text-blue-70">{label}</p>
       </Link>

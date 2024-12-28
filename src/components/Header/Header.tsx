@@ -47,6 +47,7 @@ export const Header = () => {
               title={menu.title}
               label={menu.label}
               icon={menu.icon}
+              onClick={() => setIsOpen(false)}
               className="text-lg text-gray-70"
             />
           ))}
