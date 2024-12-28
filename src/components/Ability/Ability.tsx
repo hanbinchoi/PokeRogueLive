@@ -28,12 +28,16 @@ export const Ability = ({ ability, id, hidden }: AbilityProps) => {
         <div
           className={
             hidden
-              ? 'bg-yellow-100 text-white-100  px-2 py-1 rounded-lg text-[16px] w-fit '
-              : 'bg-gray-50 text-white-100 px-2 py-1 rounded-lg text-[16px] w-fit'
+              ? 'bg-yellow-100 text-white-100  px-2 py-1 rounded-md sm:rounded-lg w-fit '
+              : 'bg-gray-50 text-white-100 px-2 py-1 rounded-md sm:rounded-lg w-fit'
           }>
-          <p>{getAbilityNameInKorean(data.names)}</p>
+          <p className="text-xs md:text-sm">
+            {getAbilityNameInKorean(data.names)}
+          </p>
         </div>
-        <p>{getAbilityDescInKorean(data.flavor_text_entries)}</p>
+        <p className="text-xs md:text-sm">
+          {getAbilityDescInKorean(data.flavor_text_entries)}
+        </p>
       </div>
     );
 };

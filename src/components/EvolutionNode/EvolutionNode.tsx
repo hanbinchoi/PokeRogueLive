@@ -45,9 +45,11 @@ export const EvolutionNode = ({ node, isLast }: EvolutionNodeProps) => {
         <Link href={`/pokemon/${id}`}>
           <img className="w-32 " alt={pokemon.name} src={pokemon.imageUrl} />
         </Link>
-        <div className="relative text-right font-semibold w-full ">
+        <div className="relative text-xs min-[480px]:text-sm text-right font-semibold w-full ">
           <div className="flex flex-col items-center mb-4">
-            {!isLast && <FaArrowDown className="w-6 h-6" />}
+            {!isLast && (
+              <FaArrowDown className="w-4 h-4 min-[480px]:w-6 min-[480px]:h-6" />
+            )}
           </div>
           {node.evolves_to.map((e, i) => (
             <div className="absolute top-1 left-[60%] whitespace-nowrap flex gap-1">

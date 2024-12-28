@@ -29,21 +29,19 @@ export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
   );
 
   const renderDetail = () => (
-    <div className="flex flex-col items-center bg-white-100 border-2 rounded-lg">
-      <div className="text-lg self-start font-bold flex justify-between w-full pt-3 px-5">
-        <p>No. {String(id).padStart(3, '0')}</p>
+    <div className="bg-white-100 border-2 rounded-lg ">
+      <div className="flex justify-between items-center w-full pt-3 px-3 sm:px-5">
+        <p className="text-xs sm:text-lg font-bold ">
+          No. {String(id).padStart(3, '0')}
+        </p>
         <AiFillSound
-          className="cursor-pointer"
+          className="text-base sm:text-lg cursor-pointer"
           onClick={handleAudioClick}
           role="button"
           tabIndex={0}
         />
       </div>
-      <img
-        className="w-full max-w-[200px]"
-        alt={pokemon.name}
-        src={pokemon.imageUrl}
-      />
+      <img className="w-full" alt={pokemon.name} src={pokemon.imageUrl} />
     </div>
   );
 
