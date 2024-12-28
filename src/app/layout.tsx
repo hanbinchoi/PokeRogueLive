@@ -66,11 +66,11 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <ReactQueryProviders>
-          <div className="min-h-screen flex flex-col ">
+          <div className="min-h-screen flex flex-col">
             <Header />
-            <main className="h-full grow flex">
-              <Sidebar className="w-1/5" />
-              <div className="w-full">{children}</div>
+            <main className="grow grid md:grid-cols-[1fr_6fr] lg:grid-cols-[1fr_5fr]">
+              <Sidebar className="hidden md:flex flex-col gap-4" />
+              {/* {children} */}
             </main>
           </div>
         </ReactQueryProviders>

@@ -5,12 +5,12 @@ import { PokemonSearchForm } from '@/components/PokemonSearchForm/PokemonSearchF
 export default function Pokemon() {
   return (
     <main
-      className="h-full flex flex-col gap-2 items-center p-12 pt-8 bg-gray-10"
+      className="flex flex-col gap-2 items-center p-12 pt-8 bg-gray-10 min-w-full"
       aria-labelledby="pokemon-search">
       <h1 id="pokemon-search" className="sr-only">
         포켓몬 목록
       </h1>
-      <div className="w-full">
+      <div>
         <PokemonSearchForm />
       </div>
     </main>
