@@ -11,6 +11,9 @@ export default function TypeCalculator() {
 
   return (
     <main className="h-full flex flex-col gap-8 p-16 pt-8 bg-gray-10">
+      <h1 id="type-calculator" className="sr-only">
+        타입 계산기 페이지
+      </h1>
       <TypeModeToggle />
       {mode === 'attack' ? <TypeCalcAttack /> : <TypeCalcDefend />}
     </main>

@@ -16,6 +16,16 @@ html {
   line-height: 1;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  width: 100%;
+}
+
 ul,
 ol,
 li {

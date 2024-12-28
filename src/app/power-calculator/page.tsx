@@ -23,6 +23,9 @@ export default function PowerCalculator() {
 
   return (
     <main className="h-full flex flex-col gap-2 items-center p-8  bg-gray-10">
+      <h1 id="power-calculator" className="sr-only">
+        위력 계산기 페이지
+      </h1>
       <div className="w-full flex gap-20 h-full">
         <div className="flex flex-col gap-6 w-full">
           <h2 className="text-xl font-bold -mb-2">공격</h2>

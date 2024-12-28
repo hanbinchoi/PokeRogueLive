@@ -14,7 +14,6 @@ import { MoveBox } from '@/components/MoveBox/MoveBox';
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
-import extractMoveList from '@/utils/extractMoveList';
 
 export default function PokemonDetail() {
   const { id } = useParams();
@@ -42,7 +41,10 @@ export default function PokemonDetail() {
 
   if (targetPokemon)
     return (
-      <main className="bg-gray-10  flex min-h-screen flex-col items-center justify-between p-24">
+      <main className="bg-gray-10 flex min-h-screen flex-col items-center justify-between p-24">
+        <h1 id="pokemon-detail" className="sr-only">
+          {targetPokemon.name} 상세정보
+        </h1>
         <div className="grid grid-cols-3 gap-16">
           <div className="col-span-1">
             <PokemonImgBox pokemon={targetPokemon} usage="detail" id={+id} />

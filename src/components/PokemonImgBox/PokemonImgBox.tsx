@@ -16,7 +16,7 @@ export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
   };
 
   const renderList = () => (
-    <div className="px-8 py-4 text-sm font-bold flex flex-col items-center bg-white border-2 rounded-lg">
+    <div className="px-8 py-4 text-sm font-bold flex flex-col items-center bg-white-100 border-2 rounded-lg">
       <div>{`No. ${String(id).padStart(3, '0')}`}</div>
       <img className="w-24" alt={pokemon.name} src={pokemon.imageUrl} />
       <div className="mb-2 text-lg">{pokemon.name}</div>
@@ -29,7 +29,7 @@ export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
   );
 
   const renderDetail = () => (
-    <div className="flex flex-col items-center bg-white border-2 rounded-lg">
+    <div className="flex flex-col items-center bg-white-100 border-2 rounded-lg">
       <div className="text-lg self-start font-bold flex justify-between w-full pt-3 px-5">
         <p>No. {String(id).padStart(3, '0')}</p>
         <AiFillSound

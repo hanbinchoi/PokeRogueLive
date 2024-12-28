@@ -64,14 +64,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>
+      <body className="w-full">
         <ReactQueryProviders>
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen w-full flex flex-col">
             <Header />
-            <main className="grow grid md:grid-cols-[1fr_6fr] lg:grid-cols-[1fr_5fr]">
+            <div className="grow grid md:grid-cols-[1fr_6fr] lg:grid-cols-[1fr_5fr] ">
               <Sidebar className="hidden md:flex flex-col gap-4" />
               {children}
-            </main>
+            </div>
           </div>
         </ReactQueryProviders>
       </body>

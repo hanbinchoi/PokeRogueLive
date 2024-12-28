@@ -18,7 +18,7 @@ export const Header = () => {
   });
 
   return (
-    <header className="border-b border-b-gray-20 w-full bg-white px-3 py-2  h-[64px]">
+    <header className="w-full h-[64px] border-b border-b-gray-20  bg-white px-3 py-2">
       <div className="flex justify-between items-center">
         <Logo />
         <button
