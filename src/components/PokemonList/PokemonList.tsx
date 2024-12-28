@@ -52,7 +52,7 @@ export const PokemonList = ({ pokemonIdsList, now }: PokemonListProps) => {
   if (error) return <div>error</div>;
 
   return (
-    <div className="grid py-2 px-14 gap-8 grid-cols-1 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-center items-center">
+    <div className="grid py-2 px-14 gap-8 grid-cols-1 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {pokemonIdsList?.length
         ? pokemonIdsList.map((pokemonId) => (
             <Pokemon key={pokemonId} id={pokemonId} />

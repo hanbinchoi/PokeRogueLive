@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 
-import { TOTAL_POKEMON_NUM } from '@/constants/contents';
 import { PokemonDataProps } from '@/types/common';
+
+import { TOTAL_POKEMON_NUM } from '@/constants/contents';
 
 interface PokemonsState {
   now: number;

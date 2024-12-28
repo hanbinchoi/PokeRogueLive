@@ -55,34 +55,39 @@ export const PokemonSearchForm = () => {
   };
 
   return (
-    <>
-      <form
-        className="flex justify-center gap-[10px] py-2 mb-6"
-        onSubmit={handleSubmit(handleSearchSubmit)}>
-        <div className="relative">
-          <SearchInput
-            placeholder="포켓몬 검색"
-            register={register}
-            watch={watch}
-            reset={reset}
-            setValue={setValue}
-            className="min-w-[244px]"
-          />
-          {errors.keyword && (
-            <p className="pl-2 text-red-10 font-bold text-sm absolute left-0 mt-1">
-              {errors.keyword.message}
-            </p>
-          )}
-        </div>
-        <Button primary={true} type="submit" size="small" label="검색" />
-        <Button
-          primary={false}
-          type="reset"
-          size="small"
-          label="초기화"
-          onClick={handleResetSubmit}
+    <form
+      className="flex justify-center items-center gap-[10px] py-2 mb-6"
+      onSubmit={handleSubmit(handleSearchSubmit)}>
+      <div className="relative">
+        <SearchInput
+          placeholder="포켓몬 검색"
+          register={register}
+          watch={watch}
+          reset={reset}
+          setValue={setValue}
+          className=""
         />
-      </form>
-    </>
+        {errors.keyword && (
+          <p className="pl-2 text-red-10 font-bold text-sm absolute left-0 mt-1">
+            {errors.keyword.message}
+          </p>
+        )}
+      </div>
+      <Button
+        primary={true}
+        type="submit"
+        size="small"
+        label="검색"
+        className=""
+      />
+      <Button
+        primary={false}
+        type="reset"
+        size="small"
+        label="초기화"
+        className="min-w-[36px] min-[480px]:min-w-[62px]"
+        onClick={handleResetSubmit}
+      />
+    </form>
   );
 };

@@ -41,9 +41,7 @@ export const Pokemon = ({ id }: PokemonProps) => {
   if (!pokemon) return null;
 
   return (
-    <Link
-      href={`/pokemon/${id}`}
-      className="w-[156px] h-[212px] flex justify-center">
+    <Link href={`/pokemon/${id}`} className="w-full h-full flex justify-center">
       <PokemonImgBox pokemon={pokemon} usage="list" id={id} />
     </Link>
   );

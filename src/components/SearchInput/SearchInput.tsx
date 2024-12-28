@@ -67,7 +67,7 @@ export const SearchInput = ({
     <div ref={dropdownRef}>
       <input
         className={twJoin(
-          'w-full border-gray-30 focus:outline-blue-30 font-light shadow-md ',
+          'min-w-[166px] min-[480px]:min-w-[244px] h-[32px] min-h-[32px] border-gray-30 focus:outline-blue-30 font-light shadow-md ',
           SearchInputSize[size],
           className,
         )}
