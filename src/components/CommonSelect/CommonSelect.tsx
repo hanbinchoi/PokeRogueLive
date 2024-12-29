@@ -33,12 +33,14 @@ export const CommonSelect = ({ usage }: CommonSelectProps) => {
   };
 
   return (
-    <form className="flex flex-col gap-2 w-full pr-16">
-      <label className="text-[16px] font-semibold">{label}</label>
+    <form className="flex flex-col gap-2 w-full pr-8">
+      <label className="text-sm sm:text-base md:text-lg font-semibold">
+        {label}
+      </label>
       <select
         aria-label="특성을 선택하세요."
         name={label}
-        className="px-4 py-2 border rounded-lg outline-none hover:opacity-60  focus:border-blue-70 focus:border-2"
+        className="px-2 py-1 sm:py-2 min-w-[122px] max-w-[168px] text-sm sm:text-md md:text-base border rounded sm:rounded-lg outline-none hover:opacity-60  focus:border-blue-70 focus:border-2"
         onChange={selectAbility}>
         <option value="">없음</option>
         <hr />

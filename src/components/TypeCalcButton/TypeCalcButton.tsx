@@ -46,7 +46,7 @@ export const TypeCalcButton = ({
   return (
     <button
       className={twMerge(
-        'flex items-center gap-2 w-[72px] sm:w-[86px] md:w-[100px] p-1.5 sm:p-2 text-xs sm:text-md md:text-base border rounded-3xl hover:opacity-70',
+        'flex items-center gap-2 w-[82px] md:w-[102px] px-2 py-1 text-sm md:text-base border rounded-3xl hover:opacity-70',
         checked
           ? `${pokemonType.backgroundColor} text-white-100`
           : 'bg-white-100',
@@ -54,7 +54,7 @@ export const TypeCalcButton = ({
       onClick={selectType}>
       <div
         className={twMerge(
-          'w-[16px] h-[16px] md:w-[18px] md:h-[18px] sm:w-[20px] sm:h-[20px] rounded-full flex justify-center items-center',
+          'w-[16px] h-[16px] rounded-full flex justify-center items-center',
           checked ? 'bg-white-100' : pokemonType.backgroundColor,
         )}>
         {checked && (
