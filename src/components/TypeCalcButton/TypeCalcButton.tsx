@@ -1,4 +1,4 @@
-import { twJoin } from 'tailwind-merge';
+import { twMerge } from 'tailwind-merge';
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
@@ -10,13 +10,6 @@ interface TypeCalcButtonProps {
   type: PokemonType;
   index: number;
   checked: boolean;
-}
-interface TypeCalcButtonStyleProps {
-  [key: string]: {
-    backgroundColor: string;
-    name: string;
-    textColor: string;
-  };
 }
 
 export const TypeCalcButton = ({
@@ -39,47 +32,39 @@ export const TypeCalcButton = ({
       const newOptions = typeCalcDefendOptions.map((item, i) =>
         i === index ? (type === item ? null : type) : item,
       );
-
-      return setTypeCalcDefendOptions(newOptions);
+      setTypeCalcDefendOptions(newOptions);
+    } else {
+      const newOptions = typeCalcAttackOptions ?? [];
+      setTypeCalcAttackOptions(
+        newOptions.includes(type)
+          ? newOptions.filter((option) => option !== type)
+          : [...newOptions, type],
+      );
     }
-
-    const newOptions = typeCalcAttackOptions;
-
-    if (!newOptions) return setTypeCalcAttackOptions([type]);
-
-    return newOptions?.includes(type)
-      ? setTypeCalcAttackOptions(newOptions.filter((option) => option !== type))
-      : setTypeCalcAttackOptions([...typeCalcAttackOptions, type]);
   };
 
-  return checked ? (
+  return (
     <button
-      className={twJoin(
-        pokemonType.backgroundColor,
-        'flex items-center gap-2 w-[98px] p-2 border rounded-3xl hover:opacity-70 text-white-100',
+      className={twMerge(
+        'flex items-center gap-2 w-[72px] sm:w-[86px] md:w-[100px] p-1.5 sm:p-2 text-xs sm:text-md md:text-base border rounded-3xl hover:opacity-70',
+        checked
+          ? `${pokemonType.backgroundColor} text-white-100`
+          : 'bg-white-100',
       )}
       onClick={selectType}>
       <div
-        className={
-          'w-[20px] h-[20px] rounded-full bg-white flex justify-center items-center'
-        }>
-        <div
-          className={twJoin(
-            pokemonType.backgroundColor,
-            'w-[10px] h-[10px] rounded-full',
-          )}></div>
+        className={twMerge(
+          'w-[16px] h-[16px] md:w-[18px] md:h-[18px] sm:w-[20px] sm:h-[20px] rounded-full flex justify-center items-center',
+          checked ? 'bg-white-100' : pokemonType.backgroundColor,
+        )}>
+        {checked && (
+          <div
+            className={twMerge(
+              pokemonType.backgroundColor,
+              'w-[10px] h-[10px] rounded-full',
+            )}></div>
+        )}
       </div>
-      <div className="font-semibold">{pokemonType.name}</div>
-    </button>
-  ) : (
-    <button
-      className="flex items-center gap-2 w-[98px] p-2 bg-white border rounded-3xl hover:opacity-70"
-      onClick={selectType}>
-      <div
-        className={twJoin(
-          pokemonType.backgroundColor,
-          'w-[20px] h-[20px] rounded-full',
-        )}></div>
       <div className="font-semibold">{pokemonType.name}</div>
     </button>
   );

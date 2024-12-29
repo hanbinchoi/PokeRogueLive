@@ -8,7 +8,7 @@ export const TypeModeToggle = () => {
   };
 
   return (
-    <nav className="type-calc-menu text-lg font-bold flex justify-center">
+    <nav className="type-calc-menu text-base sm:text-lg font-bold flex justify-center">
       <li
         role="button"
         onClick={changeCurrent}
