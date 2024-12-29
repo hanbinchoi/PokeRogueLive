@@ -37,7 +37,7 @@ export const EvolutionChain = ({ url, pokedex }: EvolutionChainProps) => {
   if (isError) return <div>진화 정보 error</div>;
   return (
     <div className="flex flex-col items-center">
-      <p className="text-xl font-bold w-full">진화 정보</p>
+      <p className="text-lg min-[480px]:text-xl font-bold w-full">진화 정보</p>
       {evolutionNodes &&
         evolutionNodes.map((node, i) => (
           <EvolutionNode

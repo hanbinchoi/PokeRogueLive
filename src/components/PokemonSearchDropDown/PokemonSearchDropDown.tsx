@@ -48,10 +48,10 @@ export const PokemonSearchDropDown = ({
   };
 
   return (
-    <div className="relative w-[200px]" ref={dropdownRef}>
+    <div className="relative w-fit" ref={dropdownRef}>
       <input
         type="text"
-        className="w-full border rounded p-2"
+        className="w-full min-w-[120px] max-w-[162px] border rounded py-1 px-2 text-sm lg:text-base"
         value={inputValue}
         onChange={handleInputChange}
         onFocus={() => setShowDropdown(true)}

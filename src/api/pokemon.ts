@@ -17,9 +17,12 @@ export const commonAxios = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
-export async function getPokemons(page = 1): Promise<PokemonsResponseProps> {
+export async function getPokemons(
+  page = 1,
+  limit = 10,
+): Promise<PokemonsResponseProps> {
   const res = await commonAxios
-    .get(`/pokemon?offset=${(page - 1) * 10}&limit=10`)
+    .get(`/pokemon?offset=${(page - 1) * limit}&limit=${limit}`)
     .then((res) => res.data);
 
   const { results: data, count, next } = res;

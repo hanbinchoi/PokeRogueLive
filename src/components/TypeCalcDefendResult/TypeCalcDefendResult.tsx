@@ -31,7 +31,9 @@ export const TypeCalcDefendResult = () => {
         );
   }, [typeCalcDefendOptions, teraType, defendAbility]);
 
-  return defendResult ? (
+  if (!defendResult) return null;
+
+  return (
     <div className="flex flex-col gap-8 py-8">
       {Array.from(defendResult.entries()).map(([key, types]) => (
         <div key={key} className="flex flex-col gap-2">
@@ -46,5 +48,5 @@ export const TypeCalcDefendResult = () => {
         </div>
       ))}
     </div>
-  ) : null;
+  );
 };

@@ -20,12 +20,13 @@ export const Button = ({
   className,
   ...props
 }: ButtonProps) => {
-  const ButtonStyle: string = primary
+  const PrimaryStyle: string = primary
     ? 'text-white-10 bg-blue-30'
     : 'text-gray-70 bg-gray-30';
 
-  const buttonSizeClasses: Record<ButtonSize, string> = {
-    small: 'min-w-[62px] px-2 py-1 rounded text-sm font-bold',
+  const buttonStyle: Record<ButtonSize, string> = {
+    small:
+      'min-w-[54px] min-[480px]:min-w-[62px] h-[32px] min-h-[32px] text-xs min-[480px]:text-sm px-2 py-1  font-bold rounded',
     medium: 'px-4 py-2 rounded',
     large: 'px-5 py-2 rounded text-lg',
   };
@@ -36,8 +37,8 @@ export const Button = ({
     <button
       type={type}
       className={twJoin(
-        buttonSizeClasses[size],
-        ButtonStyle,
+        buttonStyle[size],
+        PrimaryStyle,
         disabledStyle,
         className,
       )}

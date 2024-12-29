@@ -21,10 +21,11 @@ export const MoveBox = ({ moves }: EggMoveBoxProps) => {
   useEffect(() => {
     setTotal(moves.length);
   }, []);
+
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-xl font-bold w-full">배우는 기술</p>
-      <div className="flex flex-col gap-4">
+      <p className="text-xl font-bold">배우는 기술</p>
+      <div className="flex flex-col gap-6">
         {moves.slice((now - 1) * 4, (now - 1) * 4 + 4).map((m, i) => (
           <Move
             levelLearnedAt={
