@@ -46,7 +46,7 @@ export const PokemonPowerBox = ({ id, usage }: PokemonPowerBoxProps) => {
   if (isError) return <div>Error loading Pokemon data.</div>;
 
   return (
-    <div className="flex gap-8">
+    <div className="flex flex-col lg:flex-row gap-6 mb-4">
       <PokemonImgBox pokemon={pokemon} id={id} usage="power" />
       <PokemonStatBox stats={pokemon.stats} usage={usage} pokemon={pokemon} />
     </div>

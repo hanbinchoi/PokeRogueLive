@@ -22,13 +22,13 @@ export default function PowerCalculator() {
   } = usePowerCalculatorStore();
 
   return (
-    <main className="h-full flex flex-col gap-2 items-center p-8  bg-gray-10">
+    <main className="flex flex-col gap-2 items-center p-6 sm:p-8 md:p-10 lg:p-12 bg-gray-10">
       <h1 id="power-calculator" className="sr-only">
         위력 계산기 페이지
       </h1>
-      <div className="w-full flex gap-20 h-full">
-        <div className="flex flex-col gap-6 w-full">
-          <h2 className="text-xl font-bold -mb-2">공격</h2>
+      <div className="w-full grid grid-cols-2 gap-6 sm:gap-12">
+        <div className="flex flex-col gap-3">
+          <h2 className="text-base md:text-lg lg:text-xl font-bold">공격</h2>
           <PokemonSearchDropDown usage="attack" />
           {attackPokemonId && (
             <>
@@ -44,8 +44,8 @@ export default function PowerCalculator() {
             </>
           )}
         </div>
-        <div className="flex flex-col gap-6 w-full">
-          <h2 className="text-xl font-bold -mb-2">방어</h2>
+        <div className="flex flex-col gap-3">
+          <h2 className="text-base md:text-lg lg:text-xl font-bold">방어</h2>
           <PokemonSearchDropDown usage="defend" />
           {defendPokemonId && (
             <>

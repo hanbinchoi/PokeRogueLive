@@ -15,12 +15,12 @@ export const CommonCheckBox = ({
 
   return (
     <label
-      className="inline-flex items-center mt-2 text-lg"
+      className="inline-flex items-center mt-2 text-base md:text-lg lg:text-md"
       htmlFor={`checkbox-${label}`}>
       <input
         type="checkbox"
         id={`checkbox-${label}`}
-        className="mr-2 w-4 h-4"
+        className="mr-2 w-3 sm:w-4 h-3 sm:h-4"
         checked={isChecked}
         onChange={handleCheckboxChange}
         aria-checked={isChecked}

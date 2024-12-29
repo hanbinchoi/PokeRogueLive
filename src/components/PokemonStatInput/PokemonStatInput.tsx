@@ -24,11 +24,13 @@ export const PokemonStatInput = ({
   };
 
   return (
-    <div className="flex items-center h-full">
-      <div className="w-[72px] text-lg">{koreanLabel}</div>
+    <div className="flex items-center min-w-[80px] lg:min-w-[70px] ">
+      <div className="w-full text-base md:text-lg lg:text-md">
+        {koreanLabel}
+      </div>
       <input
         type="number"
-        className="border rounded p-2 h-[32px] w-[120px]"
+        className="w-full min-w-[43px] max-w-[158px] border rounded py-1 px-2 text-sm lg:text-md"
         value={stat.base_stat}
         onChange={handleInputChange}
         placeholder="포켓몬 입력"

@@ -63,11 +63,11 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
 
   return (
     <div className="py-9 flex items-center flex-col gap-3">
-      <div className="text-xl flex gap-1">
+      <div className="text-base lg:text-xl font-bold flex gap-1">
         데미지
         <Tooltip text={'해당 기술로 10회 타격 시 데미지 계산 결과입니다.'} />
       </div>
-      <div className="text-2xl font-bold flex gap-2">
+      <div className="text-base md:text-lg lg:text-2xl font-bold grid grid-cols-5 sm:grid-cols-10 gap-x-2">
         {damages.map((damage, i) => (
           <PowerDamageValue key={i} damage={damage} hp={hpStat} />
         ))}

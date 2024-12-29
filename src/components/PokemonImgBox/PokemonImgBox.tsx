@@ -46,12 +46,16 @@ export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
   );
 
   const renderPower = () => (
-    <div className="px-6 py-4 font-bold flex flex-col items-center">
-      <img className="w-[200px]" alt={pokemon.name} src={pokemon.imageUrl} />
-      <div className="text-lg mb-4">{pokemon.name}</div>
+    <div className="w-full max-w-[162px] font-bold flex flex-col items-center">
+      <img
+        className="w-full min-w-[120px] max-w-[162px]"
+        alt={pokemon.name}
+        src={pokemon.imageUrl}
+      />
+      <div className="text-base sm:text-lg mb-2 sm:mb-4">{pokemon.name}</div>
       <div className="flex gap-2">
         {pokemon.type.map((t, i) => (
-          <TypeBadge key={`${t}-${i}`} type={t} size="medium" />
+          <TypeBadge key={`${t}-${i}`} type={t} size="small" />
         ))}
       </div>
     </div>
