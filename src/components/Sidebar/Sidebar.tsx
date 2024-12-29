@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { twJoin } from 'tailwind-merge';
 
 import { SidebarMenu } from '../SidebarMenu/SidebarMenu';
 
@@ -8,7 +8,7 @@ import { MENUS } from '@/types/menus';
 export const Sidebar = ({ className }: DefaultProps) => {
   return (
     <nav
-      className={twMerge(
+      className={twJoin(
         'bg-white-100 border-r border-r-gray-20  md:py-6 lg:py-8',
         className,
       )}>

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { MenuItemProps } from '@/types/menus';
-import { twMerge } from 'tailwind-merge';
+import { twJoin } from 'tailwind-merge';
 
 export const HeaderMenu = ({
   title,
@@ -13,7 +13,7 @@ export const HeaderMenu = ({
   return (
     <li>
       <Link
-        className={twMerge(
+        className={twJoin(
           'group flex items-center gap-2 text-sm font-bold text-gray-100 md:w-[14px] md:h-[14px] lg:w-[20px] lg:h-[20px]',
           className,
         )}

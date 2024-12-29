@@ -47,7 +47,7 @@ li {
   display: flex;
   width: 100%;
 }
-.type-calc-menu li {
+.type-calc-menu button {
   display: block;
   width: 20%;
   padding-bottom: 4px;
@@ -63,15 +63,15 @@ li {
   transition: all 0.3s ease-in-out;
 }
 
-.type-calc-menu li:nth-child(1).is-current ~ .nav-underline {
+.type-calc-menu button:nth-child(1).current ~ .nav-underline {
   left: 35%;
 }
-.type-calc-menu li:nth-child(2).is-current ~ .nav-underline {
+.type-calc-menu button:nth-child(2).current ~ .nav-underline {
   left: 55%;
 }
-.type-calc-menu li:nth-child(1):hover ~ .nav-underline {
+.type-calc-menu button:nth-child(1):hover ~ .nav-underline {
   left: 35%;
 }
-.type-calc-menu li:nth-child(2):hover ~ .nav-underline {
+.type-calc-menu button:nth-child(2):hover ~ .nav-underline {
   left: 55%;
 }

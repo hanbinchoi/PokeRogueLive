@@ -1,5 +1,5 @@
 import {
-  calcDefendTypeProps,
+  calcDefendResultType,
   PokemonType,
   PokemonTypeDetails,
 } from '@/types/common';
@@ -15,7 +15,7 @@ export default function calcDefendType(
   first: PokemonType | null,
   second: PokemonType | null,
   ability?: string | null,
-): calcDefendTypeProps {
+): calcDefendResultType {
   const damageMap = new Map<string, PokemonType[]>();
 
   if (first === null) {

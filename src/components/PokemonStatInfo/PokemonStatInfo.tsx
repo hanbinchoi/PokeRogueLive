@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { twJoin } from 'tailwind-merge';
 
 import { DefaultProps, PokemonDataProps } from '@/types/common';
 
@@ -12,7 +12,7 @@ export const PokemonStatInfo = ({
 }: PokemonStatInfoProps) => {
   return (
     <div
-      className={twMerge(
+      className={twJoin(
         'flex flex-col gap-5 text-xs min-[480px]:text-base ',
         className,
       )}>

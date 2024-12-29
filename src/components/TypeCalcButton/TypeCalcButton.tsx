@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { twJoin } from 'tailwind-merge';
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
@@ -9,7 +9,7 @@ import { POKEMON_TYPE } from '@/constants/contents';
 interface TypeCalcButtonProps {
   type: PokemonType;
   index: number;
-  checked: boolean;
+  checked: boolean | null;
 }
 
 export const TypeCalcButton = ({
@@ -45,7 +45,7 @@ export const TypeCalcButton = ({
 
   return (
     <button
-      className={twMerge(
+      className={twJoin(
         'flex items-center gap-2 w-[82px] md:w-[102px] px-2 py-1 text-sm md:text-base border rounded-3xl hover:opacity-70',
         checked
           ? `${pokemonType.backgroundColor} text-white-100`
@@ -53,13 +53,13 @@ export const TypeCalcButton = ({
       )}
       onClick={selectType}>
       <div
-        className={twMerge(
+        className={twJoin(
           'w-[16px] h-[16px] rounded-full flex justify-center items-center',
           checked ? 'bg-white-100' : pokemonType.backgroundColor,
         )}>
         {checked && (
           <div
-            className={twMerge(
+            className={twJoin(
               pokemonType.backgroundColor,
               'w-[10px] h-[10px] rounded-full',
             )}></div>

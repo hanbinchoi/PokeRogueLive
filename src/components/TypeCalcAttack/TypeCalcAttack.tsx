@@ -8,18 +8,19 @@ import {
 } from '@/constants/contents';
 
 export const TypeCalcAttack = () => {
-  const specialMoves = ATTACK_SPECIAL_MOVES;
-  const specialAbilities = ATTACK_SPECIAL_ABILITIES;
-
   return (
     <div className="grid grid-cols-2 gap-8 md:gap-16">
       <div className="flex flex-col gap-4 sm:gap-8">
         <TypeCalcOption title="타입" index={0} />
-        <CommonRadioButton title="기술" usage="move" options={specialMoves} />
+        <CommonRadioButton
+          title="기술"
+          usage="move"
+          options={ATTACK_SPECIAL_MOVES}
+        />
         <CommonRadioButton
           title="특성"
           usage="ability"
-          options={specialAbilities}
+          options={ATTACK_SPECIAL_ABILITIES}
         />
       </div>
       <TypeCalcAttackResult />

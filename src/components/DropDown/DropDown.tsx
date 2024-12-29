@@ -1,5 +1,5 @@
 import { DefaultProps } from '@/types/common';
-import { twMerge } from 'tailwind-merge';
+import { twJoin } from 'tailwind-merge';
 
 interface DropDownProps extends DefaultProps {
   filteredOptions: string[];
@@ -18,7 +18,7 @@ export const DropDown = ({
 
   return (
     <div
-      className={twMerge(
+      className={twJoin(
         'absolute z-10 w-full bg-white rounded shadow max-h-40 overflow-y-auto bg-white-100 border-2',
         className,
       )}>

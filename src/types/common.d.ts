@@ -23,9 +23,21 @@ export interface InputValues {
   ability: string;
 }
 
+export type typeCalcMode = 'defend' | 'attack';
+
 export type selectUsage = 'defenceAbility' | 'teraType';
 
 export type checkboxUsage = 'attackMove' | 'attackAbility';
+
+export interface SelectOptionProps {
+  label: string;
+  options: string[];
+  set: (value: string) => void;
+}
+
+export type SelectConstantProps = {
+  [key in selectUsage]: SelectOptionProps;
+};
 
 export interface DataProps {
   name: string;
@@ -206,7 +218,7 @@ export type PokemonTypeProps = {
   [key: PokemonType]: PokemonTypeDetails;
 };
 
-export type calcDefendTypeProps = Map<string, PokemonType[]> | null;
+export type calcDefendResultType = Map<string, PokemonType[]> | null;
 
 export interface EvolutionDetailProps {
   gender: number | null;
