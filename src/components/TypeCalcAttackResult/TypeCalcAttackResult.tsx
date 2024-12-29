@@ -4,7 +4,7 @@ import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import { TypeBadge } from '../TypeBadge/TypeBadge';
 
-import { PokemonType } from '@/types/common';
+import { calcResultType } from '@/types/common';
 
 import calcAttackType from '@/utils/calcAttackType';
 
@@ -12,7 +12,7 @@ export const TypeCalcAttackResult = () => {
   const { typeCalcAttackOptions, attackAbility, attackMove } =
     useTypeCalculatorStore();
 
-  const [result, setResult] = useState<Map<string, PokemonType[]> | null>();
+  const [result, setResult] = useState<calcResultType>();
 
   useEffect(() => {
     typeCalcAttackOptions?.length

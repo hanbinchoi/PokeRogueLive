@@ -218,7 +218,7 @@ export type PokemonTypeProps = {
   [key: PokemonType]: PokemonTypeDetails;
 };
 
-export type calcDefendResultType = Map<string, PokemonType[]> | null;
+export type calcResultType = Map<string, PokemonType[]> | null;
 
 export interface EvolutionDetailProps {
   gender: number | null;
