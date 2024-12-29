@@ -23,25 +23,49 @@ export const Move = ({ levelLearnedAt, url }: MoveProps) => {
     const { backgroundColor, name: typeName } = POKEMON_TYPE[type];
 
     return (
-      <div className="flex flex-col gap-2">
-        <div className="flex gap-[10px] items-center">
+      <div className="flex flex-col gap-2 text-xs md:text-sm">
+        <div className="flex flex-col min-[480px]:flex-row items-left min-[480px]:items-center gap-2">
           <span
             className={twJoin(
               backgroundColor,
-              'text-white-100 px-2 py-1 rounded-lg text-[16px] w-fit',
+              'text-white-100 px-2 py-1 rounded-md md:rounded-lg w-fit',
             )}>
             {name}
           </span>
-          <span className="font-bold text-[12px]">
+          <span className="text-xs md:text-sm font-bold">
             {typeName} | {damageClass} | Lv{levelLearnedAt}
           </span>
         </div>
-        <div className="text-[12px] flex gap-[10px] font-bold">
+        <div className="hidden min-[480px]:flex gap-2 text-xs md:text-sm font-bold">
           {power !== null && <span>위력 - {power}</span>}
           {accuracy !== null && <span>명중률 - {accuracy}</span>}
           <span>pp - {pp}</span>
         </div>
-        <div className="text-[16px]">{flavorText}</div>
+        <div className="flex min-[480px]:hidden gap-2 text-xs md:text-sm font-bold">
+          {power !== null && (
+            <>
+              <div>
+                <div>위력</div>
+                {power}
+              </div>
+              <div className="w-0.5 bg-black-50"></div>
+            </>
+          )}
+          {accuracy !== null && (
+            <>
+              <div>
+                <div>명중률</div>
+                {accuracy}
+              </div>
+              <div className="w-0.5 bg-black-50"></div>
+            </>
+          )}
+          <div>
+            <div>pp</div>
+            {pp}
+          </div>
+        </div>
+        <div>{flavorText}</div>
       </div>
     );
   }

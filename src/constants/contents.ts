@@ -1,8 +1,6 @@
 import { PokemonType, StatKey } from '@/types/common';
 
-export const TOTAL_POKEMON_NUM = 1025;
-
-export const POKEMON_PAGE_ITEM_SIZE = 10;
+export const TOTAL_POKEMON_NUM = 1024;
 
 export const MOVE_PAGE_ITEM_SIZE = 4;
 

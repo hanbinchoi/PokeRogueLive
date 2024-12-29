@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -6,21 +6,22 @@ import usePokemonsStore from '@/stores/pokemonsStore';
 
 import { SearchInput } from '../SearchInput/SearchInput';
 import { Button } from '../Button/Button';
-import { PokemonList } from '../PokemonList/PokemonList';
-import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
 
 import { InputValues } from '@/types/common';
 
 import getPokemonsByPartialName from '@/utils/getPokemonsIdByPartialName';
 
-import {
-  POKEMON_PAGE_ITEM_SIZE,
-  TOTAL_POKEMON_NUM,
-} from '@/constants/contents';
+import { TOTAL_POKEMON_NUM } from '@/constants/contents';
 
 export const PokemonSearchForm = () => {
-  const { now, total, searchIdsList, setNow, setTotal, setSearchIdsList } =
-    usePokemonsStore();
+  const {
+    now,
+    searchIdsList,
+    setNow,
+    setTotal,
+    setSearchIdsList,
+    setPokemonIdsList,
+  } = usePokemonsStore();
 
   const {
     register,
@@ -30,8 +31,6 @@ export const PokemonSearchForm = () => {
     setValue,
     formState: { errors },
   } = useForm<InputValues>();
-
-  const [pokemonIdsList, setPokemonIdsList] = useState<number[] | null>(null);
 
   useEffect(() => {
     if (searchIdsList) {
@@ -56,41 +55,39 @@ export const PokemonSearchForm = () => {
   };
 
   return (
-    <>
-      <form
-        className="flex justify-center gap-[10px] w-full px-80 py-2 mb-6"
-        onSubmit={handleSubmit(handleSearchSubmit)}>
-        <div className="relative">
-          <SearchInput
-            placeholder="포켓몬 검색"
-            register={register}
-            watch={watch}
-            reset={reset}
-            setValue={setValue}
-            className="min-w-[297px]"
-          />
-          {errors.keyword && (
-            <p className="pl-2 text-red-10 font-bold text-sm absolute left-0 mt-1">
-              {errors.keyword.message}
-            </p>
-          )}
-        </div>
-        <Button primary={true} type="submit" size="small" label="검색" />
-        <Button
-          primary={false}
-          type="reset"
-          size="small"
-          label="초기화"
-          onClick={handleResetSubmit}
+    <form
+      className="flex justify-center items-center gap-[10px] py-2 mb-6"
+      onSubmit={handleSubmit(handleSearchSubmit)}>
+      <div className="relative">
+        <SearchInput
+          placeholder="포켓몬 검색"
+          register={register}
+          watch={watch}
+          reset={reset}
+          setValue={setValue}
+          className=""
         />
-      </form>
-      <PokemonList pokemonIdsList={pokemonIdsList} now={now} />
-      <PagingDocuments
-        now={now}
-        total={total}
-        setNow={setNow}
-        pageSize={POKEMON_PAGE_ITEM_SIZE}
+        {errors.keyword && (
+          <p className="pl-2 text-red-10 font-bold text-sm absolute left-0 mt-1">
+            {errors.keyword.message}
+          </p>
+        )}
+      </div>
+      <Button
+        primary={true}
+        type="submit"
+        size="small"
+        label="검색"
+        className=""
       />
-    </>
+      <Button
+        primary={false}
+        type="reset"
+        size="small"
+        label="초기화"
+        className="min-w-[36px] min-[480px]:min-w-[62px]"
+        onClick={handleResetSubmit}
+      />
+    </form>
   );
 };

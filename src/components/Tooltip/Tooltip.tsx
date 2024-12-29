@@ -27,7 +27,7 @@ export const Tooltip = ({ text, visible = true }: AbilityBoxProps) => {
         aria-label="Tooltip trigger"
       />
       <div
-        className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-max bg-black-10 text-white-100 text-xs rounded px-2 py-1 z-10 transition-opacity duration-400 ${
+        className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-black-10 text-white-100 text-xs rounded px-2 py-1 z-10 transition-opacity duration-400 ${
           show ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
         {text}

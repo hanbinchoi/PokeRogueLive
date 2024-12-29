@@ -11,13 +11,13 @@ export interface AbilityBoxProps {
 
 export const AbilityBox = ({ abilities }: AbilityBoxProps) => {
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-4 mb-8">
       <div className="flex gap-1">
-        <p className="text-xl font-bold">특성</p>
+        <p className="text-lg min-[480px]:text-xl font-bold ">특성</p>
         <Tooltip text={'숨겨진 특성은 노란색으로 표기돼요'} />
         <Tooltip
           text={
-            "포켓몬api에서 제공되는 데이터 중 '한글표기'가 없는 데이터는 '영문'으로 표기됩니다."
+            "포켓몬api에서 제공되는 데이터 중 '한글'이 없는 데이터는 '영문'으로 표기됩니다."
           }
         />
       </div>

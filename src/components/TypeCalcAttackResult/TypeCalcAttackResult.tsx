@@ -4,7 +4,7 @@ import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import { TypeBadge } from '../TypeBadge/TypeBadge';
 
-import { PokemonType } from '@/types/common';
+import { calcResultType } from '@/types/common';
 
 import calcAttackType from '@/utils/calcAttackType';
 
@@ -12,17 +12,22 @@ export const TypeCalcAttackResult = () => {
   const { typeCalcAttackOptions, attackAbility, attackMove } =
     useTypeCalculatorStore();
 
-  const [result, setResult] = useState<Map<string, PokemonType[]> | null>();
+  const [result, setResult] = useState<calcResultType>();
+
   useEffect(() => {
-    setResult(calcAttackType(typeCalcAttackOptions, attackAbility, attackMove));
+    typeCalcAttackOptions?.length
+      ? setResult(
+          calcAttackType(typeCalcAttackOptions, attackAbility, attackMove),
+        )
+      : setResult(null);
   }, [typeCalcAttackOptions, attackAbility, attackMove]);
 
   return (
     result && (
-      <div className="flex flex-col gap-8 py-8">
+      <div className="flex flex-col gap-8 py-6 sm:py-8">
         {Array.from(result.entries()).map(([key, types]) => (
           <div key={key} className="flex flex-col gap-2">
-            <div className="text-[16px] font-semibold">
+            <div className="text-sm sm:text-md md:text-base font-semibold">
               {key}x 데미지 ({types.length})
             </div>
             <div className="flex gap-2 flex-wrap">

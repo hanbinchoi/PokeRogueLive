@@ -1,4 +1,4 @@
-import { PokemonType } from '@/types/common';
+import { calcResultType, PokemonType } from '@/types/common';
 
 import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
 
@@ -9,7 +9,7 @@ export default function calcAttackType(
   checkedType: PokemonType[] | null,
   attackAbility: string | null,
   attackMove: string | null,
-): Map<string, PokemonType[]> | null {
+): calcResultType | null {
   if (!checkedType) return null;
 
   const effectMap = new Map<string, PokemonType[]>();

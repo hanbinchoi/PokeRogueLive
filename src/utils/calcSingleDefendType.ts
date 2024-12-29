@@ -1,5 +1,5 @@
 import {
-  calcDefendTypeProps,
+  calcResultType,
   PokemonType,
   PokemonTypeDetails,
 } from '@/types/common';
@@ -12,7 +12,7 @@ import calcDefendAbility from './calcDefendAbility';
 export default function calcSingleDefendType(
   defendType: PokemonTypeDetails,
   ability?: string | null,
-): calcDefendTypeProps {
+): calcResultType {
   const damageMap = new Map<string, PokemonType[]>();
 
   POKEMON_TYPE_ARRAY.forEach((type) => {
