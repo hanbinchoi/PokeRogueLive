@@ -41,14 +41,13 @@ export const PokemonSearchForm = () => {
   }, [searchIdsList, now]);
 
   const handleSearchSubmit = (input: InputValues) => {
-    console.log(1);
     const pokemonIds = getPokemonsByPartialName(input.keyword.trim());
     setSearchIdsList(pokemonIds);
     setTotal(pokemonIds.length);
     setNow(1);
   };
 
-  const handleResetSubmit = () => {
+  const handleReset = () => {
     reset();
     setSearchIdsList(null);
     setTotal(TOTAL_POKEMON_NUM);
@@ -65,9 +64,8 @@ export const PokemonSearchForm = () => {
           placeholder="포켓몬 검색"
           register={register}
           watch={watch}
-          reset={reset}
+          handleReset={handleReset}
           setValue={setValue}
-          className=""
         />
         {errors.keyword && (
           <p className="pl-2 text-red-10 font-bold text-sm absolute left-0 mt-1">
@@ -88,7 +86,7 @@ export const PokemonSearchForm = () => {
         size="small"
         label="초기화"
         className="min-w-[36px] min-[480px]:min-w-[62px]"
-        onClick={handleResetSubmit}
+        onClick={handleReset}
       />
     </form>
   );

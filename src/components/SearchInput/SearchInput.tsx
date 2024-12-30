@@ -8,31 +8,29 @@ import { twJoin } from 'tailwind-merge';
 
 import useDropdown from '@/hooks/useDropDown';
 
-import { DropDown } from '../DropDown/DropDown';
+import { Dropdown } from '../Dropdown/Dropdown';
 
-import { DefaultProps, InputValues, SearchInputSize } from '@/types/common';
+import { DefaultProps, InputValues } from '@/types/common';
 
 import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 
 export interface SearchInputProps extends DefaultProps {
-  size?: SearchInputSize;
   placeholder?: string;
   register: UseFormRegister<InputValues>;
-  reset: UseFormReset<InputValues>;
+  handleReset: UseFormReset<InputValues>;
   setValue: UseFormSetValue<InputValues>;
   watch: UseFormWatch<InputValues>;
   onSubmit: (input: InputValues) => void; // onSubmit prop 추가
 }
 
 export const SearchInput = ({
-  size = 'medium',
   placeholder,
   className,
   register,
-  reset,
+  handleReset,
   setValue,
   watch,
-  onSubmit, // onSubmit 함수 받기
+  onSubmit,
 }: SearchInputProps) => {
   const {
     dropdownRef,
@@ -41,6 +39,8 @@ export const SearchInput = ({
     handleInputChange: dropdownHandleInputChange,
     handleOptionSelect,
     setShowDropdown,
+    selectedIndex,
+    setSelectedIndex,
     clearSearch,
   } = useDropdown({ options: POKEMON_LIST_IN_KOREAN });
 
@@ -59,27 +59,52 @@ export const SearchInput = ({
 
   const handleClear = () => {
     clearSearch();
-    reset();
+    setSelectedIndex(null);
+    handleReset();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      onSubmit(watch());
-    }
-  };
+    const { key } = e;
 
-  const SearchInputSize: Record<SearchInputSize, string> = {
-    small: 'px-1 sm:px-2 sm:py-1 rounded text-xs border',
-    medium: 'px-2 py-1 sm:px-3 sm:py-2 rounded text-sm border',
+    if (key === 'Backspace') {
+      setSelectedIndex(null);
+    }
+
+    if (key === 'Escape') {
+      setSelectedIndex(null);
+      setShowDropdown(false);
+    }
+
+    if (key === 'ArrowDown' || key === 'ArrowUp') {
+      const direction = key === 'ArrowDown' ? 1 : -1;
+      const newIndex =
+        selectedIndex === null
+          ? 0
+          : Math.min(
+              Math.max(selectedIndex + direction, 0),
+              filteredOptions.length - 1,
+            );
+
+      setSelectedIndex(newIndex);
+      setShowDropdown(true);
+    }
+
+    if (key === 'Enter') {
+      e.preventDefault();
+
+      selectedIndex !== null
+        ? handleSelect(filteredOptions[selectedIndex])
+        : onSubmit(watch());
+
+      setSelectedIndex(null);
+    }
   };
 
   return (
     <div ref={dropdownRef}>
       <input
         className={twJoin(
-          'min-w-[166px] min-[480px]:min-w-[244px] h-[32px] min-h-[32px] border-gray-30 focus:outline-blue-30 font-light shadow-md ',
-          SearchInputSize[size],
+          'px-2 py-1 sm:px-3 sm:py-2 rounded text-sm border min-w-[166px] min-[480px]:min-w-[244px] h-[32px] min-h-[32px] border-gray-30 focus:outline-blue-30 font-light shadow-md ',
           className,
         )}
         placeholder={placeholder}
@@ -92,6 +117,7 @@ export const SearchInput = ({
             value.trim() !== '' || '공백은 검색할 수 없어요.',
           onChange: handleInputChange,
         })}
+        tabIndex={0}
       />
       {keyword && (
         <button
@@ -100,7 +126,9 @@ export const SearchInput = ({
           ✕
         </button>
       )}
-      <DropDown
+      <Dropdown
+        dropdownRef={dropdownRef}
+        selectedIndex={selectedIndex}
         filteredOptions={filteredOptions}
         handleSelect={handleSelect}
         showDropdown={showDropdown}

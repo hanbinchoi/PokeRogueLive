@@ -3,7 +3,7 @@ import useDropdown from '@/hooks/useDropDown';
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
-import { DropDown } from '../DropDown/DropDown';
+import { Dropdown } from '../Dropdown/Dropdown';
 
 export interface PokemonSearchDropDownProps {
   usage: 'attack' | 'defend';
@@ -32,7 +32,7 @@ export const PokemonSearchDropDown = ({
       ? usePowerCalculatorStore((state) => state.setAttackPokemonId)
       : usePowerCalculatorStore((state) => state.setDefendPokemonId);
 
-  const { setDamages, setMove } = usePowerCalculatorStore();
+  const { setDamages, setMove, selectedIndex } = usePowerCalculatorStore();
 
   const handleSelect = (option: string) => {
     handleOptionSelect(option);
@@ -48,7 +48,7 @@ export const PokemonSearchDropDown = ({
   };
 
   return (
-    <div className="relative w-fit" ref={dropdownRef}>
+    <div className="relative w-fit">
       <input
         type="text"
         className="w-full min-w-[120px] max-w-[162px] border rounded py-1 px-2 text-sm lg:text-base"
@@ -65,7 +65,9 @@ export const PokemonSearchDropDown = ({
           ✕
         </button>
       )}
-      <DropDown
+      <Dropdown
+        dropdownRef={dropdownRef}
+        selectedIndex={selectedIndex}
         filteredOptions={filteredOptions}
         handleSelect={handleSelect}
         showDropdown={showDropdown}

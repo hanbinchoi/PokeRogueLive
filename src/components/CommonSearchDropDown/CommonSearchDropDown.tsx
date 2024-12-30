@@ -2,7 +2,7 @@ import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { DropDown } from '../DropDown/DropDown';
+import { DropDown } from '../Dropdown/Dropdown';
 
 export interface CommonSearchDropDownProps {
   label: string;

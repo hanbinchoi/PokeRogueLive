@@ -9,6 +9,7 @@ export interface UseDropdownProps {
 const useDropdown = ({ options }: UseDropdownProps) => {
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -22,13 +23,10 @@ const useDropdown = ({ options }: UseDropdownProps) => {
     setShowDropdown(true);
   };
 
-  const handleOptionSelect = (
-    option: string,
-    callback?: (option: string) => void,
-  ) => {
+  const handleOptionSelect = (option: string) => {
     setInputValue(option);
     setShowDropdown(false);
-    if (callback) callback(option);
+    setSelectedIndex(null);
   };
 
   const clearSearch = () => {
@@ -48,6 +46,8 @@ const useDropdown = ({ options }: UseDropdownProps) => {
     handleInputChange,
     handleOptionSelect,
     clearSearch,
+    selectedIndex,
+    setSelectedIndex,
   };
 };
 
