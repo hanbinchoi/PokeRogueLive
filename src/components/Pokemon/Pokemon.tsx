@@ -34,15 +34,18 @@ export const Pokemon = ({ id }: PokemonProps) => {
       setPokemon(extractPokemonDetails([pokemonData, speciesData]));
   }, [pokemonData, speciesData]);
 
-  if (isLoadingPokemon || isLoadingSpecies) return <div>Loading...</div>;
-  if (isErrorPokemon || isErrorSpecies)
-    return <div>Failed to load data. Please try again later.</div>;
-
-  if (!pokemon) return null;
+  const isLoading = isLoadingPokemon || isLoadingSpecies;
+  const isError = isErrorPokemon || isErrorSpecies;
 
   return (
     <Link href={`/pokemon/${id}`} className="w-full h-full flex justify-center">
-      <PokemonImgBox pokemon={pokemon} usage="list" id={id} />
+      <PokemonImgBox
+        pokemon={pokemon}
+        usage="list"
+        id={id}
+        isError={!pokemon || isError}
+        isLoading={isLoading}
+      />
     </Link>
   );
 };

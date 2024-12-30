@@ -41,6 +41,7 @@ export const PokemonSearchForm = () => {
   }, [searchIdsList, now]);
 
   const handleSearchSubmit = (input: InputValues) => {
+    console.log(1);
     const pokemonIds = getPokemonsByPartialName(input.keyword.trim());
     setSearchIdsList(pokemonIds);
     setTotal(pokemonIds.length);
@@ -60,6 +61,7 @@ export const PokemonSearchForm = () => {
       onSubmit={handleSubmit(handleSearchSubmit)}>
       <div className="relative">
         <SearchInput
+          onSubmit={handleSearchSubmit}
           placeholder="포켓몬 검색"
           register={register}
           watch={watch}

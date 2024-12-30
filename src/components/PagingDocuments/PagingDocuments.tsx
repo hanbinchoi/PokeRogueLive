@@ -26,7 +26,7 @@ export const PagingDocuments = ({
   const lastPage = Math.ceil(total / pageSize);
 
   return (
-    <ul className="mt-5 px-14 text-lg flex justify-center items-center gap-2">
+    <ul className="flex justify-center items-center mt-5 px-14 text-lg gap-2">
       {now > 1 && (
         <>
           <IconButton

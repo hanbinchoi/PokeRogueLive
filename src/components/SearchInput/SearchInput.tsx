@@ -21,6 +21,7 @@ export interface SearchInputProps extends DefaultProps {
   reset: UseFormReset<InputValues>;
   setValue: UseFormSetValue<InputValues>;
   watch: UseFormWatch<InputValues>;
+  onSubmit: (input: InputValues) => void; // onSubmit prop 추가
 }
 
 export const SearchInput = ({
@@ -31,6 +32,7 @@ export const SearchInput = ({
   reset,
   setValue,
   watch,
+  onSubmit, // onSubmit 함수 받기
 }: SearchInputProps) => {
   const {
     dropdownRef,
@@ -49,6 +51,7 @@ export const SearchInput = ({
     dropdownHandleInputChange(e);
     setValue('keyword', value);
   };
+
   const handleSelect = (option: string) => {
     handleOptionSelect(option);
     setValue('keyword', option);
@@ -59,10 +62,18 @@ export const SearchInput = ({
     reset();
   };
 
-  const SearchInputSize: Record<SearchInputSize, string> = {
-    small: 'px-1 sm:px-2 sm:py-1 rounded-lg text-xs border',
-    medium: 'px-2 py-1 sm:px-3 sm:py-2 rounded-lg text-sm border',
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      onSubmit(watch());
+    }
   };
+
+  const SearchInputSize: Record<SearchInputSize, string> = {
+    small: 'px-1 sm:px-2 sm:py-1 rounded text-xs border',
+    medium: 'px-2 py-1 sm:px-3 sm:py-2 rounded text-sm border',
+  };
+
   return (
     <div ref={dropdownRef}>
       <input
@@ -73,6 +84,7 @@ export const SearchInput = ({
         )}
         placeholder={placeholder}
         onFocus={() => setShowDropdown(true)}
+        onKeyDown={handleKeyDown}
         autoComplete="off"
         {...register('keyword', {
           required: '포켓몬을 입력해주세요.',
@@ -93,6 +105,7 @@ export const SearchInput = ({
         handleSelect={handleSelect}
         showDropdown={showDropdown}
         noFoundMessage="포켓몬을 찾을 수 없어요"
+        className="min-w-[166px] min-[480px]:min-w-[244px] "
       />
     </div>
   );

@@ -18,7 +18,6 @@ const useDropdown = ({ options }: UseDropdownProps) => {
   );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(1);
     setInputValue(e.target.value);
     setShowDropdown(true);
   };

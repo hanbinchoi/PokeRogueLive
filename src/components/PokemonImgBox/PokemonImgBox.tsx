@@ -1,30 +1,48 @@
 import { TypeBadge } from '../TypeBadge/TypeBadge';
+import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
+import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 import { AiFillSound } from 'react-icons/ai';
 
 import { PokemonDataProps } from '@/types/common';
 
 export interface PokemonImgBoxProps {
-  pokemon: PokemonDataProps;
+  pokemon: PokemonDataProps | null;
   id: number;
   usage: 'detail' | 'list' | 'power';
+  isLoading?: boolean;
+  isError?: boolean;
 }
 
-export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
+export const PokemonImgBox = ({
+  pokemon,
+  usage,
+  id,
+  isLoading,
+  isError,
+}: PokemonImgBoxProps) => {
   const handleAudioClick = () => {
-    const audio = new Audio(pokemon.cries);
+    const audio = new Audio(pokemon?.cries);
     audio.play();
   };
 
   const renderList = () => (
-    <div className="w-[150px] min-w-[150px] lg:min-w-[170px] h-[202px] min-h-[202px] lg:min-h-[212px] px-8 py-4 text-sm font-bold flex flex-col items-center bg-white-100 border-2 rounded-lg">
-      <div>{`No. ${String(id).padStart(3, '0')}`}</div>
-      <img className="w-24" alt={pokemon.name} src={pokemon.imageUrl} />
-      <div className="mb-2 text-lg">{pokemon.name}</div>
-      <div className="flex gap-2">
-        {pokemon.type.map((t, i) => (
-          <TypeBadge key={`${t}-${i}`} type={t} size="small" />
-        ))}
-      </div>
+    <div className="w-[150px] min-w-[150px] lg:min-w-[170px] h-[202px] min-h-[202px] lg:min-h-[212px] px-8 py-4 text-sm font-bold flex flex-col justify-center items-center bg-white-100 border-2 rounded-lg">
+      {isLoading ? (
+        <LoadingComponent />
+      ) : isError ? (
+        <ErrorComponent message="포켓몬을 찾을 수 없어요" />
+      ) : (
+        <>
+          <div>{`No. ${String(id).padStart(3, '0')}`}</div>
+          <img className="w-24" alt={pokemon?.name} src={pokemon?.imageUrl} />
+          <div className="mb-2 text-lg">{pokemon?.name}</div>
+          <div className="flex gap-2">
+            {pokemon?.type.map((t, i) => (
+              <TypeBadge key={`${t}-${i}`} type={t} size="small" />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 
@@ -41,7 +59,7 @@ export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
           tabIndex={0}
         />
       </div>
-      <img className="w-full" alt={pokemon.name} src={pokemon.imageUrl} />
+      <img className="w-full" alt={pokemon?.name} src={pokemon?.imageUrl} />
     </div>
   );
 
@@ -49,12 +67,12 @@ export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
     <div className="w-full max-w-[162px] font-bold flex flex-col items-center">
       <img
         className="w-full min-w-[120px] max-w-[162px]"
-        alt={pokemon.name}
-        src={pokemon.imageUrl}
+        alt={pokemon?.name}
+        src={pokemon?.imageUrl}
       />
-      <div className="text-base sm:text-lg mb-2 sm:mb-4">{pokemon.name}</div>
+      <div className="text-base sm:text-lg mb-2 sm:mb-4">{pokemon?.name}</div>
       <div className="flex gap-2">
-        {pokemon.type.map((t, i) => (
+        {pokemon?.type.map((t, i) => (
           <TypeBadge key={`${t}-${i}`} type={t} size="small" />
         ))}
       </div>
