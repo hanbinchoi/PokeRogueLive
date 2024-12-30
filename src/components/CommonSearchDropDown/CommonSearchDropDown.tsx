@@ -2,7 +2,7 @@ import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { DropDown } from '../Dropdown/Dropdown';
+import { Dropdown } from '../Dropdown/Dropdown';
 
 export interface CommonSearchDropDownProps {
   label: string;
@@ -21,6 +21,7 @@ export const CommonSearchDropDown = ({
     handleInputChange,
     handleOptionSelect,
     setShowDropdown,
+    selectedIndex,
     clearSearch,
   } = useDropdown({ options });
 
@@ -50,9 +51,7 @@ export const CommonSearchDropDown = ({
       <label className="text-base md:text-lg" htmlFor={`dropdown-${label}`}>
         {label}
       </label>
-      <div
-        className="relative w-full min-w-[120px] max-w-[200px]"
-        ref={dropdownRef}>
+      <div className="relative w-full min-w-[120px] max-w-[200px]">
         <input
           id={`dropdown-${label}`}
           type="text"
@@ -70,7 +69,9 @@ export const CommonSearchDropDown = ({
             ✕
           </button>
         )}
-        <DropDown
+        <Dropdown
+          dropdownRef={dropdownRef}
+          selectedIndex={selectedIndex}
           filteredOptions={filteredOptions}
           handleSelect={handleSelect}
           showDropdown={showDropdown}

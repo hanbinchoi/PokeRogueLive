@@ -2,7 +2,7 @@ import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { DropDown } from '../Dropdown/Dropdown';
+import { Dropdown } from '../Dropdown/Dropdown';
 
 import { MoveProps } from '@/types/common';
 
@@ -27,6 +27,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
     handleInputChange,
     handleOptionSelect,
     setShowDropdown,
+    selectedIndex,
     clearSearch,
   } = useDropdown({ options: extractMoves.map((m) => m.krName) });
 
@@ -46,9 +47,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
       <label className="text-base md:text-lg" htmlFor="dropdown-move">
         기술
       </label>
-      <div
-        className="relative w-full min-w-[120px] max-w-[200px]"
-        ref={dropdownRef}>
+      <div className="relative w-full min-w-[120px] max-w-[200px]">
         <input
           id="dropdown-move"
           type="text"
@@ -66,7 +65,9 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
             ✕
           </button>
         )}
-        <DropDown
+        <Dropdown
+          dropdownRef={dropdownRef}
+          selectedIndex={selectedIndex}
           filteredOptions={filteredOptions}
           handleSelect={handleSelect}
           showDropdown={showDropdown}

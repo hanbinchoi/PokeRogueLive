@@ -96,6 +96,7 @@ export const SearchInput = ({
         ? handleSelect(filteredOptions[selectedIndex])
         : onSubmit(watch());
 
+      setShowDropdown(false);
       setSelectedIndex(null);
     }
   };
