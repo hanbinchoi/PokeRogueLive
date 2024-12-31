@@ -24,6 +24,7 @@ export const CommonCheckBox = ({
         checked={isChecked}
         onChange={handleCheckboxChange}
         aria-checked={isChecked}
+        tabIndex={3}
       />
       {label}
     </label>

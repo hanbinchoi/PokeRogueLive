@@ -28,12 +28,22 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
     handleOptionSelect,
     setShowDropdown,
     selectedIndex,
+    handleKeyDown: dropdownHandleKeydown,
     clearSearch,
   } = useDropdown({ options: extractMoves.map((m) => m.krName) });
 
   const handleSelect = (option: string) => {
     handleOptionSelect(option);
     setMove(extractMoves?.find((moves) => moves.krName === option) ?? null);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+    dropdownHandleKeydown(key);
+    if (key === 'Enter' && selectedIndex !== null) {
+      e.preventDefault();
+      handleSelect(filteredOptions[selectedIndex]);
+    }
   };
 
   const handleClear = () => {
@@ -55,8 +65,10 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
           value={inputValue}
           onChange={handleInputChange}
           onFocus={() => setShowDropdown(true)}
+          onKeyDown={handleKeyDown}
           placeholder="기술 선택"
           autoComplete="off"
+          tabIndex={1}
         />
         {inputValue && (
           <button

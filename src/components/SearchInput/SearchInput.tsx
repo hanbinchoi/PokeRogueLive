@@ -20,7 +20,7 @@ export interface SearchInputProps extends DefaultProps {
   handleReset: UseFormReset<InputValues>;
   setValue: UseFormSetValue<InputValues>;
   watch: UseFormWatch<InputValues>;
-  onSubmit: (input: InputValues) => void; // onSubmit prop 추가
+  onSubmit: (input: InputValues) => void;
 }
 
 export const SearchInput = ({
@@ -41,6 +41,7 @@ export const SearchInput = ({
     setShowDropdown,
     selectedIndex,
     setSelectedIndex,
+    handleKeyDown: dropdownHandleKeydown,
     clearSearch,
   } = useDropdown({ options: POKEMON_LIST_IN_KOREAN });
 
@@ -66,38 +67,13 @@ export const SearchInput = ({
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = e;
 
-    if (key === 'Backspace') {
-      setSelectedIndex(null);
-    }
-
-    if (key === 'Escape') {
-      setSelectedIndex(null);
-      setShowDropdown(false);
-    }
-
-    if (key === 'ArrowDown' || key === 'ArrowUp') {
-      const direction = key === 'ArrowDown' ? 1 : -1;
-      const newIndex =
-        selectedIndex === null
-          ? 0
-          : Math.min(
-              Math.max(selectedIndex + direction, 0),
-              filteredOptions.length - 1,
-            );
-
-      setSelectedIndex(newIndex);
-      setShowDropdown(true);
-    }
+    dropdownHandleKeydown(key);
 
     if (key === 'Enter') {
       e.preventDefault();
-
       selectedIndex !== null
         ? handleSelect(filteredOptions[selectedIndex])
         : onSubmit(watch());
-
-      setShowDropdown(false);
-      setSelectedIndex(null);
     }
   };
 

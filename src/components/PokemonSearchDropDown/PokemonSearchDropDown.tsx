@@ -2,8 +2,9 @@ import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 import { Dropdown } from '../Dropdown/Dropdown';
+
+import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 
 export interface PokemonSearchDropDownProps {
   usage: 'attack' | 'defend';
@@ -20,6 +21,8 @@ export const PokemonSearchDropDown = ({
     handleInputChange,
     handleOptionSelect,
     setShowDropdown,
+    selectedIndex,
+    handleKeyDown: dropdownHandleKeydown,
     clearSearch,
   } = useDropdown({ options: POKEMON_LIST_IN_KOREAN });
 
@@ -32,11 +35,20 @@ export const PokemonSearchDropDown = ({
       ? usePowerCalculatorStore((state) => state.setAttackPokemonId)
       : usePowerCalculatorStore((state) => state.setDefendPokemonId);
 
-  const { setDamages, setMove, selectedIndex } = usePowerCalculatorStore();
+  const { setDamages, setMove } = usePowerCalculatorStore();
 
   const handleSelect = (option: string) => {
     handleOptionSelect(option);
     setPokemonId(POKEMON_LIST_IN_KOREAN.indexOf(option) + 1);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+    dropdownHandleKeydown(key);
+    if (key === 'Enter' && selectedIndex !== null) {
+      e.preventDefault();
+      handleSelect(filteredOptions[selectedIndex]);
+    }
   };
 
   const handleClear = () => {
@@ -46,7 +58,6 @@ export const PokemonSearchDropDown = ({
     setDamages([]);
     usage === 'attack' && setMove(null);
   };
-
   return (
     <div className="relative w-fit">
       <input
@@ -54,9 +65,11 @@ export const PokemonSearchDropDown = ({
         className="w-full min-w-[120px] max-w-[162px] border rounded py-1 px-2 text-sm lg:text-base"
         value={inputValue}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
         onFocus={() => setShowDropdown(true)}
         placeholder="포켓몬 입력"
         autoComplete="off"
+        tabIndex={0}
       />
       {inputValue && (
         <button

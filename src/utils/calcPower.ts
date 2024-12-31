@@ -58,7 +58,7 @@ export default function calcPower({
     : 1;
   damageContext.sameTypeEffectiveness =
     sameTypeEffectiveness === 1.5
-      ? '자속 보정으로 인해 데미지가 1.5배 증가했습니다.'
+      ? '자속 보정으로 인해 데미지가 1.5배 증가'
       : null;
 
   const defendTypeEffectiveness = getDefendEffectiveness(
@@ -68,16 +68,16 @@ export default function calcPower({
   if (defendTypeEffectiveness !== 1) {
     damageContext.defendTypeEffectiveness =
       defendTypeEffectiveness > 1
-        ? `방어 측의 타입으로 인해 데미지가 ${defendTypeEffectiveness}배 증가했습니다.`
-        : `방어 측의 타입으로 인해 데미지가 ${defendTypeEffectiveness}배 감소했습니다.`;
+        ? `방어 측의 타입으로 인해 데미지가 ${defendTypeEffectiveness}배 증가`
+        : `방어 측의 타입으로 인해 데미지가 ${defendTypeEffectiveness}배 감소`;
   }
 
   const mod1 = getMod1(weather, type.name);
   if (mod1 !== 1) {
     damageContext.mod1 =
       mod1 > 1
-        ? `날씨의 영향으로 인해 데미지가 ${mod1}배 증가했습니다.`
-        : `날씨의 영향으로 인해 데미지가 ${mod1}배 감소했습니다.`;
+        ? `날씨의 영향으로 인해 데미지가 ${mod1}배 증가`
+        : `날씨의 영향으로 인해 데미지가 ${mod1}배 감소`;
   }
 
   const fieldValue = getFieldValue(
@@ -88,14 +88,14 @@ export default function calcPower({
   if (fieldValue !== 1) {
     damageContext.fieldValue =
       fieldValue > 1
-        ? `필드의 영향으로 인해 데미지가 ${fieldValue}배 증가했습니다.`
-        : `필드의 영향으로 인해 데미지가 ${fieldValue}배 감소했습니다.`;
+        ? `필드의 영향으로 인해 데미지가 ${fieldValue}배 증가`
+        : `필드의 영향으로 인해 데미지가 ${fieldValue}배 감소`;
   }
 
   const weaknessPower = isWeaknessHit ? 1.5 : 1;
   damageContext.weaknessPower =
     weaknessPower === 1.5
-      ? '공격 측의 급소 타격으로 인해 데미지가 1.5배 증가했습니다.'
+      ? '공격 측의 급소 타격으로 인해 데미지가 1.5배 증가'
       : null;
 
   const newDamages = [];

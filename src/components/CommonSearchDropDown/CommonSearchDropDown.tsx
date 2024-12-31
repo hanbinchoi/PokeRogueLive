@@ -22,6 +22,7 @@ export const CommonSearchDropDown = ({
     handleOptionSelect,
     setShowDropdown,
     selectedIndex,
+    handleKeyDown: dropdownHandleKeydown,
     clearSearch,
   } = useDropdown({ options });
 
@@ -39,6 +40,15 @@ export const CommonSearchDropDown = ({
   const handleSelect = (option: string) => {
     handleOptionSelect(option);
     updateState(option);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+    dropdownHandleKeydown(key);
+    if (key === 'Enter' && selectedIndex !== null) {
+      e.preventDefault();
+      handleSelect(filteredOptions[selectedIndex]);
+    }
   };
 
   const handleClear = () => {
@@ -59,8 +69,10 @@ export const CommonSearchDropDown = ({
           value={inputValue}
           onChange={handleInputChange}
           onFocus={() => setShowDropdown(true)}
+          onKeyDown={handleKeyDown}
           placeholder="기술 선택"
           autoComplete="off"
+          tabIndex={2}
         />
         {inputValue && (
           <button

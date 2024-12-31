@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
 
@@ -29,6 +29,39 @@ const useDropdown = ({ options }: UseDropdownProps) => {
     setSelectedIndex(null);
   };
 
+  const handleKeyDown = useCallback(
+    (key: string) => {
+      if (key === 'Backspace') {
+        setSelectedIndex(null);
+      }
+
+      if (key === 'Escape') {
+        setSelectedIndex(null);
+        setShowDropdown(false);
+      }
+
+      if (key === 'ArrowDown' || key === 'ArrowUp') {
+        const direction = key === 'ArrowDown' ? 1 : -1;
+        const newIndex =
+          selectedIndex === null
+            ? 0
+            : Math.min(
+                Math.max(selectedIndex + direction, 0),
+                filteredOptions.length - 1,
+              );
+
+        setSelectedIndex(newIndex);
+        setShowDropdown(true);
+      }
+
+      if (key === 'Enter') {
+        setShowDropdown(false);
+        setSelectedIndex(null);
+      }
+    },
+    [filteredOptions, selectedIndex],
+  );
+
   const clearSearch = () => {
     setInputValue('');
     setShowDropdown(false);
@@ -45,6 +78,7 @@ const useDropdown = ({ options }: UseDropdownProps) => {
     filteredOptions,
     handleInputChange,
     handleOptionSelect,
+    handleKeyDown,
     clearSearch,
     selectedIndex,
     setSelectedIndex,

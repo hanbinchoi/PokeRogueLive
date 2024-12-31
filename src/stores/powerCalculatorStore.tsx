@@ -17,7 +17,6 @@ interface powerCalculatorState {
   weather: WeatherType | null;
   isWeaknessHit: boolean;
   damages: number[];
-  selectedIndex: number | null;
 
   setAttackPokemon: (attackPokemon: PokemonDataProps | null) => void;
   setAttackPokemonId: (attackPokemonId: number | null) => void;
@@ -28,7 +27,6 @@ interface powerCalculatorState {
   setWeather: (field: WeatherType | null) => void;
   setIsWeaknessHit: (isWeaknessHit: boolean) => void;
   setDamages: (damages: number[]) => void;
-  setSelectedIndex: (selectedIndex: number | null) => void;
 }
 
 const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
@@ -41,7 +39,6 @@ const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
   weather: null,
   isWeaknessHit: false,
   damages: [],
-  selectedIndex: null,
 
   setAttackPokemon: (attackPokemon) => set(() => ({ attackPokemon })),
   setAttackPokemonId: (attackPokemonId) => set(() => ({ attackPokemonId })),
@@ -54,7 +51,6 @@ const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
   setWeather: (weather) => set(() => ({ weather })),
   setIsWeaknessHit: (isWeaknessHit) => set(() => ({ isWeaknessHit })),
   setDamages: (damages) => set(() => ({ damages })),
-  setSelectedIndex: (selectedIndex) => set(() => ({ selectedIndex })),
 }));
 
 export default usePowerCalculatorStore;
