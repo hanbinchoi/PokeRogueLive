@@ -2,11 +2,12 @@ import { twJoin } from 'tailwind-merge';
 
 import usePokemonMoveQuery from '@/hooks/usePokemonMoveQuery';
 
+import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
+import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
+
 import { POKEMON_TYPE } from '@/constants/contents';
 
 import extractMove from '@/utils/extractMove';
-import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
-import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 
 export interface MoveProps {
   levelLearnedAt: number;

@@ -30,7 +30,7 @@ export const PokemonImgBox = ({
       {isLoading ? (
         <LoadingComponent />
       ) : isError ? (
-        <ErrorComponent message="포켓몬을 찾을 수 없어요" />
+        <ErrorComponent message="Not Found" size="xsmall" />
       ) : (
         <>
           <div>{`No. ${String(id).padStart(3, '0')}`}</div>

@@ -12,13 +12,12 @@ import { AbilityBox } from '@/components/AbilityBox/AbilityBox';
 import { MoveBox } from '@/components/MoveBox/MoveBox';
 import { PokemonStatInfo } from '@/components/PokemonStatInfo/PokemonStatInfo';
 import { PokemonStatInfoTable } from '@/components/PokemonStatInfoTable/PokemonStatInfoTable';
+import { LoadingComponent } from '@/components/LoadingComponent/LoadingComponent';
+import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
-import { LoadingComponent } from '@/components/LoadingComponent/LoadingComponent';
-import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
-
 export default function PokemonDetail() {
   const { id } = useParams();
 

@@ -4,12 +4,12 @@ import { useQuery } from '@tanstack/react-query';
 import { getPokemonEvolutionChain } from '@/api/pokemon';
 
 import { EvolutionNode } from '../EvolutionNode/EvolutionNode';
+import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
+import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 
 import extractNodes from '@/utils/extractNodes';
 
 import { EvolutionChainNodeProps } from '@/types/common';
-import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
-import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 
 export interface EvolutionChainProps {
   url: string;

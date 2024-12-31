@@ -6,13 +6,13 @@ import usePokemonsStore from '@/stores/pokemonsStore';
 import { getPokemons } from '@/api/pokemon';
 
 import { Pokemon } from '../Pokemon/Pokemon';
+import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
+import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
+import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 
 import { PokemonsResponseProps } from '@/types/common';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
-import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
-import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
-import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 
 export interface PokemonListProps {
   pokemonIdsList: number[] | null | undefined;
@@ -52,11 +52,19 @@ export const PokemonList = ({ pokemonIdsList, now }: PokemonListProps) => {
   }, []);
 
   const renderError = () => {
-    if (isLoading) return <LoadingComponent />;
-    if (error) return <ErrorComponent message="포켓몬을 찾을 수 없어요." />;
-    if (isSearch && !pokemonIdsList?.length) {
-      return <ErrorComponent message="포켓몬을 찾을 수 없어요." />;
-    }
+    if (isLoading)
+      return (
+        <div className="w-full h-full">
+          <LoadingComponent />
+        </div>
+      );
+    if (error || (isSearch && !pokemonIdsList?.length))
+      return (
+        <div className="w-full h-full">
+          <ErrorComponent message="포켓몬을 찾을 수 없어요." />;
+        </div>
+      );
+
     return null;
   };
 
