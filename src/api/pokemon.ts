@@ -64,7 +64,6 @@ export async function getPokemonIdByKoreanName(
 }
 
 export async function getPokemonsByIds(ids: number[]) {
-  console.log(ids);
   return Promise.all(
     ids.map((id) =>
       fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>

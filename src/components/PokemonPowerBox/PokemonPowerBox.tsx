@@ -8,6 +8,8 @@ import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
 import { PokemonStatBox } from '../PokemonStatBox/PokemonStatBox';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
+import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
+import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 
 export interface PokemonPowerBoxProps {
   id: number;
@@ -34,21 +36,30 @@ export const PokemonPowerBox = ({ id, usage }: PokemonPowerBoxProps) => {
       : usePowerCalculatorStore((state) => state.setDefendPokemon);
 
   const isLoading = isLoadingPokemon || isLoadingSpecies;
-  const isError = isErrorPokemon || isErrorSpecies;
+  const isError = isErrorPokemon || isErrorSpecies || !pokemon;
 
   useEffect(() => {
     if (pokemonData && speciesData)
       setPokemon(extractPokemonDetails([pokemonData, speciesData]));
   }, [pokemonData, speciesData]);
+  if (isLoading)
+    return (
+      <div className="h-[202px] min-h-[202px] lg:min-h-[212px]">
+        <LoadingComponent />
+      </div>
+    );
+  if (isError)
+    return (
+      <div className="h-[202px] min-h-[202px] lg:min-h-[212px]">
+        <ErrorComponent size="small" message="포켓몬을 찾을 수 없어요." />
+      </div>
+    );
 
-  if (!pokemon) return <div>포켓몬이 없어요.</div>;
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error loading Pokemon data.</div>;
-
-  return (
-    <div className="flex flex-col lg:flex-row gap-6 mb-4">
-      <PokemonImgBox pokemon={pokemon} id={id} usage="power" />
-      <PokemonStatBox stats={pokemon.stats} usage={usage} pokemon={pokemon} />
-    </div>
-  );
+  if (pokemon)
+    return (
+      <div className="flex flex-col lg:flex-row gap-6 mb-4">
+        <PokemonImgBox pokemon={pokemon} id={id} usage="power" />
+        <PokemonStatBox stats={pokemon.stats} usage={usage} pokemon={pokemon} />
+      </div>
+    );
 };

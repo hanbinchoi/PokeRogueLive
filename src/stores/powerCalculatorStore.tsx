@@ -17,6 +17,7 @@ interface powerCalculatorState {
   weather: WeatherType | null;
   isWeaknessHit: boolean;
   damages: number[];
+  inputError: boolean;
 
   setAttackPokemon: (attackPokemon: PokemonDataProps | null) => void;
   setAttackPokemonId: (attackPokemonId: number | null) => void;
@@ -27,6 +28,7 @@ interface powerCalculatorState {
   setWeather: (field: WeatherType | null) => void;
   setIsWeaknessHit: (isWeaknessHit: boolean) => void;
   setDamages: (damages: number[]) => void;
+  setInputError: (isError: boolean) => void;
 }
 
 const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
@@ -39,6 +41,7 @@ const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
   weather: null,
   isWeaknessHit: false,
   damages: [],
+  inputError: false,
 
   setAttackPokemon: (attackPokemon) => set(() => ({ attackPokemon })),
   setAttackPokemonId: (attackPokemonId) => set(() => ({ attackPokemonId })),
@@ -51,6 +54,7 @@ const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
   setWeather: (weather) => set(() => ({ weather })),
   setIsWeaknessHit: (isWeaknessHit) => set(() => ({ isWeaknessHit })),
   setDamages: (damages) => set(() => ({ damages })),
+  setInputError: (inputError) => set(() => ({ inputError })),
 }));
 
 export default usePowerCalculatorStore;

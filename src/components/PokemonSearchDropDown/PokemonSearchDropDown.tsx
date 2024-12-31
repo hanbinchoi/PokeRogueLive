@@ -34,20 +34,30 @@ export const PokemonSearchDropDown = ({
     usage === 'attack'
       ? usePowerCalculatorStore((state) => state.setAttackPokemonId)
       : usePowerCalculatorStore((state) => state.setDefendPokemonId);
+  const setInputError = usePowerCalculatorStore((state) => state.setInputError);
 
   const { setDamages, setMove } = usePowerCalculatorStore();
 
   const handleSelect = (option: string) => {
+    const pokemonId = POKEMON_LIST_IN_KOREAN.indexOf(option) + 1;
+    if (!pokemonId) {
+      setPokemonId(null);
+      return setInputError(true);
+    }
+
     handleOptionSelect(option);
-    setPokemonId(POKEMON_LIST_IN_KOREAN.indexOf(option) + 1);
+    setPokemonId(pokemonId);
+    setInputError(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = e;
     dropdownHandleKeydown(key);
-    if (key === 'Enter' && selectedIndex !== null) {
+    if (key === 'Enter') {
       e.preventDefault();
-      handleSelect(filteredOptions[selectedIndex]);
+      selectedIndex !== null
+        ? handleSelect(filteredOptions[selectedIndex])
+        : handleSelect(inputValue);
     }
   };
 

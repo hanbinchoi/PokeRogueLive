@@ -10,6 +10,7 @@ import { CommonCheckBox } from '@/components/CommonCheckBox/CommonCheckBox';
 import { PowerDamage } from '@/components/PowerDamage/PowerDamage';
 
 import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
+import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 
 export default function PowerCalculator() {
   const {
@@ -19,8 +20,8 @@ export default function PowerCalculator() {
     isWeaknessHit,
     setIsWeaknessHit,
     move,
+    inputError,
   } = usePowerCalculatorStore();
-
   return (
     <main className="flex flex-col gap-2 items-center p-6 sm:p-8 md:p-10 lg:p-12 bg-gray-10">
       <h1 id="power-calculator" className="sr-only">
@@ -30,6 +31,10 @@ export default function PowerCalculator() {
         <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">공격</h2>
           <PokemonSearchDropDown usage="attack" />
+          {inputError && (
+            <ErrorComponent message="포켓몬을 찾을 수 없어요." size="small" />
+          )}
+
           {attackPokemonId && (
             <>
               <PokemonPowerBox id={attackPokemonId} usage="attack" />
