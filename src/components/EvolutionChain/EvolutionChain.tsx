@@ -8,6 +8,8 @@ import { EvolutionNode } from '../EvolutionNode/EvolutionNode';
 import extractNodes from '@/utils/extractNodes';
 
 import { EvolutionChainNodeProps } from '@/types/common';
+import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
+import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 
 export interface EvolutionChainProps {
   url: string;
@@ -33,11 +35,22 @@ export const EvolutionChain = ({ url, pokedex }: EvolutionChainProps) => {
     [evolutionChain],
   );
 
-  if (isLoading) return <div>진화 정보 loading...</div>;
-  if (isError) return <div>진화 정보 error</div>;
   return (
     <div className="flex flex-col items-center">
       <p className="text-lg min-[480px]:text-xl font-bold w-full">진화 정보</p>
+      {isLoading && (
+        <div className="mt-12">
+          <LoadingComponent />
+        </div>
+      )}
+      {isError && (
+        <div className="mt-12">
+          <ErrorComponent
+            size="small"
+            message="진화 정보를 찾을 수 없습니다."
+          />
+        </div>
+      )}
       {evolutionNodes &&
         evolutionNodes.map((node, i) => (
           <EvolutionNode
