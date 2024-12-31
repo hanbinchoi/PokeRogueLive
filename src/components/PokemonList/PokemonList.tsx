@@ -20,7 +20,7 @@ export interface PokemonListProps {
 }
 
 export const PokemonList = ({ pokemonIdsList, now }: PokemonListProps) => {
-  const { limit, setLimit, total, setNow } = usePokemonsStore();
+  const { limit, setLimit, total, setNow, isSearch } = usePokemonsStore();
 
   const { isLoading, error, data } = useQuery<PokemonsResponseProps>({
     queryKey: ['pokemons', now, limit],
@@ -51,22 +51,42 @@ export const PokemonList = ({ pokemonIdsList, now }: PokemonListProps) => {
     };
   }, []);
 
+  const renderError = () => {
+    if (isLoading) return <LoadingComponent />;
+    if (error) return <ErrorComponent message="포켓몬을 찾을 수 없어요." />;
+    if (isSearch && !pokemonIdsList?.length) {
+      return <ErrorComponent message="포켓몬을 찾을 수 없어요." />;
+    }
+    return null;
+  };
+
+  const renderPokemonList = () => {
+    if (isSearch && pokemonIdsList?.length) {
+      return pokemonIdsList.map((pokemonId) => (
+        <Pokemon key={pokemonId} id={pokemonId} />
+      ));
+    }
+
+    if (!isSearch && data?.data) {
+      return data.data.map((pokemon) => (
+        <Pokemon
+          key={extractIdFromUrl(pokemon.url)}
+          id={extractIdFromUrl(pokemon.url)}
+        />
+      ));
+    }
+
+    return null;
+  };
+
   return (
     <div className="flex-grow flex flex-col w-full">
-      {isLoading && <LoadingComponent />}
-      {error && <ErrorComponent message="포켓몬을 찾을 수 없어요." />}
+      {renderError()}
+
       <div className="grid  py-2 px-14 gap-8 grid-cols-1 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {pokemonIdsList?.length
-          ? pokemonIdsList.map((pokemonId) => (
-              <Pokemon key={pokemonId} id={pokemonId} />
-            ))
-          : data?.data.map((pokemon) => (
-              <Pokemon
-                key={extractIdFromUrl(pokemon.url)}
-                id={extractIdFromUrl(pokemon.url)}
-              />
-            ))}
+        {renderPokemonList()}
       </div>
+
       <PagingDocuments
         now={now}
         total={total}

@@ -9,15 +9,11 @@ import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
 
-import { TOTAL_POKEMON_NUM } from '@/constants/contents';
-
 export interface PokemonProps {
   id: number;
 }
 
 export const Pokemon = ({ id }: PokemonProps) => {
-  if (id >= TOTAL_POKEMON_NUM) return;
-
   const [pokemon, setPokemon] = useState<PokemonDataProps | null>(null);
 
   const {

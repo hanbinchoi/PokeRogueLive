@@ -6,13 +6,24 @@ import {
 } from 'react-hook-form';
 import { twJoin } from 'tailwind-merge';
 
-import useDropdown from '@/hooks/useDropDown';
-
 import { Dropdown } from '../Dropdown/Dropdown';
 
 import { DefaultProps, InputValues } from '@/types/common';
 
-import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
+interface UseDropdownReturn {
+  dropdownRef: React.RefObject<HTMLDivElement>;
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  showDropdown: boolean;
+  setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+  filteredOptions: string[];
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleOptionSelect: (option: string) => void;
+  handleKeyDown: (key: string) => void;
+  clearSearch: () => void;
+  selectedIndex: number | null;
+  setSelectedIndex: React.Dispatch<React.SetStateAction<number | null>>;
+}
 
 export interface SearchInputProps extends DefaultProps {
   placeholder?: string;
@@ -21,6 +32,7 @@ export interface SearchInputProps extends DefaultProps {
   setValue: UseFormSetValue<InputValues>;
   watch: UseFormWatch<InputValues>;
   onSubmit: (input: InputValues) => void;
+  dropdownControls: UseDropdownReturn;
 }
 
 export const SearchInput = ({
@@ -31,19 +43,20 @@ export const SearchInput = ({
   setValue,
   watch,
   onSubmit,
+  dropdownControls,
 }: SearchInputProps) => {
   const {
-    dropdownRef,
-    showDropdown,
+    selectedIndex,
     filteredOptions,
+    dropdownRef,
+    setShowDropdown,
+    showDropdown,
     handleInputChange: dropdownHandleInputChange,
     handleOptionSelect,
-    setShowDropdown,
-    selectedIndex,
+    clearSearch,
     setSelectedIndex,
     handleKeyDown: dropdownHandleKeydown,
-    clearSearch,
-  } = useDropdown({ options: POKEMON_LIST_IN_KOREAN });
+  } = dropdownControls;
 
   const keyword = watch('keyword');
 
@@ -99,6 +112,7 @@ export const SearchInput = ({
       {keyword && (
         <button
           onClick={handleClear}
+          type="reset"
           className="absolute right-4 inset-y-0 flex items-center rounded-md text-gray-90 ">
           ✕
         </button>

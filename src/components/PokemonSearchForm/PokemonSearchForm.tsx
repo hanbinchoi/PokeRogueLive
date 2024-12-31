@@ -11,7 +11,11 @@ import { InputValues } from '@/types/common';
 
 import getPokemonsByPartialName from '@/utils/getPokemonsIdByPartialName';
 
-import { TOTAL_POKEMON_NUM } from '@/constants/contents';
+import {
+  POKEMON_LIST_IN_KOREAN,
+  TOTAL_POKEMON_NUM,
+} from '@/constants/contents';
+import useDropdown from '@/hooks/useDropDown';
 
 export const PokemonSearchForm = () => {
   const {
@@ -21,6 +25,7 @@ export const PokemonSearchForm = () => {
     setTotal,
     setSearchIdsList,
     setPokemonIdsList,
+    setIsSearch,
   } = usePokemonsStore();
 
   const {
@@ -29,8 +34,12 @@ export const PokemonSearchForm = () => {
     reset,
     watch,
     setValue,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm<InputValues>();
+
+  const dropdownControls = useDropdown({ options: POKEMON_LIST_IN_KOREAN });
 
   useEffect(() => {
     if (searchIdsList) {
@@ -41,10 +50,20 @@ export const PokemonSearchForm = () => {
   }, [searchIdsList, now]);
 
   const handleSearchSubmit = (input: InputValues) => {
+    if (input.keyword.trim() === '') {
+      setError('keyword', {
+        type: 'manual',
+        message: '공백은 검색할 수 없어요.',
+      });
+      return;
+    }
     const pokemonIds = getPokemonsByPartialName(input.keyword.trim());
+
     setSearchIdsList(pokemonIds);
     setTotal(pokemonIds.length);
     setNow(1);
+    setIsSearch(true);
+    clearErrors();
   };
 
   const handleReset = () => {
@@ -52,6 +71,8 @@ export const PokemonSearchForm = () => {
     setSearchIdsList(null);
     setTotal(TOTAL_POKEMON_NUM);
     setNow(1);
+    setIsSearch(false);
+    dropdownControls.clearSearch();
   };
 
   return (
@@ -66,6 +87,7 @@ export const PokemonSearchForm = () => {
           watch={watch}
           handleReset={handleReset}
           setValue={setValue}
+          dropdownControls={dropdownControls}
         />
         {errors.keyword && (
           <p className="pl-2 text-red-10 font-bold text-sm absolute left-0 mt-1">

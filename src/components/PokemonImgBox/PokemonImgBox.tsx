@@ -26,7 +26,7 @@ export const PokemonImgBox = ({
   };
 
   const renderList = () => (
-    <div className="w-[150px] min-w-[150px] lg:min-w-[170px] h-[202px] min-h-[202px] lg:min-h-[212px] px-8 py-4 text-sm font-bold flex flex-col justify-center items-center bg-white-100 border-2 rounded-lg">
+    <div className="w-[150px] min-w-[150px] lg:min-w-[170px] h-[202px] min-h-[202px] lg:min-h-[212px] px-6 xl:px-8 py-4 text-sm font-bold flex flex-col justify-center items-center bg-white-100 border-2 rounded-lg">
       {isLoading ? (
         <LoadingComponent />
       ) : isError ? (
