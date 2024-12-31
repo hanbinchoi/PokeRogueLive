@@ -6,10 +6,10 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
 import { PokemonStatBox } from '../PokemonStatBox/PokemonStatBox';
-
-import extractPokemonDetails from '@/utils/extractPokemonDetails';
 import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
 import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
+
+import extractPokemonDetails from '@/utils/extractPokemonDetails';
 
 export interface PokemonPowerBoxProps {
   id: number;

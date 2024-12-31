@@ -8,9 +8,9 @@ import { MoveSearchDropDown } from '@/components/MoveSearchDropDown/MoveSearchDr
 import { CommonSearchDropDown } from '@/components/CommonSearchDropDown/CommonSearchDropDown';
 import { CommonCheckBox } from '@/components/CommonCheckBox/CommonCheckBox';
 import { PowerDamage } from '@/components/PowerDamage/PowerDamage';
+import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 
 import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
-import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 
 export default function PowerCalculator() {
   const {
