@@ -57,7 +57,7 @@ export const PokemonPowerBox = ({ id, usage }: PokemonPowerBoxProps) => {
 
   if (pokemon)
     return (
-      <div className="flex flex-col lg:flex-row gap-6 mb-4">
+      <div className="flex flex-col items-center lg:flex-row gap-6 mb-4">
         <PokemonImgBox pokemon={pokemon} id={id} usage="power" />
         <PokemonStatBox stats={pokemon.stats} usage={usage} pokemon={pokemon} />
       </div>

@@ -34,7 +34,10 @@ export const PokemonSearchDropDown = ({
     usage === 'attack'
       ? usePowerCalculatorStore((state) => state.setAttackPokemonId)
       : usePowerCalculatorStore((state) => state.setDefendPokemonId);
-  const setInputError = usePowerCalculatorStore((state) => state.setInputError);
+  const setInputError =
+    usage === 'attack'
+      ? usePowerCalculatorStore((state) => state.setAttackInputError)
+      : usePowerCalculatorStore((state) => state.setDefendInputError);
 
   const { setDamages, setMove } = usePowerCalculatorStore();
 
