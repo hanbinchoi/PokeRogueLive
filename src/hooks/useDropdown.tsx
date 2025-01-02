@@ -9,6 +9,7 @@ export interface UseDropdownProps {
 const useDropdown = ({ options }: UseDropdownProps) => {
   const [inputValue, setInputValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -18,18 +19,44 @@ const useDropdown = ({ options }: UseDropdownProps) => {
   );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(1);
     setInputValue(e.target.value);
     setShowDropdown(true);
   };
 
-  const handleOptionSelect = (
-    option: string,
-    callback?: (option: string) => void,
-  ) => {
+  const handleOptionSelect = (option: string) => {
     setInputValue(option);
     setShowDropdown(false);
-    if (callback) callback(option);
+    setSelectedIndex(null);
+  };
+
+  const handleKeyDown = (key: string) => {
+    if (key === 'Backspace') {
+      setSelectedIndex(null);
+    }
+
+    if (key === 'Escape') {
+      setSelectedIndex(null);
+      setShowDropdown(false);
+    }
+
+    if (key === 'ArrowDown' || key === 'ArrowUp') {
+      const direction = key === 'ArrowDown' ? 1 : -1;
+      const newIndex =
+        selectedIndex === null
+          ? 0
+          : Math.min(
+              Math.max(selectedIndex + direction, 0),
+              filteredOptions.length - 1,
+            );
+
+      setSelectedIndex(newIndex);
+      setShowDropdown(true);
+    }
+
+    if (key === 'Enter') {
+      setShowDropdown(false);
+      setSelectedIndex(null);
+    }
   };
 
   const clearSearch = () => {
@@ -48,7 +75,10 @@ const useDropdown = ({ options }: UseDropdownProps) => {
     filteredOptions,
     handleInputChange,
     handleOptionSelect,
+    handleKeyDown,
     clearSearch,
+    selectedIndex,
+    setSelectedIndex,
   };
 };
 

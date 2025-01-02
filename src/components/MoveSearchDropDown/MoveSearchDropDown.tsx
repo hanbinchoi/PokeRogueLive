@@ -2,7 +2,7 @@ import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { DropDown } from '../DropDown/DropDown';
+import { Dropdown } from '../Dropdown/Dropdown';
 
 import { MoveProps } from '@/types/common';
 
@@ -27,12 +27,23 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
     handleInputChange,
     handleOptionSelect,
     setShowDropdown,
+    selectedIndex,
+    handleKeyDown: dropdownHandleKeydown,
     clearSearch,
   } = useDropdown({ options: extractMoves.map((m) => m.krName) });
 
   const handleSelect = (option: string) => {
     handleOptionSelect(option);
     setMove(extractMoves?.find((moves) => moves.krName === option) ?? null);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+    dropdownHandleKeydown(key);
+    if (key === 'Enter' && selectedIndex !== null) {
+      e.preventDefault();
+      handleSelect(filteredOptions[selectedIndex]);
+    }
   };
 
   const handleClear = () => {
@@ -46,9 +57,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
       <label className="text-base md:text-lg" htmlFor="dropdown-move">
         기술
       </label>
-      <div
-        className="relative w-full min-w-[120px] max-w-[200px]"
-        ref={dropdownRef}>
+      <div className="relative w-full min-w-[120px] max-w-[200px]">
         <input
           id="dropdown-move"
           type="text"
@@ -56,8 +65,10 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
           value={inputValue}
           onChange={handleInputChange}
           onFocus={() => setShowDropdown(true)}
+          onKeyDown={handleKeyDown}
           placeholder="기술 선택"
           autoComplete="off"
+          tabIndex={1}
         />
         {inputValue && (
           <button
@@ -66,7 +77,9 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
             ✕
           </button>
         )}
-        <DropDown
+        <Dropdown
+          dropdownRef={dropdownRef}
+          selectedIndex={selectedIndex}
           filteredOptions={filteredOptions}
           handleSelect={handleSelect}
           showDropdown={showDropdown}

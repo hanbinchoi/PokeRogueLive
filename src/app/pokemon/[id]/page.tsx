@@ -12,11 +12,12 @@ import { AbilityBox } from '@/components/AbilityBox/AbilityBox';
 import { MoveBox } from '@/components/MoveBox/MoveBox';
 import { PokemonStatInfo } from '@/components/PokemonStatInfo/PokemonStatInfo';
 import { PokemonStatInfoTable } from '@/components/PokemonStatInfoTable/PokemonStatInfoTable';
+import { LoadingComponent } from '@/components/LoadingComponent/LoadingComponent';
+import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
-
 export default function PokemonDetail() {
   const { id } = useParams();
 
@@ -31,15 +32,26 @@ export default function PokemonDetail() {
     isErrorSpecies,
   } = usePokemonDetailQuery(String(id));
 
+  const isError = isErrorPokemon || isErrorSpecies || !targetPokemon;
+  const isLoading = isLoadingPokemon || isLoadingSpecies;
+
   useEffect(() => {
     if (pokemonData && speciesData)
       setTargetPokemon(extractPokemonDetails([pokemonData, speciesData]));
   }, [pokemonData, speciesData]);
 
-  if (!targetPokemon) return <div>포켓몬이 없어요.</div>;
-  if (isLoadingPokemon || isLoadingSpecies) return <div>Loading...</div>;
-  if (isErrorPokemon) return <div>Error loading Pokemon data.</div>;
-  if (isErrorSpecies) return <div>Error loading Pokemon species data.</div>;
+  if (isLoading)
+    return (
+      <div className="w-full h-full">
+        <LoadingComponent />
+      </div>
+    );
+  if (isError)
+    return (
+      <div className="w-full h-full">
+        <ErrorComponent message="포켓몬을 찾을 수 없어요" />
+      </div>
+    );
 
   return (
     <main className="bg-gray-10 flex min-h-screen flex-col items-center justify-between p-8 md:p-12 lg:p-16 xl:p-24">

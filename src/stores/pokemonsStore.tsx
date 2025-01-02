@@ -12,6 +12,7 @@ interface PokemonsState {
   searchIdsList: number[] | null;
   pokemonIdsList: number[] | null;
   targetPokemon: PokemonDataProps | null;
+  isSearch: boolean;
 
   setNow: (now: number) => void;
   setTotal: (total: number) => void;
@@ -20,6 +21,7 @@ interface PokemonsState {
   setSearchIdsList: (searchList: number[] | null) => void;
   setPokemonIdsList: (pokemonIdsList: number[] | null) => void;
   setTargetPokemon: (targetPokemon: PokemonDataProps | null) => void;
+  setIsSearch: (isSearch: boolean) => void;
 }
 
 const usePokemonsStore = create<PokemonsState>((set) => ({
@@ -30,6 +32,7 @@ const usePokemonsStore = create<PokemonsState>((set) => ({
   searchIdsList: null,
   pokemonIdsList: null,
   targetPokemon: null,
+  isSearch: false,
 
   setNow: (now) => set(() => ({ now })),
   setTotal: (total) => set(() => ({ total })),
@@ -38,6 +41,7 @@ const usePokemonsStore = create<PokemonsState>((set) => ({
   setSearchIdsList: (searchIdsList) => set(() => ({ searchIdsList })),
   setPokemonIdsList: (pokemonIdsList) => set(() => ({ pokemonIdsList })),
   setTargetPokemon: (targetPokemon) => set(() => ({ targetPokemon })),
+  setIsSearch: (isSearch) => set(() => ({ isSearch })),
 }));
 
 export default usePokemonsStore;

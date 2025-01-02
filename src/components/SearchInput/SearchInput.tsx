@@ -6,41 +6,57 @@ import {
 } from 'react-hook-form';
 import { twJoin } from 'tailwind-merge';
 
-import useDropdown from '@/hooks/useDropDown';
+import { Dropdown } from '../Dropdown/Dropdown';
 
-import { DropDown } from '../DropDown/DropDown';
+import { DefaultProps, InputValues } from '@/types/common';
 
-import { DefaultProps, InputValues, SearchInputSize } from '@/types/common';
-
-import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
+interface UseDropdownReturn {
+  dropdownRef: React.RefObject<HTMLDivElement>;
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  showDropdown: boolean;
+  setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+  filteredOptions: string[];
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleOptionSelect: (option: string) => void;
+  handleKeyDown: (key: string) => void;
+  clearSearch: () => void;
+  selectedIndex: number | null;
+  setSelectedIndex: React.Dispatch<React.SetStateAction<number | null>>;
+}
 
 export interface SearchInputProps extends DefaultProps {
-  size?: SearchInputSize;
   placeholder?: string;
   register: UseFormRegister<InputValues>;
-  reset: UseFormReset<InputValues>;
+  handleReset: UseFormReset<InputValues>;
   setValue: UseFormSetValue<InputValues>;
   watch: UseFormWatch<InputValues>;
+  onSubmit: (input: InputValues) => void;
+  dropdownControls: UseDropdownReturn;
 }
 
 export const SearchInput = ({
-  size = 'medium',
   placeholder,
   className,
   register,
-  reset,
+  handleReset,
   setValue,
   watch,
+  onSubmit,
+  dropdownControls,
 }: SearchInputProps) => {
   const {
-    dropdownRef,
-    showDropdown,
+    selectedIndex,
     filteredOptions,
+    dropdownRef,
+    setShowDropdown,
+    showDropdown,
     handleInputChange: dropdownHandleInputChange,
     handleOptionSelect,
-    setShowDropdown,
     clearSearch,
-  } = useDropdown({ options: POKEMON_LIST_IN_KOREAN });
+    setSelectedIndex,
+    handleKeyDown: dropdownHandleKeydown,
+  } = dropdownControls;
 
   const keyword = watch('keyword');
 
@@ -49,6 +65,7 @@ export const SearchInput = ({
     dropdownHandleInputChange(e);
     setValue('keyword', value);
   };
+
   const handleSelect = (option: string) => {
     handleOptionSelect(option);
     setValue('keyword', option);
@@ -56,23 +73,33 @@ export const SearchInput = ({
 
   const handleClear = () => {
     clearSearch();
-    reset();
+    setSelectedIndex(null);
+    handleReset();
   };
 
-  const SearchInputSize: Record<SearchInputSize, string> = {
-    small: 'px-1 sm:px-2 sm:py-1 rounded-lg text-xs border',
-    medium: 'px-2 py-1 sm:px-3 sm:py-2 rounded-lg text-sm border',
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+
+    dropdownHandleKeydown(key);
+
+    if (key === 'Enter') {
+      e.preventDefault();
+      selectedIndex !== null
+        ? handleSelect(filteredOptions[selectedIndex])
+        : onSubmit(watch());
+    }
   };
+
   return (
     <div ref={dropdownRef}>
       <input
         className={twJoin(
-          'min-w-[166px] min-[480px]:min-w-[244px] h-[32px] min-h-[32px] border-gray-30 focus:outline-blue-30 font-light shadow-md ',
-          SearchInputSize[size],
+          'px-2 py-1 sm:px-3 sm:py-2 rounded text-sm border min-w-[166px] min-[480px]:min-w-[244px] h-[32px] min-h-[32px] border-gray-30 focus:outline-blue-30 font-light shadow-md ',
           className,
         )}
         placeholder={placeholder}
         onFocus={() => setShowDropdown(true)}
+        onKeyDown={handleKeyDown}
         autoComplete="off"
         {...register('keyword', {
           required: '포켓몬을 입력해주세요.',
@@ -80,19 +107,24 @@ export const SearchInput = ({
             value.trim() !== '' || '공백은 검색할 수 없어요.',
           onChange: handleInputChange,
         })}
+        tabIndex={0}
       />
       {keyword && (
         <button
           onClick={handleClear}
+          type="reset"
           className="absolute right-4 inset-y-0 flex items-center rounded-md text-gray-90 ">
           ✕
         </button>
       )}
-      <DropDown
+      <Dropdown
+        dropdownRef={dropdownRef}
+        selectedIndex={selectedIndex}
         filteredOptions={filteredOptions}
         handleSelect={handleSelect}
         showDropdown={showDropdown}
         noFoundMessage="포켓몬을 찾을 수 없어요"
+        className="min-w-[166px] min-[480px]:min-w-[244px] "
       />
     </div>
   );

@@ -2,8 +2,9 @@ import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
+import { Dropdown } from '../Dropdown/Dropdown';
+
 import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
-import { DropDown } from '../DropDown/DropDown';
 
 export interface PokemonSearchDropDownProps {
   usage: 'attack' | 'defend';
@@ -20,6 +21,8 @@ export const PokemonSearchDropDown = ({
     handleInputChange,
     handleOptionSelect,
     setShowDropdown,
+    selectedIndex,
+    handleKeyDown: dropdownHandleKeydown,
     clearSearch,
   } = useDropdown({ options: POKEMON_LIST_IN_KOREAN });
 
@@ -31,12 +34,34 @@ export const PokemonSearchDropDown = ({
     usage === 'attack'
       ? usePowerCalculatorStore((state) => state.setAttackPokemonId)
       : usePowerCalculatorStore((state) => state.setDefendPokemonId);
+  const setInputError =
+    usage === 'attack'
+      ? usePowerCalculatorStore((state) => state.setAttackInputError)
+      : usePowerCalculatorStore((state) => state.setDefendInputError);
 
   const { setDamages, setMove } = usePowerCalculatorStore();
 
   const handleSelect = (option: string) => {
+    const pokemonId = POKEMON_LIST_IN_KOREAN.indexOf(option) + 1;
+    if (!pokemonId) {
+      setPokemonId(null);
+      return setInputError(true);
+    }
+
     handleOptionSelect(option);
-    setPokemonId(POKEMON_LIST_IN_KOREAN.indexOf(option) + 1);
+    setPokemonId(pokemonId);
+    setInputError(false);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+    dropdownHandleKeydown(key);
+    if (key === 'Enter') {
+      e.preventDefault();
+      selectedIndex !== null
+        ? handleSelect(filteredOptions[selectedIndex])
+        : handleSelect(inputValue);
+    }
   };
 
   const handleClear = () => {
@@ -46,17 +71,18 @@ export const PokemonSearchDropDown = ({
     setDamages([]);
     usage === 'attack' && setMove(null);
   };
-
   return (
-    <div className="relative w-fit" ref={dropdownRef}>
+    <div className="relative w-fit">
       <input
         type="text"
         className="w-full min-w-[120px] max-w-[162px] border rounded py-1 px-2 text-sm lg:text-base"
         value={inputValue}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
         onFocus={() => setShowDropdown(true)}
         placeholder="포켓몬 입력"
         autoComplete="off"
+        tabIndex={0}
       />
       {inputValue && (
         <button
@@ -65,7 +91,9 @@ export const PokemonSearchDropDown = ({
           ✕
         </button>
       )}
-      <DropDown
+      <Dropdown
+        dropdownRef={dropdownRef}
+        selectedIndex={selectedIndex}
         filteredOptions={filteredOptions}
         handleSelect={handleSelect}
         showDropdown={showDropdown}

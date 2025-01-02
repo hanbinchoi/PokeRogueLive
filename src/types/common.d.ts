@@ -15,8 +15,6 @@ export type addPrefixToHandler<T, P extends string> = {
 
 export type ButtonSize = 'small' | 'medium' | 'large';
 
-export type SearchInputSize = 'small' | 'medium';
-
 export interface InputValues {
   keyword: string;
   move: string;

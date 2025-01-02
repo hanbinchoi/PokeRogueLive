@@ -2,6 +2,9 @@ import { twJoin } from 'tailwind-merge';
 
 import usePokemonMoveQuery from '@/hooks/usePokemonMoveQuery';
 
+import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
+import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
+
 import { POKEMON_TYPE } from '@/constants/contents';
 
 import extractMove from '@/utils/extractMove';
@@ -14,7 +17,6 @@ export const Move = ({ levelLearnedAt, url }: MoveProps) => {
   const { isError, isLoading, data } = usePokemonMoveQuery(url);
 
   if (isError) return <div>move detail error</div>;
-  if (isLoading) return <div>move detail loading</div>;
 
   if (data) {
     const { name, accuracy, flavorText, damageClass, pp, power, type } =
@@ -22,6 +24,21 @@ export const Move = ({ levelLearnedAt, url }: MoveProps) => {
 
     const { backgroundColor, name: typeName } = POKEMON_TYPE[type];
 
+    if (isLoading)
+      return (
+        <div className="w-full h-full mb-2">
+          <LoadingComponent />
+        </div>
+      );
+    if (isError)
+      return (
+        <div className="w-full h-full">
+          <ErrorComponent
+            message="기술을 불러오는데 실패했습니다."
+            size="xsmall"
+          />
+        </div>
+      );
     return (
       <div className="flex flex-col gap-2 text-xs md:text-sm">
         <div className="flex flex-col min-[480px]:flex-row items-left min-[480px]:items-center gap-2">

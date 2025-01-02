@@ -2,7 +2,7 @@ import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { DropDown } from '../DropDown/DropDown';
+import { Dropdown } from '../Dropdown/Dropdown';
 
 export interface CommonSearchDropDownProps {
   label: string;
@@ -21,6 +21,8 @@ export const CommonSearchDropDown = ({
     handleInputChange,
     handleOptionSelect,
     setShowDropdown,
+    selectedIndex,
+    handleKeyDown: dropdownHandleKeydown,
     clearSearch,
   } = useDropdown({ options });
 
@@ -40,6 +42,15 @@ export const CommonSearchDropDown = ({
     updateState(option);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+    dropdownHandleKeydown(key);
+    if (key === 'Enter' && selectedIndex !== null) {
+      e.preventDefault();
+      handleSelect(filteredOptions[selectedIndex]);
+    }
+  };
+
   const handleClear = () => {
     clearSearch();
     updateState(null);
@@ -50,9 +61,7 @@ export const CommonSearchDropDown = ({
       <label className="text-base md:text-lg" htmlFor={`dropdown-${label}`}>
         {label}
       </label>
-      <div
-        className="relative w-full min-w-[120px] max-w-[200px]"
-        ref={dropdownRef}>
+      <div className="relative w-full min-w-[120px] max-w-[200px]">
         <input
           id={`dropdown-${label}`}
           type="text"
@@ -60,8 +69,10 @@ export const CommonSearchDropDown = ({
           value={inputValue}
           onChange={handleInputChange}
           onFocus={() => setShowDropdown(true)}
+          onKeyDown={handleKeyDown}
           placeholder="기술 선택"
           autoComplete="off"
+          tabIndex={2}
         />
         {inputValue && (
           <button
@@ -70,7 +81,9 @@ export const CommonSearchDropDown = ({
             ✕
           </button>
         )}
-        <DropDown
+        <Dropdown
+          dropdownRef={dropdownRef}
+          selectedIndex={selectedIndex}
           filteredOptions={filteredOptions}
           handleSelect={handleSelect}
           showDropdown={showDropdown}
