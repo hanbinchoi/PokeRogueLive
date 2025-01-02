@@ -24,6 +24,9 @@ interface PokemonsState {
   setIsSearch: (isSearch: boolean) => void;
 }
 
+/**
+ * 포켓몬 목록 페이지 상태를 관리하는 스토어
+ */
 const usePokemonsStore = create<PokemonsState>((set) => ({
   now: 1,
   total: TOTAL_POKEMON_NUM,

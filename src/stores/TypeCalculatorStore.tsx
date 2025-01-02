@@ -26,6 +26,9 @@ interface TypeCalculatorState {
   setAttackAbility: (attackAbility: string | null) => void;
 }
 
+/**
+ * 타입 계산 페이지 상태를 관리하는 스토어
+ */
 const useTypeCalculatorStore = create<TypeCalculatorState>((set) => ({
   mode: 'defend',
   typeCalcDefendOptions: [null, null],

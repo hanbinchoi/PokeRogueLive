@@ -33,6 +33,9 @@ interface powerCalculatorState {
   setDamages: (damages: number[]) => void;
 }
 
+/**
+ * 기술 위력 페이지 상태를 관리하는 스토어
+ */
 const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
   attackPokemon: null,
   attackPokemonId: null,
