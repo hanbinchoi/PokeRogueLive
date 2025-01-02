@@ -14,7 +14,7 @@ export default function ReactQueryProviders({
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000,
+            staleTime: 300 * 1000, // 데이터 유지시간 5분
           },
         },
       }),
