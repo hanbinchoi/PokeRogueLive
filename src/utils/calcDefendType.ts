@@ -16,7 +16,7 @@ export default function calcDefendType(
   second: PokemonTypeName | null,
   ability?: string | null,
 ): calcResultType {
-  const damageMap = new Map<string, PokemonTypeName[]>();
+  const damageMap = new Map<number, PokemonTypeName[]>();
 
   if (first === null) {
     if (second)
@@ -63,7 +63,7 @@ export default function calcDefendType(
     if (ability) {
       score = calcDefendAbility(ability, score, type, [first, second]);
     }
-    addToMap(damageMap, '' + score, type);
+    addToMap(damageMap, score, type);
   });
 
   return sortedMap(damageMap);
