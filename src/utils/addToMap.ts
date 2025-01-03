@@ -1,15 +1,23 @@
 import { PokemonTypeName } from '@/types/common';
 
+/**
+ * 맵 객체에 값을 추가하는 함수. 값은 `PokemonTypeName`의 배열로 구성되어 있습니다.
+ *
+ * 맵에 이미 key가 존재하면, 해당 키 배열에 값 추가합니다.
+ *
+ * 맵에 key가 존재하지 않으면, 해당 키에 새로운 배열을 추가합니다.
+ * @param map - 값을 저장할 Map 객체 (`Map<string, PokemonTypeName[]>`)
+ * @param key - Map의 key값 (`string`)
+ * @param value - key의 저장 할 값 (`PokemonTypeName`)
+ */
 export default function addToMap(
   map: Map<string, PokemonTypeName[]>,
   key: string,
   value: PokemonTypeName,
 ): void {
   if (map.has(key)) {
-    // 키가 이미 존재하는 경우, 해당 키의 배열에 값을 추가
     map.get(key)!.push(value);
   } else {
-    // 키가 존재하지 않는 경우, 새 키를 추가하고 값을 배열로 넣음
     map.set(key, [value]);
   }
 }
