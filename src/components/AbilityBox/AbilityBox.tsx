@@ -1,12 +1,12 @@
 import { Ability } from '../Ability/Ability';
 import { Tooltip } from '../Tooltip/Tooltip';
 
-import { AbilityInfoProps } from '@/types/common';
+import { AbilityDataProps } from '@/types/data';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
 
 export interface AbilityBoxProps {
-  abilities: AbilityInfoProps[];
+  abilities: AbilityDataProps[];
 }
 
 export const AbilityBox = ({ abilities }: AbilityBoxProps) => {

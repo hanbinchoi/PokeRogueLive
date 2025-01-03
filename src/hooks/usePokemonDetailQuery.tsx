@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getPokemon, getPokemonSpecies } from '@/api/pokemon';
 
-import { PokemonDetailProps, PokemonSpeciesProps } from '@/types/common';
+import { PokemonDetailDataProps, PokemonSpeciesDataProps } from '@/types/data';
 
 /**
  * 포켓몬 ID를 기반으로 포켓몬의 세부 정보와 종(species) 데이터를 가져오는 React Query 훅
@@ -30,7 +30,7 @@ export default function usePokemonDetailQuery(id: string) {
     data: pokemonData,
     isLoading: isLoadingPokemon,
     isError: isErrorPokemon,
-  } = useQuery<PokemonDetailProps>({
+  } = useQuery<PokemonDetailDataProps>({
     queryKey: ['detail', id],
     queryFn: () => getPokemon(+id),
   });
@@ -39,7 +39,7 @@ export default function usePokemonDetailQuery(id: string) {
     data: speciesData,
     isLoading: isLoadingSpecies,
     isError: isErrorSpecies,
-  } = useQuery<PokemonSpeciesProps>({
+  } = useQuery<PokemonSpeciesDataProps>({
     queryKey: ['species', pokemonData?.id],
     queryFn: () => getPokemonSpecies(pokemonData!.species.url),
     enabled: !!pokemonData,

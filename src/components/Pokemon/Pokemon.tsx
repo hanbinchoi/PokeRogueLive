@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { PokemonDataProps } from '@/types/common';
-
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
+
+import { PokemonDetailProps } from '@/types/common';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
 
@@ -14,7 +14,7 @@ export interface PokemonProps {
 }
 
 export const Pokemon = ({ id }: PokemonProps) => {
-  const [pokemon, setPokemon] = useState<PokemonDataProps | null>(null);
+  const [pokemon, setPokemon] = useState<PokemonDetailProps | null>(null);
 
   const {
     pokemonData,

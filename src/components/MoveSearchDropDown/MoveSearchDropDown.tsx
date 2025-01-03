@@ -4,12 +4,12 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 import { Dropdown } from '../Dropdown/Dropdown';
 
-import { MoveProps } from '@/types/common';
+import { MoveDataProps } from '@/types/data';
 
 import extractPokemonMoves from '@/utils/extractPokemonMoves';
 
 export interface MoveSearchDropDownProps {
-  moves: MoveProps[] | undefined;
+  moves: MoveDataProps[] | undefined;
 }
 
 export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
@@ -30,7 +30,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
     selectedIndex,
     handleKeyDown: dropdownHandleKeydown,
     clearSearch,
-  } = useDropdown({ options: extractMoves.map((m) => m.krName) });
+  } = useDropdown(extractMoves.map((m) => m.krName));
 
   const handleSelect = (option: string) => {
     handleOptionSelect(option);

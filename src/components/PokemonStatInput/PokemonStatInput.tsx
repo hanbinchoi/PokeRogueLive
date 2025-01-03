@@ -1,11 +1,12 @@
-import { PokemonDataProps, StatInfoProps, StatKey } from '@/types/common';
+import { PokemonDetailProps, StatKey } from '@/types/common';
+import { StatDataProps } from '@/types/data';
 
 import { POKEMON_STAT_KOREAN_MAP } from '@/constants/contents';
 
 export interface PokemonStatInputProps {
-  stat: StatInfoProps;
-  pokemon: PokemonDataProps;
-  setPokemon: (pokemon: PokemonDataProps) => void;
+  stat: StatDataProps;
+  pokemon: PokemonDetailProps;
+  setPokemon: (pokemon: PokemonDetailProps) => void;
 }
 
 export const PokemonStatInput = ({

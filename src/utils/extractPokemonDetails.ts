@@ -1,12 +1,8 @@
-import {
-  PokemonDataProps,
-  PokemonDetailProps,
-  PokemonSpeciesProps,
-  PokemonType,
-} from '@/types/common';
+import { PokemonDetailProps, PokemonType } from '@/types/common';
+import { PokemonDetailDataProps, PokemonSpeciesDataProps } from '@/types/data';
 
 export default function extractPokemonDetails(
-  results: [PokemonDetailProps, PokemonSpeciesProps],
+  results: [PokemonDetailDataProps, PokemonSpeciesDataProps],
 ) {
   const [detail, species] = results;
 
@@ -40,7 +36,7 @@ export default function extractPokemonDetails(
       stat: { name: 'lv', url: 'unknown' },
     });
 
-  const pokemonData: PokemonDataProps = {
+  const pokemonData: PokemonDetailProps = {
     type: types.map((type) => type.type.name as PokemonType),
     pokedex: order,
     name: names.find((data) => data.language.name === 'ko')?.name as string,

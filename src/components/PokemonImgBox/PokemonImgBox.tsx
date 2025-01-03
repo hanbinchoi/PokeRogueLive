@@ -3,10 +3,10 @@ import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
 import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 import { AiFillSound } from 'react-icons/ai';
 
-import { PokemonDataProps } from '@/types/common';
+import { PokemonDetailProps } from '@/types/common';
 
 export interface PokemonImgBoxProps {
-  pokemon: PokemonDataProps | null;
+  pokemon: PokemonDetailProps | null;
   id: number;
   usage: 'detail' | 'list' | 'power';
   isLoading?: boolean;

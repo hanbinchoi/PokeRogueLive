@@ -1,9 +1,9 @@
 import { TypeBadge } from '../TypeBadge/TypeBadge';
 
-import { PokemonDataProps } from '@/types/common';
+import { PokemonDetailProps } from '@/types/common';
 
 export interface PokemonBasicInfoProps {
-  pokemon: PokemonDataProps;
+  pokemon: PokemonDetailProps;
 }
 
 export const PokemonBasicInfo = ({ pokemon }: PokemonBasicInfoProps) => {

@@ -13,7 +13,7 @@ export const MENUS: MenuItemProps[] = [
   {
     title: 'pokemon',
     label: '포켓몬 도감',
-    icon: FaBook, // 아이콘 컴포넌트 자체를 전달
+    icon: FaBook,
   },
   {
     title: 'type-calculator',

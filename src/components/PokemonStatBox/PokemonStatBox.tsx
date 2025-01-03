@@ -1,12 +1,13 @@
 import { PokemonStatInput } from '../PokemonStatInput/PokemonStatInput';
 
-import { PokemonDataProps, StatInfoProps } from '@/types/common';
-
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
+import { PokemonDetailProps } from '@/types/common';
+import { StatDataProps } from '@/types/data';
+
 export interface PokemonStatBoxProps {
-  stats: StatInfoProps[];
-  pokemon: PokemonDataProps;
+  stats: StatDataProps[];
+  pokemon: PokemonDetailProps;
   usage: 'attack' | 'defend';
 }
 

@@ -6,18 +6,18 @@ import getFieldValue from './getFieldValue';
 import {
   DamageContextProps,
   FieldType,
-  MoveDetailProps,
-  PokemonDataProps,
+  PokemonDetailProps,
   PokemonStatsProps,
   WeatherType,
 } from '@/types/common';
+import { MoveDetailDataProps } from '@/types/data';
 
 export interface calcPowerProps {
-  attackPokemon: PokemonDataProps;
-  defendPokemon: PokemonDataProps;
+  attackPokemon: PokemonDetailProps;
+  defendPokemon: PokemonDetailProps;
   attackPokemonStats: PokemonStatsProps;
   defendPokemonStats: PokemonStatsProps;
-  MoveDetail: MoveDetailProps;
+  MoveDetail: MoveDetailDataProps;
   weather: WeatherType;
   field: FieldType;
   isWeaknessHit: boolean;

@@ -1,11 +1,10 @@
-import { addPrefixToHandler, DefaultProps } from '@/types/common';
+import { DefaultProps } from '@/types/common';
 import { MouseEventHandler } from 'react';
 
-export interface PageNumberProps
-  extends addPrefixToHandler<any, 'on'>,
-    DefaultProps {
+export interface PageNumberProps extends DefaultProps {
   children: React.ReactNode;
   primary: boolean;
+  onClick: () => void;
 }
 
 export const PageNumber = ({

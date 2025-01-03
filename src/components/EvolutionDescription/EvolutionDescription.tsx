@@ -2,15 +2,17 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getItemInfo } from '@/api/pokemon';
 
-import { EvolutionDetailProps, ItemInfoProps } from '@/types/common';
+import { EvolutionDetailDataProps, ItemInfoProps } from '@/types/data';
 
 export interface EvolutionDescriptionProps {
-  evolutionDetails: EvolutionDetailProps[];
+  evolutionDetails: EvolutionDetailDataProps[];
 }
 
 export const EvolutionDescription = ({
   evolutionDetails,
-}: EvolutionDescriptionProps) => {
+}: {
+  evolutionDetails: EvolutionDetailDataProps[];
+}) => {
   const description = evolutionDetails.map((detail, index) => {
     const key =
       detail.min_happiness || detail.min_level || detail.item?.url || index;

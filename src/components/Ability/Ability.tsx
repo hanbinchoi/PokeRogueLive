@@ -2,13 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getPokemonAbilityInfo } from '@/api/pokemon';
 
-import { AbilityInfoProps } from '@/types/common';
+import { AbilityDataProps } from '@/types/data';
 
 import getAbilityNameInKorean from '@/utils/getAbilityNameInKorean';
 import getAbilityDescInKorean from '@/utils/getAbilityDescInKorean';
 
 export interface AbilityProps {
-  ability: AbilityInfoProps;
+  ability: AbilityDataProps;
   id: number | null;
   hidden: Boolean;
 }

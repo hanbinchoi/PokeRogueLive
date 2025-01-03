@@ -1,7 +1,7 @@
-import { EvolutionDetailProps } from '@/types/common';
+import { EvolutionDetailDataProps } from '@/types/data';
 
 export default function getEvolutionDescription(
-  details: EvolutionDetailProps[],
+  details: EvolutionDetailDataProps[],
 ) {
   if (!details || details.length === 0) return '';
 

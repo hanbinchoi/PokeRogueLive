@@ -1,15 +1,15 @@
 import axios from 'axios';
 
+import { EvolutionChainProps } from '@/types/common';
 import {
   AbilityDetailProps,
-  EvolutionChainProps,
   ItemInfoProps,
-  MoveDetailProps,
-  PokemonDetailProps,
-  PokemonNameProps,
-  PokemonSpeciesProps,
-  PokemonsResponseProps,
-} from '@/types/common';
+  MoveDetailDataProps,
+  PokemonDetailDataProps,
+  PokemonNameDataProps,
+  PokemonSpeciesDataProps,
+  PokemonsDataProps,
+} from '@/types/data';
 
 import { TOTAL_POKEMON_NUM } from '@/constants/contents';
 
@@ -20,7 +20,7 @@ export const commonAxios = axios.create({
 export async function getPokemons(
   page = 1,
   limit = 10,
-): Promise<PokemonsResponseProps> {
+): Promise<PokemonsDataProps> {
   const res = await commonAxios
     .get(`/pokemon?offset=${(page - 1) * limit}&limit=${limit}`)
     .then((res) => res.data);
@@ -31,12 +31,12 @@ export async function getPokemons(
 
 export async function getPokemonSpecies(
   url: string,
-): Promise<PokemonSpeciesProps> {
+): Promise<PokemonSpeciesDataProps> {
   const res = await axios.get(url).then((res) => res.data);
   return res;
 }
 
-export async function getPokemon(id: number): Promise<PokemonDetailProps> {
+export async function getPokemon(id: number): Promise<PokemonDetailDataProps> {
   const res = await commonAxios.get(`/pokemon/${id}`).then((res) => res.data);
   return res;
 }
@@ -52,7 +52,7 @@ export async function getPokemonIdByKoreanName(
   for (const species of speciesData) {
     const speciesDetail = await axios.get(species.url);
     const koreanNameData = speciesDetail.data.names.find(
-      (name: PokemonNameProps) => name.language.name === 'ko',
+      (name: PokemonNameDataProps) => name.language.name === 'ko',
     );
 
     if (koreanNameData && koreanNameData.name === koreanName) {
@@ -94,7 +94,9 @@ export async function getItemInfo(url: string): Promise<ItemInfoProps> {
   return res;
 }
 
-export async function getPokemonMove(url: string): Promise<MoveDetailProps> {
+export async function getPokemonMove(
+  url: string,
+): Promise<MoveDetailDataProps> {
   const res = await axios.get(url).then((res) => res.data);
 
   return res;

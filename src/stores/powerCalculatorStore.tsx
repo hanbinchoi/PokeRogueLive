@@ -3,15 +3,15 @@ import { create } from 'zustand';
 import {
   FieldType,
   MoveInfoProps,
-  PokemonDataProps,
+  PokemonDetailProps,
   WeatherType,
 } from '@/types/common';
 
 interface powerCalculatorState {
-  attackPokemon: PokemonDataProps | null;
+  attackPokemon: PokemonDetailProps | null;
   attackPokemonId: number | null;
   attackInputError: boolean;
-  defendPokemon: PokemonDataProps | null;
+  defendPokemon: PokemonDetailProps | null;
   defendPokemonId: number | null;
   defendInputError: boolean;
   move: MoveInfoProps | null;
@@ -20,10 +20,10 @@ interface powerCalculatorState {
   isWeaknessHit: boolean;
   damages: number[];
 
-  setAttackPokemon: (attackPokemon: PokemonDataProps | null) => void;
+  setAttackPokemon: (attackPokemon: PokemonDetailProps | null) => void;
   setAttackPokemonId: (attackPokemonId: number | null) => void;
   setAttackInputError: (attackInputError: boolean) => void;
-  setDefendPokemon: (defendPokemon: PokemonDataProps | null) => void;
+  setDefendPokemon: (defendPokemon: PokemonDetailProps | null) => void;
   setDefendPokemonId: (defendPokemonId: number | null) => void;
   setDefendInputError: (defendInputError: boolean) => void;
   setMove: (move: MoveInfoProps | null) => void;

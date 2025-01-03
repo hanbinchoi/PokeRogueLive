@@ -1,6 +1,6 @@
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import { PokemonType, SelectConstantProps, selectUsage } from '@/types/common';
+import { PokemonType, SelectOptionProps, selectUsage } from '@/types/common';
 
 import {
   DEFENCE_ABILITY,
@@ -11,6 +11,10 @@ import {
 interface CommonSelectProps {
   usage: selectUsage;
 }
+
+type SelectConstantProps = {
+  [key in selectUsage]: SelectOptionProps;
+};
 
 export const CommonSelect = ({ usage }: CommonSelectProps) => {
   const selectConstant: SelectConstantProps = {

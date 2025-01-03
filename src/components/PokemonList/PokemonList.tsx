@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 
 import usePokemonsStore from '@/stores/pokemonsStore';
@@ -10,7 +11,7 @@ import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
 import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
 import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 
-import { PokemonsResponseProps } from '@/types/common';
+import { PokemonsDataProps } from '@/types/data';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
 
@@ -22,7 +23,7 @@ export interface PokemonListProps {
 export const PokemonList = ({ pokemonIdsList, now }: PokemonListProps) => {
   const { limit, setLimit, total, setNow, isSearch } = usePokemonsStore();
 
-  const { isLoading, error, data } = useQuery<PokemonsResponseProps>({
+  const { isLoading, error, data } = useQuery<PokemonsDataProps>({
     queryKey: ['pokemons', now, limit],
     queryFn: () => getPokemons(now, limit),
     enabled: !pokemonIdsList?.length,

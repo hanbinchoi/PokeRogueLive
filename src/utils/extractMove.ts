@@ -1,8 +1,8 @@
-import { MoveDetailProps } from '@/types/common';
+import { MoveDetailDataProps } from '@/types/data';
 
 import getDamageClassInKorean from './getDamageClassInKorean';
 
-export default function extractMove(data: MoveDetailProps) {
+export default function extractMove(data: MoveDetailDataProps) {
   const { name, accuracy, flavorText, damageClass, pp, power, type } = {
     name:
       data.names.find((name) => name.language.name === 'ko')?.name || data.name,

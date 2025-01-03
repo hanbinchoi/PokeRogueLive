@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { PokemonDataProps } from '@/types/common';
+import { PokemonDetailProps } from '@/types/common';
 
 import { TOTAL_POKEMON_NUM } from '@/constants/contents';
 
@@ -11,7 +11,7 @@ interface PokemonsState {
   search: string | null;
   searchIdsList: number[] | null;
   pokemonIdsList: number[] | null;
-  targetPokemon: PokemonDataProps | null;
+  targetPokemon: PokemonDetailProps | null;
   isSearch: boolean;
 
   setNow: (now: number) => void;
@@ -20,7 +20,7 @@ interface PokemonsState {
   setSearch: (search: string | null) => void;
   setSearchIdsList: (searchList: number[] | null) => void;
   setPokemonIdsList: (pokemonIdsList: number[] | null) => void;
-  setTargetPokemon: (targetPokemon: PokemonDataProps | null) => void;
+  setTargetPokemon: (targetPokemon: PokemonDetailProps | null) => void;
   setIsSearch: (isSearch: boolean) => void;
 }
 

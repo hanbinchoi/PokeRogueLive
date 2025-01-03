@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { getPokemonMove } from '@/api/pokemon';
-
-import { MoveDetailProps } from '@/types/common';
+import { MoveDetailDataProps } from '@/types/data';
 
 /**
  * 주어진 URL을 사용하여 포켓몬 기술(Move)의 세부 정보를 가져오는 React Query 훅
@@ -21,7 +20,7 @@ import { MoveDetailProps } from '@/types/common';
  */
 
 export default function usePokemonMoveQuery(url: string) {
-  const { data, isLoading, isError } = useQuery<MoveDetailProps>({
+  const { data, isLoading, isError } = useQuery<MoveDetailDataProps>({
     queryKey: ['detail', url],
     queryFn: () => getPokemonMove(url),
   });

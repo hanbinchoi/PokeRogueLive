@@ -39,7 +39,7 @@ export const PokemonSearchForm = () => {
     formState: { errors },
   } = useForm<InputValues>();
 
-  const dropdownControls = useDropdown({ options: POKEMON_LIST_IN_KOREAN });
+  const dropdownControls = useDropdown(POKEMON_LIST_IN_KOREAN);
 
   useEffect(() => {
     if (searchIdsList) {

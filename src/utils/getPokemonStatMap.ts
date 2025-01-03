@@ -1,7 +1,7 @@
-import { PokemonDataProps, PokemonStatsProps } from '@/types/common';
+import { PokemonDetailProps, PokemonStatsProps } from '@/types/common';
 
 export default function getPokemonStatMap(
-  pokemon: PokemonDataProps,
+  pokemon: PokemonDetailProps,
 ): PokemonStatsProps {
   const initialStats: PokemonStatsProps = {
     lv: 50, // 기본 레벨

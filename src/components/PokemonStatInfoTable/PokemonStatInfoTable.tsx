@@ -1,9 +1,9 @@
 import { twJoin } from 'tailwind-merge';
 
-import { DefaultProps, PokemonDataProps } from '@/types/common';
+import { DefaultProps, PokemonDetailProps } from '@/types/common';
 
 export interface PokemonStatInfoTableProps extends DefaultProps {
-  pokemon: PokemonDataProps;
+  pokemon: PokemonDetailProps;
 }
 
 export const PokemonStatInfoTable = ({

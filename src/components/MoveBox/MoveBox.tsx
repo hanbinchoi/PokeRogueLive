@@ -5,14 +5,14 @@ import usePokemonDetailStore from '@/stores/pokemonDetailStore';
 import { Move } from '../Move/Move';
 import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
 
-import { MoveProps } from '@/types/common';
+import { MoveDataProps } from '@/types/data';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
 
 import { MOVE_PAGE_ITEM_SIZE } from '@/constants/contents';
 
 export interface EggMoveBoxProps {
-  moves: MoveProps[];
+  moves: MoveDataProps[];
 }
 
 export const MoveBox = ({ moves }: EggMoveBoxProps) => {

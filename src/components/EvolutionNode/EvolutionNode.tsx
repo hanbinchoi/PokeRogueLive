@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import { EvolutionDescription } from '../EvolutionDescription/EvolutionDescription';
 import { FaArrowDown } from 'react-icons/fa';
 
-import { EvolutionChainNodeProps, PokemonDataProps } from '@/types/common';
+import { EvolutionChainNodeProps, PokemonDetailProps } from '@/types/common';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
-import Link from 'next/link';
 
 export interface EvolutionNodeProps {
   node: EvolutionChainNodeProps;
@@ -19,7 +19,7 @@ export interface EvolutionNodeProps {
 export const EvolutionNode = ({ node, isLast }: EvolutionNodeProps) => {
   const id = extractIdFromUrl(node.species.url);
 
-  const [pokemon, setPokemon] = useState<PokemonDataProps>();
+  const [pokemon, setPokemon] = useState<PokemonDetailProps>();
 
   const {
     pokemonData,
