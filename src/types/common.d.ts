@@ -92,7 +92,7 @@ export interface PokemonTypeDetails {
 export interface PokemonTypesData
   extends Record<PokemonTypeName, PokemonTypeDetails> {}
 
-export type calcResultType = Map<string, PokemonTypeName[]> | null;
+export type calcResultType = Map<number, PokemonTypeName[]> | null;
 
 export interface EvolutionChainNodeProps {
   is_baby: boolean;
