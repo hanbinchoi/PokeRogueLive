@@ -504,6 +504,16 @@ export const POKEMON_TYPE_ARRAY: PokemonTypeName[] = [
   'unknown',
 ];
 
+export enum EffectMultiplier {
+  DOUBLE = 2,
+  NORMAL = 1,
+  HALF = 0.5,
+  NONE = 0,
+  STRONG = 1.5,
+  BOOST = 1.25,
+  REDUCED = 0.75,
+}
+
 export const ATTACK_SPECIAL_MOVES = ['사우전드 에로우', '프리즈 드라이'];
 
 export const ATTACK_SPECIAL_ABILITIES = ['배짱', '색안경'];

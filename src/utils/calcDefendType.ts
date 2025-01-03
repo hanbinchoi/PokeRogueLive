@@ -1,10 +1,10 @@
-import {
-  calcResultType,
-  PokemonTypeName,
-  PokemonTypeDetails,
-} from '@/types/common';
+import { calcResultType, PokemonTypeName } from '@/types/common';
 
-import { POKEMON_TYPE_INFO, POKEMON_TYPE_ARRAY } from '@/constants/contents';
+import {
+  POKEMON_TYPE_INFO,
+  POKEMON_TYPE_ARRAY,
+  EffectMultiplier,
+} from '@/constants/contents';
 
 import calcSingleDefendType from './calcSingleDefendType';
 import addToMap from './addToMap';
@@ -46,19 +46,19 @@ export default function calcDefendType(
       firstType.noDamage.find((t) => t === type) ||
       secondType.noDamage.find((t) => t === type)
     ) {
-      score = 0;
+      score = EffectMultiplier.NONE;
     }
     if (firstType.halfDamage.find((t) => t === type)) {
-      score *= 0.5;
+      score *= EffectMultiplier.HALF;
     }
     if (firstType.doubleDamage.find((t) => t === type)) {
-      score *= 2;
+      score *= EffectMultiplier.DOUBLE;
     }
     if (secondType.halfDamage.find((t) => t === type)) {
-      score *= 0.5;
+      score *= EffectMultiplier.HALF;
     }
     if (secondType.doubleDamage.find((t) => t === type)) {
-      score *= 2;
+      score *= EffectMultiplier.DOUBLE;
     }
     if (ability) {
       score = calcDefendAbility(ability, score, type, [first, second]);

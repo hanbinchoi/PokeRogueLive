@@ -2,6 +2,8 @@ import { PokemonTypeName } from '@/types/common';
 
 import calcDefendType from './calcDefendType';
 
+import { EffectMultiplier } from '@/constants/contents';
+
 export default function getDefendEffectiveness(
   pokemonType: PokemonTypeName[],
   moveType: PokemonTypeName,
@@ -12,12 +14,12 @@ export default function getDefendEffectiveness(
     null,
   );
 
-  if (!typeEffectivenessMap) return 1;
+  if (!typeEffectivenessMap) return EffectMultiplier.NORMAL;
 
   for (let [effectiveness, types] of typeEffectivenessMap.entries()) {
     if (types.includes(moveType)) {
       return Number(effectiveness);
     }
   }
-  return 1;
+  return EffectMultiplier.NORMAL;
 }

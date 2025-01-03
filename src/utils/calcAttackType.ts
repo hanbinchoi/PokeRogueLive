@@ -1,17 +1,15 @@
 import { calcResultType, PokemonTypeName } from '@/types/common';
 
-import { POKEMON_TYPE_INFO, POKEMON_TYPE_ARRAY } from '@/constants/contents';
+import {
+  POKEMON_TYPE_INFO,
+  POKEMON_TYPE_ARRAY,
+  EffectMultiplier,
+} from '@/constants/contents';
 
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';
 
 const EXCLUDED_TYPES: Set<PokemonTypeName> = new Set(['stellar', 'unknown']);
-const EFFECT_MULTIPLIER = {
-  DOUBLE: 2,
-  NORMAL: 1,
-  HALF: 0.5,
-  NONE: 0,
-};
 
 export default function calcAttackType(
   checkedType: PokemonTypeName[] | null,
@@ -41,41 +39,41 @@ export default function calcAttackType(
     if (EXCLUDED_TYPES.has(type)) return;
 
     if (combinedDoubleEffect.has(type)) {
-      addToMap(effectMap, EFFECT_MULTIPLIER.DOUBLE, type);
+      addToMap(effectMap, EffectMultiplier.DOUBLE, type);
       return;
     }
     if (combinedNormalEffect.has(type)) {
-      addToMap(effectMap, EFFECT_MULTIPLIER.NORMAL, type);
+      addToMap(effectMap, EffectMultiplier.NORMAL, type);
       return;
     }
 
     if (combinedHalfEffect.has(type)) {
       if (attackAbility === '색안경') {
-        addToMap(effectMap, EFFECT_MULTIPLIER.NORMAL, type);
+        addToMap(effectMap, EffectMultiplier.NORMAL, type);
         return;
       }
-      addToMap(effectMap, EFFECT_MULTIPLIER.HALF, type);
+      addToMap(effectMap, EffectMultiplier.HALF, type);
       return;
     }
 
     if (attackMove) {
       if (attackMove === '사우전드 에로우' && type === 'flying') {
-        addToMap(effectMap, EFFECT_MULTIPLIER.NORMAL, type);
+        addToMap(effectMap, EffectMultiplier.NORMAL, type);
         return;
       }
       if (attackMove === '프리즈 드라이' && type === 'water') {
-        addToMap(effectMap, EFFECT_MULTIPLIER.DOUBLE, type);
+        addToMap(effectMap, EffectMultiplier.DOUBLE, type);
         return;
       }
     }
 
     if (attackAbility) {
       if (attackAbility === '배짱' && type === 'ghost') {
-        addToMap(effectMap, EFFECT_MULTIPLIER.NORMAL, type);
+        addToMap(effectMap, EffectMultiplier.NORMAL, type);
         return;
       }
     }
-    addToMap(effectMap, EFFECT_MULTIPLIER.NONE, type);
+    addToMap(effectMap, EffectMultiplier.NONE, type);
   });
 
   return sortedMap(effectMap);

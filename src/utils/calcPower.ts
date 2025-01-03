@@ -12,6 +12,8 @@ import {
 } from '@/types/common';
 import { MoveDetailDataProps } from '@/types/data';
 
+import { EffectMultiplier } from '@/constants/contents';
+
 export interface calcPowerProps {
   attackPokemon: PokemonDetailProps;
   defendPokemon: PokemonDetailProps;
@@ -54,28 +56,28 @@ export default function calcPower({
       : defendPokemonStats['special-defense'];
 
   const sameTypeEffectiveness = attackPokemon.type.find((t) => t === type.name)
-    ? 1.5
-    : 1;
+    ? EffectMultiplier.STRONG
+    : EffectMultiplier.NORMAL;
   damageContext.sameTypeEffectiveness =
-    sameTypeEffectiveness === 1.5
-      ? '자속 보정으로 인해 데미지가 1.5배 증가'
+    sameTypeEffectiveness === EffectMultiplier.STRONG
+      ? `'자속 보정으로 인해 데미지가 ${EffectMultiplier.STRONG}배 증가'`
       : null;
 
   const defendTypeEffectiveness = getDefendEffectiveness(
     defendPokemon.type,
     MoveDetail.type.name,
   );
-  if (defendTypeEffectiveness !== 1) {
+  if (defendTypeEffectiveness !== EffectMultiplier.NORMAL) {
     damageContext.defendTypeEffectiveness =
-      defendTypeEffectiveness > 1
+      defendTypeEffectiveness > EffectMultiplier.NORMAL
         ? `방어 측의 타입으로 인해 데미지가 ${defendTypeEffectiveness}배 증가`
         : `방어 측의 타입으로 인해 데미지가 ${defendTypeEffectiveness}배 감소`;
   }
 
   const mod1 = getMod1(weather, type.name);
-  if (mod1 !== 1) {
+  if (mod1 !== EffectMultiplier.NORMAL) {
     damageContext.mod1 =
-      mod1 > 1
+      mod1 > EffectMultiplier.NORMAL
         ? `날씨의 영향으로 인해 데미지가 ${mod1}배 증가`
         : `날씨의 영향으로 인해 데미지가 ${mod1}배 감소`;
   }
@@ -85,17 +87,19 @@ export default function calcPower({
     MoveDetail.type.name,
     defendPokemon.type,
   );
-  if (fieldValue !== 1) {
+  if (fieldValue !== EffectMultiplier.NORMAL) {
     damageContext.fieldValue =
-      fieldValue > 1
+      fieldValue > EffectMultiplier.NORMAL
         ? `필드의 영향으로 인해 데미지가 ${fieldValue}배 증가`
         : `필드의 영향으로 인해 데미지가 ${fieldValue}배 감소`;
   }
 
-  const weaknessPower = isWeaknessHit ? 1.5 : 1;
+  const weaknessPower = isWeaknessHit
+    ? EffectMultiplier.STRONG
+    : EffectMultiplier.NORMAL;
   damageContext.weaknessPower =
-    weaknessPower === 1.5
-      ? '공격 측의 급소 타격으로 인해 데미지가 1.5배 증가'
+    weaknessPower === EffectMultiplier.STRONG
+      ? `공격 측의 급소 타격으로 인해 데미지가 ${EffectMultiplier.STRONG}배 증가`
       : null;
 
   const newDamages = [];
