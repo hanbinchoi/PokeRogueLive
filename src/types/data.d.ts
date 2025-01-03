@@ -33,7 +33,7 @@ export interface VarietyDataProps {
 
 export interface AbilityDataProps {
   ability: CommonDataProps;
-  is_hidden: Boolean;
+  is_hidden: boolean;
   slot: number;
 }
 
@@ -58,7 +58,7 @@ export interface MoveDataProps {
   version_group_details: VersionGroupDetailDataProps[];
 }
 
-export interface SpriteProps {
+export interface SpriteDataProps {
   back_default: string;
   back_female?: string;
   back_shiny: string;
@@ -69,21 +69,15 @@ export interface SpriteProps {
   front_shiny_female?: string;
 }
 
-export interface StatProps {
+export interface StatDataProps {
   base_stat: number;
   effort: number;
   stat: CommonDataProps;
 }
 
-export interface TypeProps {
+export interface TypeDataProps {
   slot: number;
   type: CommonDataProps;
-}
-
-export interface AbilityProps {
-  ability: CommonDataProps;
-  is_hidden: boolean;
-  slot: number;
 }
 
 export interface AbilityDetailProps {
@@ -145,7 +139,7 @@ export interface PokemonSpeciesDataProps {
 }
 
 export interface PokemonDetailDataProps {
-  abilities: AbilityProps[];
+  abilities: AbilityDataProps[];
   base_experience: number;
   cries: CryDataProps;
   forms: CommonDataProps[];
@@ -156,9 +150,9 @@ export interface PokemonDetailDataProps {
   name: string;
   order: number;
   species: CommonDataProps;
-  sprites: SpriteProps;
-  stats: StatProps[];
-  types: TypeProps[];
+  sprites: SpriteDataProps;
+  stats: StatDataProps[];
+  types: TypeDataProps[];
   weight: number;
   evolution_chain: string;
   flavorText: string;

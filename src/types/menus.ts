@@ -1,5 +1,6 @@
 import { FaBook } from 'react-icons/fa';
 import { BsFire, BsCalculatorFill } from 'react-icons/bs';
+
 import { DefaultProps } from './common';
 
 export interface MenuItemProps extends DefaultProps {

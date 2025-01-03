@@ -1,5 +1,6 @@
-import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
 import { CommonDataProps, EvolutionDetailDataProps } from './data';
+
+import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
 
 export interface DefaultProps {
   className?: string;
