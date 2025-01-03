@@ -1,9 +1,9 @@
-import { FieldType, PokemonType } from '@/types/common';
+import { FieldType, PokemonTypeName } from '@/types/common';
 
 export default function getFieldValue(
   field: FieldType | null,
-  attackMoveType: PokemonType,
-  defendPokemonType: PokemonType[],
+  attackMoveType: PokemonTypeName,
+  defendPokemonType: PokemonTypeName[],
 ) {
   if (defendPokemonType.find((e) => e === 'flying')) return 1;
 

@@ -1,9 +1,9 @@
-import { PokemonType } from '@/types/common';
+import { PokemonTypeName } from '@/types/common';
 
 export default function addToMap(
-  map: Map<string, PokemonType[]>,
+  map: Map<string, PokemonTypeName[]>,
   key: string,
-  value: PokemonType,
+  value: PokemonTypeName,
 ): void {
   if (map.has(key)) {
     // 키가 이미 존재하는 경우, 해당 키의 배열에 값을 추가

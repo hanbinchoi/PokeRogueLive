@@ -1,38 +1,38 @@
-import { calcResultType, PokemonType } from '@/types/common';
+import { calcResultType, PokemonTypeName } from '@/types/common';
 
-import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
+import { POKEMON_TYPE_INFO, POKEMON_TYPE_ARRAY } from '@/constants/contents';
 
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';
 
 export default function calcAttackType(
-  checkedType: PokemonType[] | null,
+  checkedType: PokemonTypeName[] | null,
   attackAbility: string | null,
   attackMove: string | null,
 ): calcResultType | null {
   if (!checkedType) return null;
 
-  const effectMap = new Map<string, PokemonType[]>();
+  const effectMap = new Map<string, PokemonTypeName[]>();
 
-  const combinedDoubleEffect = new Set<PokemonType>();
-  const combinedHalfEffect = new Set<PokemonType>();
-  const combinedNormalEffect = new Set<PokemonType>();
+  const combinedDoubleEffect = new Set<PokemonTypeName>();
+  const combinedHalfEffect = new Set<PokemonTypeName>();
+  const combinedNormalEffect = new Set<PokemonTypeName>();
 
   checkedType.forEach((checked) => {
-    POKEMON_TYPE[checked].doubleEffect.forEach((type) =>
-      combinedDoubleEffect.add(type as PokemonType),
+    POKEMON_TYPE_INFO[checked].doubleEffect.forEach((type) =>
+      combinedDoubleEffect.add(type),
     );
   });
 
   checkedType.forEach((checked) => {
-    POKEMON_TYPE[checked].normalEffect.forEach((type) =>
-      combinedNormalEffect.add(type as PokemonType),
+    POKEMON_TYPE_INFO[checked].normalEffect.forEach((type) =>
+      combinedNormalEffect.add(type),
     );
   });
 
   checkedType.forEach((checked) => {
-    POKEMON_TYPE[checked].halfEffect.forEach((type) =>
-      combinedHalfEffect.add(type as PokemonType),
+    POKEMON_TYPE_INFO[checked].halfEffect.forEach((type) =>
+      combinedHalfEffect.add(type),
     );
   });
 

@@ -2,12 +2,12 @@ import { twJoin } from 'tailwind-merge';
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import { PokemonType } from '@/types/common';
+import { PokemonTypeName } from '@/types/common';
 
-import { POKEMON_TYPE } from '@/constants/contents';
+import { POKEMON_TYPE_INFO } from '@/constants/contents';
 
 interface TypeCalcButtonProps {
-  type: PokemonType;
+  type: PokemonTypeName;
   index: number;
   checked: boolean | null;
 }
@@ -25,7 +25,7 @@ export const TypeCalcButton = ({
     mode,
   } = useTypeCalculatorStore();
 
-  const pokemonType = POKEMON_TYPE[type];
+  const pokemonType = POKEMON_TYPE_INFO[type];
 
   const selectType = () => {
     if (mode === 'defend') {

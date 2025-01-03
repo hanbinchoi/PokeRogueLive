@@ -5,7 +5,7 @@ import usePokemonMoveQuery from '@/hooks/usePokemonMoveQuery';
 import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
 import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 
-import { POKEMON_TYPE } from '@/constants/contents';
+import { POKEMON_TYPE_INFO } from '@/constants/contents';
 
 import extractMove from '@/utils/extractMove';
 
@@ -22,7 +22,7 @@ export const Move = ({ levelLearnedAt, url }: MoveProps) => {
     const { name, accuracy, flavorText, damageClass, pp, power, type } =
       extractMove(data);
 
-    const { backgroundColor, name: typeName } = POKEMON_TYPE[type];
+    const { backgroundColor, name: typeName } = POKEMON_TYPE_INFO[type];
 
     if (isLoading)
       return (

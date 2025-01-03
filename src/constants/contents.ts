@@ -1,4 +1,4 @@
-import { PokemonType, StatKey } from '@/types/common';
+import { PokemonTypeName, PokemonTypesData, StatKey } from '@/types/common';
 
 export const TOTAL_POKEMON_NUM = 1024;
 
@@ -27,7 +27,7 @@ export const DEFENCE_ABILITY = [
   '흡수',
 ];
 
-export const POKEMON_TYPE = {
+export const POKEMON_TYPE_INFO: PokemonTypesData = {
   normal: {
     backgroundColor: 'bg-type-normal',
     name: '노말',
@@ -481,13 +481,28 @@ export const POKEMON_TYPE = {
   },
 };
 
-export const POKEMON_TYPE_ARRAY: PokemonType[] = Object.keys(
-  POKEMON_TYPE,
-) as PokemonType[];
-
-export const POKEMON_TYPE_ARRAY_KR: PokemonType[] = Object.keys(
-  POKEMON_TYPE,
-).map((key) => (POKEMON_TYPE as any)[key].name);
+export const POKEMON_TYPE_ARRAY: PokemonTypeName[] = [
+  'normal',
+  'fighting',
+  'flying',
+  'poison',
+  'ground',
+  'rock',
+  'bug',
+  'ghost',
+  'steel',
+  'fire',
+  'water',
+  'grass',
+  'electric',
+  'psychic',
+  'ice',
+  'dragon',
+  'dark',
+  'fairy',
+  'stellar',
+  'unknown',
+];
 
 export const ATTACK_SPECIAL_MOVES = ['사우전드 에로우', '프리즈 드라이'];
 

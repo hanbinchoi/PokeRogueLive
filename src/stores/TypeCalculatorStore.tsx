@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-import { calcResultType, PokemonType, typeCalcMode } from '@/types/common';
+import { calcResultType, PokemonTypeName, typeCalcMode } from '@/types/common';
 
 interface TypeCalculatorState {
   mode: typeCalcMode;
-  typeCalcDefendOptions: (PokemonType | null)[];
-  typeCalcAttackOptions: PokemonType[] | null;
+  typeCalcDefendOptions: (PokemonTypeName | null)[];
+  typeCalcAttackOptions: PokemonTypeName[] | null;
   defendResult: calcResultType;
   teraType: null | string;
   defendAbility: null | string;
@@ -15,10 +15,10 @@ interface TypeCalculatorState {
   setMode: (mode: 'attack' | 'defend') => void;
   setTeraType: (teraType: null | string) => void;
   setTypeCalcDefendOptions: (
-    typeCalcDefendOptions: (PokemonType | null)[],
+    typeCalcDefendOptions: (PokemonTypeName | null)[],
   ) => void;
   setTypeCalcAttackOptions: (
-    typeCalcAttackOptions: PokemonType[] | null,
+    typeCalcAttackOptions: PokemonTypeName[] | null,
   ) => void;
   setDefendResult: (defendResult: calcResultType) => void;
   setDefendAbility: (defendAbility: string | null) => void;

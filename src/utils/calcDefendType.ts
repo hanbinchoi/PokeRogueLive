@@ -1,10 +1,10 @@
 import {
   calcResultType,
-  PokemonType,
+  PokemonTypeName,
   PokemonTypeDetails,
 } from '@/types/common';
 
-import { POKEMON_TYPE, POKEMON_TYPE_ARRAY } from '@/constants/contents';
+import { POKEMON_TYPE_INFO, POKEMON_TYPE_ARRAY } from '@/constants/contents';
 
 import calcSingleDefendType from './calcSingleDefendType';
 import addToMap from './addToMap';
@@ -12,40 +12,31 @@ import sortedMap from './sortedMap';
 import calcDefendAbility from './calcDefendAbility';
 
 export default function calcDefendType(
-  first: PokemonType | null,
-  second: PokemonType | null,
+  first: PokemonTypeName | null,
+  second: PokemonTypeName | null,
   ability?: string | null,
 ): calcResultType {
-  const damageMap = new Map<string, PokemonType[]>();
+  const damageMap = new Map<string, PokemonTypeName[]>();
 
   if (first === null) {
     if (second)
-      return calcSingleDefendType(
-        POKEMON_TYPE[second] as PokemonTypeDetails,
-        ability,
-      );
+      return calcSingleDefendType(POKEMON_TYPE_INFO[second], second, ability);
 
     return null;
   }
   if (second === null) {
     if (first)
-      return calcSingleDefendType(
-        POKEMON_TYPE[first] as PokemonTypeDetails,
-        ability,
-      );
+      return calcSingleDefendType(POKEMON_TYPE_INFO[first], first, ability);
 
     return null;
   }
 
   if (first === second) {
-    return calcSingleDefendType(
-      POKEMON_TYPE[first] as PokemonTypeDetails,
-      ability,
-    );
+    return calcSingleDefendType(POKEMON_TYPE_INFO[first], first, ability);
   }
 
-  const firstType = POKEMON_TYPE[first];
-  const secondType = POKEMON_TYPE[second];
+  const firstType = POKEMON_TYPE_INFO[first];
+  const secondType = POKEMON_TYPE_INFO[second];
 
   POKEMON_TYPE_ARRAY.forEach((type) => {
     let score = 1;

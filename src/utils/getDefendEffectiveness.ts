@@ -1,10 +1,10 @@
-import { PokemonType } from '@/types/common';
+import { PokemonTypeName } from '@/types/common';
 
 import calcDefendType from './calcDefendType';
 
 export default function getDefendEffectiveness(
-  pokemonType: PokemonType[],
-  moveType: PokemonType,
+  pokemonType: PokemonTypeName[],
+  moveType: PokemonTypeName,
 ): number {
   const typeEffectivenessMap = calcDefendType(
     pokemonType[0],

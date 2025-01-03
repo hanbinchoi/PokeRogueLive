@@ -1,10 +1,10 @@
-import { PokemonType } from '@/types/common';
+import { PokemonTypeName } from '@/types/common';
 
 export default function calcDefendAbility(
   ability: string,
   score: number,
-  type: PokemonType,
-  myType: PokemonType | PokemonType[],
+  type: PokemonTypeName,
+  myType: PokemonTypeName | PokemonTypeName[],
 ) {
   if (ability === '건조피부') {
     if (type === 'fire') return score * 1.25;

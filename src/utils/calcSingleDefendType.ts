@@ -1,6 +1,6 @@
 import {
   calcResultType,
-  PokemonType,
+  PokemonTypeName,
   PokemonTypeDetails,
 } from '@/types/common';
 
@@ -11,9 +11,10 @@ import calcDefendAbility from './calcDefendAbility';
 
 export default function calcSingleDefendType(
   defendType: PokemonTypeDetails,
+  defendTypeName: PokemonTypeName,
   ability?: string | null,
 ): calcResultType {
-  const damageMap = new Map<string, PokemonType[]>();
+  const damageMap = new Map<string, PokemonTypeName[]>();
 
   POKEMON_TYPE_ARRAY.forEach((type) => {
     let score = 1;
@@ -29,7 +30,7 @@ export default function calcSingleDefendType(
       score *= 2;
     }
     if (ability) {
-      score = calcDefendAbility(ability, score, type, defendType.name);
+      score = calcDefendAbility(ability, score, type, defendTypeName);
     }
     addToMap(damageMap, '' + score, type);
   });

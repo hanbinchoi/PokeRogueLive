@@ -1,6 +1,5 @@
+import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
 import { CommonDataProps, EvolutionDetailDataProps } from './data';
-
-import { POKEMON_TYPE } from '@/constants/contents';
 
 export interface DefaultProps {
   className?: string;
@@ -20,8 +19,30 @@ export type selectUsage = 'defenceAbility' | 'teraType';
 
 export type checkboxUsage = 'attackMove' | 'attackAbility';
 
+export type PokemonTypeName =
+  | 'normal'
+  | 'fighting'
+  | 'flying'
+  | 'poison'
+  | 'ground'
+  | 'rock'
+  | 'bug'
+  | 'ghost'
+  | 'steel'
+  | 'fire'
+  | 'water'
+  | 'grass'
+  | 'electric'
+  | 'psychic'
+  | 'ice'
+  | 'dragon'
+  | 'dark'
+  | 'fairy'
+  | 'stellar'
+  | 'unknown';
+
 export interface PokemonDetailProps {
-  type: PokemonType[];
+  type: PokemonTypeName[];
   name: string;
   imageUrl: string;
   pokedex: number;
@@ -55,21 +76,22 @@ export interface MoveInfoProps {
   }[];
 }
 
-export type PokemonType = keyof typeof POKEMON_TYPE;
-
 export interface PokemonTypeDetails {
   backgroundColor: string;
-  name: PokemonType;
-  doubleDamage: PokemonType[];
-  halfDamage: PokemonType[];
-  noDamage: PokemonType[];
+  name: string;
+  doubleDamage: PokemonTypeName[];
+  halfDamage: PokemonTypeName[];
+  noDamage: PokemonTypeName[];
+  doubleEffect: PokemonTypeName[];
+  halfEffect: PokemonTypeName[];
+  noEffect: PokemonTypeName[];
+  normalEffect: PokemonTypeName[];
 }
 
-export type PokemonTypeProps = {
-  [key: PokemonType]: PokemonTypeDetails;
-};
+export interface PokemonTypesData
+  extends Record<PokemonTypeName, PokemonTypeDetails> {}
 
-export type calcResultType = Map<string, PokemonType[]> | null;
+export type calcResultType = Map<string, PokemonTypeName[]> | null;
 
 export interface EvolutionChainNodeProps {
   is_baby: boolean;

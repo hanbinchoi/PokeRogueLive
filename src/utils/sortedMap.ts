@@ -1,8 +1,8 @@
-import { PokemonType } from '@/types/common';
+import { PokemonTypeName } from '@/types/common';
 
 export default function sortedMap(
-  map: Map<string, PokemonType[]>,
-): Map<string, PokemonType[]> {
+  map: Map<string, PokemonTypeName[]>,
+): Map<string, PokemonTypeName[]> {
   // Step 1: Extract keys and values from the Map
   const entries = Array.from(map.entries());
 
@@ -12,5 +12,5 @@ export default function sortedMap(
   );
 
   // Step 3: Create a new Map with the sorted entries
-  return new Map<string, PokemonType[]>(sortedEntries);
+  return new Map<string, PokemonTypeName[]>(sortedEntries);
 }
