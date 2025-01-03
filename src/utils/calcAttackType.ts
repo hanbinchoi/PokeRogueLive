@@ -5,6 +5,8 @@ import {
   POKEMON_TYPE_ARRAY,
   EffectMultiplier,
   EXCLUDED_TYPES,
+  SpecialMove,
+  SpecialAbility,
 } from '@/constants/contents';
 
 import addToMap from './addToMap';
@@ -21,7 +23,6 @@ export default function calcAttackType(
   const combinedHalfEffect = new Set<PokemonTypeName>();
   const combinedNormalEffect = new Set<PokemonTypeName>();
 
-  // 타입 효과를 합침
   checkedType?.forEach((checked) => {
     POKEMON_TYPE_INFO[checked].doubleEffect.forEach((type) =>
       combinedDoubleEffect.add(type),
@@ -47,7 +48,7 @@ export default function calcAttackType(
     }
 
     if (combinedHalfEffect.has(type)) {
-      if (attackAbility === '색안경') {
+      if (attackAbility === SpecialAbility.GLASSES) {
         addToMap(effectMap, EffectMultiplier.NORMAL, type);
         return;
       }
@@ -56,18 +57,18 @@ export default function calcAttackType(
     }
 
     if (attackMove) {
-      if (attackMove === '사우전드 에로우' && type === 'flying') {
+      if (attackMove === SpecialMove.THOUSAND_ARROWS && type === 'flying') {
         addToMap(effectMap, EffectMultiplier.NORMAL, type);
         return;
       }
-      if (attackMove === '프리즈 드라이' && type === 'water') {
+      if (attackMove === SpecialMove.FREEZE_DRY && type === 'water') {
         addToMap(effectMap, EffectMultiplier.DOUBLE, type);
         return;
       }
     }
 
     if (attackAbility) {
-      if (attackAbility === '배짱' && type === 'ghost') {
+      if (attackAbility === SpecialAbility.PERSEVERANCE && type === 'ghost') {
         addToMap(effectMap, EffectMultiplier.NORMAL, type);
         return;
       }

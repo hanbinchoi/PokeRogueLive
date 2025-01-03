@@ -1,6 +1,6 @@
 import { CommonDataProps, EvolutionDetailDataProps } from './data';
 
-import { FIELD_LIST, WEATHER_LIST } from '@/constants/contents';
+import { WEATHER, FIELD } from '@/constants/contents';
 
 export interface DefaultProps {
   className?: string;
@@ -107,9 +107,9 @@ export interface EvolutionChainProps {
   chain: EvolutionChainNodeProps;
 }
 
-export type FieldType = (typeof FIELD_LIST)[number];
+export type FieldType = FIELD;
 
-export type WeatherType = (typeof WEATHER_LIST)[number];
+export type WeatherType = WEATHER;
 
 export type StatKey =
   | 'lv'

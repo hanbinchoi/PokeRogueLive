@@ -519,9 +519,15 @@ export const EXCLUDED_TYPES: Set<PokemonTypeName> = new Set([
   'unknown',
 ]);
 
-export const ATTACK_SPECIAL_MOVES = ['사우전드 에로우', '프리즈 드라이'];
+export enum SpecialMove {
+  THOUSAND_ARROWS = '사우전드 에로우',
+  FREEZE_DRY = '프리즈 드라이',
+}
 
-export const ATTACK_SPECIAL_ABILITIES = ['배짱', '색안경'];
+export enum SpecialAbility {
+  PERSEVERANCE = '배짱',
+  GLASSES = '색안경',
+}
 
 export const POKEMON_LIST_IN_KOREAN = [
   '이상해씨',
@@ -5768,17 +5774,22 @@ export const POKEMON_MOVE_LIST = [
   },
 ];
 
-export const WEATHER_LIST = [
-  '쾌청',
-  '비',
-  '모래바람',
-  '눈',
-  '강한 햇살',
-  '강한 비',
-  '강한 바람',
-];
+export enum WEATHER {
+  CLEAR = '쾌청',
+  RAIN = '비',
+  SANDSTORM = '모래바람',
+  SNOW = '눈',
+  SUNNY = '강한 햇살',
+  HEAVY_RAIN = '강한 비',
+  HEAVY_WIND = '강한 바람',
+}
 
-export const FIELD_LIST = ['일렉트릭', '미스트', '사이코', '그래스'];
+export enum FIELD {
+  ELECTRIC = '일렉트릭',
+  MIST = '미스트',
+  PSYCHIC = '사이코',
+  GRASS = '그래스',
+}
 
 export const POKEMON_STAT_KOREAN_MAP: Record<StatKey, string> = {
   lv: '레벨',
