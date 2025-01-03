@@ -4,12 +4,11 @@ import {
   POKEMON_TYPE_INFO,
   POKEMON_TYPE_ARRAY,
   EffectMultiplier,
+  EXCLUDED_TYPES,
 } from '@/constants/contents';
 
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';
-
-const EXCLUDED_TYPES: Set<PokemonTypeName> = new Set(['stellar', 'unknown']);
 
 export default function calcAttackType(
   checkedType: PokemonTypeName[] | null,

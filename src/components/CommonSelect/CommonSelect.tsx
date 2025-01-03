@@ -10,6 +10,7 @@ import {
   DEFENCE_ABILITY,
   POKEMON_TYPE_INFO,
   POKEMON_TYPE_ARRAY,
+  EXCLUDED_TYPES,
 } from '@/constants/contents';
 
 interface CommonSelectProps {
@@ -53,7 +54,7 @@ export const CommonSelect = ({ usage }: CommonSelectProps) => {
         <option value="">없음</option>
         {options.map((option) =>
           usage === 'teraType' ? (
-            option === 'stellar' || option === 'unknown' ? null : (
+            EXCLUDED_TYPES.has(option as PokemonTypeName) ? null : (
               <option key={option} value={option}>
                 {POKEMON_TYPE_INFO[option as PokemonTypeName].name}
               </option>

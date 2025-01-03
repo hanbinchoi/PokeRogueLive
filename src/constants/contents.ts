@@ -514,6 +514,11 @@ export enum EffectMultiplier {
   REDUCED = 0.75,
 }
 
+export const EXCLUDED_TYPES: Set<PokemonTypeName> = new Set([
+  'stellar',
+  'unknown',
+]);
+
 export const ATTACK_SPECIAL_MOVES = ['사우전드 에로우', '프리즈 드라이'];
 
 export const ATTACK_SPECIAL_ABILITIES = ['배짱', '색안경'];
