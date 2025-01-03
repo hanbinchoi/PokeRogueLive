@@ -34,6 +34,8 @@ const useDropdown = (options: string[]) => {
   // 드롭다운 컨테이너 Ref
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  console.log(options);
+
   // 입력값에 의해 필터링된 옵션
   const filteredOptions = useMemo(
     () => options.filter((opt) => opt.includes(inputValue)),

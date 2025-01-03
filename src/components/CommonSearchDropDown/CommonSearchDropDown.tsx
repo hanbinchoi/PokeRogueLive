@@ -4,6 +4,8 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 import { Dropdown } from '../Dropdown/Dropdown';
 
+import { isField, isWeather } from '@/utils/typeGuard';
+
 export interface CommonSearchDropDownProps {
   label: string;
   options: string[];
@@ -24,16 +26,14 @@ export const CommonSearchDropDown = ({
     selectedIndex,
     handleKeyDown: dropdownHandleKeydown,
     clearSearch,
-  } = useDropdown({ options });
+  } = useDropdown(options);
 
   const { setField, setWeather } = usePowerCalculatorStore();
 
   const updateState = (value: string | null) => {
-    if (label === '날씨') {
-      return setWeather(value);
-    } else if (label === '필드') {
-      return setField(value);
-    }
+    if (value && isWeather(value)) return setWeather(value);
+    if (value && isField(value)) return setField(value);
+
     return;
   };
 

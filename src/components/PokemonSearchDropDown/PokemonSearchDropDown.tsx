@@ -24,7 +24,7 @@ export const PokemonSearchDropDown = ({
     selectedIndex,
     handleKeyDown: dropdownHandleKeydown,
     clearSearch,
-  } = useDropdown({ options: POKEMON_LIST_IN_KOREAN });
+  } = useDropdown(POKEMON_LIST_IN_KOREAN);
 
   const setPokemon =
     usage === 'attack'
