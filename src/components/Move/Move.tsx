@@ -15,7 +15,7 @@ export interface MoveProps {
 }
 export const Move = ({ levelLearnedAt, url }: MoveProps) => {
   const { isError, isLoading, data } = usePokemonMoveQuery(url);
-  console.log(data);
+
   if (isError) return <div>move detail error</div>;
 
   if (data) {
