@@ -111,6 +111,10 @@ export type FieldType = FIELD;
 
 export type WeatherType = WEATHER;
 
+export type SpecialAttackMoveType = SpecialAttackMove;
+
+export type SpecialAttackAbilityType = SpecialAttackAbility;
+
 export type StatKey =
   | 'lv'
   | 'hp'

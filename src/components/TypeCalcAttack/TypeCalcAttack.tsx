@@ -2,7 +2,7 @@ import { TypeCalcOption } from '../TypeCalcOption/TypeCalcOption';
 import { TypeCalcAttackResult } from '../TypeCalcAttackResult/TypeCalcAttackResult';
 import { AttackOptionButton } from '../AttackOptionButton/AttackOptionButton';
 
-import { SpecialAbility, SpecialMove } from '@/constants/contents';
+import { SpecialAttackAbility, SpecialAttackMove } from '@/constants/contents';
 
 export const TypeCalcAttack = () => {
   return (
@@ -12,12 +12,12 @@ export const TypeCalcAttack = () => {
         <AttackOptionButton
           title="기술"
           usage="move"
-          options={Object.values(SpecialMove)}
+          options={Object.values(SpecialAttackMove)}
         />
         <AttackOptionButton
           title="특성"
           usage="ability"
-          options={Object.values(SpecialAbility)}
+          options={Object.values(SpecialAttackAbility)}
         />
       </div>
       <TypeCalcAttackResult />

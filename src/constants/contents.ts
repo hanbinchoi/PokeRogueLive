@@ -519,12 +519,12 @@ export const EXCLUDED_TYPES: Set<PokemonTypeName> = new Set([
   'unknown',
 ]);
 
-export enum SpecialMove {
+export enum SpecialAttackMove {
   THOUSAND_ARROWS = '사우전드 에로우',
   FREEZE_DRY = '프리즈 드라이',
 }
 
-export enum SpecialAbility {
+export enum SpecialAttackAbility {
   PERSEVERANCE = '배짱',
   GLASSES = '색안경',
 }
