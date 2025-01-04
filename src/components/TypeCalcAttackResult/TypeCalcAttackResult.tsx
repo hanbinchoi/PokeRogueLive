@@ -6,7 +6,7 @@ import { TypeBadge } from '../TypeBadge/TypeBadge';
 
 import { calcResultType } from '@/types/common';
 
-import getAttackTypeDamageMap from '@/utils/getAttackTypeDamageMap';
+import getAttackDamageMapByTypes from '@/utils/getAttackDamageMapByTypes';
 
 export const TypeCalcAttackResult = () => {
   const { typeCalcAttackOptions, attackAbility, attackMove } =
@@ -17,7 +17,7 @@ export const TypeCalcAttackResult = () => {
   useEffect(() => {
     typeCalcAttackOptions?.length
       ? setResult(
-          getAttackTypeDamageMap(
+          getAttackDamageMapByTypes(
             typeCalcAttackOptions,
             attackAbility,
             attackMove,

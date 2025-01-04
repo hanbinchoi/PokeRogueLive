@@ -1,13 +1,13 @@
 import { PokemonTypeName } from '@/types/common';
 
 import { EffectMultiplier } from '@/constants/contents';
-import getDamageMapByTypes from './getDamageMapByTypes';
+import getDefendDamageMapByTypes from './getDefendDamageMapByTypes';
 
 export default function getDefendEffectiveness(
   pokemonType: PokemonTypeName[],
   moveType: PokemonTypeName,
 ): number {
-  const typeEffectivenessMap = getDamageMapByTypes(pokemonType, null);
+  const typeEffectivenessMap = getDefendDamageMapByTypes(pokemonType, null);
 
   if (!typeEffectivenessMap) return EffectMultiplier.NORMAL;
 

@@ -14,16 +14,16 @@ import {
 /**
  * 포켓몬 타입과 선택된 조건에 따라 데미지 배율을 계산하는 함수.
  * @param type - 현재 계산 할 포켓몬 타입 (`PokemonTypeName`)
- * @param checkedType - 체크된 공격 타입 (`PokemonTypeName[]`)
- * @param attackAbility - 공격 포켓몬 특성 (`SpecialAttackAbilityType | null`)
- * @param attackMove - 공격 포켓몬 기술 (`SpecialAttackMoveType | null`)
+ * @param checkedType - 체크된 포켓몬 타입 (`PokemonTypeName[]`)
+ * @param ability - 포켓몬 특성 (`SpecialAttackAbilityType | null`)
+ * @param move - 포켓몬 기술 (`SpecialAttackMoveType | null`)
  * @returns 계산된 데미지 배율
  */
-export default function calcDamageMultiplier(
+export default function calcAttackDamageMultiplier(
   type: PokemonTypeName,
   checkedType: PokemonTypeName[],
-  attackAbility: SpecialAttackAbilityType | null,
-  attackMove: SpecialAttackMoveType | null,
+  ability: SpecialAttackAbilityType | null,
+  move: SpecialAttackMoveType | null,
 ): EffectMultiplier {
   // 체크된 타입들 중 가장 높은 데미지
   const highestDamage = checkedType
@@ -41,25 +41,25 @@ export default function calcDamageMultiplier(
 
   if (
     highestDamage === EffectMultiplier.HALF &&
-    attackAbility === SpecialAttackAbility.GLASSES
+    ability === SpecialAttackAbility.GLASSES
   ) {
     return EffectMultiplier.NORMAL;
   }
 
   if (
-    attackMove === SpecialAttackMove.THOUSAND_ARROWS &&
+    move === SpecialAttackMove.THOUSAND_ARROWS &&
     type === 'flying' &&
     highestDamage < EffectMultiplier.NORMAL
   ) {
     return EffectMultiplier.NORMAL;
   }
 
-  if (attackMove === SpecialAttackMove.FREEZE_DRY && type === 'water') {
+  if (move === SpecialAttackMove.FREEZE_DRY && type === 'water') {
     return EffectMultiplier.DOUBLE;
   }
 
   if (
-    attackAbility === SpecialAttackAbility.PERSEVERANCE &&
+    ability === SpecialAttackAbility.PERSEVERANCE &&
     type === 'ghost' &&
     highestDamage < EffectMultiplier.NORMAL
   ) {

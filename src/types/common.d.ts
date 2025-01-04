@@ -83,10 +83,6 @@ export interface PokemonTypeDetails {
   doubleDamage: PokemonTypeName[];
   halfDamage: PokemonTypeName[];
   noDamage: PokemonTypeName[];
-  doubleEffect: PokemonTypeName[];
-  halfEffect: PokemonTypeName[];
-  noEffect: PokemonTypeName[];
-  normalEffect: PokemonTypeName[];
 }
 
 export interface PokemonTypesData

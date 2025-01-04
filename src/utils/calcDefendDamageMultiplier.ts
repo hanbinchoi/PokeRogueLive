@@ -2,7 +2,7 @@ import { PokemonTypeName } from '@/types/common';
 
 import { EffectMultiplier } from '@/constants/contents';
 
-export default function calcDamageByAbility(
+export default function calcDefendDamageMultiplier(
   ability: string,
   score: number,
   type: PokemonTypeName,

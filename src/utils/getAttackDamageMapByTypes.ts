@@ -7,10 +7,9 @@ import {
 
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';
-import calcDamageMultiplier from './calcDamageMultiplier';
+import calcAttackDamageMultiplier from './calcAttackDamageMultiplier';
 
 import { POKEMON_TYPE_ARRAY, EXCLUDED_TYPES } from '@/constants/contents';
-
 /**
  * 주어진 포켓몬 타입, 특성, 기술에 대해 공격 타입 데미지 맵을 리턴 하는 함수.
  *
@@ -19,7 +18,7 @@ import { POKEMON_TYPE_ARRAY, EXCLUDED_TYPES } from '@/constants/contents';
  * @param attackMove - 공격 포켓몬 기술 (`SpecialAttackMoveType | null `)
  * @returns 효과 배율에 따라 정렬된 공격 타입 효과 맵(`calcResultType`)
  */
-export default function getAttackTypeDamageMap(
+export default function getAttackDamageMapByTypes(
   checkedType: PokemonTypeName[],
   attackAbility: SpecialAttackAbilityType | null,
   attackMove: SpecialAttackMoveType | null,
@@ -32,7 +31,7 @@ export default function getAttackTypeDamageMap(
     if (EXCLUDED_TYPES.has(type)) return;
 
     // 타입별로 효과 배율을 계산
-    const multiplier = calcDamageMultiplier(
+    const multiplier = calcAttackDamageMultiplier(
       type,
       checkedType,
       attackAbility,

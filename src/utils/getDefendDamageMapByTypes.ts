@@ -8,9 +8,9 @@ import {
 
 import addToMap from './addToMap';
 import sortedMap from './sortedMap';
-import calcDamageByAbility from './calcDamageByAbility';
+import calcDefendDamageMultiplier from './calcDefendDamageMultiplier';
 
-export default function getDamageMapByTypes(
+export default function getDefendDamageMapByTypes(
   checkedTypes: PokemonTypeName[],
   ability: string | null,
 ): calcResultType {
@@ -38,7 +38,7 @@ export default function getDamageMapByTypes(
     }
 
     if (ability) {
-      score = calcDamageByAbility(ability, score, type, checkedTypes);
+      score = calcDefendDamageMultiplier(ability, score, type, checkedTypes);
     }
     addToMap(damageMap, score, type);
   });
