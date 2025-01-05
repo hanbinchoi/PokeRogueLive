@@ -6,12 +6,20 @@ import {
   SpecialDefendAbility,
 } from '@/constants/contents';
 
+/**
+ * 방어 특성에 따라 데미지 배수를 계산하는 함수
+ * @param ability - 방어 특성 (`SpecialDefendAbilityType`)
+ * @param score - 기본 데미지 값 (`number`)
+ * @param type - 공격 타입 (`PokemonType`)
+ * @param checkedType - 체크된 포켓몬 타입 (`PokemonType[]`)
+ * @returns 계산된 데미지 배율
+ */
 export default function calcDefendDamageMultiplier(
   ability: SpecialDefendAbilityType,
   score: number,
   type: PokemonType,
-  myType: PokemonType[],
-) {
+  checkedType: PokemonType[],
+): number {
   if (ability === SpecialDefendAbility.DRY_SKIN) {
     if (type === PokemonTypeName.FIRE) return score * EffectMultiplier.BOOST;
     if (type === PokemonTypeName.WATER) return EffectMultiplier.NONE;
@@ -29,7 +37,7 @@ export default function calcDefendDamageMultiplier(
   }
 
   if (ability === SpecialDefendAbility.DELTA_STREAM) {
-    if (myType.indexOf(PokemonTypeName.FLYING) >= 0) {
+    if (checkedType.indexOf(PokemonTypeName.FLYING) >= 0) {
       if (
         type === PokemonTypeName.ELECTRIC ||
         type === PokemonTypeName.ROCK ||
@@ -121,5 +129,6 @@ export default function calcDefendDamageMultiplier(
     return score;
   }
 
+  // 특성이 조건을 충족하지 못할 시 그대로 리턴
   return score;
 }

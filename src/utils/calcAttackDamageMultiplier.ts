@@ -24,7 +24,7 @@ export default function calcAttackDamageMultiplier(
   checkedType: PokemonType[],
   ability: SpecialAttackAbilityType | null,
   move: SpecialAttackMoveType | null,
-): EffectMultiplier {
+): number {
   // 체크된 타입들 중 가장 높은 데미지
   const highestDamage = checkedType
     .map((t) => {
