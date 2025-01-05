@@ -1,40 +1,20 @@
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import { PokemonType, SelectOptionProps, selectUsage } from '@/types/common';
-
-import {
-  DEFENCE_ABILITY,
-  POKEMON_TYPE_INFO,
-  POKEMON_TYPE_ARRAY,
-  EXCLUDED_TYPES,
-} from '@/constants/contents';
+import { PokemonType, SpecialDefendAbilityType } from '@/types/common';
 
 interface CommonSelectProps {
-  usage: selectUsage;
+  label: string;
+  options: string[];
 }
 
-type SelectConstantProps = {
-  [key in selectUsage]: SelectOptionProps;
-};
-
-export const CommonSelect = ({ usage }: CommonSelectProps) => {
-  const selectConstant: SelectConstantProps = {
-    defenceAbility: {
-      label: '특성',
-      options: DEFENCE_ABILITY,
-      set: useTypeCalculatorStore((state) => state.setDefendAbility),
-    },
-    teraType: {
-      label: '테라 타입',
-      options: POKEMON_TYPE_ARRAY,
-      set: useTypeCalculatorStore((state) => state.setTeraType),
-    },
-  };
-
-  const { label, options, set } = selectConstant[usage];
+export const CommonSelect = ({ label, options }: CommonSelectProps) => {
+  const { setDefendAbility, setTeraType } = useTypeCalculatorStore();
 
   const selectAbility = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    set(event.target.value);
+    const option = event.target.value !== '' ? event.target.value : null;
+
+    if (label === '특성') setDefendAbility(option as SpecialDefendAbilityType);
+    if (label === '테라 타입') setTeraType(option as PokemonType);
   };
 
   return (
@@ -48,19 +28,11 @@ export const CommonSelect = ({ usage }: CommonSelectProps) => {
         className="px-2 py-1 sm:py-2 min-w-[122px] max-w-[188px] text-sm sm:text-md md:text-base border rounded sm:rounded-lg outline-none hover:opacity-60  focus:border-blue-70 focus:border-2"
         onChange={selectAbility}>
         <option value="">없음</option>
-        {options.map((option) =>
-          usage === 'teraType' ? (
-            EXCLUDED_TYPES.has(option as PokemonType) ? null : (
-              <option key={option} value={option}>
-                {POKEMON_TYPE_INFO[option as PokemonType].name}
-              </option>
-            )
-          ) : (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ),
-        )}
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
       </select>
     </div>
   );

@@ -9,14 +9,15 @@ import addToMap from './addToMap';
 import sortedMap from './sortedMap';
 import calcAttackDamageMultiplier from './calcAttackDamageMultiplier';
 
-import { POKEMON_TYPE_ARRAY, EXCLUDED_TYPES } from '@/constants/contents';
+import { EXCLUDED_TYPES, PokemonTypeName } from '@/constants/contents';
 /**
- * 주어진 포켓몬 타입, 특성, 기술에 대해 공격 타입 데미지 맵을 리턴 하는 함수.
+ * 주어진 포켓몬 타입, 특성, 기술에 따라 공격 측 피해 배율을 계산하고, 이를 기반으로
+ * 각 타입별 공격 데미지 맵을 생성하여 반환하는 함수.
  *
- * @param checkedType - 선택된 타입 (`PokemonType[]`)
+ * @param checkedType - 선택된 포켓몬 타입 (`PokemonType[]`)
  * @param attackAbility - 공격 포켓몬 특성 (`SpecialAttackAbilityType | null `)
  * @param attackMove - 공격 포켓몬 기술 (`SpecialAttackMoveType | null `)
- * @returns 효과 배율에 따라 정렬된 공격 타입 효과 맵(`calcResultType`)
+ * @returns 공격 타입에 대한 피해 배율을 정렬한 맵 (`calcResultType`)
  */
 export default function getAttackDamageMap(
   checkedType: PokemonType[],
@@ -24,9 +25,10 @@ export default function getAttackDamageMap(
   attackMove: SpecialAttackMoveType | null,
 ): calcResultType | null {
   const effectMap = new Map<number, PokemonType[]>();
+  const allType = Object.values(PokemonTypeName);
 
   // 모든 포켓몬 타입에 대해 효과 배율을 계산
-  POKEMON_TYPE_ARRAY.forEach((type) => {
+  allType.forEach((type) => {
     // 제외된 타입은 계산 스킵
     if (EXCLUDED_TYPES.has(type)) return;
 
@@ -38,7 +40,6 @@ export default function getAttackDamageMap(
       attackMove,
     );
 
-    // 계산된 효율을 키값으로 맵 객체에 타입 추가
     addToMap(effectMap, multiplier, type);
   });
 

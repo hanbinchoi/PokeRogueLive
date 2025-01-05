@@ -1,22 +1,26 @@
 import { CommonDataProps, EvolutionDetailDataProps } from './data';
 
-import { WEATHER, FIELD, PokemonTypeName } from '@/constants/contents';
+import {
+  WEATHER,
+  FIELD,
+  PokemonTypeName,
+  SpecialDefendAbility,
+  SpecialAttackAbility,
+  SpecialAttackMove,
+} from '@/constants/contents';
 
 export interface DefaultProps {
   className?: string;
 }
-
-export type ButtonSize = 'small' | 'medium' | 'large';
-
 export interface InputValues {
   keyword: string;
   move: string;
   ability: string;
 }
 
-export type typeCalcMode = 'defend' | 'attack';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
-export type selectUsage = 'defenceAbility' | 'teraType';
+export type typeCalcMode = 'defend' | 'attack';
 
 export type checkboxUsage = 'attackMove' | 'attackAbility';
 
@@ -40,12 +44,6 @@ export interface PokemonDetailProps {
   genera: string;
   is_legendary: boolean;
   is_mythical: boolean;
-}
-
-export interface SelectOptionProps {
-  label: string;
-  options: string[];
-  set: (value: string) => void;
 }
 
 export interface MoveInfoProps {
@@ -90,6 +88,8 @@ export type WeatherType = WEATHER;
 export type SpecialAttackMoveType = SpecialAttackMove;
 
 export type SpecialAttackAbilityType = SpecialAttackAbility;
+
+export type SpecialDefendAbilityType = SpecialDefendAbility;
 
 export type StatKey =
   | 'lv'

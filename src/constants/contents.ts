@@ -27,29 +27,6 @@ export enum PokemonTypeName {
   UNKNOWN = 'unknown',
 }
 
-export const DEFENCE_ABILITY = [
-  '건조피부',
-  '내열',
-  '노릇노릇바디',
-  '델타스트림',
-  '두꺼운지방',
-  '마중물',
-  '복슬복슬',
-  '부유',
-  '불가사의부적',
-  '수포',
-  '저수',
-  '전기엔진',
-  '정화의소금',
-  '축전',
-  '타오르는불꽃',
-  '테라셀',
-  '피뢰침',
-  '필터',
-  '흙먹기',
-  '흡수',
-];
-
 export const POKEMON_TYPE_INFO: PokemonTypesData = {
   normal: {
     backgroundColor: 'bg-type-normal',
@@ -309,29 +286,6 @@ export const POKEMON_TYPE_INFO: PokemonTypesData = {
     noDamage: [],
   },
 };
-
-export const POKEMON_TYPE_ARRAY: PokemonType[] = [
-  PokemonTypeName.NORMAL,
-  PokemonTypeName.FIGHTING,
-  PokemonTypeName.FLYING,
-  PokemonTypeName.POISON,
-  PokemonTypeName.GROUND,
-  PokemonTypeName.ROCK,
-  PokemonTypeName.BUG,
-  PokemonTypeName.GHOST,
-  PokemonTypeName.STEEL,
-  PokemonTypeName.FIRE,
-  PokemonTypeName.WATER,
-  PokemonTypeName.GRASS,
-  PokemonTypeName.ELECTRIC,
-  PokemonTypeName.PSYCHIC,
-  PokemonTypeName.ICE,
-  PokemonTypeName.DRAGON,
-  PokemonTypeName.DARK,
-  PokemonTypeName.FAIRY,
-  PokemonTypeName.STELLAR,
-  PokemonTypeName.UNKNOWN,
-];
 
 export const EXCLUDED_TYPES: Set<PokemonType> = new Set([
   PokemonTypeName.STELLAR,
@@ -5611,6 +5565,29 @@ export enum SpecialAttackMove {
 export enum SpecialAttackAbility {
   PERSEVERANCE = '배짱',
   GLASSES = '색안경',
+}
+
+export enum SpecialDefendAbility {
+  DRY_SKIN = '건조피부',
+  HEAT_PROOF = '내열',
+  CRUNCH_BODY = '노릇노릇바디',
+  DELTA_STREAM = '델타스트림',
+  FAT_BODY = '두꺼운지방',
+  WATER_ABSORB = '마중물',
+  FLUFFY = '복슬복슬',
+  LEVITATE = '부유',
+  MYSTIC_WARD = '불가사의부적',
+  LIQUID_OOZE = '수포',
+  WATER_STORAGE = '저수',
+  ELECTRIC_ENGINE = '전기엔진',
+  PURIFYING_SALT = '정화의소금',
+  CHARGED = '축전',
+  BLAZING_BODY = '타오르는불꽃',
+  TERASTAL = '테라셀',
+  LIGHTNING_ROD = '피뢰침',
+  FILTER = '필터',
+  SAND_EATER = '흙먹기',
+  ABSORB = '흡수',
 }
 
 export enum WEATHER {

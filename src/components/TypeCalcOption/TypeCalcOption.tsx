@@ -4,7 +4,7 @@ import { TypeCalcButton } from '../TypeCalcButton/TypeCalcButton';
 
 import { PokemonType } from '@/types/common';
 
-import { POKEMON_TYPE_ARRAY } from '@/constants/contents';
+import { EXCLUDED_TYPES, PokemonTypeName } from '@/constants/contents';
 
 interface TypeCalcOptionProps {
   index: number;
@@ -15,8 +15,8 @@ export const TypeCalcOption = ({ index, title }: TypeCalcOptionProps) => {
   const { typeCalcAttackOptions, typeCalcDefendOptions, mode } =
     useTypeCalculatorStore();
 
-  const filteredTypes = POKEMON_TYPE_ARRAY.filter(
-    (type) => type !== 'stellar' && type !== 'unknown',
+  const filteredTypes = Object.values(PokemonTypeName).filter(
+    (type) => !EXCLUDED_TYPES.has(type),
   );
 
   const checkedType = (type: PokemonType) => {
