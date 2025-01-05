@@ -2,7 +2,7 @@ import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import { TypeCalcButton } from '../TypeCalcButton/TypeCalcButton';
 
-import { PokemonTypeName } from '@/types/common';
+import { PokemonType } from '@/types/common';
 
 import { POKEMON_TYPE_ARRAY } from '@/constants/contents';
 
@@ -19,7 +19,7 @@ export const TypeCalcOption = ({ index, title }: TypeCalcOptionProps) => {
     (type) => type !== 'stellar' && type !== 'unknown',
   );
 
-  const checkedType = (type: PokemonTypeName) => {
+  const checkedType = (type: PokemonType) => {
     const options =
       mode === 'defend' ? typeCalcDefendOptions : typeCalcAttackOptions;
     return (

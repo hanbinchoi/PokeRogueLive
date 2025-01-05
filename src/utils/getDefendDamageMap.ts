@@ -1,4 +1,4 @@
-import { calcResultType, PokemonTypeName } from '@/types/common';
+import { calcResultType, PokemonType } from '@/types/common';
 
 import {
   POKEMON_TYPE_INFO,
@@ -11,10 +11,10 @@ import sortedMap from './sortedMap';
 import calcDefendDamageMultiplier from './calcDefendDamageMultiplier';
 
 export default function getDefendDamageMap(
-  checkedTypes: PokemonTypeName[],
+  checkedTypes: PokemonType[],
   ability: string | null,
 ): calcResultType {
-  const damageMap = new Map<number, PokemonTypeName[]>();
+  const damageMap = new Map<number, PokemonType[]>();
 
   const typeInfos = Array.from(new Set(checkedTypes)).map(
     (t) => POKEMON_TYPE_INFO[t],

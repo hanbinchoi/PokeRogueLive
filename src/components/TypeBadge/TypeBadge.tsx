@@ -1,11 +1,11 @@
 import { twJoin } from 'tailwind-merge';
 
-import { PokemonTypeName } from '@/types/common';
+import { PokemonType } from '@/types/common';
 
 import { POKEMON_TYPE_INFO } from '@/constants/contents';
 
 interface TypeBadgeProps {
-  type: PokemonTypeName;
+  type: PokemonType;
   size: 'small' | 'medium';
 }
 

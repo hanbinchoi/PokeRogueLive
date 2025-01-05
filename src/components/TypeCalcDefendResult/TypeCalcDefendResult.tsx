@@ -4,7 +4,7 @@ import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import { TypeBadge } from '../TypeBadge/TypeBadge';
 
-import { PokemonTypeName } from '@/types/common';
+import { PokemonType } from '@/types/common';
 import getDefendDamageMap from '@/utils/getDefendDamageMap';
 
 export const TypeCalcDefendResult = () => {
@@ -19,7 +19,7 @@ export const TypeCalcDefendResult = () => {
   useEffect(() => {
     if (teraType)
       setDefendResult(
-        getDefendDamageMap([teraType as PokemonTypeName], defendAbility),
+        getDefendDamageMap([teraType as PokemonType], defendAbility),
       );
     else {
       const defendTypes = [

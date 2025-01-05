@@ -1,8 +1,31 @@
-import { PokemonTypeName, PokemonTypesData, StatKey } from '@/types/common';
+import { PokemonType, PokemonTypesData, StatKey } from '@/types/common';
 
 export const TOTAL_POKEMON_NUM = 1024;
 
 export const MOVE_PAGE_ITEM_SIZE = 4;
+
+export enum PokemonTypeName {
+  NORMAL = 'normal',
+  FIGHTING = 'fighting',
+  FLYING = 'flying',
+  POISON = 'poison',
+  GROUND = 'ground',
+  ROCK = 'rock',
+  BUG = 'bug',
+  GHOST = 'ghost',
+  STEEL = 'steel',
+  FIRE = 'fire',
+  WATER = 'water',
+  GRASS = 'grass',
+  ELECTRIC = 'electric',
+  PSYCHIC = 'psychic',
+  ICE = 'ice',
+  DRAGON = 'dragon',
+  DARK = 'dark',
+  FAIRY = 'fairy',
+  STELLAR = 'stellar',
+  UNKNOWN = 'unknown',
+}
 
 export const DEFENCE_ABILITY = [
   '건조피부',
@@ -31,139 +54,245 @@ export const POKEMON_TYPE_INFO: PokemonTypesData = {
   normal: {
     backgroundColor: 'bg-type-normal',
     name: '노말',
-    doubleDamage: ['fighting'],
+    doubleDamage: [PokemonTypeName.FIGHTING],
     halfDamage: [],
-    noDamage: ['ghost'],
+    noDamage: [PokemonTypeName.GHOST],
   },
   fighting: {
     backgroundColor: 'bg-type-fighting',
     name: '격투',
-    doubleDamage: ['flying', 'psychic', 'fairy'],
-    halfDamage: ['bug', 'rock', 'dark'],
+    doubleDamage: [
+      PokemonTypeName.FLYING,
+      PokemonTypeName.PSYCHIC,
+      PokemonTypeName.FAIRY,
+    ],
+    halfDamage: [
+      PokemonTypeName.BUG,
+      PokemonTypeName.ROCK,
+      PokemonTypeName.DARK,
+    ],
     noDamage: [],
   },
   flying: {
     backgroundColor: 'bg-type-flying',
     name: '비행',
-    doubleDamage: ['electric', 'ice', 'rock'],
-    halfDamage: ['grass', 'fighting', 'bug'],
-    noDamage: ['ground'],
+    doubleDamage: [
+      PokemonTypeName.ELECTRIC,
+      PokemonTypeName.ICE,
+      PokemonTypeName.ROCK,
+    ],
+    halfDamage: [
+      PokemonTypeName.GRASS,
+      PokemonTypeName.FIGHTING,
+      PokemonTypeName.BUG,
+    ],
+    noDamage: [PokemonTypeName.GROUND],
   },
   poison: {
     backgroundColor: 'bg-type-poison',
     name: '독',
-    doubleDamage: ['ground', 'psychic'],
-    halfDamage: ['grass', 'fighting', 'poison', 'bug', 'fairy'],
+    doubleDamage: [PokemonTypeName.GROUND, PokemonTypeName.PSYCHIC],
+    halfDamage: [
+      PokemonTypeName.GRASS,
+      PokemonTypeName.FIGHTING,
+      PokemonTypeName.POISON,
+      PokemonTypeName.BUG,
+      PokemonTypeName.FAIRY,
+    ],
     noDamage: [],
   },
   ground: {
     backgroundColor: 'bg-type-ground',
     name: '땅',
-    doubleDamage: ['water', 'grass', 'ice'],
-    halfDamage: ['poison', 'rock'],
-    noDamage: ['electric'],
+    doubleDamage: [
+      PokemonTypeName.WATER,
+      PokemonTypeName.GRASS,
+      PokemonTypeName.ICE,
+    ],
+    halfDamage: [PokemonTypeName.POISON, PokemonTypeName.ROCK],
+    noDamage: [PokemonTypeName.ELECTRIC],
   },
   rock: {
     backgroundColor: 'bg-type-rock',
     name: '바위',
-    doubleDamage: ['water', 'grass', 'fighting', 'ground', 'steel'],
-    halfDamage: ['normal', 'fire', 'poison', 'flying'],
+    doubleDamage: [
+      PokemonTypeName.WATER,
+      PokemonTypeName.GRASS,
+      PokemonTypeName.FIGHTING,
+      PokemonTypeName.GROUND,
+      PokemonTypeName.STEEL,
+    ],
+    halfDamage: [
+      PokemonTypeName.NORMAL,
+      PokemonTypeName.FIRE,
+      PokemonTypeName.POISON,
+      PokemonTypeName.FLYING,
+    ],
     noDamage: [],
   },
   bug: {
     backgroundColor: 'bg-type-bug',
     name: '벌레',
-    doubleDamage: ['fire', 'flying', 'rock'],
-    halfDamage: ['grass', 'fighting', 'ground'],
+    doubleDamage: [
+      PokemonTypeName.FIRE,
+      PokemonTypeName.FLYING,
+      PokemonTypeName.ROCK,
+    ],
+    halfDamage: [
+      PokemonTypeName.GRASS,
+      PokemonTypeName.FIGHTING,
+      PokemonTypeName.GROUND,
+    ],
     noDamage: [],
   },
   ghost: {
     backgroundColor: 'bg-type-ghost',
     name: '고스트',
-    doubleDamage: ['ghost', 'dark'],
-    halfDamage: ['poison', 'bug'],
-    noDamage: ['normal', 'fighting'],
+    doubleDamage: [PokemonTypeName.GHOST, PokemonTypeName.DARK],
+    halfDamage: [PokemonTypeName.POISON, PokemonTypeName.BUG],
+    noDamage: [PokemonTypeName.NORMAL, PokemonTypeName.FIGHTING],
   },
   steel: {
     backgroundColor: 'bg-type-steel',
     name: '강철',
-    doubleDamage: ['fire', 'fighting', 'ground'],
-    halfDamage: [
-      'normal',
-      'grass',
-      'ice',
-      'flying',
-      'psychic',
-      'bug',
-      'rock',
-      'dragon',
-      'steel',
-      'fairy',
+    doubleDamage: [
+      PokemonTypeName.FIRE,
+      PokemonTypeName.FIGHTING,
+      PokemonTypeName.GROUND,
     ],
-    noDamage: ['poison'],
+    halfDamage: [
+      PokemonTypeName.NORMAL,
+      PokemonTypeName.GRASS,
+      PokemonTypeName.ICE,
+      PokemonTypeName.FLYING,
+      PokemonTypeName.PSYCHIC,
+      PokemonTypeName.BUG,
+      PokemonTypeName.ROCK,
+      PokemonTypeName.DRAGON,
+      PokemonTypeName.STEEL,
+      PokemonTypeName.FAIRY,
+    ],
+    noDamage: [PokemonTypeName.POISON],
   },
   fire: {
     backgroundColor: 'bg-type-fire',
     name: '불꽃',
-    doubleDamage: ['water', 'ground', 'rock'],
-    halfDamage: ['fire', 'grass', 'ice', 'bug', 'steel', 'fairy'],
+    doubleDamage: [
+      PokemonTypeName.WATER,
+      PokemonTypeName.GROUND,
+      PokemonTypeName.ROCK,
+    ],
+    halfDamage: [
+      PokemonTypeName.FIRE,
+      PokemonTypeName.GRASS,
+      PokemonTypeName.ICE,
+      PokemonTypeName.BUG,
+      PokemonTypeName.STEEL,
+      PokemonTypeName.FAIRY,
+    ],
     noDamage: [],
   },
   water: {
     backgroundColor: 'bg-type-water',
     name: '물',
-    doubleDamage: ['electric', 'grass'],
-    halfDamage: ['fire', 'water', 'ice', 'steel'],
+    doubleDamage: [PokemonTypeName.ELECTRIC, PokemonTypeName.GRASS],
+    halfDamage: [
+      PokemonTypeName.FIRE,
+      PokemonTypeName.WATER,
+      PokemonTypeName.ICE,
+      PokemonTypeName.STEEL,
+    ],
     noDamage: [],
   },
   grass: {
     backgroundColor: 'bg-type-grass',
     name: '풀',
-    doubleDamage: ['fire', 'ice', 'poison', 'flying', 'bug'],
-    halfDamage: ['water', 'electric', 'grass', 'ground'],
+    doubleDamage: [
+      PokemonTypeName.FIRE,
+      PokemonTypeName.ICE,
+      PokemonTypeName.POISON,
+      PokemonTypeName.FLYING,
+      PokemonTypeName.BUG,
+    ],
+    halfDamage: [
+      PokemonTypeName.WATER,
+      PokemonTypeName.ELECTRIC,
+      PokemonTypeName.GRASS,
+      PokemonTypeName.GROUND,
+    ],
     noDamage: [],
   },
   electric: {
     backgroundColor: 'bg-type-electric',
     name: '전기',
-    doubleDamage: ['ground'],
-    halfDamage: ['electric', 'flying', 'steel'],
+    doubleDamage: [PokemonTypeName.GROUND],
+    halfDamage: [
+      PokemonTypeName.ELECTRIC,
+      PokemonTypeName.FLYING,
+      PokemonTypeName.STEEL,
+    ],
     noDamage: [],
   },
   psychic: {
     backgroundColor: 'bg-type-psychic',
     name: '에스퍼',
-    doubleDamage: ['bug', 'ghost', 'dark'],
-    halfDamage: ['fighting', 'psychic'],
+    doubleDamage: [
+      PokemonTypeName.BUG,
+      PokemonTypeName.GHOST,
+      PokemonTypeName.DARK,
+    ],
+    halfDamage: [PokemonTypeName.FIGHTING, PokemonTypeName.PSYCHIC],
     noDamage: [],
   },
   ice: {
     backgroundColor: 'bg-type-ice',
     name: '얼음',
-    doubleDamage: ['fire', 'fighting', 'rock', 'steel'],
-    halfDamage: ['ice'],
+    doubleDamage: [
+      PokemonTypeName.FIRE,
+      PokemonTypeName.FIGHTING,
+      PokemonTypeName.ROCK,
+      PokemonTypeName.STEEL,
+    ],
+    halfDamage: [PokemonTypeName.ICE],
     noDamage: [],
   },
   dragon: {
     backgroundColor: 'bg-type-dragon',
     name: '드래곤',
-    doubleDamage: ['ice', 'dragon', 'fairy'],
-    halfDamage: ['fire', 'water', 'electric', 'grass'],
+    doubleDamage: [
+      PokemonTypeName.ICE,
+      PokemonTypeName.DRAGON,
+      PokemonTypeName.FAIRY,
+    ],
+    halfDamage: [
+      PokemonTypeName.FIRE,
+      PokemonTypeName.WATER,
+      PokemonTypeName.ELECTRIC,
+      PokemonTypeName.GRASS,
+    ],
     noDamage: [],
   },
   dark: {
     backgroundColor: 'bg-type-dark',
     name: '악',
-    doubleDamage: ['fighting', 'bug', 'fairy'],
-    halfDamage: ['ghost', 'dark'],
-    noDamage: ['psychic'],
+    doubleDamage: [
+      PokemonTypeName.FIGHTING,
+      PokemonTypeName.BUG,
+      PokemonTypeName.FAIRY,
+    ],
+    halfDamage: [PokemonTypeName.GHOST, PokemonTypeName.DARK],
+    noDamage: [PokemonTypeName.PSYCHIC],
   },
   fairy: {
     backgroundColor: 'bg-type-fairy',
     name: '페어리',
-    doubleDamage: ['poison', 'steel'],
-    halfDamage: ['fighting', 'bug', 'dark'],
-    noDamage: ['dragon'],
+    doubleDamage: [PokemonTypeName.POISON, PokemonTypeName.STEEL],
+    halfDamage: [
+      PokemonTypeName.FIGHTING,
+      PokemonTypeName.BUG,
+      PokemonTypeName.DARK,
+    ],
+    noDamage: [PokemonTypeName.DRAGON],
   },
   stellar: {
     backgroundColor: 'bg-type-stellar',
@@ -181,53 +310,33 @@ export const POKEMON_TYPE_INFO: PokemonTypesData = {
   },
 };
 
-export const POKEMON_TYPE_ARRAY: PokemonTypeName[] = [
-  'normal',
-  'fighting',
-  'flying',
-  'poison',
-  'ground',
-  'rock',
-  'bug',
-  'ghost',
-  'steel',
-  'fire',
-  'water',
-  'grass',
-  'electric',
-  'psychic',
-  'ice',
-  'dragon',
-  'dark',
-  'fairy',
-  'stellar',
-  'unknown',
+export const POKEMON_TYPE_ARRAY: PokemonType[] = [
+  PokemonTypeName.NORMAL,
+  PokemonTypeName.FIGHTING,
+  PokemonTypeName.FLYING,
+  PokemonTypeName.POISON,
+  PokemonTypeName.GROUND,
+  PokemonTypeName.ROCK,
+  PokemonTypeName.BUG,
+  PokemonTypeName.GHOST,
+  PokemonTypeName.STEEL,
+  PokemonTypeName.FIRE,
+  PokemonTypeName.WATER,
+  PokemonTypeName.GRASS,
+  PokemonTypeName.ELECTRIC,
+  PokemonTypeName.PSYCHIC,
+  PokemonTypeName.ICE,
+  PokemonTypeName.DRAGON,
+  PokemonTypeName.DARK,
+  PokemonTypeName.FAIRY,
+  PokemonTypeName.STELLAR,
+  PokemonTypeName.UNKNOWN,
 ];
 
-export enum EffectMultiplier {
-  DOUBLE = 2,
-  NORMAL = 1,
-  HALF = 0.5,
-  NONE = 0,
-  STRONG = 1.5,
-  BOOST = 1.25,
-  REDUCED = 0.75,
-}
-
-export const EXCLUDED_TYPES: Set<PokemonTypeName> = new Set([
-  'stellar',
-  'unknown',
+export const EXCLUDED_TYPES: Set<PokemonType> = new Set([
+  PokemonTypeName.STELLAR,
+  PokemonTypeName.UNKNOWN,
 ]);
-
-export enum SpecialAttackMove {
-  THOUSAND_ARROWS = '사우전드 에로우',
-  FREEZE_DRY = '프리즈 드라이',
-}
-
-export enum SpecialAttackAbility {
-  PERSEVERANCE = '배짱',
-  GLASSES = '색안경',
-}
 
 export const POKEMON_LIST_IN_KOREAN = [
   '이상해씨',
@@ -5474,6 +5583,36 @@ export const POKEMON_MOVE_LIST = [
   },
 ];
 
+export const POKEMON_STAT_KOREAN_MAP: Record<StatKey, string> = {
+  lv: '레벨',
+  hp: 'HP',
+  attack: '공격',
+  defense: '방어',
+  'special-attack': '특수공격',
+  'special-defense': '특수방어',
+  speed: '스피드',
+};
+
+export enum EffectMultiplier {
+  DOUBLE = 2,
+  NORMAL = 1,
+  HALF = 0.5,
+  NONE = 0,
+  STRONG = 1.5,
+  BOOST = 1.25,
+  REDUCED = 0.75,
+}
+
+export enum SpecialAttackMove {
+  THOUSAND_ARROWS = '사우전드 에로우',
+  FREEZE_DRY = '프리즈 드라이',
+}
+
+export enum SpecialAttackAbility {
+  PERSEVERANCE = '배짱',
+  GLASSES = '색안경',
+}
+
 export enum WEATHER {
   CLEAR = '쾌청',
   RAIN = '비',
@@ -5490,13 +5629,3 @@ export enum FIELD {
   PSYCHIC = '사이코',
   GRASS = '그래스',
 }
-
-export const POKEMON_STAT_KOREAN_MAP: Record<StatKey, string> = {
-  lv: '레벨',
-  hp: 'HP',
-  attack: '공격',
-  defense: '방어',
-  'special-attack': '특수공격',
-  'special-defense': '특수방어',
-  speed: '스피드',
-};

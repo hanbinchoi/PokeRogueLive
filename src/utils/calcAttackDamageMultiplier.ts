@@ -1,5 +1,5 @@
 import {
-  PokemonTypeName,
+  PokemonType,
   SpecialAttackAbilityType,
   SpecialAttackMoveType,
 } from '@/types/common';
@@ -13,15 +13,15 @@ import {
 
 /**
  * 포켓몬 타입과 선택된 조건에 따라 데미지 배율을 계산하는 함수.
- * @param type - 현재 계산 할 포켓몬 타입 (`PokemonTypeName`)
- * @param checkedType - 체크된 포켓몬 타입 (`PokemonTypeName[]`)
+ * @param type - 현재 계산 할 포켓몬 타입 (`PokemonType`)
+ * @param checkedType - 체크된 포켓몬 타입 (`PokemonType[]`)
  * @param ability - 포켓몬 특성 (`SpecialAttackAbilityType | null`)
  * @param move - 포켓몬 기술 (`SpecialAttackMoveType | null`)
  * @returns 계산된 데미지 배율
  */
 export default function calcAttackDamageMultiplier(
-  type: PokemonTypeName,
-  checkedType: PokemonTypeName[],
+  type: PokemonType,
+  checkedType: PokemonType[],
   ability: SpecialAttackAbilityType | null,
   move: SpecialAttackMoveType | null,
 ): EffectMultiplier {

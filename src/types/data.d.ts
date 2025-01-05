@@ -1,4 +1,4 @@
-import { PokemonTypeName } from './common';
+import { PokemonType } from './common';
 
 export interface CommonDataProps {
   name: string;
@@ -102,7 +102,7 @@ export interface MoveDetailDataProps {
   power: number;
   pp: number;
   type: {
-    name: PokemonTypeName;
+    name: PokemonType;
     url: string;
   };
 }

@@ -2,12 +2,12 @@ import { twJoin } from 'tailwind-merge';
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import { PokemonTypeName } from '@/types/common';
+import { PokemonType } from '@/types/common';
 
 import { POKEMON_TYPE_INFO } from '@/constants/contents';
 
 interface TypeCalcButtonProps {
-  type: PokemonTypeName;
+  type: PokemonType;
   index: number;
   checked: boolean | null;
 }

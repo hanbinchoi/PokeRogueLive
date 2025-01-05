@@ -1,10 +1,6 @@
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import {
-  PokemonTypeName,
-  SelectOptionProps,
-  selectUsage,
-} from '@/types/common';
+import { PokemonType, SelectOptionProps, selectUsage } from '@/types/common';
 
 import {
   DEFENCE_ABILITY,
@@ -54,9 +50,9 @@ export const CommonSelect = ({ usage }: CommonSelectProps) => {
         <option value="">없음</option>
         {options.map((option) =>
           usage === 'teraType' ? (
-            EXCLUDED_TYPES.has(option as PokemonTypeName) ? null : (
+            EXCLUDED_TYPES.has(option as PokemonType) ? null : (
               <option key={option} value={option}>
-                {POKEMON_TYPE_INFO[option as PokemonTypeName].name}
+                {POKEMON_TYPE_INFO[option as PokemonType].name}
               </option>
             )
           ) : (
