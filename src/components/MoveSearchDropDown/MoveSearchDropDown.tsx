@@ -6,7 +6,7 @@ import { Dropdown } from '../Dropdown/Dropdown';
 
 import { MoveDataProps } from '@/types/data';
 
-import extractPokemonMoves from '@/utils/extractPokemonMoves';
+import extractMoveList from '@/utils/extractMoveList';
 
 export interface MoveSearchDropDownProps {
   moves: MoveDataProps[] | undefined;
@@ -17,7 +17,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
 
   const { setMove, setDamages } = usePowerCalculatorStore();
 
-  const extractMoves = extractPokemonMoves(moves);
+  const extractMoves = extractMoveList(moves);
 
   const {
     dropdownRef,
