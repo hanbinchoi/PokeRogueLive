@@ -34,18 +34,18 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
     (stat) => stat.stat.name === 'hp',
   )?.base_stat;
 
-  const damageCalculation = useMemo(
-    () =>
-      getDamages({
-        attackPokemon,
-        defendPokemon,
-        MoveDetail,
-        weather,
-        field,
-        isWeaknessHit,
-      }),
-    [attackPokemon, defendPokemon, MoveDetail, weather, field, isWeaknessHit],
-  );
+  const damageCalculation = useMemo(() => {
+    if (!attackPokemon || !defendPokemon || !MoveDetail) return null;
+
+    return getDamages({
+      attackPokemon,
+      defendPokemon,
+      MoveDetail,
+      weather,
+      field,
+      isWeaknessHit,
+    });
+  }, [attackPokemon, defendPokemon, MoveDetail, weather, field, isWeaknessHit]);
 
   useEffect(() => {
     if (damageCalculation) {

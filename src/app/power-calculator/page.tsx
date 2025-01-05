@@ -10,7 +10,7 @@ import { CommonCheckBox } from '@/components/CommonCheckBox/CommonCheckBox';
 import { PowerDamage } from '@/components/PowerDamage/PowerDamage';
 import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 
-import { FIELD, WEATHER } from '@/constants/contents';
+import { Field, Weather } from '@/constants/contents';
 
 export default function PowerCalculator() {
   const {
@@ -43,11 +43,11 @@ export default function PowerCalculator() {
               <MoveSearchDropDown moves={attackPokemon?.moves} />
               <CommonSearchDropDown
                 label="날씨"
-                options={Object.values(WEATHER)}
+                options={Object.values(Weather)}
               />
               <CommonSearchDropDown
                 label="필드"
-                options={Object.values(FIELD)}
+                options={Object.values(Field)}
               />
               <CommonCheckBox
                 label="급소에 맞았습니다."

@@ -1,8 +1,8 @@
 import { CommonDataProps, EvolutionDetailDataProps } from './data';
 
 import {
-  WEATHER,
-  FIELD,
+  Weather,
+  Field,
   PokemonTypeName,
   SpecialDefendAbility,
   SpecialAttackAbility,
@@ -81,9 +81,9 @@ export interface EvolutionChainProps {
   chain: EvolutionChainNodeProps;
 }
 
-export type FieldType = FIELD;
+export type FieldType = Field;
 
-export type WeatherType = WEATHER;
+export type WeatherType = Weather;
 
 export type SpecialAttackMoveType = SpecialAttackMove;
 

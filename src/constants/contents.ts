@@ -5590,7 +5590,7 @@ export enum SpecialDefendAbility {
   ABSORB = '흡수',
 }
 
-export enum WEATHER {
+export enum Weather {
   CLEAR = '쾌청',
   RAIN = '비',
   SANDSTORM = '모래바람',
@@ -5600,9 +5600,15 @@ export enum WEATHER {
   HEAVY_WIND = '강한 바람',
 }
 
-export enum FIELD {
+export enum Field {
   ELECTRIC = '일렉트릭',
   MIST = '미스트',
   PSYCHIC = '사이코',
   GRASS = '그래스',
+}
+
+export enum MoveClass {
+  PHYSICAL = 'physical',
+  SPECIAL = 'special',
+  STATUS = 'status',
 }
