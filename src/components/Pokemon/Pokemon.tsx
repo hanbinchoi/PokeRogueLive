@@ -27,7 +27,7 @@ export const Pokemon = ({ id }: PokemonProps) => {
 
   useEffect(() => {
     if (pokemonData && speciesData)
-      setPokemon(extractPokemonDetails([pokemonData, speciesData]));
+      setPokemon(extractPokemonDetails(pokemonData, speciesData));
   }, [pokemonData, speciesData]);
 
   const isLoading = isLoadingPokemon || isLoadingSpecies;

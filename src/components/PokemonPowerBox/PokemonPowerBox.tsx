@@ -40,7 +40,7 @@ export const PokemonPowerBox = ({ id, usage }: PokemonPowerBoxProps) => {
 
   useEffect(() => {
     if (pokemonData && speciesData)
-      setPokemon(extractPokemonDetails([pokemonData, speciesData]));
+      setPokemon(extractPokemonDetails(pokemonData, speciesData));
   }, [pokemonData, speciesData]);
   if (isLoading)
     return (

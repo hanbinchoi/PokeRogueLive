@@ -37,7 +37,7 @@ export default function PokemonDetail() {
 
   useEffect(() => {
     if (pokemonData && speciesData)
-      setTargetPokemon(extractPokemonDetails([pokemonData, speciesData]));
+      setTargetPokemon(extractPokemonDetails(pokemonData, speciesData));
   }, [pokemonData, speciesData]);
 
   if (isLoading)

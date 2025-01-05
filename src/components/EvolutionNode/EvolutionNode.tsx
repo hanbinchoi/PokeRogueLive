@@ -32,7 +32,7 @@ export const EvolutionNode = ({ node, isLast }: EvolutionNodeProps) => {
 
   useEffect(() => {
     if (pokemonData && speciesData)
-      setPokemon(extractPokemonDetails([pokemonData, speciesData]));
+      setPokemon(extractPokemonDetails(pokemonData, speciesData));
   }, [pokemonData, speciesData]);
 
   if (isLoadingPokemon || isLoadingSpecies) return <div>Loading...</div>;
