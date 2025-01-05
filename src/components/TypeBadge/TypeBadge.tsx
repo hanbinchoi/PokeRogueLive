@@ -2,7 +2,7 @@ import { twJoin } from 'tailwind-merge';
 
 import { PokemonType } from '@/types/common';
 
-import { POKEMON_TYPE_INFO } from '@/constants/contents';
+import { POKEMON_TYPE_INFO, PokemonTypeName } from '@/constants/contents';
 
 interface TypeBadgeProps {
   type: PokemonType;
@@ -17,7 +17,7 @@ interface TypeBadgeSizeProps {
 export const TypeBadge = ({ type, size }: TypeBadgeProps) => {
   const { backgroundColor, name } = POKEMON_TYPE_INFO[type];
 
-  if (type === 'stellar') {
+  if (type === PokemonTypeName.STELLAR) {
     return (
       <span
         className={twJoin(
