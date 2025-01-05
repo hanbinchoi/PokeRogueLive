@@ -1,6 +1,10 @@
 import { PokemonType, SpecialDefendAbilityType } from '@/types/common';
 
-import { EffectMultiplier, PokemonTypeName } from '@/constants/contents';
+import {
+  EffectMultiplier,
+  PokemonTypeName,
+  SpecialDefendAbility,
+} from '@/constants/contents';
 
 export default function calcDefendDamageMultiplier(
   ability: SpecialDefendAbilityType,
@@ -8,23 +12,23 @@ export default function calcDefendDamageMultiplier(
   type: PokemonType,
   myType: PokemonType[],
 ) {
-  if (ability === '건조피부') {
+  if (ability === SpecialDefendAbility.DRY_SKIN) {
     if (type === PokemonTypeName.FIRE) return score * EffectMultiplier.BOOST;
     if (type === PokemonTypeName.WATER) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '내열') {
+  if (ability === SpecialDefendAbility.HEAT_PROOF) {
     if (type === PokemonTypeName.FIRE) return score * EffectMultiplier.HALF;
     return score;
   }
 
-  if (ability === '노릇노릇바디') {
+  if (ability === SpecialDefendAbility.CRUNCH_BODY) {
     if (type === PokemonTypeName.FIRE) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '델타스트림') {
+  if (ability === SpecialDefendAbility.DELTA_STREAM) {
     if (myType.indexOf(PokemonTypeName.FLYING) >= 0) {
       if (
         type === PokemonTypeName.ELECTRIC ||
@@ -36,83 +40,83 @@ export default function calcDefendDamageMultiplier(
     return score;
   }
 
-  if (ability === '두꺼운지방') {
+  if (ability === SpecialDefendAbility.FAT_BODY) {
     if (type === PokemonTypeName.FIRE || type === PokemonTypeName.ICE)
       return score * EffectMultiplier.HALF;
     return score;
   }
 
-  if (ability === '마중물') {
+  if (ability === SpecialDefendAbility.WATER_ABSORB) {
     if (type === PokemonTypeName.WATER) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '복슬복슬') {
+  if (ability === SpecialDefendAbility.FLUFFY) {
     if (type === PokemonTypeName.FIRE) return score * EffectMultiplier.DOUBLE;
     return score;
   }
 
-  if (ability === '부유') {
+  if (ability === SpecialDefendAbility.LEVITATE) {
     if (type === PokemonTypeName.GROUND) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '불가사의부적') {
+  if (ability === SpecialDefendAbility.MYSTIC_WARD) {
     if (score < EffectMultiplier.DOUBLE) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '수포') {
+  if (ability === SpecialDefendAbility.LIQUID_OOZE) {
     if (type === PokemonTypeName.FIRE) return score * EffectMultiplier.HALF;
     return score;
   }
 
-  if (ability === '저수') {
+  if (ability === SpecialDefendAbility.WATER_STORAGE) {
     if (type === PokemonTypeName.WATER) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '전기엔진') {
+  if (ability === SpecialDefendAbility.ELECTRIC_ENGINE) {
     if (type === PokemonTypeName.ELECTRIC) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '정화의소금') {
+  if (ability === SpecialDefendAbility.PURIFYING_SALT) {
     if (type === PokemonTypeName.GHOST) return score * EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '축전') {
+  if (ability === SpecialDefendAbility.CHARGED) {
     if (type === PokemonTypeName.ELECTRIC) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '타오르는불꽃') {
+  if (ability === SpecialDefendAbility.BLAZING_BODY) {
     if (type === PokemonTypeName.FIRE) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '테라셀') {
+  if (ability === SpecialDefendAbility.TERASTAL) {
     return score * EffectMultiplier.HALF;
   }
 
-  if (ability === '피뢰침') {
+  if (ability === SpecialDefendAbility.LIGHTNING_ROD) {
     if (type === PokemonTypeName.ELECTRIC) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '필터') {
+  if (ability === SpecialDefendAbility.FILTER) {
     return score < EffectMultiplier.DOUBLE
       ? score
       : score * EffectMultiplier.REDUCED;
   }
 
-  if (ability === '흙먹기') {
+  if (ability === SpecialDefendAbility.SAND_EATER) {
     if (type === PokemonTypeName.GROUND) return EffectMultiplier.NONE;
     return score;
   }
 
-  if (ability === '흡수') {
+  if (ability === SpecialDefendAbility.ABSORB) {
     if (type === PokemonTypeName.GRASS) return EffectMultiplier.NONE;
     return score;
   }
