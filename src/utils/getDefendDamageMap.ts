@@ -10,7 +10,7 @@ import addToMap from './addToMap';
 import sortedMap from './sortedMap';
 import calcDefendDamageMultiplier from './calcDefendDamageMultiplier';
 
-export default function getDefendDamageMapByTypes(
+export default function getDefendDamageMap(
   checkedTypes: PokemonTypeName[],
   ability: string | null,
 ): calcResultType {

@@ -18,7 +18,7 @@ import { POKEMON_TYPE_ARRAY, EXCLUDED_TYPES } from '@/constants/contents';
  * @param attackMove - 공격 포켓몬 기술 (`SpecialAttackMoveType | null `)
  * @returns 효과 배율에 따라 정렬된 공격 타입 효과 맵(`calcResultType`)
  */
-export default function getAttackDamageMapByTypes(
+export default function getAttackDamageMap(
   checkedType: PokemonTypeName[],
   attackAbility: SpecialAttackAbilityType | null,
   attackMove: SpecialAttackMoveType | null,
