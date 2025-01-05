@@ -100,6 +100,8 @@ export type StatKey =
   | 'special-defense'
   | 'speed';
 
+export type MoveStatusKey = 'PHYSICAL' | 'SPECIAL' | 'STATUS';
+
 export interface PokemonStatsProps {
   lv: number;
   hp: number;

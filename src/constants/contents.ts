@@ -5537,7 +5537,7 @@ export const POKEMON_MOVE_LIST = [
   },
 ];
 
-export const POKEMON_STAT_KOREAN_MAP: Record<StatKey, string> = {
+export const POKEMON_STAT_KOREAN_MAP = {
   lv: '레벨',
   hp: 'HP',
   attack: '공격',
@@ -5545,6 +5545,12 @@ export const POKEMON_STAT_KOREAN_MAP: Record<StatKey, string> = {
   'special-attack': '특수공격',
   'special-defense': '특수방어',
   speed: '스피드',
+};
+
+export const MOVE_STATUS_KOREAN_MAP = {
+  PHYSICAL: '물리',
+  SPECIAL: '특수',
+  STATUS: '상태',
 };
 
 export enum EffectMultiplier {
