@@ -1,34 +1,35 @@
 import { create } from 'zustand';
 
 import {
-  calcResultType,
   PokemonType,
+  SpecialAttackAbilityType,
+  SpecialAttackMoveType,
   SpecialDefendAbilityType,
   typeCalcMode,
 } from '@/types/common';
 
 interface TypeCalculatorState {
-  mode: typeCalcMode;
-  typeCalcDefendOptions: (PokemonType | null)[];
-  typeCalcAttackOptions: PokemonType[] | null;
-  defendResult: calcResultType;
-  teraType: PokemonType | null;
-  defendAbility: SpecialDefendAbilityType | null;
-  attackMove: string | null;
-  attackAbility: string | null;
+  mode: typeCalcMode; // 타입 계산기 모드 (공격 || 방어)
 
-  setMode: (mode: 'attack' | 'defend') => void;
+  checkedDefendOptions: (PokemonType | null)[]; // 선택된 방어 타입
+  teraType: PokemonType | null; // 선택된 테라 타입
+  defendAbility: SpecialDefendAbilityType | null; // 선택된 방어 특성
+
+  checkedAttackOptions: PokemonType[] | null; // 선택된 공격 타입
+  attackMove: SpecialAttackMoveType | null; // 선택된 공격 기술
+  attackAbility: SpecialAttackAbilityType | null; // 선택된 공격 특성
+
+  setMode: (mode: typeCalcMode) => void;
   setTeraType: (teraType: PokemonType | null) => void;
   setTypeCalcDefendOptions: (
-    typeCalcDefendOptions: (PokemonType | null)[],
+    checkedDefendOptions: (PokemonType | null)[],
   ) => void;
   setTypeCalcAttackOptions: (
-    typeCalcAttackOptions: PokemonType[] | null,
+    checkedAttackOptions: PokemonType[] | null,
   ) => void;
-  setDefendResult: (defendResult: calcResultType) => void;
   setDefendAbility: (defendAbility: SpecialDefendAbilityType | null) => void;
-  setAttackMove: (attackMove: string | null) => void;
-  setAttackAbility: (attackAbility: string | null) => void;
+  setAttackMove: (attackMove: SpecialAttackMoveType | null) => void;
+  setAttackAbility: (attackAbility: SpecialAttackAbilityType | null) => void;
 }
 
 /**
@@ -36,9 +37,8 @@ interface TypeCalculatorState {
  */
 const useTypeCalculatorStore = create<TypeCalculatorState>((set) => ({
   mode: 'defend',
-  typeCalcDefendOptions: [null, null],
-  typeCalcAttackOptions: null,
-  defendResult: null,
+  checkedDefendOptions: [null, null],
+  checkedAttackOptions: null,
   teraType: null,
   defendAbility: null,
   attackMove: null,
@@ -46,11 +46,10 @@ const useTypeCalculatorStore = create<TypeCalculatorState>((set) => ({
 
   setMode: (mode) => set(() => ({ mode })),
   setTeraType: (teraType) => set(() => ({ teraType })),
-  setTypeCalcDefendOptions: (typeCalcDefendOptions) =>
-    set(() => ({ typeCalcDefendOptions })),
-  setTypeCalcAttackOptions: (typeCalcAttackOptions) =>
-    set(() => ({ typeCalcAttackOptions })),
-  setDefendResult: (defendResult) => set(() => ({ defendResult })),
+  setTypeCalcDefendOptions: (checkedDefendOptions) =>
+    set(() => ({ checkedDefendOptions })),
+  setTypeCalcAttackOptions: (checkedAttackOptions) =>
+    set(() => ({ checkedAttackOptions })),
   setDefendAbility: (defendAbility) => set(() => ({ defendAbility })),
   setAttackMove: (attackMove) => set(() => ({ attackMove })),
   setAttackAbility: (attackAbility) => set(() => ({ attackAbility })),

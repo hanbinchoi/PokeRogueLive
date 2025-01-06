@@ -8,18 +8,18 @@ import { calcResultType } from '@/types/common';
 import getAttackDamageMap from '@/utils/getAttackDamageMap';
 
 export const TypeCalcAttackResult = () => {
-  const { typeCalcAttackOptions, attackAbility, attackMove } =
+  const { checkedAttackOptions, attackAbility, attackMove } =
     useTypeCalculatorStore();
 
   const [result, setResult] = useState<calcResultType>();
 
   useEffect(() => {
-    typeCalcAttackOptions?.length
+    checkedAttackOptions?.length
       ? setResult(
-          getAttackDamageMap(typeCalcAttackOptions, attackAbility, attackMove),
+          getAttackDamageMap(checkedAttackOptions, attackAbility, attackMove),
         )
       : setResult(null);
-  }, [typeCalcAttackOptions, attackAbility, attackMove]);
+  }, [checkedAttackOptions, attackAbility, attackMove]);
 
   return (
     result && (

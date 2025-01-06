@@ -19,9 +19,9 @@ export const TypeCalcButton = ({
 }: TypeCalcButtonProps) => {
   const {
     setTypeCalcDefendOptions,
-    typeCalcDefendOptions,
+    checkedDefendOptions,
     setTypeCalcAttackOptions,
-    typeCalcAttackOptions,
+    checkedAttackOptions,
     mode,
   } = useTypeCalculatorStore();
 
@@ -29,12 +29,12 @@ export const TypeCalcButton = ({
 
   const selectType = () => {
     if (mode === 'defend') {
-      const newOptions = typeCalcDefendOptions.map((item, i) =>
+      const newOptions = checkedDefendOptions.map((item, i) =>
         i === index ? (type === item ? null : type) : item,
       );
       setTypeCalcDefendOptions(newOptions);
     } else {
-      const newOptions = typeCalcAttackOptions ?? [];
+      const newOptions = checkedAttackOptions ?? [];
       setTypeCalcAttackOptions(
         newOptions.includes(type)
           ? newOptions.filter((option) => option !== type)

@@ -12,7 +12,7 @@ interface TypeCalcOptionProps {
 }
 
 export const TypeCalcOption = ({ index, title }: TypeCalcOptionProps) => {
-  const { typeCalcAttackOptions, typeCalcDefendOptions, mode } =
+  const { checkedAttackOptions, checkedDefendOptions, mode } =
     useTypeCalculatorStore();
 
   const filteredTypes = Object.values(PokemonTypeName).filter(
@@ -21,7 +21,7 @@ export const TypeCalcOption = ({ index, title }: TypeCalcOptionProps) => {
 
   const checkedType = (type: PokemonType) => {
     const options =
-      mode === 'defend' ? typeCalcDefendOptions : typeCalcAttackOptions;
+      mode === 'defend' ? checkedDefendOptions : checkedAttackOptions;
     return (
       options &&
       (mode === 'attack' ? options.includes(type) : options[index] === type)
