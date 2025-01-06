@@ -4,10 +4,8 @@ import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
-import { PokemonStatBox } from './PokemonStatBox/PokemonStatBox';
-import { LoadingComponent } from '../common/LoadingComponent';
-import { ErrorComponent } from '../common/ErrorComponent';
+import { ErrorComponent, LoadingComponent, PokemonImgBox } from '../common';
+import { PokemonStatBox } from './PokemonStatBox';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
 

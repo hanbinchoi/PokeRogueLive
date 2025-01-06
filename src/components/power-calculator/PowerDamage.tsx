@@ -4,10 +4,10 @@ import usePokemonMoveQuery from '@/hooks/usePokemonMoveQuery';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { Tooltip } from '../Tooltip/Tooltip';
-import { PowerDamageContext } from '../PowerDamageContext/PowerDamageContext';
-import { PowerDamageValue } from '../PowerDamageValue/PowerDamageValue';
-import { PowerDamageStatusResult } from '../PowerDamageStatusResult/PowerDamageStatusResult';
+import { Tooltip } from '../common';
+import { PowerDamageStatusResult } from './PowerDamageStatusResult';
+import { PowerDamageValue } from './PowerDamageValue';
+import { PowerDamageContext } from './PowerDamageContext';
 
 import { DamageContextProps } from '@/types/common';
 

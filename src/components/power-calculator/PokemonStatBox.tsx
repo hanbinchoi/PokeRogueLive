@@ -1,6 +1,6 @@
-import { PokemonStatInput } from '../PokemonStatInput/PokemonStatInput';
-
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
+
+import { PokemonStatInput } from './PokemonStatInput';
 
 import { PokemonDetailProps } from '@/types/common';
 import { StatDataProps } from '@/types/data';

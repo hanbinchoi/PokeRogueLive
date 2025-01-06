@@ -1,12 +1,12 @@
+import { useState } from 'react';
+
 import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { CommonDropdown } from '../CommonDropdown';
+import { CommonDropdown, ErrorComponent } from '../common';
 
 import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
-import { ErrorComponent } from '../ErrorComponent';
-import { useState } from 'react';
 
 export interface PokemonSearchDropDownProps {
   usage: 'attack' | 'defend';

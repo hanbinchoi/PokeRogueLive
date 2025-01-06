@@ -2,7 +2,7 @@ import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { CommonDropdown } from '../CommonDropdown';
+import { CommonDropdown } from '../common';
 
 import { MoveDataProps } from '@/types/data';
 
