@@ -1,9 +1,11 @@
 import { useForm } from 'react-hook-form';
 
+import useDropdown from '@/hooks/useDropDown';
+
 import usePokemonsStore from '@/stores/pokemonsStore';
 
-import { SearchInput } from '../SearchInput/SearchInput';
-import { CommonButton } from '../CommonButton';
+import { CommonButton } from '../common';
+import { SearchInput } from './SearchInput';
 
 import { InputValues } from '@/types/common';
 
@@ -13,7 +15,6 @@ import {
   POKEMON_LIST_IN_KOREAN,
   TOTAL_POKEMON_NUM,
 } from '@/constants/contents';
-import useDropdown from '@/hooks/useDropDown';
 
 export const PokemonSearchForm = () => {
   const { setNow, setTotal, setSearchIdsList, setIsSearch } =

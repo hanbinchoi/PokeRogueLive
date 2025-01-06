@@ -2,14 +2,12 @@ import { useEffect } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 
-import usePokemonsStore from '@/stores/pokemonsStore';
-
 import { getPokemons } from '@/api/pokemon';
 
-import { Pokemon } from '../Pokemon/Pokemon';
-import { LoadingComponent } from './common/LoadingComponent';
-import { PagingDocuments } from './common/PagingDocuments';
-import { ErrorComponent } from './common/ErrorComponent';
+import usePokemonsStore from '@/stores/pokemonsStore';
+
+import { ErrorComponent, LoadingComponent, PagingDocuments } from '../common';
+import { Pokemon } from './Pokemon';
 
 import { PokemonsDataProps } from '@/types/data';
 

@@ -6,7 +6,7 @@ import {
 } from 'react-hook-form';
 import { twJoin } from 'tailwind-merge';
 
-import { CommonDropdown } from './common/CommonDropdown';
+import { CommonDropdown } from '../common/CommonDropdown';
 
 import { DefaultProps, InputValues } from '@/types/common';
 

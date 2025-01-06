@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
-import { PokemonImgBox } from '../PokemonImgBox/PokemonImgBox';
+import { PokemonImgBox } from '../common';
 
 import { PokemonDetailProps } from '@/types/common';
 
