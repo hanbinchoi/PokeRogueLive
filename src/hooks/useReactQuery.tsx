@@ -1,5 +1,3 @@
-/** hooks/useReactQuery.tsx */
-
 'use client';
 
 import { useState } from 'react';

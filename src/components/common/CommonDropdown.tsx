@@ -1,7 +1,10 @@
+'use client';
+
+import { RefObject, useEffect } from 'react';
+
 import { twJoin, twMerge } from 'tailwind-merge';
 
 import { DefaultProps } from '@/types/common';
-import { RefObject, useEffect } from 'react';
 
 interface DropDownProps extends DefaultProps {
   dropdownRef: RefObject<HTMLDivElement>;

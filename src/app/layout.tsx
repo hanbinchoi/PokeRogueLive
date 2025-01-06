@@ -4,8 +4,7 @@ import type { Metadata } from 'next';
 
 import ReactQueryProviders from '@/hooks/useReactQuery';
 
-import { Header } from '@/components/Header/Header';
-import { Sidebar } from '@/components/Sidebar/Sidebar';
+import { Header, Sidebar } from '@/components/common';
 
 export const metadata: Metadata = {
   title: 'PokeRogue Live - 포켓몬 정보를 한눈에 확인하세요!',

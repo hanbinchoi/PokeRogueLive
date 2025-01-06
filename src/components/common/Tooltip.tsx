@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 
 import { FaQuestionCircle } from 'react-icons/fa';

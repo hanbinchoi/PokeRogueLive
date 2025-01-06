@@ -30,11 +30,9 @@ export const Header = () => {
         </button>
       </div>
 
-      {/* 어두운 배경 오버레이 */}
       <div
         className={`fixed inset-0 bg-black-50 bg-opacity-50 z-30 md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}></div>
 
-      {/* 메뉴 */}
       <div
         ref={menuRef}
         className={`fixed top-0 right-0 h-full w-48 bg-white-100 shadow-lg z-40 transform ${

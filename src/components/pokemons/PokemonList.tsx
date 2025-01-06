@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
@@ -13,12 +15,7 @@ import { PokemonsDataProps } from '@/types/data';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
 
-export interface PokemonListProps {
-  pokemonIdsList: number[] | null | undefined;
-  now: number;
-}
-
-export const PokemonList = ({ pokemonIdsList, now }: PokemonListProps) => {
+export const PokemonList = () => {
   const {
     limit,
     setLimit,
@@ -27,6 +24,8 @@ export const PokemonList = ({ pokemonIdsList, now }: PokemonListProps) => {
     isSearch,
     searchIdsList,
     setPokemonIdsList,
+    now,
+    pokemonIdsList,
   } = usePokemonsStore();
 
   const { isLoading, error, data } = useQuery<PokemonsDataProps>({

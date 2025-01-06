@@ -2,12 +2,13 @@
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { PokemonSearchDropDown } from '@/components/PokemonSearchDropDown/PokemonSearchDropDown';
-import { PokemonPowerBox } from '@/components/power-calculator/PokemonPowerBox';
-import { MoveSearchDropDown } from '@/components/MoveSearchDropDown/MoveSearchDropDown';
-import { CommonSearchDropDown } from '@/components/CommonSearchDropDown/CommonSearchDropDown';
-import { CommonCheckBox } from '@/components/common/CommonCheckBox';
-import { PowerDamage } from '@/components/PowerDamage/PowerDamage';
+import { CommonCheckBox, CommonSearchDropDown } from '@/components/common';
+import {
+  MoveSearchDropDown,
+  PokemonPowerBox,
+  PokemonSearchDropDown,
+  PowerDamage,
+} from '@/components/power-calculator';
 
 import { Field, Weather } from '@/constants/contents';
 

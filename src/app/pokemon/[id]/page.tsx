@@ -5,17 +5,21 @@ import { useEffect } from 'react';
 
 import usePokemonsStore from '@/stores/pokemonsStore';
 
-import { EvolutionChain } from '@/components/EvolutionChain/EvolutionChain';
-import { PokemonBasicInfo } from '@/components/PokemonBasicInfo/PokemonBasicInfo';
-import { PokemonImgBox } from '@/components/PokemonImgBox/PokemonImgBox';
-import { AbilityBox } from '@/components/pokemon/AbilityBox';
-import { MoveBox } from '@/components/pokemon/MoveBox';
-import { PokemonStatInfo } from '@/components/PokemonStatInfo';
-import { PokemonStatInfoTable } from '@/components/PokemonStatInfoTable';
-import { LoadingComponent } from '@/components/common/LoadingComponent';
-import { ErrorComponent } from '@/components/common/ErrorComponent';
-
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
+
+import {
+  ErrorComponent,
+  LoadingComponent,
+  PokemonImgBox,
+} from '@/components/common';
+import {
+  AbilityBox,
+  EvolutionChain,
+  MoveBox,
+  PokemonBasicInfo,
+  PokemonStatInfo,
+  PokemonStatInfoTable,
+} from '@/components/pokemon';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
 

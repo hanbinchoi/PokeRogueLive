@@ -1,5 +1,3 @@
-'use client';
-
 import { ErrorComponent } from '@/components/common/ErrorComponent';
 import { LoadingComponent } from '@/components/common/LoadingComponent';
 
