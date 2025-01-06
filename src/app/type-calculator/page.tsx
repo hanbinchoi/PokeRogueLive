@@ -2,9 +2,9 @@
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import { TypeCalcDefend } from '@/components/TypeCalcDefend/TypeCalcDefend';
-import { TypeModeToggle } from '@/components/TypeModeToggle/TypeModeToggle';
-import { TypeCalcAttack } from '@/components/TypeCalcAttack/TypeCalcAttack';
+import { TypeCalcDefend } from '@/components/type-calculator/TypeCalcDefend';
+import { TypeModeToggle } from '@/components/type-calculator/TypeModeToggle';
+import { TypeCalcAttack } from '@/components/type-calculator/TypeCalcAttack';
 
 export default function TypeCalculator() {
   const mode = useTypeCalculatorStore((state) => state.mode);

@@ -8,12 +8,12 @@ import usePokemonsStore from '@/stores/pokemonsStore';
 import { EvolutionChain } from '@/components/EvolutionChain/EvolutionChain';
 import { PokemonBasicInfo } from '@/components/PokemonBasicInfo/PokemonBasicInfo';
 import { PokemonImgBox } from '@/components/PokemonImgBox/PokemonImgBox';
-import { AbilityBox } from '@/components/AbilityBox/AbilityBox';
-import { MoveBox } from '@/components/MoveBox/MoveBox';
-import { PokemonStatInfo } from '@/components/PokemonStatInfo/PokemonStatInfo';
-import { PokemonStatInfoTable } from '@/components/PokemonStatInfoTable/PokemonStatInfoTable';
-import { LoadingComponent } from '@/components/LoadingComponent/LoadingComponent';
-import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
+import { AbilityBox } from '@/components/pokemon/AbilityBox';
+import { MoveBox } from '@/components/pokemon/MoveBox';
+import { PokemonStatInfo } from '@/components/PokemonStatInfo';
+import { PokemonStatInfoTable } from '@/components/PokemonStatInfoTable';
+import { LoadingComponent } from '@/components/common/LoadingComponent';
+import { ErrorComponent } from '@/components/common/ErrorComponent';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 

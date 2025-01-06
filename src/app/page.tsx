@@ -1,7 +1,7 @@
 'use client';
 
-import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
-import { LoadingComponent } from '@/components/LoadingComponent/LoadingComponent';
+import { ErrorComponent } from '@/components/common/ErrorComponent';
+import { LoadingComponent } from '@/components/common/LoadingComponent';
 
 export default function Home() {
   return (

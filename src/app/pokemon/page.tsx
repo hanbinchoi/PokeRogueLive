@@ -2,7 +2,7 @@
 
 import usePokemonsStore from '@/stores/pokemonsStore';
 
-import { PokemonList } from '@/components/PokemonList/PokemonList';
+import { PokemonList } from '@/components/PokemonList';
 import { PokemonSearchForm } from '@/components/PokemonSearchForm/PokemonSearchForm';
 
 export default function Pokemon() {
