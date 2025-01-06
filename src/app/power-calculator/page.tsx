@@ -8,7 +8,6 @@ import { MoveSearchDropDown } from '@/components/MoveSearchDropDown/MoveSearchDr
 import { CommonSearchDropDown } from '@/components/CommonSearchDropDown/CommonSearchDropDown';
 import { CommonCheckBox } from '@/components/CommonCheckBox/CommonCheckBox';
 import { PowerDamage } from '@/components/PowerDamage/PowerDamage';
-import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 
 import { Field, Weather } from '@/constants/contents';
 
@@ -16,9 +15,7 @@ export default function PowerCalculator() {
   const {
     attackPokemon,
     attackPokemonId,
-    attackInputError,
     defendPokemonId,
-    defendInputError,
     isWeaknessHit,
     setIsWeaknessHit,
     move,
@@ -33,9 +30,6 @@ export default function PowerCalculator() {
         <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">공격</h2>
           <PokemonSearchDropDown usage="attack" />
-          {attackInputError && (
-            <ErrorComponent message="포켓몬을 찾을 수 없어요" size="small" />
-          )}
 
           {attackPokemonId && (
             <>
@@ -60,9 +54,6 @@ export default function PowerCalculator() {
         <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">방어</h2>
           <PokemonSearchDropDown usage="defend" />
-          {defendInputError && (
-            <ErrorComponent message="포켓몬을 찾을 수 없어요" size="small" />
-          )}
           {defendPokemonId && (
             <>
               <PokemonPowerBox id={defendPokemonId} usage="defend" />

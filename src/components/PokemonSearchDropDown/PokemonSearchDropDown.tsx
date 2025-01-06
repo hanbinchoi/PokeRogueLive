@@ -5,6 +5,8 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 import { Dropdown } from '../Dropdown/Dropdown';
 
 import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
+import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
+import { useState } from 'react';
 
 export interface PokemonSearchDropDownProps {
   usage: 'attack' | 'defend';
@@ -34,23 +36,22 @@ export const PokemonSearchDropDown = ({
     usage === 'attack'
       ? usePowerCalculatorStore((state) => state.setAttackPokemonId)
       : usePowerCalculatorStore((state) => state.setDefendPokemonId);
-  const setInputError =
-    usage === 'attack'
-      ? usePowerCalculatorStore((state) => state.setAttackInputError)
-      : usePowerCalculatorStore((state) => state.setDefendInputError);
+
+  const [error, setError] = useState<boolean>();
 
   const { setDamages, setMove } = usePowerCalculatorStore();
 
   const handleSelect = (option: string) => {
     const pokemonId = POKEMON_LIST_IN_KOREAN.indexOf(option) + 1;
+
     if (!pokemonId) {
       setPokemonId(null);
-      return setInputError(true);
+      return setError(true);
     }
 
     handleOptionSelect(option);
     setPokemonId(pokemonId);
-    setInputError(false);
+    setError(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -99,6 +100,9 @@ export const PokemonSearchDropDown = ({
         showDropdown={showDropdown}
         noFoundMessage="포켓몬을 찾을 수 없어요"
       />
+      {error && (
+        <ErrorComponent message="포켓몬을 찾을 수 없어요" size="small" />
+      )}
     </div>
   );
 };

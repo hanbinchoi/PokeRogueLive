@@ -33,6 +33,7 @@ export default function usePokemonDetailQuery(id: string) {
   } = useQuery<PokemonDetailDataProps>({
     queryKey: ['detail', id],
     queryFn: () => getPokemon(+id),
+    enabled: !!id,
   });
 
   const {
