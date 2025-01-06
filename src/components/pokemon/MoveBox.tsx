@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { Move } from '../Move/Move';
 import { PagingDocuments } from '../common/PagingDocuments';
+import { Move } from './Move';
 
 import { MoveDataProps } from '@/types/data';
 

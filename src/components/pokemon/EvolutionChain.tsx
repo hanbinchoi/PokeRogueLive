@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 
 import { getPokemonEvolutionChain } from '@/api/pokemon';
 
-import { EvolutionNode } from '../EvolutionNode/EvolutionNode';
-import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
-import { ErrorComponent } from '../ErrorComponent';
-
-import extractNodes from '@/utils/extractNodes';
+import { ErrorComponent, LoadingComponent } from '../common';
+import { EvolutionNode } from './EvolutionNode';
 
 import { EvolutionChainNodeProps } from '@/types/common';
+
+import extractNodes from '@/utils/extractNodes';
 
 export interface EvolutionChainProps {
   url: string;

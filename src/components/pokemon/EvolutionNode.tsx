@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
-import { EvolutionDescription } from '../EvolutionDescription/EvolutionDescription';
 import { FaArrowDown } from 'react-icons/fa';
+import { EvolutionDescription } from './EvolutionDescription';
 
 import { EvolutionChainNodeProps, PokemonDetailProps } from '@/types/common';
 

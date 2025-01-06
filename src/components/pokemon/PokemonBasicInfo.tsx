@@ -1,4 +1,4 @@
-import { TypeBadge } from '../TypeBadge/TypeBadge';
+import { TypeBadge } from '../common';
 
 import { PokemonDetailProps } from '@/types/common';
 

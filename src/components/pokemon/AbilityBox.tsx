@@ -1,5 +1,5 @@
-import { Tooltip } from '../Tooltip';
-import { Ability } from '../common';
+import { Tooltip } from '../common/Tooltip';
+import { Ability } from './Ability';
 
 import { AbilityDataProps } from '@/types/data';
 

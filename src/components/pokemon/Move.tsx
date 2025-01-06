@@ -2,8 +2,7 @@ import { twJoin } from 'tailwind-merge';
 
 import usePokemonMoveQuery from '@/hooks/usePokemonMoveQuery';
 
-import { LoadingComponent } from '../LoadingComponent';
-import { ErrorComponent } from '../ErrorComponent';
+import { ErrorComponent, LoadingComponent } from '../common';
 
 import { POKEMON_TYPE_INFO } from '@/constants/contents';
 
