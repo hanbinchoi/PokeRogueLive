@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-
-import usePokemonDetailStore from '@/stores/pokemonDetailStore';
+import { useEffect, useState } from 'react';
 
 import { Move } from '../Move/Move';
 import { PagingDocuments } from '../PagingDocuments/PagingDocuments';
@@ -16,7 +14,8 @@ export interface EggMoveBoxProps {
 }
 
 export const MoveBox = ({ moves }: EggMoveBoxProps) => {
-  const { setTotal, now, total, setNow } = usePokemonDetailStore();
+  const [now, setNow] = useState<number>(1);
+  const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
     setTotal(moves.length);

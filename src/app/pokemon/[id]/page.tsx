@@ -18,6 +18,7 @@ import { ErrorComponent } from '@/components/ErrorComponent/ErrorComponent';
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
+
 export default function PokemonDetail() {
   const { id } = useParams();
 

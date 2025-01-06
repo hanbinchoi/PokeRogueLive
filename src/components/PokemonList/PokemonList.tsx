@@ -21,13 +21,29 @@ export interface PokemonListProps {
 }
 
 export const PokemonList = ({ pokemonIdsList, now }: PokemonListProps) => {
-  const { limit, setLimit, total, setNow, isSearch } = usePokemonsStore();
+  const {
+    limit,
+    setLimit,
+    total,
+    setNow,
+    isSearch,
+    searchIdsList,
+    setPokemonIdsList,
+  } = usePokemonsStore();
 
   const { isLoading, error, data } = useQuery<PokemonsDataProps>({
     queryKey: ['pokemons', now, limit],
     queryFn: () => getPokemons(now, limit),
     enabled: !pokemonIdsList?.length,
   });
+
+  useEffect(() => {
+    if (searchIdsList) {
+      setPokemonIdsList(searchIdsList.slice((now - 1) * limit, now * limit));
+    } else {
+      setPokemonIdsList(null);
+    }
+  }, [searchIdsList, now, limit]);
 
   useEffect(() => {
     const handleResize = () => {

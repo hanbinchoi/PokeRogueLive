@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { useForm } from 'react-hook-form';
 
 import usePokemonsStore from '@/stores/pokemonsStore';
@@ -18,15 +16,8 @@ import {
 import useDropdown from '@/hooks/useDropDown';
 
 export const PokemonSearchForm = () => {
-  const {
-    now,
-    searchIdsList,
-    setNow,
-    setTotal,
-    setSearchIdsList,
-    setPokemonIdsList,
-    setIsSearch,
-  } = usePokemonsStore();
+  const { setNow, setTotal, setSearchIdsList, setIsSearch } =
+    usePokemonsStore();
 
   const {
     register,
@@ -40,14 +31,6 @@ export const PokemonSearchForm = () => {
   } = useForm<InputValues>();
 
   const dropdownControls = useDropdown(POKEMON_LIST_IN_KOREAN);
-
-  useEffect(() => {
-    if (searchIdsList) {
-      setPokemonIdsList(searchIdsList.slice((now - 1) * 10, now * 10));
-    } else {
-      setPokemonIdsList(null);
-    }
-  }, [searchIdsList, now]);
 
   const handleSearchSubmit = (input: InputValues) => {
     if (input.keyword.trim() === '') {
