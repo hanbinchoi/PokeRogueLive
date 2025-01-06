@@ -16,6 +16,7 @@ import { Sidebar } from './Sidebar';
 import { SidebarMenu } from './SidebarMenu';
 import { Tooltip } from './Tooltip';
 import { TypeBadge } from './TypeBadge';
+import { ErrorMessage } from './ErrorMessage';
 
 export {
   CommonButton,
@@ -36,4 +37,5 @@ export {
   SidebarMenu,
   Tooltip,
   TypeBadge,
+  ErrorMessage,
 };

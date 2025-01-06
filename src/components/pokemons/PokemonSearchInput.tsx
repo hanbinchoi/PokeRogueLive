@@ -1,4 +1,5 @@
 import {
+  FieldErrors,
   UseFormRegister,
   UseFormReset,
   UseFormSetValue,
@@ -6,36 +7,25 @@ import {
 } from 'react-hook-form';
 import { twJoin } from 'tailwind-merge';
 
-import { CommonDropdown } from '../common/CommonDropdown';
+import useDropdown from '@/hooks/useDropDown';
+
+import { CommonDropdown, ErrorMessage } from '../common';
 
 import { DefaultProps, InputValues } from '@/types/common';
 
-interface UseDropdownReturn {
-  dropdownRef: React.RefObject<HTMLDivElement>;
-  inputValue: string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
-  showDropdown: boolean;
-  setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
-  filteredOptions: string[];
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleOptionSelect: (option: string) => void;
-  handleKeyDown: (key: string) => void;
-  clearSearch: () => void;
-  selectedIndex: number | null;
-  setSelectedIndex: React.Dispatch<React.SetStateAction<number | null>>;
-}
+import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 
 export interface SearchInputProps extends DefaultProps {
   placeholder?: string;
+  errors: FieldErrors<InputValues>;
   register: UseFormRegister<InputValues>;
   handleReset: UseFormReset<InputValues>;
   setValue: UseFormSetValue<InputValues>;
   watch: UseFormWatch<InputValues>;
   onSubmit: (input: InputValues) => void;
-  dropdownControls: UseDropdownReturn;
 }
 
-export const SearchInput = ({
+export const PokemonSearchInput = ({
   placeholder,
   className,
   register,
@@ -43,25 +33,28 @@ export const SearchInput = ({
   setValue,
   watch,
   onSubmit,
-  dropdownControls,
+  errors,
 }: SearchInputProps) => {
   const {
     selectedIndex,
+    setSelectedIndex,
     filteredOptions,
     dropdownRef,
-    setShowDropdown,
     showDropdown,
+    setShowDropdown,
     handleInputChange: dropdownHandleInputChange,
     handleOptionSelect,
     clearSearch,
-    setSelectedIndex,
     handleKeyDown: dropdownHandleKeydown,
-  } = dropdownControls;
+  } = useDropdown(POKEMON_LIST_IN_KOREAN);
 
   const keyword = watch('keyword');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+
+    if (value === '') handleClear();
+
     dropdownHandleInputChange(e);
     setValue('keyword', value);
   };
@@ -126,6 +119,7 @@ export const SearchInput = ({
         noFoundMessage="포켓몬을 찾을 수 없어요"
         className="min-w-[166px] min-[480px]:min-w-[244px] "
       />
+      <ErrorMessage message={errors.keyword?.message} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { Pokemon } from './Pokemon';
 import { PokemonList } from './PokemonList';
 import { PokemonSearchForm } from './PokemonSearchForm';
-import { SearchInput } from './SearchInput';
+import { PokemonSearchInput } from './PokemonSearchInput';
 
-export { Pokemon, PokemonList, PokemonSearchForm, SearchInput };
+export { Pokemon, PokemonList, PokemonSearchForm, PokemonSearchInput };
