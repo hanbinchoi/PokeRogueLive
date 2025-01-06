@@ -53,15 +53,16 @@ export const PokemonSearchInput = ({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
+    // 빈 값일 경우 clear 처리
     if (value === '') handleClear();
 
+    // input 값에 따라 dropdown 메뉴 필터링
     dropdownHandleInputChange(e);
-    setValue('keyword', value);
   };
 
   const handleSelect = (option: string) => {
     handleOptionSelect(option);
-    setValue('keyword', option);
+    setValue('keyword', option); // dropdown 메뉴 선택 시 input 값으로 설정
   };
 
   const handleClear = () => {
@@ -75,6 +76,11 @@ export const PokemonSearchInput = ({
 
     dropdownHandleKeydown(key);
 
+    /* 
+      enter를 입력한 경우
+        1. dropdown 메뉴에 포커싱이 되어있는 경우 -> 드롭다운 선택으로 간주 -> input에 옵션 값이 들어감
+        2. dropdown 메뉴 포커싱이 없는 경우 -> 폼 제출 이벤트 발생
+    */
     if (key === 'Enter') {
       e.preventDefault();
       selectedIndex !== null
@@ -100,7 +106,6 @@ export const PokemonSearchInput = ({
             value.trim() !== '' || '공백은 검색할 수 없어요.',
           onChange: handleInputChange,
         })}
-        tabIndex={0}
       />
       {keyword && (
         <button
