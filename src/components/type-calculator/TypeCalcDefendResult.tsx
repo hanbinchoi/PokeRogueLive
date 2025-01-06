@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import { TypeBadge } from '../TypeBadge';
+import { TypeBadge } from '../common';
 
 import { calcResultType, PokemonType } from '@/types/common';
 

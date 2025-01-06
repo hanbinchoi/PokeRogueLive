@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import { TypeBadge } from '../TypeBadge';
+import { TypeBadge } from '../common';
 
 import { calcResultType } from '@/types/common';
+
 import getAttackDamageMap from '@/utils/getAttackDamageMap';
 
 export const TypeCalcAttackResult = () => {

@@ -1,6 +1,6 @@
 import { TypeCalcOption } from './TypeCalcOption';
-import { CommonSelect } from '../common/CommonSelect';
-import { TypeCalcDefendResult } from './TypeCalcDefendResult/TypeCalcDefendResult';
+import { CommonSelect } from '../common';
+import { TypeCalcDefendResult } from './TypeCalcDefendResult';
 
 import {
   EXCLUDED_TYPES,

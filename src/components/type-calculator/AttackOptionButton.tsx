@@ -1,4 +1,8 @@
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
+import {
+  SpecialAttackAbilityType,
+  SpecialAttackMoveType,
+} from '@/types/common';
 
 interface AttackOptionButtonProps {
   title: string;
@@ -16,12 +20,14 @@ export const AttackOptionButton = ({
 
   const handleClick = (value: string) => {
     if (usage === 'move')
-      attackMove === value ? setAttackMove(null) : setAttackMove(value);
+      attackMove === value
+        ? setAttackMove(null)
+        : setAttackMove(value as SpecialAttackMoveType);
 
     if (usage === 'ability')
       attackAbility === value
         ? setAttackAbility(null)
-        : setAttackAbility(value);
+        : setAttackAbility(value as SpecialAttackAbilityType);
   };
   return (
     <div className="flex flex-col gap-2 sm:gap-4">

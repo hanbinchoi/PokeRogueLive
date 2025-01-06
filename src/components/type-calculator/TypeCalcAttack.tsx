@@ -1,6 +1,6 @@
-import { TypeCalcOption } from './TypeCalcOption';
-import { TypeCalcAttackResult } from './TypeCalcAttackResult/TypeCalcAttackResult';
 import { AttackOptionButton } from './AttackOptionButton';
+import { TypeCalcOption } from './TypeCalcOption';
+import { TypeCalcAttackResult } from './TypeCalcAttackResult';
 
 import { SpecialAttackAbility, SpecialAttackMove } from '@/constants/contents';
 
