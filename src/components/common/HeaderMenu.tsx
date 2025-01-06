@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
-import { MenuItemProps } from '@/types/menus';
 import { twJoin } from 'tailwind-merge';
+
+import { MenuItemProps } from '@/types/menus';
 
 export const HeaderMenu = ({
   title,

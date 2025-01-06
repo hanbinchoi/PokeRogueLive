@@ -1,6 +1,6 @@
 import { twJoin } from 'tailwind-merge';
 
-import { SidebarMenu } from '../SidebarMenu/SidebarMenu';
+import { SidebarMenu } from './SidebarMenu';
 
 import { DefaultProps } from '@/types/common';
 import { MENUS } from '@/types/menus';

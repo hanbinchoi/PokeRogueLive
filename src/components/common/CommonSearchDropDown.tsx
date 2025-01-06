@@ -2,7 +2,7 @@ import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { CommonDropdown } from '../CommonDropdown/CommonDropdown';
+import { CommonDropdown } from './CommonDropdown';
 
 import { isField, isWeather } from '@/utils/typeGuard';
 

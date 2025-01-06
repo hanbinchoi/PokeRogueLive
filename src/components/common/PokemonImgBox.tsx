@@ -1,7 +1,7 @@
-import { TypeBadge } from '../TypeBadge/TypeBadge';
-import { LoadingComponent } from '../LoadingComponent';
-import { ErrorComponent } from '../ErrorComponent';
 import { AiFillSound } from 'react-icons/ai';
+import { LoadingComponent } from './LoadingComponent';
+import { ErrorComponent } from './ErrorComponent';
+import { TypeBadge } from './TypeBadge';
 
 import { PokemonDetailProps } from '@/types/common';
 

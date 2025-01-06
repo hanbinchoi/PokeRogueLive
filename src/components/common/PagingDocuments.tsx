@@ -1,6 +1,7 @@
 import { usePagination } from '@/hooks/usePagination';
 
-import { IconButton, PageButton } from '../PageButton/PageButton';
+import { IconButton, PageButton } from './PageButton';
+
 import {
   FaAngleLeft,
   FaAngleRight,

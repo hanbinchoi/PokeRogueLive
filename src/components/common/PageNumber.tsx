@@ -1,5 +1,6 @@
-import { DefaultProps } from '@/types/common';
 import { MouseEventHandler } from 'react';
+
+import { DefaultProps } from '@/types/common';
 
 export interface PageNumberProps extends DefaultProps {
   children: React.ReactNode;

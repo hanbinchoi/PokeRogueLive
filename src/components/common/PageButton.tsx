@@ -1,4 +1,4 @@
-import { PageNumber } from '../PageNumber/PageNumber';
+import { PageNumber } from './PageNumber';
 
 interface PageButtonProps {
   children: React.ReactNode;

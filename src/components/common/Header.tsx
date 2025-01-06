@@ -3,9 +3,9 @@ import { useRef, useState } from 'react';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
 
-import { Logo } from '../Logo/Logo';
-import { HeaderMenu } from '../HeaderMenu/HeaderMenu';
 import { MdMenu } from 'react-icons/md';
+import { Logo } from './Logo';
+import { HeaderMenu } from './HeaderMenu';
 
 import { MENUS } from '@/types/menus';
 
