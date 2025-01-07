@@ -19,7 +19,6 @@ export const AbilityBox = ({ abilities }: AbilityBoxProps) => {
     <div className="flex flex-col gap-4 mb-8">
       <div className="flex gap-1 w-full">
         <p className="text-lg min-[480px]:text-xl font-bold ">특성</p>
-
         <Tooltip text={'숨겨진 특성은 노란색으로 표기돼요'} />
         <Tooltip
           text={
