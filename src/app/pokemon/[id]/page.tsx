@@ -35,14 +35,15 @@ export default function PokemonDetail() {
     isLoadingSpecies,
     isErrorPokemon,
     isErrorSpecies,
-  } = usePokemonDetailQuery(String(id));
+  } = usePokemonDetailQuery(String(id)); // 포켓몬 상세 정보 구성을 위해 2개의 요청을 보내야함.
 
+  // 2개의 요청으로부터 error, loading 상태 확인
   const isError = isErrorPokemon || isErrorSpecies || !targetPokemon;
   const isLoading = isLoadingPokemon || isLoadingSpecies;
 
   useEffect(() => {
     if (pokemonData && speciesData)
-      setTargetPokemon(extractPokemonDetails(pokemonData, speciesData));
+      setTargetPokemon(extractPokemonDetails(pokemonData, speciesData)); // 받아온 2개의 데이터를 이용해 필요한 데이터로 구성
   }, [pokemonData, speciesData]);
 
   if (isLoading)
@@ -60,9 +61,7 @@ export default function PokemonDetail() {
 
   return (
     <main className="bg-gray-10 flex min-h-screen flex-col items-center justify-between p-8 md:p-12 lg:p-16 xl:p-24">
-      <h1 id="pokemon-detail" className="sr-only">
-        {targetPokemon.name} 상세정보
-      </h1>
+      <h1 className="sr-only">{targetPokemon.name} 상세정보</h1>
       <div className="grid grid-cols-2 min-[480px]:grid-cols-3 gap-8 sm:gap-16 ">
         <div className="col-span-1 ">
           <PokemonImgBox pokemon={targetPokemon} usage="detail" id={+id} />

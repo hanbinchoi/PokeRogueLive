@@ -10,7 +10,6 @@ import { PokemonDetailDataProps, PokemonSpeciesDataProps } from '@/types/data';
  * @param species - 포켓몬 종 정보 (`PokemonSpeciesDataProps`)
  * @returns 변환된 포켓몬 데이터 (`PokemonDetailProps`)
  */
-
 export default function extractPokemonDetails(
   detail: PokemonDetailDataProps,
   species: PokemonSpeciesDataProps,

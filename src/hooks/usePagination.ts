@@ -9,10 +9,6 @@ import { useEffect, useState } from 'react';
  * - 현재 페이지가 변경될 때마다 페이지 목록(`pages`)을 자동으로 업데이트합니다. (개수는 최대 5개)
  * - 특정 페이지로 이동할 수 있는 함수(`goToPage`)를 제공합니다.
  *
- * ```tsx
- * const { pages, goToPage } = usePagination(total, now, size, setNow);
- * ```
- *
  * @param total - 전체 아이템 개수
  * @param now - 현재 페이지 번호
  * @param size - 페이지당 아이템 개수

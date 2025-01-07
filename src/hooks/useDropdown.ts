@@ -14,17 +14,7 @@ import useOutsideClick from '@/hooks/useOutsideClick';
  * - 드롭다운 컨테이너 밖의 클릭을 감지합니다
  * - 검색입력 초기화 기능을 제공합니다
  *
- * ```tsx
- * const {
- *   dropdownRef,
- *   inputValue,
- *   handleInputChange,
- *   filteredOptions,
- *   handleOptionSelect
- * } = useDropdown({ options: ['옵션 1', '옵션 2', '옵션 3'] });
- * ```
- *
- * @param options - 전체 아이템 개수
+ * @param options - 드롭다운 메뉴를 구성할 옵션목록 (`string[]`)
  * @return 드롭다운 관련 상태 및 유틸 함수
  *
  */
