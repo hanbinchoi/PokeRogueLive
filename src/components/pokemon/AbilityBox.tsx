@@ -9,11 +9,17 @@ export interface AbilityBoxProps {
   abilities: AbilityDataProps[];
 }
 
+/**
+ * 포켓몬 특성 정보를 표시하는 컴포넌트.
+ *
+ * @param abilities 포켓몬 특성 목록 (`AbilityDataProps[]`)
+ */
 export const AbilityBox = ({ abilities }: AbilityBoxProps) => {
   return (
     <div className="flex flex-col gap-4 mb-8">
-      <div className="flex gap-1">
+      <div className="flex gap-1 w-full">
         <p className="text-lg min-[480px]:text-xl font-bold ">특성</p>
+
         <Tooltip text={'숨겨진 특성은 노란색으로 표기돼요'} />
         <Tooltip
           text={
@@ -21,9 +27,9 @@ export const AbilityBox = ({ abilities }: AbilityBoxProps) => {
           }
         />
       </div>
-      {abilities.map((ability) => (
+      {abilities.map((ability, i) => (
         <Ability
-          key={extractIdFromUrl(ability.ability.url)}
+          key={i}
           id={extractIdFromUrl(ability.ability.url)}
           ability={ability}
           hidden={ability.is_hidden}
