@@ -23,6 +23,13 @@ import {
 
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
 
+/**
+ * 포켓몬 상세정보 페이지
+ *
+ * 포켓몬 목록 페이지로부터 url에 id를 전달받아 해당 id를 통해 데이터를 요청.
+ *
+ * 포켓몬의 상세 정보(스탯, 진화, 기술 등)를 나열합니다.
+ */
 export default function PokemonDetail() {
   const { id } = useParams();
 
@@ -52,7 +59,7 @@ export default function PokemonDetail() {
         <LoadingComponent />
       </div>
     );
-  if (isError)
+  if (isError || !targetPokemon)
     return (
       <div className="w-full h-full">
         <ErrorComponent message="포켓몬을 찾을 수 없어요" />
@@ -64,7 +71,7 @@ export default function PokemonDetail() {
       <h1 className="sr-only">{targetPokemon.name} 상세정보</h1>
       <div className="grid grid-cols-2 min-[480px]:grid-cols-3 gap-8 sm:gap-16 ">
         <div className="col-span-1 ">
-          <PokemonImgBox pokemon={targetPokemon} usage="detail" id={+id} />
+          <PokemonImgBox pokemon={targetPokemon} usage="detail" />
         </div>
         <div className="col-span-1 min-[480px]:col-span-2 flex flex-col justify-center gap-6">
           <PokemonBasicInfo pokemon={targetPokemon} />

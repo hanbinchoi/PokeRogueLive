@@ -5,24 +5,32 @@ import { TypeBadge } from './TypeBadge';
 import { PokemonDetailProps } from '@/types/common';
 
 export interface PokemonImgBoxProps {
-  pokemon: PokemonDetailProps | null;
-  id: number;
+  pokemon: PokemonDetailProps;
   usage: 'detail' | 'power';
-  isLoading?: boolean;
-  isError?: boolean;
 }
 
-export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
+/**
+ * 포켓몬 이미지 박스 컴포넌트
+ *
+ * 사용 용도에 따라 두 가지 렌더링 방식이 제공됩니다:
+ * - 'detail': 상세 정보 페이지에서 사용. 이미지, 고유 번호, 사운드 버튼 등을 표시
+ * - 'power': 위력 페이지에서 사용. 이미지와 타입을 간단히 표시
+ *
+ * @param pokemon 포켓몬 기본 정보 (`PokemonDetailProps`)
+ * @param usage 사용 용도 (`"detail"` | `"power"`)
+ *
+ */
+export const PokemonImgBox = ({ pokemon, usage }: PokemonImgBoxProps) => {
   const handleAudioClick = () => {
     const audio = new Audio(pokemon?.cries);
     audio.play();
   };
-
+  console.log(pokemon);
   const renderDetail = () => (
     <div className="bg-white-100 border-2 rounded-lg ">
       <div className="flex justify-between items-center w-full pt-3 px-3 sm:px-5">
         <p className="text-xs sm:text-lg font-bold ">
-          No. {String(id).padStart(3, '0')}
+          No. {String(pokemon?.pokedex).padStart(3, '0')}
         </p>
         <AiFillSound
           className="text-base sm:text-lg cursor-pointer"
@@ -50,8 +58,6 @@ export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
       </div>
     </div>
   );
-
-  if (!pokemon) return null;
 
   switch (usage) {
     case 'detail':

@@ -1,4 +1,8 @@
-import { CommonDataProps, EvolutionDetailDataProps } from './data';
+import {
+  CommonDataProps,
+  EvolutionDetailDataProps,
+  StatDataProps,
+} from './data';
 
 import {
   Weather,
@@ -91,6 +95,8 @@ export type SpecialAttackAbilityType = SpecialAttackAbility;
 
 export type SpecialDefendAbilityType = SpecialDefendAbility;
 
+export type MoveStatusKey = 'PHYSICAL' | 'SPECIAL' | 'STATUS';
+
 export type StatKey =
   | 'lv'
   | 'hp'
@@ -100,17 +106,16 @@ export type StatKey =
   | 'special-defense'
   | 'speed';
 
-export type MoveStatusKey = 'PHYSICAL' | 'SPECIAL' | 'STATUS';
+export type PokemonStatsProps = Record<StatKey, number>;
 
-export interface PokemonStatsProps {
-  lv: number;
-  hp: number;
-  attack: number;
-  defense: number;
-  'special-attack': number;
-  'special-defense': number;
-  speed: number;
-}
+export type InfoKey =
+  | 'genera'
+  | 'height'
+  | 'weight'
+  | 'base_experience'
+  | 'capture_rate';
+
+export type PokemonInfoProps = Record<InfoKey, string | number>;
 
 export interface DamageContextProps {
   sameTypeEffectiveness: null | string;

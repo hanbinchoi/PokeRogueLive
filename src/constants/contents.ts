@@ -5547,6 +5547,14 @@ export const POKEMON_STAT_KOREAN_MAP = {
   speed: '스피드',
 };
 
+export const POKEMON_INFO_KOREAN_MAP = {
+  genera: '분류',
+  height: '키',
+  weight: '몸무게',
+  base_experience: '획득 경험치',
+  capture_rate: '포획률',
+};
+
 export const MOVE_STATUS_KOREAN_MAP = {
   PHYSICAL: '물리',
   SPECIAL: '특수',

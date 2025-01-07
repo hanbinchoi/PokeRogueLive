@@ -1,68 +1,67 @@
 import { twJoin } from 'tailwind-merge';
 
-import { DefaultProps, PokemonDetailProps } from '@/types/common';
+import {
+  DefaultProps,
+  InfoKey,
+  PokemonDetailProps,
+  StatKey,
+} from '@/types/common';
+
+import getPokemonStatMap from '@/utils/getPokemonStatMap';
+import getPokemonInfoMap from '@/utils/getPokemonInfoMap';
+
+import {
+  POKEMON_INFO_KOREAN_MAP,
+  POKEMON_STAT_KOREAN_MAP,
+} from '@/constants/contents';
 
 export interface PokemonStatInfoProps extends DefaultProps {
   pokemon: PokemonDetailProps;
 }
 
+/**
+ * 포켓몬 능력치 정보 컴포넌트.
+ *
+ * 포켓몬 능력치 및 기본 스탯을 표시합니다.
+ * @param pokemon 포켓몬 기본 정보 (`PokemonDetailProps`)
+ * @param className 추가 디자인 설정을 위한 class
+ */
 export const PokemonStatInfo = ({
   pokemon,
   className,
 }: PokemonStatInfoProps) => {
+  const stats = getPokemonStatMap(pokemon);
+  const infos = getPokemonInfoMap(pokemon);
+
   return (
     <div
       className={twJoin(
         'flex flex-col gap-5 text-xs min-[480px]:text-base ',
         className,
       )}>
-      <div className="flex justify-between mt-2 ">
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">분류</span>
-          <span>{pokemon.genera}</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">키</span>
-          <span>{pokemon.height / 10}m</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">몸무게</span>
-          <span>{pokemon.weight / 10}kg</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">획득 경험치</span>
-          <span>{pokemon.base_experience}</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">포획률</span>
-          <span>{pokemon.capture_rate}</span>
-        </div>
+      <div className="flex justify-between mt-2">
+        {Object.entries(infos).map(([info, value]) => (
+          <div className="flex flex-col gap-1" key={info}>
+            <span className="font-bold">
+              {POKEMON_INFO_KOREAN_MAP[info as InfoKey]}
+            </span>
+            <span>{value}</span>
+          </div>
+        ))}
       </div>
       <div className="flex justify-between">
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">HP</span>
-          <span>{pokemon.stats[0].base_stat}</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">공격</span>
-          <span>{pokemon.stats[1].base_stat}</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">방어</span>
-          <span>{pokemon.stats[2].base_stat}</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">특수공격</span>
-          <span>{pokemon.stats[3].base_stat}</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">특수방어</span>
-          <span>{pokemon.stats[4].base_stat}</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="font-bold">스피드</span>
-          <span>{pokemon.stats[5].base_stat}</span>
-        </div>
+        {Object.entries(stats).map(
+          ([stat, value]) =>
+            stat !== 'lv' && (
+              <div className="flex flex-col gap-1" key={stat}>
+                <span className="font-bold">
+                  {POKEMON_STAT_KOREAN_MAP[stat as StatKey]}
+                </span>
+                <span>{value}</span>
+              </div>
+            ),
+        )}
+
         <div className="flex flex-col gap-1">
           <span className="font-bold">합계</span>
           <span>
