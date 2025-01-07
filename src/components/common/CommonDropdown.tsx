@@ -14,6 +14,7 @@ interface DropDownProps extends DefaultProps {
   showDropdown: boolean;
   noFoundMessage: string;
 }
+
 export const CommonDropdown = ({
   dropdownRef,
   filteredOptions,
@@ -23,11 +24,11 @@ export const CommonDropdown = ({
   noFoundMessage,
   className,
 }: DropDownProps) => {
+  // 드롭다운 메뉴 키보드로 제어 시 자동으로 스크롤 되도록 이벤트 설정
   useEffect(() => {
     if (dropdownRef.current && selectedIndex !== null) {
-      const selectedElement = dropdownRef.current.children[
-        selectedIndex
-      ] as HTMLElement;
+      const selectedElement = dropdownRef.current.children[selectedIndex];
+
       if (selectedElement) {
         selectedElement.scrollIntoView({
           behavior: 'auto',
@@ -46,6 +47,9 @@ export const CommonDropdown = ({
         'absolute z-10 w-full min-w-[120px] max-w-[162px] text-sm lg:text-[14px] bg-white-100 border-2 border-t rounded shadow max-h-20 sm:max-h-40 overflow-y-auto ',
         className,
       )}>
+      {filteredOptions.length === 0 && (
+        <div className="p-2 text-gray-50">{noFoundMessage}</div>
+      )}
       {filteredOptions.map((option, index) => (
         <div
           key={option}
@@ -57,9 +61,6 @@ export const CommonDropdown = ({
           {option}
         </div>
       ))}
-      {filteredOptions.length === 0 && (
-        <div className="p-2 text-gray-50">{noFoundMessage}</div>
-      )}
     </div>
   );
 };
