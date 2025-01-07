@@ -1,6 +1,5 @@
 import { AiFillSound } from 'react-icons/ai';
-import { LoadingComponent } from './LoadingComponent';
-import { ErrorComponent } from './ErrorComponent';
+
 import { TypeBadge } from './TypeBadge';
 
 import { PokemonDetailProps } from '@/types/common';
@@ -8,43 +7,16 @@ import { PokemonDetailProps } from '@/types/common';
 export interface PokemonImgBoxProps {
   pokemon: PokemonDetailProps | null;
   id: number;
-  usage: 'detail' | 'list' | 'power';
+  usage: 'detail' | 'power';
   isLoading?: boolean;
   isError?: boolean;
 }
 
-export const PokemonImgBox = ({
-  pokemon,
-  usage,
-  id,
-  isLoading,
-  isError,
-}: PokemonImgBoxProps) => {
+export const PokemonImgBox = ({ pokemon, usage, id }: PokemonImgBoxProps) => {
   const handleAudioClick = () => {
     const audio = new Audio(pokemon?.cries);
     audio.play();
   };
-
-  const renderList = () => (
-    <div className="w-[150px] min-w-[150px] lg:min-w-[170px] h-[202px] min-h-[202px] lg:min-h-[212px] px-6 xl:px-8 py-4 text-sm font-bold flex flex-col justify-center items-center bg-white-100 border-2 rounded-lg">
-      {isLoading ? (
-        <LoadingComponent />
-      ) : isError ? (
-        <ErrorComponent message="Not Found" size="xsmall" />
-      ) : (
-        <>
-          <div>{`No. ${String(id).padStart(3, '0')}`}</div>
-          <img className="w-24" alt={pokemon?.name} src={pokemon?.imageUrl} />
-          <div className="mb-2 text-lg">{pokemon?.name}</div>
-          <div className="flex gap-2">
-            {pokemon?.type.map((t, i) => (
-              <TypeBadge key={`${t}-${i}`} type={t} size="small" />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
 
   const renderDetail = () => (
     <div className="bg-white-100 border-2 rounded-lg ">
@@ -82,8 +54,6 @@ export const PokemonImgBox = ({
   if (!pokemon) return null;
 
   switch (usage) {
-    case 'list':
-      return renderList();
     case 'detail':
       return renderDetail();
     case 'power':

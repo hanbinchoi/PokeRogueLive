@@ -8,7 +8,7 @@ export default function Pokemon() {
       <h1 id="pokemon-search" className="sr-only">
         포켓몬 목록
       </h1>
-      <div className="flex flex-col">
+      <div className="flex flex-col h-full">
         <PokemonSearchForm />
         <PokemonList />
       </div>
