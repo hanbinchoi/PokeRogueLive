@@ -113,6 +113,19 @@ export interface StatDataProps {
   stat: CommonDataProps;
 }
 
+export interface EvolutionChainNodeDataProps {
+  is_baby: boolean;
+  species: CommonDataProps;
+  evolution_details: EvolutionDetailDataProps[];
+  evolves_to: EvolutionChainNodeProps[];
+}
+
+export interface EvolutionChainDataProps {
+  id: number;
+  baby_trigger_item: string | null;
+  chain: EvolutionChainNodeProps;
+}
+
 export interface PokemonsDataProps {
   count: number;
   data: CommonDataProps[];

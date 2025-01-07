@@ -1,8 +1,4 @@
-import {
-  CommonDataProps,
-  EvolutionDetailDataProps,
-  StatDataProps,
-} from './data';
+import { CommonDataProps, StatDataProps } from './data';
 
 import {
   Weather,
@@ -71,19 +67,6 @@ export interface PokemonTypesData
   extends Record<PokemonType, PokemonTypeDetail> {}
 
 export type calcResultType = Map<number, PokemonType[]> | null;
-
-export interface EvolutionChainNodeProps {
-  is_baby: boolean;
-  species: CommonDataProps;
-  evolution_details: EvolutionDetailDataProps[];
-  evolves_to: EvolutionChainNodeProps[];
-}
-
-export interface EvolutionChainProps {
-  id: number;
-  baby_trigger_item: string | null;
-  chain: EvolutionChainNodeProps;
-}
 
 export type FieldType = Field;
 
