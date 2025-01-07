@@ -2,6 +2,13 @@ import Link from 'next/link';
 
 import { MenuItemProps } from '@/types/menus';
 
+/**
+ * 사이드바를 구성하는 메뉴 컴포넌트.
+ *
+ * - title : 이동 할 메뉴의 title(url) (`string`)
+ * - label : 메뉴의 text (`string`)
+ * - icon : 메뉴 Icon (`ICON`)
+ */
 export const SidebarMenu = ({ title, label, icon: Icon }: MenuItemProps) => {
   return (
     <li>

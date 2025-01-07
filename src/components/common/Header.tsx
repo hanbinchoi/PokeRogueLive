@@ -9,6 +9,11 @@ import { HeaderMenu } from './HeaderMenu';
 
 import { MENUS } from '@/types/menus';
 
+/**
+ * 헤더 컴포넌트.
+ *
+ * 반응형 디자인으로 구현되어 있어, 메뉴가 포함될 수 있습니다.
+ */
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
