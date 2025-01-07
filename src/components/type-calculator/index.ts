@@ -1,19 +1,19 @@
 import { AttackOptionButton } from './AttackOptionButton';
-import { TypeCalcAttack } from './TypeCalcAttack';
+import { AttackTypeCalc } from './AttackTypeCalc';
 import { TypeCalcAttackResult } from './TypeCalcAttackResult';
-import { TypeCalcButton } from './TypeCalcButton';
+import { PokemonTypeButton } from './PokemonTypeButton';
 import { TypeCalcDefend } from './TypeCalcDefend';
 import { TypeCalcDefendResult } from './TypeCalcDefendResult';
-import { TypeCalcOption } from './TypeCalcOption';
+import { PokemonTypeSelector } from './PokemonTypeSelector';
 import { TypeModeToggle } from './TypeModeToggle';
 
 export {
   AttackOptionButton,
-  TypeCalcAttack,
+  AttackTypeCalc,
   TypeCalcAttackResult,
-  TypeCalcButton,
+  PokemonTypeButton,
   TypeCalcDefend,
   TypeCalcDefendResult,
-  TypeCalcOption,
+  PokemonTypeSelector,
   TypeModeToggle,
 };

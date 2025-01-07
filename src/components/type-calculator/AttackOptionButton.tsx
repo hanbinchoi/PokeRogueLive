@@ -1,4 +1,5 @@
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
+
 import {
   SpecialAttackAbilityType,
   SpecialAttackMoveType,
@@ -10,6 +11,15 @@ interface AttackOptionButtonProps {
   usage: 'move' | 'ability';
 }
 
+/**
+ * 공격 옵션 버튼 컴포넌트
+ *
+ * 주어진 옵션(기술 또는 특성) 중 하나를 선택할 수 있는 라디오 버튼 형태의 UI를 제공합니다.
+ *
+ * @param title 버튼 그룹 제목 (`string`)
+ * @param options 선택 가능한 옵션 배열 (`string[]`)
+ * @param usage "move" 또는 "ability"로, 어떤 타입의 옵션인지 구분 (`'move' | 'ability'`)
+ */
 export const AttackOptionButton = ({
   title,
   options,
@@ -20,12 +30,12 @@ export const AttackOptionButton = ({
 
   const handleClick = (value: string) => {
     if (usage === 'move')
-      attackMove === value
+      return attackMove === value
         ? setAttackMove(null)
         : setAttackMove(value as SpecialAttackMoveType);
 
     if (usage === 'ability')
-      attackAbility === value
+      return attackAbility === value
         ? setAttackAbility(null)
         : setAttackAbility(value as SpecialAttackAbilityType);
   };
@@ -45,7 +55,7 @@ export const AttackOptionButton = ({
                     ? attackMove === option
                     : attackAbility === option
                 }
-                onClick={() => handleClick(option)}
+                onChange={() => handleClick(option)}
                 className="mr-2"
               />
               {option}

@@ -1,4 +1,4 @@
-import { TypeCalcOption } from './TypeCalcOption';
+import { TypeCalcOption } from './PokemonTypeSelector';
 import { CommonSelect } from '../common';
 import { TypeCalcDefendResult } from './TypeCalcDefendResult';
 
