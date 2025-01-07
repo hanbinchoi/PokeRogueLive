@@ -6,6 +6,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getPokemons } from '@/api/pokemon';
 
+import useResponsiveLimit from '@/hooks/useResponsiveLimit';
+
 import usePokemonsStore from '@/stores/pokemonsStore';
 
 import { ErrorComponent, LoadingComponent, PagingDocuments } from '../common';
@@ -20,12 +22,12 @@ export const PokemonList = () => {
     limit,
     setLimit,
     total,
+    now,
     setNow,
     isSearch,
     searchIdsList,
-    setPokemonIdsList,
-    now,
     pokemonIdsList,
+    setPokemonIdsList,
   } = usePokemonsStore();
 
   const { isLoading, error, data } = useQuery<PokemonsDataProps>({
@@ -34,79 +36,37 @@ export const PokemonList = () => {
     enabled: !pokemonIdsList?.length,
   });
 
+  const isError = error || (isSearch && !pokemonIdsList?.length);
+
   useEffect(() => {
     if (searchIdsList) {
+      // 검색을 통해 얻은 포켓몬 id 리스트가 있는경우 limit 만큼 화면에 보여줄 id 셋팅
       setPokemonIdsList(searchIdsList.slice((now - 1) * limit, now * limit));
     } else {
       setPokemonIdsList(null);
     }
   }, [searchIdsList, now, limit]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1280) {
-        setLimit(10);
-      } else if (window.innerWidth >= 1024) {
-        setLimit(8);
-      } else if (window.innerWidth >= 640) {
-        setLimit(6);
-      } else if (window.innerWidth >= 480) {
-        setLimit(4);
-      } else {
-        setLimit(2);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const renderError = () => {
-    if (isLoading)
-      return (
-        <div className="w-full h-full">
-          <LoadingComponent />
-        </div>
-      );
-    if (error || (isSearch && !pokemonIdsList?.length))
-      return (
-        <div className="w-full h-full">
-          <ErrorComponent message="포켓몬을 찾을 수 없어요." />;
-        </div>
-      );
-
-    return null;
-  };
-
-  const renderPokemonList = () => {
-    if (isSearch && pokemonIdsList?.length) {
-      return pokemonIdsList.map((pokemonId) => (
-        <Pokemon key={pokemonId} id={pokemonId} />
-      ));
-    }
-
-    if (!isSearch && data?.data) {
-      return data.data.map((pokemon) => (
-        <Pokemon
-          key={extractIdFromUrl(pokemon.url)}
-          id={extractIdFromUrl(pokemon.url)}
-        />
-      ));
-    }
-
-    return null;
-  };
+  useResponsiveLimit(setLimit);
 
   return (
     <div className="flex-grow flex flex-col w-full">
-      {renderError()}
+      <div className="w-full h-full">
+        {isLoading && <LoadingComponent />}
+        {isError && <ErrorComponent message="포켓몬을 찾을 수 없어요." />}
+      </div>
 
       <div className="grid  py-2 px-14 gap-8 grid-cols-1 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {renderPokemonList()}
+        {isSearch
+          ? pokemonIdsList?.map((pokemonId) => (
+              <Pokemon key={pokemonId} id={pokemonId} />
+            ))
+          : data?.data.map((pokemon) => (
+              <Pokemon
+                key={extractIdFromUrl(pokemon.url)}
+                id={extractIdFromUrl(pokemon.url)}
+              />
+            ))}
       </div>
 
       <PagingDocuments
