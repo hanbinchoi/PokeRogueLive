@@ -9,26 +9,6 @@ export const ErrorComponent = ({
   message,
   size = 'medium',
 }: ErrorComponentProps) => {
-  const SIZE = {
-    medium: {
-      div: 'gap-2',
-      img: 'max-w-[320px]',
-      title: 'text-lg sm:text-2xl lg:text-3xl',
-      desc: 'text-base sm:text-lg lg:text-xl',
-    },
-    small: {
-      div: 'gap-0 sm:gap-1',
-      img: 'max-w-[72px] sm:max-w-[140px]',
-      title: 'text-[14px] sm:text-base  lg:text-lg',
-      desc: 'text-[10px] sm:text-[12px] lg:text-[14px]',
-    },
-    xsmall: {
-      div: 'gap-0 sm:gap-1',
-      img: 'max-w-[52px] sm:max-w-[70px]',
-      title: 'text-[14px] sm:text-base  lg:text-lg',
-      desc: 'text-[10px] sm:text-[12px] lg:text-[14px]',
-    },
-  };
   return (
     <div
       className={twJoin(
@@ -63,4 +43,25 @@ export const ErrorComponent = ({
       )}
     </div>
   );
+};
+
+const SIZE = {
+  medium: {
+    div: 'gap-2',
+    img: 'max-w-[320px]',
+    title: 'text-lg sm:text-2xl lg:text-3xl',
+    desc: 'text-base sm:text-lg lg:text-xl',
+  },
+  small: {
+    div: 'gap-0 sm:gap-1',
+    img: 'max-w-[72px] sm:max-w-[140px]',
+    title: 'text-[14px] sm:text-base  lg:text-lg',
+    desc: 'text-[10px] sm:text-[12px] lg:text-[14px]',
+  },
+  xsmall: {
+    div: 'gap-0 sm:gap-1',
+    img: 'max-w-[52px] sm:max-w-[70px]',
+    title: 'text-[14px] sm:text-base  lg:text-lg',
+    desc: 'text-[10px] sm:text-[12px] lg:text-[14px]',
+  },
 };
