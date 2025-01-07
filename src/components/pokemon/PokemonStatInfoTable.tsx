@@ -1,99 +1,77 @@
 import { twJoin } from 'tailwind-merge';
 
-import { DefaultProps, PokemonDetailProps } from '@/types/common';
+import {
+  DefaultProps,
+  InfoKey,
+  PokemonDetailProps,
+  StatKey,
+} from '@/types/common';
+
+import getPokemonInfoMap from '@/utils/getPokemonInfoMap';
+import getPokemonStatMap from '@/utils/getPokemonStatMap';
+
+import {
+  POKEMON_INFO_KOREAN_MAP,
+  POKEMON_STAT_KOREAN_MAP,
+} from '@/constants/contents';
 
 export interface PokemonStatInfoTableProps extends DefaultProps {
   pokemon: PokemonDetailProps;
 }
 
+/**
+ * 포켓몬 기본 정보와 능력치를 테이블로 보여주는 컴포넌트.
+ *
+ * 포켓몬 기본 정보와 능력치를 테이블로 표시합니다.
+ * @param pokemon 포켓몬 상세 정보 (`PokemonDetailProps`)
+ * @param className 추가 디자인 설정을 위한 class
+ */
 export const PokemonStatInfoTable = ({
   pokemon,
   className,
 }: PokemonStatInfoTableProps) => {
+  const stats = getPokemonStatMap(pokemon);
+  const infos = getPokemonInfoMap(pokemon);
   return (
     <div className={twJoin('text-xs min-[480px]:text-base', className)}>
       <div className="w-full flex flex-col justify-center min-[480px]:grid grid-cols-2 gap-4 bg-white-100">
         <table className="table-auto text-left border border-gray-100 rounded-lg">
-          <thead className="bg-gray-50">
+          <thead className="font-bold text-sm text-black-10 bg-gray-50">
             <tr>
-              <th className="px-4 py-2 font-bold text-sm text-black-10">
-                속성
-              </th>
-              <th className="px-4 py-2 font-bold text-sm text-black-10">값</th>
+              <th className="px-4 py-2">속성</th>
+              <th className="px-4 py-2">값</th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">분류</td>
-              <td className="px-4 py-2">{pokemon.genera}</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">키</td>
-              <td className="px-4 py-2">{pokemon.height / 10}m</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">몸무게</td>
-              <td className="px-4 py-2">{pokemon.weight / 10}kg</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">
-                획득 경험치
-              </td>
-              <td className="px-4 py-2">{pokemon.base_experience}</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">포획률</td>
-              <td className="px-4 py-2">{pokemon.capture_rate}</td>
-            </tr>
+            {Object.entries(infos).map(([info, value]) => (
+              <tr className="border-b" key={info}>
+                <td className="px-4 py-2 font-semibold ">
+                  {POKEMON_INFO_KOREAN_MAP[info as InfoKey]}
+                </td>
+                <td className="px-4 py-2">{value}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
         <table className="table-auto text-left border border-gray-100 rounded-lg">
-          <thead className="bg-gray-50">
+          <thead className="font-bold text-sm text-black-10 bg-gray-50">
             <tr>
-              <th className="px-4 py-2 font-bold text-sm text-black-10">
-                스탯
-              </th>
-              <th className="px-4 py-2 font-bold text-sm text-black-10">값</th>
+              <th className="px-4 py-2">스탯</th>
+              <th className="px-4 py-2">값</th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">HP</td>
-              <td className="px-4 py-2">{pokemon.stats[0].base_stat}</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">공격</td>
-              <td className="px-4 py-2">{pokemon.stats[1].base_stat}</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">방어</td>
-              <td className="px-4 py-2">{pokemon.stats[2].base_stat}</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">
-                특수공격
-              </td>
-              <td className="px-4 py-2">{pokemon.stats[3].base_stat}</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">
-                특수방어
-              </td>
-              <td className="px-4 py-2">{pokemon.stats[4].base_stat}</td>
-            </tr>
-            <tr className="border-b">
-              <td className="px-4 py-2 font-semibold text-black-30">스피드</td>
-              <td className="px-4 py-2">{pokemon.stats[5].base_stat}</td>
-            </tr>
-            <tr>
-              <td className="px-4 py-2 font-semibold text-black-30">합계</td>
-              <td className="px-4 py-2">
-                {pokemon.stats.reduce(
-                  (total, stat) => total + stat.base_stat,
-                  0,
-                )}
-              </td>
-            </tr>
+            {Object.entries(stats).map(
+              ([stat, value]) =>
+                stat !== 'lv' && (
+                  <tr className="border-b" key={stat}>
+                    <td className="px-4 py-2 font-semibold">
+                      {POKEMON_STAT_KOREAN_MAP[stat as StatKey]}
+                    </td>
+                    <td className="px-4 py-2">{value}</td>
+                  </tr>
+                ),
+            )}
           </tbody>
         </table>
       </div>

@@ -13,7 +13,7 @@ export interface PokemonBasicInfoProps {
  *
  * @param pokemon  포켓몬 상세 정보 (`PokemonDetailProps`)
  */
-export const PokemonBasicInfo = ({ pokemon }: PokemonBasicInfoProps) => {
+export const PokemonOverview = ({ pokemon }: PokemonBasicInfoProps) => {
   return (
     <div className="flex flex-col gap-3 text-sm min-[480px]:text-base ">
       <div className="flex justify-between">

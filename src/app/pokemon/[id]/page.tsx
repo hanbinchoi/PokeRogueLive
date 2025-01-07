@@ -16,7 +16,7 @@ import {
   AbilityBox,
   EvolutionChain,
   MoveBox,
-  PokemonBasicInfo,
+  PokemonOverview,
   PokemonStatInfo,
   PokemonStatInfoTable,
 } from '@/components/pokemon';
@@ -74,7 +74,7 @@ export default function PokemonDetail() {
           <PokemonImgBox pokemon={targetPokemon} usage="detail" />
         </div>
         <div className="col-span-1 min-[480px]:col-span-2 flex flex-col justify-center gap-6">
-          <PokemonBasicInfo pokemon={targetPokemon} />
+          <PokemonOverview pokemon={targetPokemon} />
           <PokemonStatInfo pokemon={targetPokemon} className="hidden md:flex" />
         </div>
         <div className="col-span-3 block md:hidden">

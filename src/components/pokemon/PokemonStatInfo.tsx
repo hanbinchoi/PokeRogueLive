@@ -22,8 +22,8 @@ export interface PokemonStatInfoProps extends DefaultProps {
 /**
  * 포켓몬 능력치 정보 컴포넌트.
  *
- * 포켓몬 능력치 및 기본 스탯을 표시합니다.
- * @param pokemon 포켓몬 기본 정보 (`PokemonDetailProps`)
+ * 포켓몬 기본 정보와 능력치를 표시합니다.
+ * @param pokemon 포켓몬 상세 정보 (`PokemonDetailProps`)
  * @param className 추가 디자인 설정을 위한 class
  */
 export const PokemonStatInfo = ({

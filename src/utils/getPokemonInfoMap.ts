@@ -12,8 +12,8 @@ export default function getPokemonInfoMap(
 ): PokemonInfoProps {
   return {
     genera: pokemon.genera,
-    height: pokemon.height / 10,
-    weight: pokemon.weight / 10,
+    height: pokemon.height / 10 + 'm',
+    weight: pokemon.weight / 10 + 'kg',
     base_experience: pokemon.base_experience,
     capture_rate: pokemon.capture_rate,
   };

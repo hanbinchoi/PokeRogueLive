@@ -5,7 +5,7 @@ import { EvolutionDescription } from './EvolutionDescription';
 import { EvolutionNode } from './EvolutionNode';
 import { Move } from './Move';
 import { MoveBox } from './MoveBox';
-import { PokemonBasicInfo } from './PokemonBasicInfo';
+import { PokemonOverview } from './PokemonOverview';
 import { PokemonStatInfo } from './PokemonStatInfo';
 import { PokemonStatInfoTable } from './PokemonStatInfoTable';
 
@@ -17,7 +17,7 @@ export {
   EvolutionNode,
   Move,
   MoveBox,
-  PokemonBasicInfo,
+  PokemonOverview,
   PokemonStatInfo,
   PokemonStatInfoTable,
 };
