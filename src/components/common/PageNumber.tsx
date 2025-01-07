@@ -14,6 +14,7 @@ export const PageNumber = ({
   ...props
 }: PageNumberProps) => {
   const handleClick = Object.values(props)[0];
+
   return primary ? (
     <li
       className="text-blue-30 font-bold cursor-pointer"

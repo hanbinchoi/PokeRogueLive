@@ -11,17 +11,16 @@ import {
 
 export interface PagingDocumentsProps {
   now: number;
+  setNow: (now: number) => void;
   total: number;
   pageSize: number;
-
-  setNow: (now: number) => void;
 }
 
 export const PagingDocuments = ({
   now,
+  setNow,
   total,
   pageSize,
-  setNow,
 }: PagingDocumentsProps) => {
   const { pages, goToPage } = usePagination(total, now, pageSize, setNow);
   const lastPage = Math.ceil(total / pageSize);
