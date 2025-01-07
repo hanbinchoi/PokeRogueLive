@@ -11,6 +11,19 @@ export interface ButtonProps extends DefaultProps {
   onClick?: () => void;
 }
 
+/**
+ * 버튼 Component
+ *
+ * 스타일과 사이즈를 제공합니다.
+ *
+ * - primary: 버튼의 스타일을 지정합니다. (기본값은 `false`)
+ * - size: 버튼의 사이즈를 지정합니다. (기본값은 `medium`)
+ * - type: 버튼의 타입을 지정합니다. (기본값은 `button`)
+ * - label: 버튼의 label을 지정합니다.
+ * - disabled: 버튼의 활성화 여부를 지정합니다. (기본값은 `false`)
+ * - className: 버튼의 추가적인 스타일을 지정합니다.
+ *
+ */
 export const CommonButton = ({
   primary = false,
   size = 'medium',

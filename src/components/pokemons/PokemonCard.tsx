@@ -15,7 +15,14 @@ export interface PokemonProps {
   id: number;
 }
 
-export const Pokemon = ({ id }: PokemonProps) => {
+/**
+ * 포켓몬 목록에 보여 줄 포켓몬 디자인 component
+ *
+ * props로 넘겨받은 id를 통해 데이터를 요청합니다. 요청 시 발생하는 로딩이나 에러에 대응할 수 있습니다.
+ *
+ * - id: 요청을 보내기 위한 포켓몬 id (`number`)
+ */
+export const PokemonCard = ({ id }: PokemonProps) => {
   const [pokemon, setPokemon] = useState<PokemonDetailProps | null>(null);
 
   const {

@@ -8,6 +8,13 @@ export interface PageNumberProps extends DefaultProps {
   onClick: () => void;
 }
 
+/**
+ * 페이징 처리에 사용되는 버튼 컴포넌트
+ *
+ * - primary: 버튼 스타일 지정 (`boolean`)
+ * - children: 보여줄 children element (일반적으로 text or icon)
+ * - onClick: 클릭 이벤트
+ */
 export const PageNumber = ({
   children,
   primary,

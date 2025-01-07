@@ -6,6 +6,9 @@ interface PageButtonProps {
   primary?: boolean;
 }
 
+/**
+ * 페이지 번호 컴포넌트
+ */
 export const PageButton = ({
   children,
   onClick,
@@ -18,6 +21,9 @@ export const PageButton = ({
   );
 };
 
+/**
+ * 페이지 이동 아이콘 컴포넌트
+ */
 export const IconButton = ({
   Icon,
   onClick,

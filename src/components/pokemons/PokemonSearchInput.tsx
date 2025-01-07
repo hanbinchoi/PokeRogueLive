@@ -25,6 +25,15 @@ export interface SearchInputProps extends DefaultProps {
   onSubmit: (input: InputValues) => void;
 }
 
+/**
+ * 포켓몬 검색 입력을 위한 input component.
+ *
+ * 사용자가 포켓몬을 검색할 수 있도록 돕는 입력창입니다.
+ * - 드롭다운 메뉴로 검색 제안
+ * - 입력 필드에서 자동완성 제공
+ * - 오류 메시지 표시
+ *
+ */
 export const PokemonSearchInput = ({
   placeholder,
   className,

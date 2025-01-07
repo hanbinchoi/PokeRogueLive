@@ -11,12 +11,18 @@ import useResponsiveLimit from '@/hooks/useResponsiveLimit';
 import usePokemonsStore from '@/stores/pokemonsStore';
 
 import { ErrorComponent, LoadingComponent, PagingDocuments } from '../common';
-import { Pokemon } from './Pokemon';
+import { PokemonCard } from './PokemonCard';
 
 import { PokemonsDataProps } from '@/types/data';
 
 import extractIdFromUrl from '@/utils/extractIdFromUrl';
 
+/**
+ * 포켓몬 목록을 렌더링 하기 위한 component.
+ *
+ * 검색어를 입력 한 경우 검색 결과를 요청.
+ * 검색어가 없는 경우 현재 페이지 번호(`now`)에 해당하는 포켓몬 목록을 요청
+ */
 export const PokemonList = () => {
   const {
     limit,
@@ -64,10 +70,10 @@ export const PokemonList = () => {
       <div className="grid  py-2 px-14 gap-8 grid-cols-1 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {isSearch
           ? pokemonIdsList?.map((pokemonId) => (
-              <Pokemon key={pokemonId} id={pokemonId} />
+              <PokemonCard key={pokemonId} id={pokemonId} />
             ))
           : data?.data.map((pokemon) => (
-              <Pokemon
+              <PokemonCard
                 key={extractIdFromUrl(pokemon.url)}
                 id={extractIdFromUrl(pokemon.url)}
               />

@@ -1,4 +1,4 @@
-import { Pokemon } from './Pokemon';
+import { Pokemon } from './PokemonCard';
 import { PokemonList } from './PokemonList';
 import { PokemonSearchForm } from './PokemonSearchForm';
 import { PokemonSearchInput } from './PokemonSearchInput';

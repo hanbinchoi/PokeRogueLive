@@ -1,3 +1,6 @@
+/**
+ * 로딩 상태 시 표시 할 컴포넌트
+ */
 export const LoadingComponent = () => {
   return (
     <div className="w-full h-full flex items-center justify-center">

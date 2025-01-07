@@ -14,7 +14,16 @@ interface TypeBadgeSizeProps {
   medium: string;
 }
 
-export const TypeBadge = ({ type, size }: TypeBadgeProps) => {
+/**
+ * 포켓몬 타입 뱃지를 그리기 위한 컴포넌트.
+ *
+ * 각 타입 별 스타일이 다르며 2가지 사이즈를 지정할 수 있습니다.
+ *
+ * - type : 포켓몬 타입 (`PokemonType`)
+ * - size : 뱃지 사이즈.  (`small` | `medium(기본값)`)
+ * @returns
+ */
+export const TypeBadge = ({ type, size = 'medium' }: TypeBadgeProps) => {
   const { backgroundColor, name } = POKEMON_TYPE_INFO[type];
 
   if (type === PokemonTypeName.STELLAR) {

@@ -5,6 +5,12 @@ export interface ErrorComponentProps {
   size?: 'small' | 'medium' | 'xsmall';
 }
 
+/**
+ *  에러 화면을 표시하기 위한 컴포넌트
+ *
+ * - message: 에러 발생 시 표시할 메시지 (`string`)
+ * - size: 3가지 사이즈를 제공 (`small` | `medium` | `xsmall`)
+ */
 export const ErrorComponent = ({
   message,
   size = 'medium',

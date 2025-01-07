@@ -2,6 +2,11 @@ interface ErrorMessageProps {
   message?: string;
 }
 
+/**
+ * 에러 메시지를 나타내기 위한 Component
+ *
+ * @param message - 표시할 메시지(`string`)
+ */
 export const ErrorMessage = ({ message }: ErrorMessageProps) => {
   if (!message) return null;
 
