@@ -6,7 +6,7 @@ import { CommonCheckBox, CommonSearchDropDown } from '@/components/common';
 import {
   PokemonStatsPanel,
   PokemonSearchDropDown,
-  PowerDamage,
+  PowerDamageResult,
 } from '@/components/power-calculator';
 
 import extractMoveList from '@/utils/extractMoveList';
@@ -59,7 +59,7 @@ export default function PowerCalculator() {
           <h2 className="text-base md:text-lg lg:text-xl font-bold">방어</h2>
           <PokemonSearchDropDown usage={BattleRole.DEFEND} />
           <PokemonStatsPanel usage={BattleRole.DEFEND} />
-          <PowerDamage />
+          <PowerDamageResult />
         </div>
       </div>
     </main>

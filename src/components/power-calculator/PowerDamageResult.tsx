@@ -19,7 +19,7 @@ import getDamages from '@/utils/getDamages';
  * - 상태 기술인 경우 별도의 결과 컴포넌트를 렌더링합니다.
  * - 데미지 계산 요인(약점타격, 속성보정 등)을 함께 안내합니다.
  */
-export const PowerDamage = () => {
+export const PowerDamageResult = () => {
   const {
     attackPokemon,
     defendPokemon,

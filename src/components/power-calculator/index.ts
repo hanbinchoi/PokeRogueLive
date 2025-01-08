@@ -2,7 +2,7 @@ import { PokemonStatsPanel } from './PokemonStatsPanel';
 import { PokemonSearchDropDown } from './PokemonSearchDropDown';
 import { PokemonStatsEditor } from './PokemonStatsEditor';
 import { PokemonStatInput } from './PokemonStatInput';
-import { PowerDamage } from './PowerDamage';
+import { PowerDamageResult } from './PowerDamageResult';
 import { PowerDamageContext } from './PowerDamageContext';
 import { PowerDamageValue } from './PowerDamageValue';
 
@@ -11,7 +11,7 @@ export {
   PokemonSearchDropDown,
   PokemonStatsEditor,
   PokemonStatInput,
-  PowerDamage,
+  PowerDamageResult,
   PowerDamageContext,
   PowerDamageValue,
 };
