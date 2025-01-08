@@ -1,22 +1,17 @@
-'use client';
+import { PokemonList, PokemonSearchForm } from '@/components/pokemons';
 
-import usePokemonsStore from '@/stores/pokemonsStore';
-
-import { PokemonList } from '@/components/PokemonList/PokemonList';
-import { PokemonSearchForm } from '@/components/PokemonSearchForm/PokemonSearchForm';
-
+/**
+ * 포켓몬 목록 페이지
+ *
+ * 전체 포켓몬 목록과 검색 기능을 제공합니다.
+ */
 export default function Pokemon() {
-  const { now, pokemonIdsList } = usePokemonsStore();
   return (
-    <main
-      className="flex flex-col gap-2 items-center p-12 pt-8 bg-gray-10 min-w-full"
-      aria-labelledby="pokemon-search">
-      <h1 id="pokemon-search" className="sr-only">
-        포켓몬 목록
-      </h1>
-      <div className="h-full flex flex-col">
+    <main className="flex flex-col gap-2 items-center p-12 pt-8 bg-gray-10">
+      <h1 className="sr-only">포켓몬 목록</h1>
+      <div className="flex flex-col h-full">
         <PokemonSearchForm />
-        <PokemonList pokemonIdsList={pokemonIdsList} now={now} />
+        <PokemonList />
       </div>
     </main>
   );

@@ -3,29 +3,26 @@ import { create } from 'zustand';
 import {
   FieldType,
   MoveInfoProps,
-  PokemonDataProps,
+  PokemonDetailProps,
   WeatherType,
 } from '@/types/common';
 
 interface powerCalculatorState {
-  attackPokemon: PokemonDataProps | null;
-  attackPokemonId: number | null;
-  attackInputError: boolean;
-  defendPokemon: PokemonDataProps | null;
+  attackPokemonId: number | null; // 드롭다운을 통해 선택된 공격 포켓몬의 id
+  attackPokemon: PokemonDetailProps | null; // 설정된 id를 통해 불러온 포켓몬의 실제 데이터
   defendPokemonId: number | null;
-  defendInputError: boolean;
-  move: MoveInfoProps | null;
-  field: FieldType | null;
-  weather: WeatherType | null;
-  isWeaknessHit: boolean;
-  damages: number[];
+  defendPokemon: PokemonDetailProps | null;
 
-  setAttackPokemon: (attackPokemon: PokemonDataProps | null) => void;
+  move: MoveInfoProps | null; // 선택된 기술 정보
+  field: FieldType | null; // 선택된 필드 정보
+  weather: WeatherType | null; // 선택된 날씨 정보
+  isWeaknessHit: boolean; // 약점 타격 여부
+  damages: number[]; // 데미지 계산 결과
+
+  setAttackPokemon: (attackPokemon: PokemonDetailProps | null) => void;
   setAttackPokemonId: (attackPokemonId: number | null) => void;
-  setAttackInputError: (attackInputError: boolean) => void;
-  setDefendPokemon: (defendPokemon: PokemonDataProps | null) => void;
+  setDefendPokemon: (defendPokemon: PokemonDetailProps | null) => void;
   setDefendPokemonId: (defendPokemonId: number | null) => void;
-  setDefendInputError: (defendInputError: boolean) => void;
   setMove: (move: MoveInfoProps | null) => void;
   setField: (field: FieldType | null) => void;
   setWeather: (field: WeatherType | null) => void;
@@ -33,13 +30,14 @@ interface powerCalculatorState {
   setDamages: (damages: number[]) => void;
 }
 
+/**
+ * 위력 계산기 페이지 상태를 관리하는 스토어
+ */
 const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
   attackPokemon: null,
   attackPokemonId: null,
-  attackInputError: false,
   defendPokemon: null,
   defendPokemonId: null,
-  defendInputError: false,
   move: null,
   field: null,
   weather: null,
@@ -48,11 +46,9 @@ const usePowerCalculatorStore = create<powerCalculatorState>((set) => ({
 
   setAttackPokemon: (attackPokemon) => set(() => ({ attackPokemon })),
   setAttackPokemonId: (attackPokemonId) => set(() => ({ attackPokemonId })),
-  setAttackInputError: (attackInputError) => set(() => ({ attackInputError })),
 
   setDefendPokemon: (defendPokemon) => set(() => ({ defendPokemon })),
   setDefendPokemonId: (defendPokemonId) => set(() => ({ defendPokemonId })),
-  setDefendInputError: (defendInputError) => set(() => ({ defendInputError })),
 
   setMove: (move) => set(() => ({ move })),
   setField: (field) => set(() => ({ field })),
