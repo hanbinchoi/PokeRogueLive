@@ -5631,3 +5631,13 @@ export enum BattleRole {
   ATTACK = 'attack',
   DEFEND = 'defend',
 }
+
+export enum AttackOptionUsage {
+  ABILITY = 'ability',
+  MOVE = 'move',
+}
+
+export enum SelectUsage {
+  ABILITY = 'ability',
+  TERATYPE = 'teraType',
+}

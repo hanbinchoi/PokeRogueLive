@@ -7,11 +7,14 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 import { ErrorComponent, LoadingComponent, PokemonImgBox } from '../common';
 import { PokemonStatBox } from './PokemonStatBox';
 
+import { BattleRoleType } from '@/types/common';
+
 import extractPokemonDetails from '@/utils/extractPokemonDetails';
+import { BattleRole } from '@/constants/contents';
 
 export interface PokemonPowerBoxProps {
   id: number;
-  usage: 'attack' | 'defend';
+  usage: BattleRoleType;
 }
 
 export const PokemonPowerBox = ({ id, usage }: PokemonPowerBoxProps) => {
@@ -25,11 +28,11 @@ export const PokemonPowerBox = ({ id, usage }: PokemonPowerBoxProps) => {
   } = usePokemonDetailQuery(String(id));
 
   const pokemon =
-    usage === 'attack'
+    usage === BattleRole.ATTACK
       ? usePowerCalculatorStore((state) => state.attackPokemon)
       : usePowerCalculatorStore((state) => state.defendPokemon);
   const setPokemon =
-    usage === 'attack'
+    usage === BattleRole.ATTACK
       ? usePowerCalculatorStore((state) => state.setAttackPokemon)
       : usePowerCalculatorStore((state) => state.setDefendPokemon);
 

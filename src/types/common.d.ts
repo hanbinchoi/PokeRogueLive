@@ -8,6 +8,8 @@ import {
   SpecialAttackAbility,
   SpecialAttackMove,
   BattleRole,
+  SelectUsage,
+  AttackOptionUsage,
 } from '@/constants/contents';
 
 export interface DefaultProps {
@@ -25,7 +27,9 @@ export type BattleRoleType = BattleRole;
 
 export type checkboxUsage = 'attackMove' | 'attackAbility';
 
-export type selectUsage = 'ability' | 'teraType';
+export type AttackOptionUsageType = AttackOptionUsage;
+
+export type SelectUsageType = SelectUsage;
 
 export type PokemonType = PokemonTypeName;
 

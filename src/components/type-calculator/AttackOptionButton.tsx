@@ -1,6 +1,8 @@
+import { AttackOptionUsage } from '@/constants/contents';
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import {
+  AttackOptionUsageType,
   SpecialAttackAbilityType,
   SpecialAttackMoveType,
 } from '@/types/common';
@@ -8,7 +10,7 @@ import {
 interface AttackOptionButtonProps {
   title: string;
   options: string[];
-  usage: 'move' | 'ability';
+  usage: AttackOptionUsageType;
 }
 
 /**
@@ -18,7 +20,7 @@ interface AttackOptionButtonProps {
  *
  * @param title 버튼 그룹 제목 (`string`)
  * @param options 선택 가능한 옵션 배열 (`string[]`)
- * @param usage "move" 또는 "ability"로, 어떤 타입의 옵션인지 구분 (`'move' | 'ability'`)
+ * @param usage "move" 또는 "ability"로, 어떤 타입의 옵션인지 구분 (`AttackOptionUsageType`)
  */
 export const AttackOptionButton = ({
   title,
@@ -29,12 +31,12 @@ export const AttackOptionButton = ({
     useTypeCalculatorStore();
 
   const handleClick = (value: string) => {
-    if (usage === 'move')
+    if (usage === AttackOptionUsage.MOVE)
       return attackMove === value
         ? setAttackMove(null)
         : setAttackMove(value as SpecialAttackMoveType);
 
-    if (usage === 'ability')
+    if (usage === AttackOptionUsage.ABILITY)
       return attackAbility === value
         ? setAttackAbility(null)
         : setAttackAbility(value as SpecialAttackAbilityType);

@@ -6,6 +6,7 @@ import {
   EXCLUDED_TYPES,
   POKEMON_TYPE_INFO,
   PokemonTypeName,
+  SelectUsage,
   SpecialDefendAbility,
 } from '@/constants/contents';
 
@@ -29,12 +30,12 @@ export const DefendTypeCalc = () => {
         <CommonSelect
           label="특성"
           options={Object.values(SpecialDefendAbility)}
-          usage="ability"
+          usage={SelectUsage.ABILITY}
         />
         <CommonSelect
           label="테라 타입"
           options={getTerraTypeOptions()}
-          usage="teraType"
+          usage={SelectUsage.TERATYPE}
         />
       </div>
       <TypeCalcDefendResult />

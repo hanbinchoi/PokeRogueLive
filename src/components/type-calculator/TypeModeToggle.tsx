@@ -1,3 +1,4 @@
+import { BattleRole } from '@/constants/contents';
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import { BattleRoleType } from '@/types/common';
@@ -21,20 +22,20 @@ export const TypeModeToggle = () => {
   return (
     <div className="type-calc-menu text-base sm:text-lg font-bold flex justify-center">
       <button
-        onClick={() => changeCurrent('attack')}
-        aria-disabled={mode === 'attack'}
+        onClick={() => changeCurrent(BattleRole.ATTACK)}
+        aria-disabled={mode === BattleRole.ATTACK}
         className={
-          mode === 'defend'
+          mode === BattleRole.DEFEND
             ? 'cursor-pointer'
             : 'current text-blue-70 cursor-not-allowed'
         }>
         공격
       </button>
       <button
-        onClick={() => changeCurrent('defend')}
-        aria-disabled={mode === 'defend'}
+        onClick={() => changeCurrent(BattleRole.DEFEND)}
+        aria-disabled={mode === BattleRole.DEFEND}
         className={
-          mode === 'defend'
+          mode === BattleRole.DEFEND
             ? 'current text-blue-70 cursor-not-allowed'
             : 'cursor-pointer'
         }>

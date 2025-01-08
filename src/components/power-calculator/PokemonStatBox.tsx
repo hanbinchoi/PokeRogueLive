@@ -2,13 +2,14 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 import { PokemonStatInput } from './PokemonStatInput';
 
-import { PokemonDetailProps } from '@/types/common';
+import { BattleRoleType, PokemonDetailProps } from '@/types/common';
 import { StatDataProps } from '@/types/data';
+import { BattleRole } from '@/constants/contents';
 
 export interface PokemonStatBoxProps {
   stats: StatDataProps[];
   pokemon: PokemonDetailProps;
-  usage: 'attack' | 'defend';
+  usage: BattleRoleType;
 }
 
 export const PokemonStatBox = ({
@@ -17,7 +18,8 @@ export const PokemonStatBox = ({
   pokemon,
 }: PokemonStatBoxProps) => {
   const { setAttackPokemon, setDefendPokemon } = usePowerCalculatorStore();
-  const setPokemon = usage === 'attack' ? setAttackPokemon : setDefendPokemon;
+  const setPokemon =
+    usage === BattleRole.ATTACK ? setAttackPokemon : setDefendPokemon;
 
   return (
     <div className="flex flex-col gap-2 justify-center">

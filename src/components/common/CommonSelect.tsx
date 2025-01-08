@@ -1,15 +1,16 @@
+import { SelectUsage } from '@/constants/contents';
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import {
   PokemonType,
-  selectUsage,
+  SelectUsageType,
   SpecialDefendAbilityType,
 } from '@/types/common';
 
 interface CommonSelectProps {
   label: string;
   options: string[];
-  usage: selectUsage;
+  usage: SelectUsageType;
 }
 
 /**
@@ -24,10 +25,11 @@ export const CommonSelect = ({ label, options, usage }: CommonSelectProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const option = event.target.value !== '' ? event.target.value : null; // 없음(빈값)은 null 처리
 
-    if (usage === 'ability')
+    if (usage === SelectUsage.ABILITY)
       return setDefendAbility(option as SpecialDefendAbilityType);
 
-    if (usage === 'teraType') return setTeraType(option as PokemonType);
+    if (usage === SelectUsage.TERATYPE)
+      return setTeraType(option as PokemonType);
   };
 
   return (

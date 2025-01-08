@@ -5,6 +5,7 @@ import {
   AttackTypeCalc,
   DefendTypeCalc,
 } from '@/components/type-calculator';
+import { BattleRole } from '@/constants/contents';
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
@@ -23,7 +24,7 @@ export default function TypeCalculator() {
         타입 계산기 페이지
       </h1>
       <TypeModeToggle />
-      {mode === 'attack' ? <AttackTypeCalc /> : <DefendTypeCalc />}
+      {mode === BattleRole.ATTACK ? <AttackTypeCalc /> : <DefendTypeCalc />}
     </main>
   );
 }

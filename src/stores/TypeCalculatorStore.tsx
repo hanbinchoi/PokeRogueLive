@@ -7,6 +7,7 @@ import {
   SpecialDefendAbilityType,
   BattleRoleType,
 } from '@/types/common';
+import { BattleRole } from '@/constants/contents';
 
 interface TypeCalculatorState {
   mode: BattleRoleType; // 타입 계산기 모드 (공격 || 방어)
@@ -34,7 +35,7 @@ interface TypeCalculatorState {
  * 타입 계산 페이지 상태를 관리하는 스토어
  */
 const useTypeCalculatorStore = create<TypeCalculatorState>((set) => ({
-  mode: 'defend',
+  mode: BattleRole.DEFEND,
   checkedDefendTypes: [null, null],
   checkedAttackTypes: null,
   teraType: null,

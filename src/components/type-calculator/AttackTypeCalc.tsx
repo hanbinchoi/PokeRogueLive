@@ -2,7 +2,11 @@ import { AttackOptionButton } from './AttackOptionButton';
 import { PokemonTypeSelector } from './PokemonTypeSelector';
 import { TypeCalcAttackResult } from './TypeCalcAttackResult';
 
-import { SpecialAttackAbility, SpecialAttackMove } from '@/constants/contents';
+import {
+  AttackOptionUsage,
+  SpecialAttackAbility,
+  SpecialAttackMove,
+} from '@/constants/contents';
 
 /**
  * 타입 계산기 - 공격 모드를 위한 컴포넌트
@@ -16,12 +20,12 @@ export const AttackTypeCalc = () => {
         <PokemonTypeSelector title="타입" index={0} />
         <AttackOptionButton
           title="기술"
-          usage="move"
+          usage={AttackOptionUsage.MOVE}
           options={Object.values(SpecialAttackMove)}
         />
         <AttackOptionButton
           title="특성"
-          usage="ability"
+          usage={AttackOptionUsage.ABILITY}
           options={Object.values(SpecialAttackAbility)}
         />
       </div>

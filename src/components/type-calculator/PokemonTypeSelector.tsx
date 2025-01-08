@@ -4,7 +4,11 @@ import { PokemonTypeButton } from './PokemonTypeButton';
 
 import { PokemonType } from '@/types/common';
 
-import { EXCLUDED_TYPES, PokemonTypeName } from '@/constants/contents';
+import {
+  BattleRole,
+  EXCLUDED_TYPES,
+  PokemonTypeName,
+} from '@/constants/contents';
 
 interface PokemonTypeSelectorProps {
   index: number;
@@ -38,13 +42,16 @@ export const PokemonTypeSelector = ({
    * @returns 선택 상태 (`boolean`)
    */
   const isTypeChecked = (type: PokemonType) => {
-    const options = mode === 'defend' ? checkedDefendTypes : checkedAttackTypes;
+    const options =
+      mode === BattleRole.DEFEND ? checkedDefendTypes : checkedAttackTypes;
 
     if (!options) return false;
 
     // 공격 모드 : 타입이 체크된 타입 목록에 포함되어 있는지 확인
     // 방어 모드 : 체크된 타입과 현재 타입을 비교
-    return mode === 'attack' ? options.includes(type) : options[index] === type;
+    return mode === BattleRole.ATTACK
+      ? options.includes(type)
+      : options[index] === type;
   };
 
   return (

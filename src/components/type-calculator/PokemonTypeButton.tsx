@@ -4,7 +4,7 @@ import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import { PokemonType } from '@/types/common';
 
-import { POKEMON_TYPE_INFO } from '@/constants/contents';
+import { BattleRole, POKEMON_TYPE_INFO } from '@/constants/contents';
 
 interface PokemonTypeButtonProps {
   type: PokemonType;
@@ -37,7 +37,7 @@ export const PokemonTypeButton = ({
   const pokemonType = POKEMON_TYPE_INFO[type];
 
   const handleClick = () => {
-    if (mode === 'attack') {
+    if (mode === BattleRole.ATTACK) {
       const newOptions = checkedAttackTypes ?? [];
 
       // 클릭한 타입이 현재 옵션 목록에 있으면 제거, 없으면 추가
@@ -48,7 +48,7 @@ export const PokemonTypeButton = ({
       );
     }
 
-    if (mode === 'defend') {
+    if (mode === BattleRole.DEFEND) {
       // 현재 index의 옵션과 해당 옵션이 일치하면 제거, 일치하지 않으면 해당 옵션으로 적용
       const newOptions = checkedDefendTypes.map((item, i) =>
         i === index ? (type === item ? null : type) : item,

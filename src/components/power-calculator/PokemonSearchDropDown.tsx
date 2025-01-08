@@ -6,8 +6,9 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 import { CommonDropdown, ErrorComponent } from '../common';
 
-import { BattleRole, POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 import { BattleRoleType } from '@/types/common';
+
+import { BattleRole, POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 
 export interface PokemonSearchDropDownProps {
   usage: BattleRoleType;
