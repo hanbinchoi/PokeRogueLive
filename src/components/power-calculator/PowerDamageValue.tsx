@@ -12,7 +12,7 @@ interface PowerDamageValueProps {
  * - 위력/HP 비율 0.33 미만 : 파란색 (text-blue-30)
  *
  * @param damage - 기술의 위력 (`number`)
- * @param hp - 방어 포켓몬의 hp (`number` | `undefined`) / `undefined`일 경우 데미지는 표시되지 않습니다.
+ * @param hp - 방어 포켓몬의 hp (`number` | `undefined`) - `undefined`일 경우 데미지는 표시되지 않습니다.
  */
 export const PowerDamageValue = ({ damage, hp }: PowerDamageValueProps) => {
   if (!hp) return null;
