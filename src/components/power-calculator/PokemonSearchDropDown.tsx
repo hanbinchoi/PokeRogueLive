@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useDropdown from '@/hooks/useDropDown';
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';

@@ -4,8 +4,7 @@ import usePokemonMoveQuery from '@/hooks/usePokemonMoveQuery';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { Tooltip } from '../common';
-import { PowerDamageStatusResult } from './PowerDamageStatusResult';
+import { ErrorComponent, LoadingComponent, Tooltip } from '../common';
 import { PowerDamageValue } from './PowerDamageValue';
 import { PowerDamageContext } from './PowerDamageContext';
 
@@ -13,6 +12,13 @@ import { DamageContextProps } from '@/types/common';
 
 import getDamages from '@/utils/getDamages';
 
+/**
+ * 데미지 계산 결과를 보여주는 컴포넌트
+ *
+ * - 기술, 포켓몬 정보, 환경(날씨, 필드 등)을 기반으로 데미지를 계산하여 화면에 출력합니다.
+ * - 상태 기술인 경우 별도의 결과 컴포넌트를 렌더링합니다.
+ * - 데미지 계산 요인(약점타격, 속성보정 등)을 함께 안내합니다.
+ */
 export const PowerDamage = () => {
   const {
     attackPokemon,
@@ -26,12 +32,14 @@ export const PowerDamage = () => {
   } = usePowerCalculatorStore();
   const [damageContext, setDamageContext] = useState<DamageContextProps>();
 
+  // store에 move정보는 url과 이름만 저장되어 있기 때문에 이를 활용해서 기술의 상세 정보를 가져오는 과정
   const {
     data: MoveDetail,
     isLoading,
     isError,
   } = usePokemonMoveQuery(move?.move.url);
 
+  // 방어 포켓몬의 HP
   const hpStat = defendPokemon?.stats.find(
     (stat) => stat.stat.name === 'hp',
   )?.base_stat;
@@ -49,6 +57,7 @@ export const PowerDamage = () => {
     });
   }, [attackPokemon, defendPokemon, MoveDetail, weather, field, isWeaknessHit]);
 
+  // 데미지 계산 결과 값이 바뀌면 상태를 새롭게 update
   useEffect(() => {
     if (damageCalculation) {
       setDamages(damageCalculation.newDamages);
@@ -56,12 +65,20 @@ export const PowerDamage = () => {
     }
   }, [damageCalculation]);
 
-  if (isLoading) return <div>로딩 중...</div>;
+  if (isLoading) return <LoadingComponent />;
 
-  if (isError) return <div>데이터 오류 발생</div>;
+  if (isError)
+    return (
+      <ErrorComponent
+        size="small"
+        message="포켓몬 기술 정보를 불러올 수 없어요"
+      />
+    );
 
   if (MoveDetail?.damage_class.name === 'status')
-    return <PowerDamageStatusResult />;
+    return (
+      <ErrorComponent size="xsmall" message="상태변화 기술은 표시되지 않아요" />
+    );
 
   if (damages.length)
     return (
