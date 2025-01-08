@@ -1,5 +1,6 @@
 import { FaBook } from 'react-icons/fa';
 import { BsFire, BsCalculatorFill } from 'react-icons/bs';
+
 import { DefaultProps } from './common';
 
 export interface MenuItemProps extends DefaultProps {
@@ -13,7 +14,7 @@ export const MENUS: MenuItemProps[] = [
   {
     title: 'pokemon',
     label: '포켓몬 도감',
-    icon: FaBook, // 아이콘 컴포넌트 자체를 전달
+    icon: FaBook,
   },
   {
     title: 'type-calculator',

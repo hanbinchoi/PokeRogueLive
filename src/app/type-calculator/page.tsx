@@ -1,11 +1,20 @@
 'use client';
 
+import {
+  TypeModeToggle,
+  AttackTypeCalc,
+  DefendTypeCalc,
+} from '@/components/type-calculator';
+import { BattleRole } from '@/constants/contents';
+
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import { TypeCalcDefend } from '@/components/TypeCalcDefend/TypeCalcDefend';
-import { TypeModeToggle } from '@/components/TypeModeToggle/TypeModeToggle';
-import { TypeCalcAttack } from '@/components/TypeCalcAttack/TypeCalcAttack';
-
+/**
+ * 타입 계산기 페이지.
+ *
+ * 공격 측 타입 데미지 계산과 방어 측 타입 데미지 계산 기능을 제공합니다.
+ * @returns
+ */
 export default function TypeCalculator() {
   const mode = useTypeCalculatorStore((state) => state.mode);
 
@@ -15,7 +24,7 @@ export default function TypeCalculator() {
         타입 계산기 페이지
       </h1>
       <TypeModeToggle />
-      {mode === 'attack' ? <TypeCalcAttack /> : <TypeCalcDefend />}
+      {mode === BattleRole.ATTACK ? <AttackTypeCalc /> : <DefendTypeCalc />}
     </main>
   );
 }
