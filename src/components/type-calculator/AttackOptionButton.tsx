@@ -1,4 +1,3 @@
-import { AttackOptionUsage } from '@/constants/contents';
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import {
@@ -6,6 +5,8 @@ import {
   SpecialAttackAbilityType,
   SpecialAttackMoveType,
 } from '@/types/common';
+
+import { AttackOptionUsage } from '@/constants/contents';
 
 interface AttackOptionButtonProps {
   title: string;

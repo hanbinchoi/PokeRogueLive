@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   AbilityDetailProps,
+  EvolutionChainDataProps,
   ItemInfoProps,
   MoveDetailDataProps,
   PokemonDetailDataProps,
@@ -75,7 +76,7 @@ export async function getPokemonsByIds(ids: number[]) {
 
 export async function getPokemonEvolutionChain(
   url: string,
-): Promise<EvolutionChainProps> {
+): Promise<EvolutionChainDataProps> {
   const res = await axios.get(url).then((res) => res.data);
   return res;
 }

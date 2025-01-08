@@ -1,7 +1,8 @@
-import { BattleRole } from '@/constants/contents';
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import { BattleRoleType } from '@/types/common';
+
+import { BattleRole } from '@/constants/contents';
 
 /**
  * 타입 계산기 모드를 관리하는 토글 컴포넌트.

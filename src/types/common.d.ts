@@ -23,6 +23,8 @@ export interface InputValues {
 
 export type ButtonSize = 'small' | 'medium' | 'large';
 
+export type PokemonImgBoxUsage = 'detail' | 'power';
+
 export type BattleRoleType = BattleRole;
 
 export type checkboxUsage = 'attackMove' | 'attackAbility';

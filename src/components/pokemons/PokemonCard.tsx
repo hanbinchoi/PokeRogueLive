@@ -32,7 +32,7 @@ export const PokemonCard = ({ id }: PokemonProps) => {
     isLoadingSpecies,
     isErrorPokemon,
     isErrorSpecies,
-  } = usePokemonDetailQuery(String(id));
+  } = usePokemonDetailQuery(id);
 
   const isLoading = isLoadingPokemon || isLoadingSpecies;
   const isError = isErrorPokemon || isErrorSpecies;

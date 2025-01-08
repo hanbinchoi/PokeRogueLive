@@ -42,7 +42,7 @@ export default function PokemonDetail() {
     isLoadingSpecies,
     isErrorPokemon,
     isErrorSpecies,
-  } = usePokemonDetailQuery(String(id)); // 포켓몬 상세 정보 구성을 위해 2개의 요청을 보내야함.
+  } = usePokemonDetailQuery(+id); // 포켓몬 상세 정보 구성을 위해 2개의 요청을 보내야함.
 
   // 2개의 요청으로부터 error, loading 상태 확인
   const isError = isErrorPokemon || isErrorSpecies || !targetPokemon;

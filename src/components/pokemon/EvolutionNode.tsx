@@ -40,7 +40,7 @@ export const EvolutionNode = ({ node, isLast }: EvolutionNodeProps) => {
     isLoadingSpecies,
     isErrorPokemon,
     isErrorSpecies,
-  } = usePokemonDetailQuery(String(id)); // 포켓몬 상세정보 fetching. 포켓몬 이미지를 가져오기 위해 사용됩니다.
+  } = usePokemonDetailQuery(id); // 포켓몬 상세정보 fetching. 포켓몬 이미지를 가져오기 위해 사용됩니다.
 
   const isLoading = isLoadingPokemon || isLoadingSpecies;
   const isError = isErrorPokemon || isErrorSpecies;

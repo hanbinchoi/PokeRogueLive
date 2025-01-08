@@ -2,11 +2,11 @@ import { AiFillSound } from 'react-icons/ai';
 
 import { TypeBadge } from './TypeBadge';
 
-import { PokemonDetailProps } from '@/types/common';
+import { PokemonDetailProps, PokemonImgBoxUsage } from '@/types/common';
 
 export interface PokemonImgBoxProps {
   pokemon: PokemonDetailProps;
-  usage: 'detail' | 'power';
+  usage: PokemonImgBoxUsage;
 }
 
 /**
