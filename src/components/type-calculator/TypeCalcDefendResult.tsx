@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
@@ -8,24 +10,25 @@ import { calcResultType, PokemonType } from '@/types/common';
 
 import getDefendDamageMap from '@/utils/getDefendDamageMap';
 
+/**
+ * 방어 타입 계산 결과 컴포넌트
+ *
+ * - 선택한 포켓몬 타입, 테라 타입, 특성을 기반으로 방어 타입별 피해 계산 결과를 표시합니다.
+ */
 export const TypeCalcDefendResult = () => {
   const [result, setResult] = useState<calcResultType>();
 
-  const { checkedDefendOptions, teraType, defendAbility } =
+  const { checkedDefendTypes, teraType, defendAbility } =
     useTypeCalculatorStore();
 
   useEffect(() => {
+    // 테라타입 옵션이 체크 된 경우 테라타입을 기준으로 결과 표 생성
     if (teraType)
       setResult(getDefendDamageMap([teraType as PokemonType], defendAbility));
     else {
-      const defendTypes = [
-        checkedDefendOptions[0],
-        checkedDefendOptions[1],
-      ].filter((type) => type !== null);
-
-      setResult(getDefendDamageMap(defendTypes, defendAbility));
+      setResult(getDefendDamageMap(checkedDefendTypes, defendAbility));
     }
-  }, [checkedDefendOptions, teraType, defendAbility]);
+  }, [checkedDefendTypes, teraType, defendAbility]);
 
   if (!result) return null;
 

@@ -1,7 +1,9 @@
+'use client';
+
 import {
-  TypeCalcDefend,
   TypeModeToggle,
   AttackTypeCalc,
+  DefendTypeCalc,
 } from '@/components/type-calculator';
 
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
@@ -21,7 +23,7 @@ export default function TypeCalculator() {
         타입 계산기 페이지
       </h1>
       <TypeModeToggle />
-      {mode === 'attack' ? <AttackTypeCalc /> : <TypeCalcDefend />}
+      {mode === 'attack' ? <AttackTypeCalc /> : <DefendTypeCalc />}
     </main>
   );
 }

@@ -23,7 +23,7 @@ export const PokemonTypeSelector = ({
   index,
   title,
 }: PokemonTypeSelectorProps) => {
-  const { checkedAttackOptions, checkedDefendOptions, mode } =
+  const { checkedAttackTypes, checkedDefendTypes, mode } =
     useTypeCalculatorStore();
 
   // 포켓몬 타입 목록에서 실제 계산에 필요하지 않는 타입들은 제외
@@ -38,8 +38,7 @@ export const PokemonTypeSelector = ({
    * @returns 선택 상태 (`boolean`)
    */
   const isTypeChecked = (type: PokemonType) => {
-    const options =
-      mode === 'defend' ? checkedDefendOptions : checkedAttackOptions;
+    const options = mode === 'defend' ? checkedDefendTypes : checkedAttackTypes;
 
     if (!options) return false;
 

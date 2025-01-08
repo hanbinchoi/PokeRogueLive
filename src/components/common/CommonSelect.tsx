@@ -1,20 +1,33 @@
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import { PokemonType, SpecialDefendAbilityType } from '@/types/common';
+import {
+  PokemonType,
+  selectUsage,
+  SpecialDefendAbilityType,
+} from '@/types/common';
 
 interface CommonSelectProps {
   label: string;
   options: string[];
+  usage: selectUsage;
 }
 
-export const CommonSelect = ({ label, options }: CommonSelectProps) => {
+/**
+ * 공통 드롭다운 컴포넌트
+ *
+ * - 사용 목적에 따라 특성 또는 테라 타입 선택 가능
+ * - 선택된 옵션 값을 상태 관리 스토어에 업데이트
+ */
+export const CommonSelect = ({ label, options, usage }: CommonSelectProps) => {
   const { setDefendAbility, setTeraType } = useTypeCalculatorStore();
 
-  const selectAbility = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const option = event.target.value !== '' ? event.target.value : null;
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const option = event.target.value !== '' ? event.target.value : null; // 없음(빈값)은 null 처리
 
-    if (label === '특성') setDefendAbility(option as SpecialDefendAbilityType);
-    if (label === '테라 타입') setTeraType(option as PokemonType);
+    if (usage === 'ability')
+      return setDefendAbility(option as SpecialDefendAbilityType);
+
+    if (usage === 'teraType') return setTeraType(option as PokemonType);
   };
 
   return (
@@ -26,7 +39,7 @@ export const CommonSelect = ({ label, options }: CommonSelectProps) => {
         aria-label={`${label}`}
         name={label}
         className="px-2 py-1 sm:py-2 min-w-[122px] max-w-[188px] text-sm sm:text-md md:text-base border rounded sm:rounded-lg outline-none hover:opacity-60  focus:border-blue-70 focus:border-2"
-        onChange={selectAbility}>
+        onChange={handleChange}>
         <option value="">없음</option>
         {options.map((option) => (
           <option key={option} value={option}>

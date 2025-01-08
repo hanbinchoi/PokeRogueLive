@@ -20,10 +20,12 @@ import { EXCLUDED_TYPES, PokemonTypeName } from '@/constants/contents';
  * @returns 공격 타입에 대한 피해 배율을 정렬한 맵 (`calcResultType`)
  */
 export default function getAttackDamageMap(
-  checkedType: PokemonType[],
+  checkedType: PokemonType[] | null,
   attackAbility: SpecialAttackAbilityType | null,
   attackMove: SpecialAttackMoveType | null,
 ): calcResultType | null {
+  if (!checkedType) return null;
+
   const effectMap = new Map<number, PokemonType[]>();
   const allType = Object.values(PokemonTypeName);
 

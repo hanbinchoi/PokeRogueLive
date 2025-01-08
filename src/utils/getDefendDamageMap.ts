@@ -23,14 +23,16 @@ import calcDefendDamageMultiplier from './calcDefendDamageMultiplier';
  * @returns 방어 타입에 대한 피해 배율을 정렬한 맵 (`calcResultType`)
  */
 export default function getDefendDamageMap(
-  checkedTypes: PokemonType[],
+  checkedTypes: (PokemonType | null)[],
   ability: SpecialDefendAbilityType | null,
 ): calcResultType {
   const damageMap = new Map<number, PokemonType[]>();
   const allType = Object.values(PokemonTypeName);
 
+  const filteredTypes = checkedTypes.filter((type) => type !== null);
+
   // 중복된 타입을 제거하여 선택된 방어 포켓몬 타입 정보 가져오기
-  const typeInfos = Array.from(new Set(checkedTypes)).map(
+  const typeInfos = Array.from(new Set(filteredTypes)).map(
     (t) => POKEMON_TYPE_INFO[t],
   );
 
@@ -57,7 +59,7 @@ export default function getDefendDamageMap(
 
     // 특성에 따른 추가 피해 배율 조정
     if (ability) {
-      score = calcDefendDamageMultiplier(ability, score, type, checkedTypes);
+      score = calcDefendDamageMultiplier(ability, score, type, filteredTypes);
     }
 
     addToMap(damageMap, score, type);

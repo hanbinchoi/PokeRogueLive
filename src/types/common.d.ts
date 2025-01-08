@@ -24,6 +24,8 @@ export type typeCalcMode = 'defend' | 'attack';
 
 export type checkboxUsage = 'attackMove' | 'attackAbility';
 
+export type selectUsage = 'ability' | 'teraType';
+
 export type PokemonType = PokemonTypeName;
 
 export interface PokemonDetailProps {
