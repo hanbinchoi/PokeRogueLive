@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
@@ -7,7 +9,6 @@ import { CommonDropdown, ErrorMessage } from '../common';
 import { MoveDataProps } from '@/types/data';
 
 import extractMoveList from '@/utils/extractMoveList';
-import { useState } from 'react';
 
 export interface MoveSearchDropDownProps {
   moves: MoveDataProps[] | undefined;
@@ -16,7 +17,10 @@ export interface MoveSearchDropDownProps {
 /**
  * 포켓몬 기술 목록 드롭다운 컴포넌트.
  *
- * 클릭 이벤트, 키보드 네비게이션 등을 지원합니다. 선택된 기술은 store에 저장합니다.
+ * 입력값에 의해 옵션을 필터링하고 클릭 이벤트, 키보드 네비게이션 등을 지원합니다.
+ *
+ * 선택된 기술은 store에 저장하며 기술이 초기화되면 damaes 배열도 초기화됩니다..
+ *
  *
  * @param moves 포켓몬 기술 목록 (`MoveDataProps`)
  * @returns
@@ -85,7 +89,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
         <input
           id="dropdown-move"
           type="text"
-          className="w-full mt-1 md:mt-2 border rounded py-1 px-2 text-sm lg:text-base"
+          className="w-full md:mt-2 border rounded py-1 px-2 text-sm lg:text-base"
           value={inputValue}
           onChange={handleInputChange}
           onFocus={() => setShowDropdown(true)}
@@ -97,7 +101,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
         {inputValue && (
           <button
             onClick={handleClear}
-            className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2 rounded-md text-gray-90 hover:bg-gray-20">
+            className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2 rounded-md text-gray-90 ">
             ✕
           </button>
         )}

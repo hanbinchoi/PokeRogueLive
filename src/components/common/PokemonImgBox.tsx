@@ -25,7 +25,7 @@ export const PokemonImgBox = ({ pokemon, usage }: PokemonImgBoxProps) => {
     const audio = new Audio(pokemon?.cries);
     audio.play();
   };
-  console.log(pokemon);
+
   const renderDetail = () => (
     <div className="bg-white-100 border-2 rounded-lg ">
       <div className="flex justify-between items-center w-full pt-3 px-3 sm:px-5">

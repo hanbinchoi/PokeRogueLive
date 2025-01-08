@@ -42,6 +42,7 @@ export default function PowerCalculator() {
                 usage={BattleRole.ATTACK}
               />
               <MoveSearchDropDown moves={attackPokemon?.moves} />
+
               <CommonSearchDropDown
                 label="날씨"
                 options={Object.values(Weather)}
