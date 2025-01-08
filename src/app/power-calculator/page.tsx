@@ -5,7 +5,7 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 import { CommonCheckBox, CommonSearchDropDown } from '@/components/common';
 import {
   MoveSearchDropDown,
-  PokemonPowerBox,
+  PokemonStatsPanel,
   PokemonSearchDropDown,
   PowerDamage,
 } from '@/components/power-calculator';
@@ -37,7 +37,10 @@ export default function PowerCalculator() {
 
           {attackPokemonId && (
             <>
-              <PokemonPowerBox id={attackPokemonId} usage={BattleRole.ATTACK} />
+              <PokemonStatsPanel
+                id={attackPokemonId}
+                usage={BattleRole.ATTACK}
+              />
               <MoveSearchDropDown moves={attackPokemon?.moves} />
               <CommonSearchDropDown
                 label="날씨"
@@ -60,7 +63,10 @@ export default function PowerCalculator() {
           <PokemonSearchDropDown usage={BattleRole.DEFEND} />
           {defendPokemonId && (
             <>
-              <PokemonPowerBox id={defendPokemonId} usage="defend" />
+              <PokemonStatsPanel
+                id={defendPokemonId}
+                usage={BattleRole.DEFEND}
+              />
               {move && <PowerDamage moveUrl={move.move.url} />}
             </>
           )}

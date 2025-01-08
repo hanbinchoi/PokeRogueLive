@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import { EvolutionChainProps } from '@/types/common';
 import {
   AbilityDetailProps,
   ItemInfoProps,
@@ -12,6 +11,7 @@ import {
 } from '@/types/data';
 
 import { TOTAL_POKEMON_NUM } from '@/constants/contents';
+import { EvolutionChainProps } from '@/components/pokemon/EvolutionChain';
 
 export const commonAxios = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,

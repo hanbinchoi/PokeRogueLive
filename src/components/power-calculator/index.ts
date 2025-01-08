@@ -1,7 +1,7 @@
 import { MoveSearchDropDown } from './MoveSearchDropDown';
-import { PokemonPowerBox } from './PokemonPowerBox';
+import { PokemonStatsPanel } from './PokemonStatsPanel';
 import { PokemonSearchDropDown } from './PokemonSearchDropDown';
-import { PokemonStatBox } from './PokemonStatBox';
+import { PokemonStatsEditor } from './PokemonStatsEditor';
 import { PokemonStatInput } from './PokemonStatInput';
 import { PowerDamage } from './PowerDamage';
 import { PowerDamageContext } from './PowerDamageContext';
@@ -10,9 +10,9 @@ import { PowerDamageValue } from './PowerDamageValue';
 
 export {
   MoveSearchDropDown,
-  PokemonPowerBox,
+  PokemonStatsPanel,
   PokemonSearchDropDown,
-  PokemonStatBox,
+  PokemonStatsEditor,
   PokemonStatInput,
   PowerDamage,
   PowerDamageContext,
