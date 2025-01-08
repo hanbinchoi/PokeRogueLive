@@ -4,11 +4,12 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 import { CommonCheckBox, CommonSearchDropDown } from '@/components/common';
 import {
-  MoveSearchDropDown,
   PokemonStatsPanel,
   PokemonSearchDropDown,
   PowerDamage,
 } from '@/components/power-calculator';
+
+import extractMoveList from '@/utils/extractMoveList';
 
 import { BattleRole, Field, Weather } from '@/constants/contents';
 
@@ -20,7 +21,6 @@ import { BattleRole, Field, Weather } from '@/constants/contents';
 export default function PowerCalculator() {
   const {
     attackPokemon,
-    attackPokemonId,
     defendPokemonId,
     isWeaknessHit,
     setIsWeaknessHit,
@@ -31,18 +31,19 @@ export default function PowerCalculator() {
     <main className="flex flex-col gap-2 items-center p-6 sm:p-8 md:p-10 lg:p-12 bg-gray-10">
       <h1 className="sr-only">위력 계산기 페이지</h1>
       <div className="w-full grid grid-cols-2 gap-6 sm:gap-12">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">공격</h2>
           <PokemonSearchDropDown usage={BattleRole.ATTACK} />
 
-          {attackPokemonId && (
+          {attackPokemon && (
             <>
-              <PokemonStatsPanel
-                id={attackPokemonId}
-                usage={BattleRole.ATTACK}
+              <PokemonStatsPanel usage={BattleRole.ATTACK} />
+              <CommonSearchDropDown
+                label="기술"
+                options={extractMoveList(attackPokemon?.moves).map(
+                  (m) => m.krName,
+                )}
               />
-              <MoveSearchDropDown moves={attackPokemon?.moves} />
-
               <CommonSearchDropDown
                 label="날씨"
                 options={Object.values(Weather)}
@@ -64,10 +65,7 @@ export default function PowerCalculator() {
           <PokemonSearchDropDown usage={BattleRole.DEFEND} />
           {defendPokemonId && (
             <>
-              <PokemonStatsPanel
-                id={defendPokemonId}
-                usage={BattleRole.DEFEND}
-              />
+              <PokemonStatsPanel usage={BattleRole.DEFEND} />
               {move && <PowerDamage moveUrl={move.move.url} />}
             </>
           )}

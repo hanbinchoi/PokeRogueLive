@@ -9,8 +9,10 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 import { CommonDropdown } from './CommonDropdown';
 import { ErrorMessage } from './ErrorMessage';
 
-import { isField, isWeather } from '@/utils/typeGuard';
 import { FieldType, WeatherType } from '@/types/common';
+
+import getMoveDetailByKoreanName from '@/utils/getMoveDetailByKoreanName';
+import extractMoveList from '@/utils/extractMoveList';
 
 export interface CommonSearchDropDownProps {
   label: string;
@@ -24,12 +26,15 @@ export interface CommonSearchDropDownProps {
  *
  * @param label 드롭다운 라벨 (`string`)
  * @param options 드롭다운 옵션으로 노출 될 목록 (string[])
- * @returns
  */
 export const CommonSearchDropDown = ({
   label,
   options,
 }: CommonSearchDropDownProps) => {
+  const [error, setError] = useState(false);
+  const { setField, setWeather, setMove, attackPokemon } =
+    usePowerCalculatorStore();
+
   const {
     dropdownRef,
     inputValue,
@@ -43,30 +48,47 @@ export const CommonSearchDropDown = ({
     clearSearch,
   } = useDropdown(options);
 
-  const [error, setError] = useState(false);
-  const { setField, setWeather } = usePowerCalculatorStore();
-
+  /**
+   * 상태 업데이트 함수.
+   *
+   * 사용되는 label에 맞추어 store에 저장된 상태 업데이트
+   */
   const updateState = (value: string | null) => {
     if (label === '날씨') return setWeather(value as WeatherType);
     if (label === '필드') return setField(value as FieldType);
+    if (label === '기술') {
+      // 기술 일 경우 한글명(옵션)으로 일치하는 기술 데이터를 검색 후 move로 설정
+      const moveList =
+        attackPokemon?.moves && extractMoveList(attackPokemon?.moves);
+      return moveList
+        ? setMove(getMoveDetailByKoreanName(moveList, value))
+        : setMove(null);
+    }
 
-    return;
+    return null;
   };
 
+  /**
+   * 옵션 선택 이벤트 핸들러
+   *
+   * 선택한 옵션을 검증 후 업데이트 하거나 에러 처리
+   */
   const handleSelect = (option: string) => {
-    const item = options?.find((o) => o === option);
+    const isValidOption = options.includes(option);
 
-    // 기술이 있으면 store에 저장, 없으면 에러 처리
-    if (!item) {
+    if (!isValidOption) {
       handleOptionSelect('');
       setError(true);
     } else {
       handleOptionSelect(option);
-      updateState(item);
+      updateState(option);
       setError(false);
     }
   };
 
+  /**
+   * 키보드 입력 이벤트 핸들러
+   */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = e;
     dropdownHandleKeydown(key);
@@ -86,7 +108,7 @@ export const CommonSearchDropDown = ({
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full mb-3">
       <label className="text-base md:text-lg" htmlFor={`dropdown-${label}`}>
         {label}
       </label>
@@ -106,7 +128,7 @@ export const CommonSearchDropDown = ({
         {inputValue && (
           <button
             onClick={handleClear}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-md text-gray-90 ">
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 rounded-md text-gray-90  hover:bg-gray-20">
             ✕
           </button>
         )}

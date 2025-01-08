@@ -57,7 +57,7 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
   if (isLoading) return <div>로딩 중...</div>;
 
   if (isError) return <div>데이터 오류 발생</div>;
-  console.log(MoveDetail);
+
   if (MoveDetail?.damage_class.name === 'status')
     return <PowerDamageStatusResult />;
 

@@ -15,15 +15,15 @@ import { PokemonDetailDataProps, PokemonSpeciesDataProps } from '@/types/data';
  * @param id - 포켓몬 ID
  * @returns - 포켓몬 데이터 요청과 종 데이터 요청의 대한 데이터, 로딩, 에러를 한번에 반환합니다.
  */
-export default function usePokemonDetailQuery(id: string) {
+export default function usePokemonDetailQuery(id: number | null) {
   const {
     data: pokemonData,
     isLoading: isLoadingPokemon,
     isError: isErrorPokemon,
   } = useQuery<PokemonDetailDataProps>({
     queryKey: ['detail', id],
-    queryFn: () => getPokemon(+id),
-    enabled: !!id,
+    queryFn: () => getPokemon(id as number),
+    enabled: id !== null,
   });
 
   const {

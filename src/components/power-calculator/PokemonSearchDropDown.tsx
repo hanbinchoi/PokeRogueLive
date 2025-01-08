@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import useDropdown from '@/hooks/useDropDown';
+import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
+import usePowerCalculatorPokemon from '@/hooks/usePowerCalculatorPokemon';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { CommonDropdown, ErrorComponent } from '../common';
+import { CommonDropdown, ErrorComponent, LoadingComponent } from '../common';
 
 import { BattleRoleType } from '@/types/common';
+
+import extractPokemonDetails from '@/utils/extractPokemonDetails';
 
 import { BattleRole, POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 
@@ -22,6 +26,13 @@ export interface PokemonSearchDropDownProps {
 export const PokemonSearchDropDown = ({
   usage,
 }: PokemonSearchDropDownProps) => {
+  const [error, setError] = useState(false);
+  const { setDamages, setMove } = usePowerCalculatorStore();
+
+  // 공격 또는 방어에 따른 Store 상태 가져오기
+  const { pokemonId, setPokemon, setPokemonId } =
+    usePowerCalculatorPokemon(usage);
+
   const {
     dropdownRef,
     inputValue,
@@ -35,18 +46,23 @@ export const PokemonSearchDropDown = ({
     clearSearch,
   } = useDropdown(POKEMON_LIST_IN_KOREAN);
 
-  const setPokemon =
-    usage === BattleRole.ATTACK
-      ? usePowerCalculatorStore((state) => state.setAttackPokemon)
-      : usePowerCalculatorStore((state) => state.setDefendPokemon);
-  const setPokemonId =
-    usage === BattleRole.ATTACK
-      ? usePowerCalculatorStore((state) => state.setAttackPokemonId)
-      : usePowerCalculatorStore((state) => state.setDefendPokemonId);
+  const {
+    pokemonData,
+    speciesData,
+    isLoadingPokemon,
+    isLoadingSpecies,
+    isErrorPokemon,
+    isErrorSpecies,
+  } = usePokemonDetailQuery(pokemonId);
 
-  const [error, setError] = useState<boolean>();
+  const isLoading = isLoadingPokemon || isLoadingSpecies;
 
-  const { setDamages, setMove } = usePowerCalculatorStore();
+  useEffect(() => {
+    if (pokemonData && speciesData)
+      return setPokemon(extractPokemonDetails(pokemonData, speciesData)); // 요청받은 데이터를 usage를 참조하여 공격, 방어 포켓몬으로 설정함.
+
+    setError(isErrorPokemon || isErrorSpecies); // 데이터 중 1개라도 에러가 발생하면 에러처리
+  }, [pokemonData, speciesData]);
 
   /**
    * 포켓몬 선택 처리
@@ -59,6 +75,7 @@ export const PokemonSearchDropDown = ({
 
     if (!pokemonId) {
       setPokemonId(null);
+      setPokemon(null);
       return setError(true);
     }
 
@@ -104,7 +121,7 @@ export const PokemonSearchDropDown = ({
         autoComplete="off"
         tabIndex={0}
       />
-      {inputValue && (
+      {inputValue && !isLoading && (
         <button
           onClick={handleClear}
           className="absolute m-2 p-2 right-1 inset-y-0 flex items-center rounded-md text-gray-90 hover:bg-gray-20">
@@ -121,6 +138,11 @@ export const PokemonSearchDropDown = ({
       />
       {error && (
         <ErrorComponent message="포켓몬을 찾을 수 없어요" size="small" />
+      )}
+      {isLoading && (
+        <div className="p-12">
+          <LoadingComponent />
+        </div>
       )}
     </div>
   );
