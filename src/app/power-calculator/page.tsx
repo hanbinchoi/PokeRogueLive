@@ -30,17 +30,30 @@ export default function PowerCalculator() {
           <h2 className="text-base md:text-lg lg:text-xl font-bold">공격</h2>
           <PokemonSearchDropDown usage={BattleRole.ATTACK} />
           <PokemonStatsPanel usage={BattleRole.ATTACK} />
-          <CommonSearchDropDown
-            label="기술"
-            options={extractMoveList(attackPokemon?.moves).map((m) => m.krName)}
-          />
-          <CommonSearchDropDown label="날씨" options={Object.values(Weather)} />
-          <CommonSearchDropDown label="필드" options={Object.values(Field)} />
-          <CommonCheckBox
-            label="급소에 맞았습니다."
-            isChecked={isWeaknessHit}
-            setIsChecked={setIsWeaknessHit}
-          />
+
+          {attackPokemon && (
+            <>
+              <CommonSearchDropDown
+                label="기술"
+                options={extractMoveList(attackPokemon?.moves).map(
+                  (m) => m.krName,
+                )}
+              />
+              <CommonSearchDropDown
+                label="날씨"
+                options={Object.values(Weather)}
+              />
+              <CommonSearchDropDown
+                label="필드"
+                options={Object.values(Field)}
+              />
+              <CommonCheckBox
+                label="급소에 맞았습니다."
+                isChecked={isWeaknessHit}
+                setIsChecked={setIsWeaknessHit}
+              />
+            </>
+          )}
         </div>
         <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">방어</h2>
