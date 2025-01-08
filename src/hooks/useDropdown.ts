@@ -53,7 +53,7 @@ const useDropdown = (options: string[]) => {
    * - esc: 포커싱 옵션 초기화 및 드롭다운 닫기
    * - ArrowDown: 포커싱 옵션 밑으로 이동
    * - ArrowUp: 포커싱 옵션 위로 이동
-   * - Enter: 포커싱 옵션 선택 및 드롭다운 닫기
+   * - Enter: 포커싱 옵션 제거 및 드롭다운 닫기 (다른 함수와 연계하여 사용필수)
    *
    * @param key - 키보드에 입력 된 키
    */

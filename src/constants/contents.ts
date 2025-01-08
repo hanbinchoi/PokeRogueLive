@@ -5626,3 +5626,8 @@ export enum MoveClass {
   SPECIAL = 'special',
   STATUS = 'status',
 }
+
+export enum BattleRole {
+  ATTACK = 'attack',
+  DEFEND = 'defend',
+}

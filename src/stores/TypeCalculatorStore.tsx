@@ -5,11 +5,11 @@ import {
   SpecialAttackAbilityType,
   SpecialAttackMoveType,
   SpecialDefendAbilityType,
-  typeCalcMode,
+  BattleRoleType,
 } from '@/types/common';
 
 interface TypeCalculatorState {
-  mode: typeCalcMode; // 타입 계산기 모드 (공격 || 방어)
+  mode: BattleRoleType; // 타입 계산기 모드 (공격 || 방어)
 
   checkedDefendTypes: (PokemonType | null)[]; // 선택된 방어 타입
   teraType: PokemonType | null; // 선택된 테라 타입
@@ -19,7 +19,7 @@ interface TypeCalculatorState {
   attackMove: SpecialAttackMoveType | null; // 선택된 공격 기술
   attackAbility: SpecialAttackAbilityType | null; // 선택된 공격 특성
 
-  setMode: (mode: typeCalcMode) => void;
+  setMode: (mode: BattleRoleType) => void;
   setTeraType: (teraType: PokemonType | null) => void;
   setTypeCalcDefendOptions: (
     checkedDefendTypes: (PokemonType | null)[],

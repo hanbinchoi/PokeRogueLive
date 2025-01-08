@@ -10,8 +10,13 @@ import {
   PowerDamage,
 } from '@/components/power-calculator';
 
-import { Field, Weather } from '@/constants/contents';
+import { BattleRole, Field, Weather } from '@/constants/contents';
 
+/**
+ * 위력 계산기 페이지
+ *
+ * - 공격 및 방어 포켓몬과 관련된 데이터를 입력받아 위력 계산 결과를 출력합니다.
+ */
 export default function PowerCalculator() {
   const {
     attackPokemon,
@@ -24,17 +29,15 @@ export default function PowerCalculator() {
 
   return (
     <main className="flex flex-col gap-2 items-center p-6 sm:p-8 md:p-10 lg:p-12 bg-gray-10">
-      <h1 id="power-calculator" className="sr-only">
-        위력 계산기 페이지
-      </h1>
+      <h1 className="sr-only">위력 계산기 페이지</h1>
       <div className="w-full grid grid-cols-2 gap-6 sm:gap-12">
         <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">공격</h2>
-          <PokemonSearchDropDown usage="attack" />
+          <PokemonSearchDropDown usage={BattleRole.ATTACK} />
 
           {attackPokemonId && (
             <>
-              <PokemonPowerBox id={attackPokemonId} usage="attack" />
+              <PokemonPowerBox id={attackPokemonId} usage={BattleRole.ATTACK} />
               <MoveSearchDropDown moves={attackPokemon?.moves} />
               <CommonSearchDropDown
                 label="날씨"
@@ -54,7 +57,7 @@ export default function PowerCalculator() {
         </div>
         <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">방어</h2>
-          <PokemonSearchDropDown usage="defend" />
+          <PokemonSearchDropDown usage={BattleRole.DEFEND} />
           {defendPokemonId && (
             <>
               <PokemonPowerBox id={defendPokemonId} usage="defend" />

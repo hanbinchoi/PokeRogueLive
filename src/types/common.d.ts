@@ -7,6 +7,7 @@ import {
   SpecialDefendAbility,
   SpecialAttackAbility,
   SpecialAttackMove,
+  BattleRole,
 } from '@/constants/contents';
 
 export interface DefaultProps {
@@ -20,7 +21,7 @@ export interface InputValues {
 
 export type ButtonSize = 'small' | 'medium' | 'large';
 
-export type typeCalcMode = 'defend' | 'attack';
+export type BattleRoleType = BattleRole;
 
 export type checkboxUsage = 'attackMove' | 'attackAbility';
 

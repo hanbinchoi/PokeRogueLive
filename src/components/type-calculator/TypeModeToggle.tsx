@@ -1,6 +1,6 @@
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
-import { typeCalcMode } from '@/types/common';
+import { BattleRoleType } from '@/types/common';
 
 /**
  * 타입 계산기 모드를 관리하는 토글 컴포넌트.
@@ -12,7 +12,7 @@ import { typeCalcMode } from '@/types/common';
 export const TypeModeToggle = () => {
   const { mode, setMode } = useTypeCalculatorStore();
 
-  const changeCurrent = (selectedMode: typeCalcMode) => {
+  const changeCurrent = (selectedMode: BattleRoleType) => {
     if (mode !== selectedMode) {
       setMode(selectedMode);
     }

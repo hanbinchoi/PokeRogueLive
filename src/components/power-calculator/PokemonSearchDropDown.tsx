@@ -6,12 +6,18 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
 import { CommonDropdown, ErrorComponent } from '../common';
 
-import { POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
+import { BattleRole, POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
+import { BattleRoleType } from '@/types/common';
 
 export interface PokemonSearchDropDownProps {
-  usage: 'attack' | 'defend';
+  usage: BattleRoleType;
 }
 
+/**
+ * 포켓몬 검색 드롭다운 컴포넌트
+ *
+ * - 사용자가 포켓몬 이름을 검색하거나 선택할 수 있도록 지원합니다.
+ */
 export const PokemonSearchDropDown = ({
   usage,
 }: PokemonSearchDropDownProps) => {
@@ -29,11 +35,11 @@ export const PokemonSearchDropDown = ({
   } = useDropdown(POKEMON_LIST_IN_KOREAN);
 
   const setPokemon =
-    usage === 'attack'
+    usage === BattleRole.ATTACK
       ? usePowerCalculatorStore((state) => state.setAttackPokemon)
       : usePowerCalculatorStore((state) => state.setDefendPokemon);
   const setPokemonId =
-    usage === 'attack'
+    usage === BattleRole.ATTACK
       ? usePowerCalculatorStore((state) => state.setAttackPokemonId)
       : usePowerCalculatorStore((state) => state.setDefendPokemonId);
 
@@ -41,6 +47,12 @@ export const PokemonSearchDropDown = ({
 
   const { setDamages, setMove } = usePowerCalculatorStore();
 
+  /**
+   * 포켓몬 선택 처리
+   *
+   * - 선택한 포켓몬 이름을 통해 ID를 계산하고, Store에 저장합니다.
+   * - 유효하지 않은 포켓몬 선택 시 에러 상태를 활성화합니다.
+   */
   const handleSelect = (option: string) => {
     const pokemonId = POKEMON_LIST_IN_KOREAN.indexOf(option) + 1;
 
@@ -54,11 +66,17 @@ export const PokemonSearchDropDown = ({
     setError(false);
   };
 
+  /**
+   * 키보드 이벤트 처리
+   *
+   * 드롭다운에서 선택된 포켓몬을 처리하거나, 현재 입력값을 처리합니다.
+   */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = e;
     dropdownHandleKeydown(key);
     if (key === 'Enter') {
       e.preventDefault();
+      // 현재 포커싱 된 옵션이 있으면 그 옵션을 선택, 없으면 입력값을 선택
       selectedIndex !== null
         ? handleSelect(filteredOptions[selectedIndex])
         : handleSelect(inputValue);
@@ -70,7 +88,7 @@ export const PokemonSearchDropDown = ({
     setPokemon(null);
     setPokemonId(null);
     setDamages([]);
-    usage === 'attack' && setMove(null);
+    usage === BattleRole.ATTACK && setMove(null);
   };
   return (
     <div className="relative w-fit">
