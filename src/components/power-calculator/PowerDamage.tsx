@@ -13,10 +13,7 @@ import { DamageContextProps } from '@/types/common';
 
 import getDamages from '@/utils/getDamages';
 
-interface PowerDamageProps {
-  moveUrl: string;
-}
-export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
+export const PowerDamage = () => {
   const {
     attackPokemon,
     defendPokemon,
@@ -25,10 +22,15 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
     isWeaknessHit,
     damages,
     setDamages,
+    move,
   } = usePowerCalculatorStore();
   const [damageContext, setDamageContext] = useState<DamageContextProps>();
 
-  const { data: MoveDetail, isLoading, isError } = usePokemonMoveQuery(moveUrl);
+  const {
+    data: MoveDetail,
+    isLoading,
+    isError,
+  } = usePokemonMoveQuery(move?.move.url);
 
   const hpStat = defendPokemon?.stats.find(
     (stat) => stat.stat.name === 'hp',
@@ -61,18 +63,19 @@ export const PowerDamage = ({ moveUrl }: PowerDamageProps) => {
   if (MoveDetail?.damage_class.name === 'status')
     return <PowerDamageStatusResult />;
 
-  return (
-    <div className="py-9 flex items-center flex-col gap-3">
-      <div className="text-base lg:text-xl font-bold flex gap-1">
-        데미지
-        <Tooltip text={'해당 기술로 10회 타격 시 데미지 계산 결과입니다.'} />
+  if (damages.length)
+    return (
+      <div className="py-9 flex items-center flex-col gap-3">
+        <div className="text-base lg:text-xl font-bold flex gap-1">
+          데미지
+          <Tooltip text={'해당 기술로 10회 타격 시 데미지 계산 결과입니다.'} />
+        </div>
+        <div className="text-base md:text-lg lg:text-2xl font-bold grid grid-cols-5 sm:grid-cols-10 gap-x-2">
+          {damages.map((damage, i) => (
+            <PowerDamageValue key={i} damage={damage} hp={hpStat} />
+          ))}
+        </div>
+        <PowerDamageContext damageContext={damageContext} />
       </div>
-      <div className="text-base md:text-lg lg:text-2xl font-bold grid grid-cols-5 sm:grid-cols-10 gap-x-2">
-        {damages.map((damage, i) => (
-          <PowerDamageValue key={i} damage={damage} hp={hpStat} />
-        ))}
-      </div>
-      <PowerDamageContext damageContext={damageContext} />
-    </div>
-  );
+    );
 };

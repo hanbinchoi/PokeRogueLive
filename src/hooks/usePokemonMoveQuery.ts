@@ -14,10 +14,11 @@ import { MoveDetailDataProps } from '@/types/data';
  * @returns 포켓몬 기술 요청에 대한 데이터, 로딩, 에러를 한번에 반환합니다.
  */
 
-export default function usePokemonMoveQuery(url: string) {
+export default function usePokemonMoveQuery(url?: string) {
   const { data, isLoading, isError } = useQuery<MoveDetailDataProps>({
     queryKey: ['detail', url],
-    queryFn: () => getPokemonMove(url),
+    queryFn: () => getPokemonMove(url as string),
+    enabled: !!url,
   });
 
   return {

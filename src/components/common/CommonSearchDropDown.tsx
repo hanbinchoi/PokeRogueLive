@@ -107,41 +107,42 @@ export const CommonSearchDropDown = ({
     updateState(null);
   };
 
-  return (
-    <div className="w-full mb-3">
-      <label className="text-base md:text-lg" htmlFor={`dropdown-${label}`}>
-        {label}
-      </label>
-      <div className="relative w-full min-w-[120px] max-w-[200px]">
-        <input
-          id={`dropdown-${label}`}
-          type="text"
-          className="w-full border rounded py-1 px-2 text-sm lg:text-base"
-          value={inputValue}
-          onChange={handleInputChange}
-          onFocus={() => setShowDropdown(true)}
-          onKeyDown={handleKeyDown}
-          placeholder="기술 선택"
-          autoComplete="off"
-          tabIndex={2}
-        />
-        {inputValue && (
-          <button
-            onClick={handleClear}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 rounded-md text-gray-90  hover:bg-gray-20">
-            ✕
-          </button>
-        )}
-        {error && <ErrorMessage message="옵션을 찾을 수 없어요." />}
-        <CommonDropdown
-          dropdownRef={dropdownRef}
-          selectedIndex={selectedIndex}
-          filteredOptions={filteredOptions}
-          handleSelect={handleSelect}
-          showDropdown={showDropdown}
-          noFoundMessage="옵션을 찾을 수 없어요"
-        />
+  if (options.length)
+    return (
+      <div className="w-full mb-3">
+        <label className="text-base md:text-lg" htmlFor={`dropdown-${label}`}>
+          {label}
+        </label>
+        <div className="relative w-full min-w-[120px] max-w-[200px]">
+          <input
+            id={`dropdown-${label}`}
+            type="text"
+            className="w-full border rounded py-1 px-2 text-sm lg:text-base"
+            value={inputValue}
+            onChange={handleInputChange}
+            onFocus={() => setShowDropdown(true)}
+            onKeyDown={handleKeyDown}
+            placeholder="기술 선택"
+            autoComplete="off"
+            tabIndex={2}
+          />
+          {inputValue && (
+            <button
+              onClick={handleClear}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 rounded-md text-gray-90  hover:bg-gray-20">
+              ✕
+            </button>
+          )}
+          {error && <ErrorMessage message="옵션을 찾을 수 없어요." />}
+          <CommonDropdown
+            dropdownRef={dropdownRef}
+            selectedIndex={selectedIndex}
+            filteredOptions={filteredOptions}
+            handleSelect={handleSelect}
+            showDropdown={showDropdown}
+            noFoundMessage="옵션을 찾을 수 없어요"
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
 };

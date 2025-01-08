@@ -19,13 +19,8 @@ import { BattleRole, Field, Weather } from '@/constants/contents';
  * - 공격 및 방어 포켓몬과 관련된 데이터를 입력받아 위력 계산 결과를 출력합니다.
  */
 export default function PowerCalculator() {
-  const {
-    attackPokemon,
-    defendPokemonId,
-    isWeaknessHit,
-    setIsWeaknessHit,
-    move,
-  } = usePowerCalculatorStore();
+  const { attackPokemon, isWeaknessHit, setIsWeaknessHit } =
+    usePowerCalculatorStore();
 
   return (
     <main className="flex flex-col gap-2 items-center p-6 sm:p-8 md:p-10 lg:p-12 bg-gray-10">
@@ -34,41 +29,24 @@ export default function PowerCalculator() {
         <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">공격</h2>
           <PokemonSearchDropDown usage={BattleRole.ATTACK} />
-
-          {attackPokemon && (
-            <>
-              <PokemonStatsPanel usage={BattleRole.ATTACK} />
-              <CommonSearchDropDown
-                label="기술"
-                options={extractMoveList(attackPokemon?.moves).map(
-                  (m) => m.krName,
-                )}
-              />
-              <CommonSearchDropDown
-                label="날씨"
-                options={Object.values(Weather)}
-              />
-              <CommonSearchDropDown
-                label="필드"
-                options={Object.values(Field)}
-              />
-              <CommonCheckBox
-                label="급소에 맞았습니다."
-                isChecked={isWeaknessHit}
-                setIsChecked={setIsWeaknessHit}
-              />
-            </>
-          )}
+          <PokemonStatsPanel usage={BattleRole.ATTACK} />
+          <CommonSearchDropDown
+            label="기술"
+            options={extractMoveList(attackPokemon?.moves).map((m) => m.krName)}
+          />
+          <CommonSearchDropDown label="날씨" options={Object.values(Weather)} />
+          <CommonSearchDropDown label="필드" options={Object.values(Field)} />
+          <CommonCheckBox
+            label="급소에 맞았습니다."
+            isChecked={isWeaknessHit}
+            setIsChecked={setIsWeaknessHit}
+          />
         </div>
         <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">방어</h2>
           <PokemonSearchDropDown usage={BattleRole.DEFEND} />
-          {defendPokemonId && (
-            <>
-              <PokemonStatsPanel usage={BattleRole.DEFEND} />
-              {move && <PowerDamage moveUrl={move.move.url} />}
-            </>
-          )}
+          <PokemonStatsPanel usage={BattleRole.DEFEND} />
+          <PowerDamage />
         </div>
       </div>
     </main>

@@ -12,8 +12,10 @@ import { POKEMON_MOVE_LIST } from '@/constants/contents';
  * @return 변환한 기술 목록 (`MoveInfoProps[]`)
  */
 export default function extractMoveList(
-  moves: MoveDataProps[],
+  moves?: MoveDataProps[],
 ): MoveInfoProps[] {
+  if (!moves) return [];
+
   return moves?.map((move) => {
     const match = POKEMON_MOVE_LIST.find(
       (krMove) => krMove.name === move.move.name,
