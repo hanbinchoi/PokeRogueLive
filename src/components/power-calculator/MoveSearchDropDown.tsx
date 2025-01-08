@@ -2,20 +2,30 @@ import useDropdown from '@/hooks/useDropDown';
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { CommonDropdown } from '../common';
+import { CommonDropdown, ErrorMessage } from '../common';
 
 import { MoveDataProps } from '@/types/data';
 
 import extractMoveList from '@/utils/extractMoveList';
+import { useState } from 'react';
 
 export interface MoveSearchDropDownProps {
   moves: MoveDataProps[] | undefined;
 }
 
+/**
+ * 포켓몬 기술 목록 드롭다운 컴포넌트.
+ *
+ * 클릭 이벤트, 키보드 네비게이션 등을 지원합니다. 선택된 기술은 store에 저장합니다.
+ *
+ * @param moves 포켓몬 기술 목록 (`MoveDataProps`)
+ * @returns
+ */
 export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
   if (!moves) return;
 
   const { setMove, setDamages } = usePowerCalculatorStore();
+  const [error, setError] = useState(false);
 
   const extractMoves = extractMoveList(moves);
 
@@ -33,16 +43,30 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
   } = useDropdown(extractMoves.map((m) => m.krName));
 
   const handleSelect = (option: string) => {
-    handleOptionSelect(option);
-    setMove(extractMoves?.find((moves) => moves.krName === option) ?? null);
+    const move = extractMoves?.find((moves) => moves.krName === option);
+
+    // 기술이 있으면 store에 저장, 없으면 에러 처리
+    if (!move) {
+      handleOptionSelect('');
+      setMove(null);
+      setError(true);
+    } else {
+      handleOptionSelect(option);
+      setMove(move);
+      setError(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = e;
     dropdownHandleKeydown(key);
-    if (key === 'Enter' && selectedIndex !== null) {
+
+    if (key === 'Enter') {
       e.preventDefault();
-      handleSelect(filteredOptions[selectedIndex]);
+      // 현재 포커싱 된 옵션이 있으면 그 옵션을 선택, 없으면 입력값을 선택
+      selectedIndex !== null
+        ? handleSelect(filteredOptions[selectedIndex])
+        : handleSelect(inputValue);
     }
   };
 
@@ -77,6 +101,7 @@ export const MoveSearchDropDown = ({ moves }: MoveSearchDropDownProps) => {
             ✕
           </button>
         )}
+        {error && <ErrorMessage message="기술을 찾을 수 없어요." />}
         <CommonDropdown
           dropdownRef={dropdownRef}
           selectedIndex={selectedIndex}

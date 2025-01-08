@@ -31,7 +31,7 @@ export default function PowerCalculator() {
     <main className="flex flex-col gap-2 items-center p-6 sm:p-8 md:p-10 lg:p-12 bg-gray-10">
       <h1 className="sr-only">위력 계산기 페이지</h1>
       <div className="w-full grid grid-cols-2 gap-6 sm:gap-12">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-6">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">공격</h2>
           <PokemonSearchDropDown usage={BattleRole.ATTACK} />
 
