@@ -29,7 +29,7 @@ export interface EvolutionChainProps {
 export const EvolutionChain = ({ url, pokedex }: EvolutionChainProps) => {
   const [evolutionNodes, setEvolutionNodes] =
     useState<EvolutionChainNodeDataProps[]>();
-
+  console.log(url);
   const {
     data: evolutionChain,
     isLoading,
