@@ -1,4 +1,9 @@
-import { CommonDataProps, StatDataProps } from './data';
+import {
+  AbilityDataProps,
+  CommonDataProps,
+  MoveDataProps,
+  StatDataProps,
+} from './data';
 
 import {
   Weather,
