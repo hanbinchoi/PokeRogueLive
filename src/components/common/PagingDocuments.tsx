@@ -2,12 +2,10 @@ import { usePagination } from '@/hooks/usePagination';
 
 import { IconButton, PageButton } from './PageButton';
 
-import {
-  FaAngleLeft,
-  FaAngleRight,
-  FaAnglesLeft,
-  FaAnglesRight,
-} from 'react-icons/fa6';
+import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
+import { FaAngleDoubleLeft } from '@react-icons/all-files/fa/FaAngleDoubleLeft';
+import { FaAngleRight } from '@react-icons/all-files/fa/FaAngleRight';
+import { FaAngleDoubleRight } from '@react-icons/all-files/fa/FaAngleDoubleRight';
 
 export interface PagingDocumentsProps {
   now: number;
@@ -41,7 +39,7 @@ export const PagingDocuments = ({
         <>
           <IconButton
             primary={false}
-            Icon={FaAnglesLeft}
+            Icon={FaAngleDoubleLeft}
             onClick={() => goToPage(1)}
           />
           <IconButton
@@ -70,7 +68,7 @@ export const PagingDocuments = ({
           />
           <IconButton
             primary={false}
-            Icon={FaAnglesRight}
+            Icon={FaAngleDoubleRight}
             onClick={() => goToPage(lastPage)}
           />
         </>
