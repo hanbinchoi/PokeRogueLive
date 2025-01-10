@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadingComponent } from '../../src/components/common/LoadingComponent';
+import { LoadingComponent } from './LoadingComponent';
 
 describe('<LoadingComponent />', () => {
   it('렌더링과 애니메이션 적용 여부', () => {
