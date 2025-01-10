@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
 
-import { MdMenu } from 'react-icons/md';
+import { MdMenu } from '@react-icons/all-files/md/MdMenu';
 import { Logo } from './Logo';
 import { HeaderMenu } from './HeaderMenu';
 
@@ -40,7 +40,7 @@ export const Header = () => {
 
       <div
         ref={menuRef}
-        className={`fixed top-0 right-0 h-full w-48 bg-white-100 shadow-lg z-40 transform ${
+        className={`header-menu-container fixed top-0 right-0 h-full w-48 bg-white-100 shadow-lg z-40 transform ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } transition-all duration-300 md:hidden`}>
         <ul className="px-4 py-6 space-y-4 flex flex-col gap-4">

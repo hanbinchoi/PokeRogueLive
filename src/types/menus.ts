@@ -1,5 +1,6 @@
-import { FaBook } from 'react-icons/fa';
-import { BsFire, BsCalculatorFill } from 'react-icons/bs';
+import { FaBook } from '@react-icons/all-files/fa/FaBook';
+import { FaFire } from '@react-icons/all-files/fa/FaFire';
+import { FaDumbbell } from '@react-icons/all-files/fa/FaDumbbell';
 
 import { DefaultProps } from './common';
 
@@ -19,11 +20,11 @@ export const MENUS: MenuItemProps[] = [
   {
     title: 'type-calculator',
     label: '타입 계산기',
-    icon: BsFire,
+    icon: FaFire,
   },
   {
     title: 'power-calculator',
     label: '위력 계산기',
-    icon: BsCalculatorFill,
+    icon: FaDumbbell,
   },
 ];
