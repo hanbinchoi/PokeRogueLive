@@ -27,7 +27,7 @@ export interface CommonSearchDropDownProps {
  * @param label 드롭다운 라벨 (`string`)
  * @param options 드롭다운 옵션으로 노출 될 목록 (string[])
  */
-export const CommonSearchDropDown = ({
+export const CommonSearchDropdown = ({
   label,
   options,
 }: CommonSearchDropDownProps) => {

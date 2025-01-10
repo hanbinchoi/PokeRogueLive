@@ -2,7 +2,7 @@
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { CommonCheckBox, CommonSearchDropDown } from '@/components/common';
+import { CommonCheckBox, CommonSearchDropdown } from '@/components/common';
 import {
   PokemonStatsPanel,
   PokemonSearchDropDown,
@@ -33,17 +33,17 @@ export default function PowerCalculator() {
 
           {attackPokemon && (
             <>
-              <CommonSearchDropDown
+              <CommonSearchDropdown
                 label="기술"
                 options={extractMoveList(attackPokemon?.moves).map(
                   (m) => m.krName,
                 )}
               />
-              <CommonSearchDropDown
+              <CommonSearchDropdown
                 label="날씨"
                 options={Object.values(Weather)}
               />
-              <CommonSearchDropDown
+              <CommonSearchDropdown
                 label="필드"
                 options={Object.values(Field)}
               />

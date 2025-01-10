@@ -1,10 +1,10 @@
 import React from 'react';
-import { CommonSearchDropDown } from './CommonSearchDropDown';
+import { CommonSearchDropdown } from './CommonSearchDropdown';
 
-describe('<CommonSearchDropDown />', () => {
+describe('<CommonSearchDropdown />', () => {
   it('사용자가 입력하면 드롭다운 옵션이 필터링된다', () => {
     cy.mount(
-      <CommonSearchDropDown
+      <CommonSearchDropdown
         label="기술"
         options={['Option 1', 'Option 2', 'Option 3']}
       />,
@@ -18,7 +18,7 @@ describe('<CommonSearchDropDown />', () => {
   });
 
   it('드롭다운 항목을 선택하면, 선택된 항목이 반영된다', () => {
-    cy.mount(<CommonSearchDropDown label="test" options={['1', '2', '3']} />);
+    cy.mount(<CommonSearchDropdown label="test" options={['1', '2', '3']} />);
     cy.get('input').click();
     cy.get('#dropdown-option-2').click(); // Option 2를 클릭
 
@@ -27,7 +27,7 @@ describe('<CommonSearchDropDown />', () => {
 
   it('잘못된 값을 선택하면, 에러 메시지가 표시된다', () => {
     cy.mount(
-      <CommonSearchDropDown
+      <CommonSearchDropdown
         label="기술"
         options={['Option 1', 'Option 2', 'Option 3']}
       />,
@@ -41,7 +41,7 @@ describe('<CommonSearchDropDown />', () => {
 
   it('키보드로 드롭다운 항목을 선택할 수 있다', () => {
     cy.mount(
-      <CommonSearchDropDown
+      <CommonSearchDropdown
         label="기술"
         options={['Option 1', 'Option 2', 'Option 3']}
       />,
@@ -57,7 +57,7 @@ describe('<CommonSearchDropDown />', () => {
 
   it('입력값을 지우면, 입력값이 초기화된다', () => {
     cy.mount(
-      <CommonSearchDropDown
+      <CommonSearchDropdown
         label="기술"
         options={['Option 1', 'Option 2', 'Option 3']}
       />,
