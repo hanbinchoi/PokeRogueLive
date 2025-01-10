@@ -69,6 +69,7 @@ export const CommonDropdown = ({
       {filteredOptions.map((option, index) => (
         <div
           key={option}
+          id={`dropdown-option-${option}`}
           className={twMerge(
             'p-1 cursor-pointer hover:bg-gray-100 border-b border-gray-20',
             selectedIndex === index && 'bg-blue-10',
