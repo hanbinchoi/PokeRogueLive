@@ -23,7 +23,7 @@ export interface MoveProps {
  */
 export const Move = ({ levelLearnedAt, url }: MoveProps) => {
   const { isError, isLoading, data } = usePokemonMoveQuery(url);
-
+  console.log(data);
   if (isLoading) {
     return (
       <div className="w-full h-full mb-2">
