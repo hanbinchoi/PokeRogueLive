@@ -1,62 +1,186 @@
-import { BattleRole, POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
-import { PokemonSearchDropdown } from './PokemonSearchDropdown';
+import { PokemonTypeName } from '@/constants/contents';
+import { PokemonStatInput } from './PokemonStatInput';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BattleRoleType } from '@/types/common';
 
-describe('PokemonSearchDropdown', () => {
-  const validPokemon = POKEMON_LIST_IN_KOREAN[0]; // 예: '이상해씨'
-  const createQueryClient = () => new QueryClient();
+describe('PokemonStatInput', () => {
+  let setPokemonSpy;
+  // 더미 포켓몬 데이터 설정
+  const dummyPokemon = {
+    type: [PokemonTypeName.NORMAL, PokemonTypeName.FAIRY],
+    pokedex: 42,
+    name: '푸린',
+    imageUrl:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png',
+    abilitiesInfo: [
+      {
+        ability: {
+          name: 'cute-charm',
+          url: 'https://pokeapi.co/api/v2/ability/56/',
+        },
+        is_hidden: false,
+        slot: 1,
+      },
+      {
+        ability: {
+          name: 'friend-guard',
+          url: 'https://pokeapi.co/api/v2/ability/132/',
+        },
+        is_hidden: true,
+        slot: 3,
+      },
+    ],
+    base_experience: 95,
+    cries:
+      'https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/39.ogg',
+    height: 5,
+    moves: [
+      {
+        move: {
+          name: 'pound',
+          url: 'https://pokeapi.co/api/v2/move/1/',
+        },
+        version_group_details: [
+          {
+            level_learned_at: 9,
+            move_learn_method: {
+              name: 'level-up',
+              url: 'https://pokeapi.co/api/v2/move-learn-method/1/',
+            },
+            version_group: {
+              name: 'red-blue',
+              url: 'https://pokeapi.co/api/v2/version-group/1/',
+            },
+          },
+        ],
+      },
+      {
+        move: {
+          name: 'psychic-noise',
+          url: 'https://pokeapi.co/api/v2/move/917/',
+        },
+        version_group_details: [
+          {
+            level_learned_at: 0,
+            move_learn_method: {
+              name: 'machine',
+              url: 'https://pokeapi.co/api/v2/move-learn-method/4/',
+            },
+            version_group: {
+              name: 'scarlet-violet',
+              url: 'https://pokeapi.co/api/v2/version-group/25/',
+            },
+          },
+        ],
+      },
+    ],
+    stats: [
+      {
+        base_stat: 50,
+        effort: 0,
+        stat: {
+          name: 'lv',
+          url: 'unknown',
+        },
+      },
+      {
+        base_stat: 115,
+        effort: 2,
+        stat: {
+          name: 'hp',
+          url: 'https://pokeapi.co/api/v2/stat/1/',
+        },
+      },
+      {
+        base_stat: 45,
+        effort: 0,
+        stat: {
+          name: 'attack',
+          url: 'https://pokeapi.co/api/v2/stat/2/',
+        },
+      },
+      {
+        base_stat: 20,
+        effort: 0,
+        stat: {
+          name: 'defense',
+          url: 'https://pokeapi.co/api/v2/stat/3/',
+        },
+      },
+      {
+        base_stat: 45,
+        effort: 0,
+        stat: {
+          name: 'special-attack',
+          url: 'https://pokeapi.co/api/v2/stat/4/',
+        },
+      },
+      {
+        base_stat: 25,
+        effort: 0,
+        stat: {
+          name: 'special-defense',
+          url: 'https://pokeapi.co/api/v2/stat/5/',
+        },
+      },
+      {
+        base_stat: 20,
+        effort: 0,
+        stat: {
+          name: 'speed',
+          url: 'https://pokeapi.co/api/v2/stat/6/',
+        },
+      },
+    ],
+    weight: 55,
+    capture_rate: 170,
+    evolution_chain: 'https://pokeapi.co/api/v2/evolution-chain/16/',
+    flavor_text:
+      '동그랗고 커다란 눈동자로\n유인하고 기분 좋은 노래를\n불러 상대방을 잠들게 한다.',
+    genera: '풍선포켓몬',
+    is_legendary: false,
+    is_mythical: false,
+  };
 
-  const WrappedEvolutionChain = ({ usage }: { usage: BattleRoleType }) => (
-    <QueryClientProvider client={createQueryClient()}>
-      <PokemonSearchDropdown usage={usage} />
-    </QueryClientProvider>
-  );
   beforeEach(() => {
-    cy.mount(<WrappedEvolutionChain usage={BattleRole.ATTACK} />);
-  });
+    // setPokemon을 스파이로 설정
+    setPokemonSpy = cy.spy().as('setPokemonSpy');
 
-  it('드롭다운 컴포넌트가 정상적으로 렌더링된다.', () => {
-    cy.get('input[type="text"]').should('exist');
-    cy.get('input[type="text"]').should(
-      'have.attr',
-      'placeholder',
-      '포켓몬 입력',
+    const createQueryClient = () => new QueryClient();
+
+    cy.mount(
+      <QueryClientProvider client={createQueryClient()}>
+        <PokemonStatInput
+          stat={dummyPokemon.stats[0]}
+          pokemon={dummyPokemon}
+          setPokemon={setPokemonSpy}
+        />
+      </QueryClientProvider>,
     );
   });
 
-  it('입력값에 따라 드롭다운 옵션이 필터링된다.', () => {
-    const searchQuery = validPokemon.slice(0, 2); // 포켓몬 이름 일부 입력
+  it('렌더링된 input 필드에 초기값이 제대로 표시된다.', () => {
+    cy.contains('레벨').should('exist');
+    cy.get('input[type="number"]').should('have.value', '50');
+  });
 
-    cy.get('input[type="text"]').type(searchQuery);
-    cy.get('[role="listbox"]').should('be.visible'); // 드롭다운 표시
-    cy.get('[role="listbox"] > li').each(($el) => {
-      expect($el.text()).to.contain(searchQuery);
+  it('입력값을 변경하면 setPokemon이 호출되고 포켓몬 스탯이 업데이트된다.', () => {
+    cy.get('input[type="number"]').should('have.value', '50');
+    cy.get('input[type="number"]').type('1', { delay: 1000 });
+
+    // setPokemon 함수 호출 확인
+    cy.get('@setPokemonSpy').should('have.been.calledWith', {
+      ...dummyPokemon,
+      stats: [
+        {
+          base_stat: 501,
+          effort: 0,
+          stat: {
+            name: 'lv',
+            url: 'unknown',
+          },
+        },
+        ...dummyPokemon.stats.filter((e) => e.stat.name !== 'lv'),
+      ],
     });
-  });
-
-  it('옵션을 선택하면 상태가 변경된다.', () => {
-    cy.get('input[type="text"]').type(validPokemon);
-    cy.get('[role="listbox"] > li').first().click(); // 첫 번째 옵션 선택
-
-    cy.get('input[type="text"]').should('have.value', validPokemon); // 선택된 값 확인
-  });
-
-  it('유효하지 않은 값을 입력하면 에러 메시지가 표시된다.', () => {
-    const invalidQuery = '유효하지 않은 이름';
-
-    cy.get('input[type="text"]').type(invalidQuery).type('{enter}');
-    cy.get('[role="alert"]').should('contain', '포켓몬을 찾을 수 없어요'); // 에러 메시지 확인
-  });
-
-  it('초기화 버튼(✕)을 클릭하면 입력값이 초기화된다.', () => {
-    cy.get('input[type="text"]').type(validPokemon);
-
-    cy.get('button').contains('✕').click(); // 초기화 버튼 클릭
-    cy.get('input[type="text"]').should('have.value', ''); // 입력값 초기화 확인
-  });
-
-  it('로딩 상태가 제대로 표시된다.', () => {
-    cy.get('.p-12').should('exist'); // 로딩 상태 확인
   });
 });
