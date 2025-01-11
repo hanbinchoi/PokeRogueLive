@@ -1,15 +1,15 @@
 import { BattleRole, POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
-import { PokemonSearchDropDown } from './PokemonSearchDropDown';
+import { PokemonSearchDropdown } from './PokemonSearchDropdown';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BattleRoleType } from '@/types/common';
 
-describe('PokemonSearchDropDown', () => {
+describe('PokemonSearchDropdown', () => {
   const validPokemon = POKEMON_LIST_IN_KOREAN[0]; // 예: '이상해씨'
   const createQueryClient = () => new QueryClient();
 
   const WrappedEvolutionChain = ({ usage }: { usage: BattleRoleType }) => (
     <QueryClientProvider client={createQueryClient()}>
-      <PokemonSearchDropDown usage={usage} />
+      <PokemonSearchDropdown usage={usage} />
     </QueryClientProvider>
   );
   beforeEach(() => {

@@ -5,7 +5,7 @@ import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 import { CommonCheckBox, CommonSearchDropdown } from '@/components/common';
 import {
   PokemonStatsPanel,
-  PokemonSearchDropDown,
+  PokemonSearchDropdown,
   PowerDamageResult,
 } from '@/components/power-calculator';
 
@@ -28,7 +28,7 @@ export default function PowerCalculator() {
       <div className="w-full grid grid-cols-2 gap-6 sm:gap-12">
         <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">공격</h2>
-          <PokemonSearchDropDown usage={BattleRole.ATTACK} />
+          <PokemonSearchDropdown usage={BattleRole.ATTACK} />
           <PokemonStatsPanel usage={BattleRole.ATTACK} />
 
           {attackPokemon && (
@@ -57,7 +57,7 @@ export default function PowerCalculator() {
         </div>
         <div className="flex flex-col gap-3">
           <h2 className="text-base md:text-lg lg:text-xl font-bold">방어</h2>
-          <PokemonSearchDropDown usage={BattleRole.DEFEND} />
+          <PokemonSearchDropdown usage={BattleRole.DEFEND} />
           <PokemonStatsPanel usage={BattleRole.DEFEND} />
           <PowerDamageResult />
         </div>
