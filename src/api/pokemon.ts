@@ -57,7 +57,6 @@ export async function getPokemons(
 export async function getPokemonSpecies(
   url: string,
 ): Promise<PokemonSpeciesDataProps> {
-  console.log(url);
   const res = await axios.get(url).then((res) => res.data);
   return res;
 }
@@ -100,7 +99,6 @@ export async function getPokemonAbilityInfo(
   url: string,
 ): Promise<AbilityDetailProps> {
   const res = await axios.get(url).then((res) => res.data);
-
   return res;
 }
 
