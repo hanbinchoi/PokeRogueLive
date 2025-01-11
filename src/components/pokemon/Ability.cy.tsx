@@ -5,7 +5,7 @@ describe('<Ability />', () => {
   const mockAbility = {
     ability: {
       name: 'test-ability',
-      url: '/test/2322/',
+      url: '/test/ability',
     },
     slot: 1,
     is_hidden: false,
@@ -31,7 +31,7 @@ describe('<Ability />', () => {
 
   it('API 요청 중 로딩 상태를 표시', () => {
     // mock API 응답 설정
-    cy.intercept('GET', '/test/2322/', {
+    cy.intercept('GET', '/test/ability', {
       statusCode: 200,
       body: mockAbilityResponse,
     }).as('getAbility');

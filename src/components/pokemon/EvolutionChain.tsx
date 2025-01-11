@@ -29,7 +29,7 @@ export interface EvolutionChainProps {
 export const EvolutionChain = ({ url, pokedex }: EvolutionChainProps) => {
   const [evolutionNodes, setEvolutionNodes] =
     useState<EvolutionChainNodeDataProps[]>();
-  console.log(url);
+
   const {
     data: evolutionChain,
     isLoading,
@@ -39,7 +39,6 @@ export const EvolutionChain = ({ url, pokedex }: EvolutionChainProps) => {
     queryFn: () => getPokemonEvolutionChain(url),
     enabled: !!url,
   });
-
   // 진화 체인 데이터를 `extractNodes`를 통해 진화 정보만 배열 형태로 추출하여 상태로 저장
   useEffect(
     () => evolutionChain && setEvolutionNodes(extractNodes(evolutionChain)),
