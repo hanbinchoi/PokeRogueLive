@@ -1,7 +1,7 @@
-import { PokemonTypeName } from '@/constants/contents';
-import { PokemonStatInfo } from './PokemonStatInfo';
+import { POKEMON_TYPE_INFO, PokemonTypeName } from '@/constants/contents';
+import { PokemonOverview } from '../../src/components/pokemon/PokemonOverview';
 
-describe('PokemonStatInfo 컴포넌트', () => {
+describe('PokemonOverview 컴포넌트', () => {
   const mockPokemon = {
     type: [PokemonTypeName.NORMAL, PokemonTypeName.FAIRY],
     pokedex: 42,
@@ -137,16 +137,18 @@ describe('PokemonStatInfo 컴포넌트', () => {
     is_legendary: false,
     is_mythical: false,
   };
+  it('포켓몬 이름, 타입, 도감 설명이 올바르게 표시되는지 확인', () => {
+    cy.mount(<PokemonOverview pokemon={mockPokemon} />);
 
-  it('포켓몬 능력치 정보가 올바르게 표시되는지 확인', () => {
-    cy.mount(<PokemonStatInfo pokemon={mockPokemon} />);
+    // 포켓몬 이름이 제대로 표시되는지 확인
+    cy.get('h1').should('have.text', mockPokemon.name);
 
-    // 능력치 총합 표시 확인
-    cy.get('div').contains('합계');
-    const statTotal = mockPokemon.stats.reduce(
-      (total, stat) => total + stat.base_stat,
-      0,
-    );
-    cy.get('span').contains(statTotal);
+    // 포켓몬 타입이 제대로 표시되는지 확인
+    cy.get('span')
+      .first()
+      .should('have.text', POKEMON_TYPE_INFO[mockPokemon.type[0]].name);
+
+    // 도감 설명이 제대로 표시되는지 확인
+    cy.get('.flavor-text').should('have.text', mockPokemon.flavor_text);
   });
 });

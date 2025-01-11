@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CommonButton } from './CommonButton';
+import { CommonButton } from '../../src/components/common/CommonButton';
 
 describe('<CommonButton />', () => {
   it('label이 제대로 적용되는지 확인', () => {

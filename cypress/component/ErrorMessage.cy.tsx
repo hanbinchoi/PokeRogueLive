@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorMessage } from './ErrorMessage';
+import { ErrorMessage } from '../../src/components/common/ErrorMessage';
 
 describe('<ErrorMessage />', () => {
   it('메시지가 잘 반영되는지 확인', () => {

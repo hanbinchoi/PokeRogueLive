@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { PokemonTypeButton } from './PokemonTypeButton';
+import { PokemonTypeButton } from '../../src/components/type-calculator/PokemonTypeButton';
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 import { BattleRole, PokemonTypeName } from '@/constants/contents';
 import { PokemonType } from '@/types/common';

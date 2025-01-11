@@ -1,4 +1,7 @@
-import { EvolutionChain, EvolutionChainProps } from './EvolutionChain';
+import {
+  EvolutionChain,
+  EvolutionChainProps,
+} from '../../src/components/pokemon/EvolutionChain';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Mock 데이터

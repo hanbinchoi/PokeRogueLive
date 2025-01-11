@@ -1,5 +1,5 @@
 import { PokemonTypeName } from '@/constants/contents';
-import { PokemonStatInput } from './PokemonStatInput';
+import { PokemonStatInput } from '../../src/components/power-calculator/PokemonStatInput';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 describe('PokemonStatInput', () => {

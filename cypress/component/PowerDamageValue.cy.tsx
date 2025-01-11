@@ -1,4 +1,4 @@
-import { PowerDamageValue } from './PowerDamageValue';
+import { PowerDamageValue } from '../../src/components/power-calculator/PowerDamageValue';
 
 describe('PowerDamageValue', () => {
   it('HP가 주어졌을 때 위력/HP 비율이 0.66 초과하면 빨간색으로 표시한다', () => {

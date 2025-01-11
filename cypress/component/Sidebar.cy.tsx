@@ -1,5 +1,5 @@
 import { MENUS } from '@/types/menus';
-import { Sidebar } from './Sidebar';
+import { Sidebar } from '../../src/components/common/Sidebar';
 
 describe('Sidebar 컴포넌트 테스트', () => {
   beforeEach(() => {

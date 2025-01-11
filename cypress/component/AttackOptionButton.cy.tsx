@@ -1,4 +1,4 @@
-import { AttackOptionButton } from './AttackOptionButton';
+import { AttackOptionButton } from '../../src/components/type-calculator/AttackOptionButton';
 import { AttackOptionUsage, SpecialAttackAbility } from '@/constants/contents';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 

@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { MoveBox } from './MoveBox';
+import { MoveBox } from '../../src/components/pokemon/MoveBox';
 
 describe('<MoveBox />', () => {
   const mockMoves = [

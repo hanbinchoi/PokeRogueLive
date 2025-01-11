@@ -1,4 +1,4 @@
-import { EvolutionDescription } from './EvolutionDescription';
+import { EvolutionDescription } from '../../src/components/pokemon/EvolutionDescription';
 
 describe('<EvolutionDescription />', () => {
   const mockEvolutionDetails = [

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from './Header';
+import { Header } from '../../src/components/common/Header';
 
 describe('<Header />', () => {
   it('아이콘 클릭 시 메뉴 열기', () => {

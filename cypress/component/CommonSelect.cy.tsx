@@ -1,5 +1,5 @@
 import React from 'react';
-import { CommonSelect } from './CommonSelect';
+import { CommonSelect } from '../../src/components/common/CommonSelect';
 import { SelectUsage } from '@/constants/contents';
 
 describe('<CommonSelect />', () => {

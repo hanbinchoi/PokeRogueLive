@@ -1,4 +1,4 @@
-import { PowerDamageContext } from './PowerDamageContext';
+import { PowerDamageContext } from '../../src/components/power-calculator/PowerDamageContext';
 import { DamageContextProps } from '@/types/common';
 
 describe('PowerDamageContext', () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokemonList } from './PokemonList';
+import { PokemonList } from '../../src/components/pokemons/PokemonList';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 describe('PokemonList 컴포넌트', () => {

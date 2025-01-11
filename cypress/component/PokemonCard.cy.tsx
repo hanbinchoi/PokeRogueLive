@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokemonCard } from './PokemonCard';
+import { PokemonCard } from '../../src/components/pokemons/PokemonCard';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 describe('PokemonCard 컴포넌트', () => {

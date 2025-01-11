@@ -1,5 +1,5 @@
 import { BattleRole, POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
-import { PokemonSearchDropdown } from './PokemonSearchDropdown';
+import { PokemonSearchDropdown } from '../../src/components/power-calculator/PokemonSearchDropdown';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BattleRoleType } from '@/types/common';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PagingDocuments } from './PagingDocuments';
+import { PagingDocuments } from '../../src/components/common/PagingDocuments';
 
 describe('<PagingDocuments />', () => {
   const totalItems = 100;

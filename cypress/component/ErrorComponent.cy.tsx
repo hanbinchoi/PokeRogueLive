@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorComponent } from './ErrorComponent';
+import { ErrorComponent } from '../../src/components/common/ErrorComponent';
 
 describe('<ErrorComponent />', () => {
   it('default size가 medium인지 확인', () => {

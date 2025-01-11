@@ -1,5 +1,5 @@
 import React from 'react';
-import { TypeBadge } from './TypeBadge';
+import { TypeBadge } from '../../src/components/common/TypeBadge';
 import { POKEMON_TYPE_INFO, PokemonTypeName } from '@/constants/contents';
 
 describe('<TypeBadge />', () => {

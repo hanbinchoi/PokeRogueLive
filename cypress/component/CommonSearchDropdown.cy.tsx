@@ -1,5 +1,5 @@
 import React from 'react';
-import { CommonSearchDropdown } from './CommonSearchDropdown';
+import { CommonSearchDropdown } from '../../src/components/common/CommonSearchDropdown';
 
 describe('<CommonSearchDropdown />', () => {
   it('사용자가 입력하면 드롭다운 옵션이 필터링된다', () => {

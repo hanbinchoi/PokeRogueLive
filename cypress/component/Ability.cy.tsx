@@ -1,4 +1,4 @@
-import { Ability, AbilityProps } from './Ability';
+import { Ability, AbilityProps } from '../../src/components/pokemon/Ability';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 describe('<Ability />', () => {

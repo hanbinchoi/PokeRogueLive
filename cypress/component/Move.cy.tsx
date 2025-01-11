@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Move } from './Move';
+import { Move } from '../../src/components/pokemon/Move';
 
 describe('<Move />', () => {
   const mockMoveData = {

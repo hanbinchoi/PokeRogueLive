@@ -1,5 +1,5 @@
 import React from 'react';
-import { CommonDropdown } from './CommonDropdown';
+import { CommonDropdown } from '../../src/components/common/CommonDropdown';
 
 describe('<CommonDropdown />', () => {
   it('드롭다운 항목을 선택하면, 선택된 항목이 반영된다', () => {

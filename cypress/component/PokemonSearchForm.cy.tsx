@@ -1,5 +1,5 @@
 import { usePokemonSearchForm } from '@/hooks/usePokemonSearchForm';
-import { PokemonSearchForm } from './PokemonSearchForm';
+import { PokemonSearchForm } from '../../src/components/pokemons/PokemonSearchForm';
 
 describe('PokemonSearchForm 컴포넌트', () => {
   beforeEach(() => {

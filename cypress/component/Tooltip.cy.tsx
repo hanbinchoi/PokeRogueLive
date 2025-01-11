@@ -1,4 +1,4 @@
-import { Tooltip } from './Tooltip';
+import { Tooltip } from '../../src/components/common/Tooltip';
 
 describe('Tooltip 컴포넌트 테스트', () => {
   it('툴팁이 마우스 호버 시 보이는지 확인', () => {

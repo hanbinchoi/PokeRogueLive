@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { TypeModeToggle } from './TypeModeToggle';
+import { TypeModeToggle } from '../../src/components/type-calculator/TypeModeToggle';
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 import { BattleRole } from '@/constants/contents';
 import { BattleRoleType } from '@/types/common';

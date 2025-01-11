@@ -1,5 +1,5 @@
 import { PokemonDetailProps } from '@/types/common';
-import { PokemonImgBox } from './PokemonImgBox';
+import { PokemonImgBox } from '../../src/components/common/PokemonImgBox';
 import { PokemonTypeName } from '@/constants/contents';
 
 describe('<PokemonImgBox />', () => {
