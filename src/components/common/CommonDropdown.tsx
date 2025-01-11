@@ -60,7 +60,7 @@ export const CommonDropdown = ({
     <div
       ref={dropdownRef}
       className={twJoin(
-        'absolute z-10 w-full min-w-[120px] max-w-[162px] text-sm lg:text-[14px] bg-white-100 border-2 border-t rounded shadow max-h-20 sm:max-h-40 overflow-y-auto ',
+        'dropdown-container absolute z-10 w-full min-w-[120px] max-w-[162px] text-sm lg:text-[14px] bg-white-100 border-2 border-t rounded shadow max-h-20 sm:max-h-40 overflow-y-auto ',
         className,
       )}>
       {filteredOptions.length === 0 && (
