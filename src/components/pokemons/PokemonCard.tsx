@@ -49,7 +49,7 @@ export const PokemonCard = ({ id }: PokemonProps) => {
         {isError && <ErrorComponent message="Not Found" size="xsmall" />}
         <div>{`No. ${String(id).padStart(3, '0')}`}</div>
         <img className="w-24" alt={pokemon?.name} src={pokemon?.imageUrl} />
-        <div className="mb-2 text-lg">{pokemon?.name}</div>
+        <div className="pokemon-name mb-2 text-lg">{pokemon?.name}</div>
         <div className="flex gap-2">
           {pokemon?.type.map((t, i) => (
             <TypeBadge key={`${t}-${i}`} type={t} size="small" />
