@@ -5,7 +5,7 @@ import { ButtonSize, DefaultProps } from '@/types/common';
 export interface ButtonProps extends DefaultProps {
   primary?: boolean;
   size?: ButtonSize;
-  type: 'button' | 'submit' | 'reset';
+  type?: 'button' | 'submit' | 'reset';
   label: string;
   disabled?: boolean;
   onClick?: () => void;
@@ -39,7 +39,7 @@ export const CommonButton = ({
 
   const buttonStyle: Record<ButtonSize, string> = {
     small:
-      'min-w-[54px] min-[480px]:min-w-[62px] h-[32px] min-h-[32px] text-xs min-[480px]:text-sm px-2 py-1  font-bold rounded',
+      'min-w-[54px] min-[480px]:min-w-[62px] h-[32px] min-h-[32px] text-xs min-[480px]:text-sm px-2 py-1 font-bold rounded',
     medium: 'px-4 py-2 rounded',
     large: 'px-5 py-2 rounded text-lg',
   };

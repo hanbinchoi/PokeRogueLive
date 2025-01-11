@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 
-import { FaArrowDown } from 'react-icons/fa';
+import { FaArrowDown } from '@react-icons/all-files/fa/FaArrowDown';
 import { ErrorComponent, LoadingComponent } from '../common';
 import { EvolutionDescription } from './EvolutionDescription';
 

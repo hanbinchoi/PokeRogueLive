@@ -60,7 +60,7 @@ export const CommonDropdown = ({
     <div
       ref={dropdownRef}
       className={twJoin(
-        'absolute z-10 w-full min-w-[120px] max-w-[162px] text-sm lg:text-[14px] bg-white-100 border-2 border-t rounded shadow max-h-20 sm:max-h-40 overflow-y-auto ',
+        'dropdown-container absolute z-10 w-full min-w-[120px] max-w-[162px] text-sm lg:text-[14px] bg-white-100 border-2 border-t rounded shadow max-h-20 sm:max-h-40 overflow-y-auto ',
         className,
       )}>
       {filteredOptions.length === 0 && (
@@ -69,6 +69,7 @@ export const CommonDropdown = ({
       {filteredOptions.map((option, index) => (
         <div
           key={option}
+          id={`dropdown-option-${option}`}
           className={twMerge(
             'p-1 cursor-pointer hover:bg-gray-100 border-b border-gray-20',
             selectedIndex === index && 'bg-blue-10',

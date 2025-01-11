@@ -23,7 +23,7 @@ export interface PokemonSearchDropDownProps {
  *
  * - 사용자가 포켓몬 이름을 검색하거나 선택할 수 있도록 지원합니다.
  */
-export const PokemonSearchDropDown = ({
+export const PokemonSearchDropdown = ({
   usage,
 }: PokemonSearchDropDownProps) => {
   const [error, setError] = useState(false);

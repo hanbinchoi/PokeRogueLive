@@ -26,8 +26,6 @@ export const PokemonStatInput = ({
   /**
    * 입력 필드 변경 핸들러.
    * 스탯 값을 업데이트하고 부모 컴포넌트의 상태를 갱신합니다.
-   *
-   * @param e - 입력 이벤트
    */
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);

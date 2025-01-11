@@ -44,12 +44,12 @@ export const PokemonCard = ({ id }: PokemonProps) => {
 
   return (
     <Link href={`/pokemon/${id}`} className="w-full h-full flex justify-center">
-      <div className="w-[150px] min-w-[150px] lg:min-w-[170px] h-[202px] min-h-[202px] lg:min-h-[212px] px-6 xl:px-8 py-4 text-sm font-bold flex flex-col justify-center items-center bg-white-100 border-2 rounded-lg">
+      <div className="pokemon-card w-[150px] min-w-[150px] lg:min-w-[170px] h-[202px] min-h-[202px] lg:min-h-[212px] px-6 xl:px-8 py-4 text-sm font-bold flex flex-col justify-center items-center bg-white-100 border-2 rounded-lg">
         {isLoading && <LoadingComponent />}
         {isError && <ErrorComponent message="Not Found" size="xsmall" />}
         <div>{`No. ${String(id).padStart(3, '0')}`}</div>
         <img className="w-24" alt={pokemon?.name} src={pokemon?.imageUrl} />
-        <div className="mb-2 text-lg">{pokemon?.name}</div>
+        <div className="pokemon-name mb-2 text-lg">{pokemon?.name}</div>
         <div className="flex gap-2">
           {pokemon?.type.map((t, i) => (
             <TypeBadge key={`${t}-${i}`} type={t} size="small" />

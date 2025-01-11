@@ -1,4 +1,4 @@
-import { AiFillSound } from 'react-icons/ai';
+import { AiFillSound } from '@react-icons/all-files/ai/AiFillSound';
 
 import { TypeBadge } from './TypeBadge';
 

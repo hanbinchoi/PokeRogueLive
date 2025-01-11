@@ -27,6 +27,7 @@ export const Ability = ({ ability, id, hidden }: AbilityProps) => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['ability', id],
     queryFn: () => getPokemonAbilityInfo(ability.ability.url),
+    refetchOnWindowFocus: false, // 불필요한 refetch 방지
   });
 
   if (isLoading) return <LoadingComponent />;
