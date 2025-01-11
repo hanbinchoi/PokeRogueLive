@@ -23,7 +23,7 @@ export interface MoveProps {
  */
 export const Move = ({ levelLearnedAt, url }: MoveProps) => {
   const { isError, isLoading, data } = usePokemonMoveQuery(url);
-  console.log(data);
+
   if (isLoading) {
     return (
       <div className="w-full h-full mb-2">
@@ -92,7 +92,7 @@ export const Move = ({ levelLearnedAt, url }: MoveProps) => {
     );
 
     return (
-      <div className="flex flex-col gap-2 text-xs md:text-sm">
+      <div className="move-component flex flex-col gap-2 text-xs md:text-sm">
         <div className="flex flex-col min-[480px]:flex-row items-left min-[480px]:items-center gap-2">
           <span className={moveTypeStyle}>{name}</span>
           <span className="text-xs md:text-sm font-bold">
