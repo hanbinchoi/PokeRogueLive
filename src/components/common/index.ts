@@ -1,7 +1,7 @@
 import { CommonButton } from './CommonButton';
 import { CommonCheckBox } from './CommonCheckBox';
 import { CommonDropdown } from './CommonDropdown';
-import { CommonSearchDropDown } from './CommonSearchDropDown';
+import { CommonSearchDropdown } from './CommonSearchDropdown';
 import { CommonSelect } from './CommonSelect';
 import { ErrorComponent } from './ErrorComponent';
 import { Header } from './Header';
@@ -22,7 +22,7 @@ export {
   CommonButton,
   CommonCheckBox,
   CommonDropdown,
-  CommonSearchDropDown,
+  CommonSearchDropdown,
   CommonSelect,
   ErrorComponent,
   Header,

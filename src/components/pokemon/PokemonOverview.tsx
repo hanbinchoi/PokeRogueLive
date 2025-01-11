@@ -26,7 +26,9 @@ export const PokemonOverview = ({ pokemon }: PokemonBasicInfoProps) => {
           <TypeBadge key={t + i} size="small" type={t} />
         ))}
       </div>
-      <div className="text-md sm:text-lg">{pokemon.flavor_text}</div>
+      <div className="flavor-text text-md sm:text-lg">
+        {pokemon.flavor_text}
+      </div>
     </div>
   );
 };

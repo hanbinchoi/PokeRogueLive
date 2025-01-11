@@ -67,7 +67,7 @@ export const PokemonList = () => {
           <ErrorComponent message="포켓몬을 찾을 수 없어요." />
         </div>
       )}
-      <div className="grid  py-2 px-14 gap-8 grid-cols-1 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="grid py-2 px-14 gap-8 grid-cols-1 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {isSearch
           ? pokemonIdsList?.map((pokemonId) => (
               <PokemonCard key={pokemonId} id={pokemonId} />

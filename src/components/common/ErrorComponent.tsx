@@ -28,7 +28,7 @@ export const ErrorComponent = ({
       />
       <p
         className={twJoin(
-          ' text-black-10 break-words overflow-wrap break-word leading-relaxed text-center ',
+          'error-title text-black-10 break-words overflow-wrap break-word leading-relaxed text-center ',
           SIZE[size].title,
         )}>
         {message}

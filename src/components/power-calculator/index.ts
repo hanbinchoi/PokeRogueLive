@@ -1,5 +1,5 @@
 import { PokemonStatsPanel } from './PokemonStatsPanel';
-import { PokemonSearchDropDown } from './PokemonSearchDropDown';
+import { PokemonSearchDropdown } from './PokemonSearchDropdown';
 import { PokemonStatsEditor } from './PokemonStatsEditor';
 import { PokemonStatInput } from './PokemonStatInput';
 import { PowerDamageResult } from './PowerDamageResult';
@@ -8,7 +8,7 @@ import { PowerDamageValue } from './PowerDamageValue';
 
 export {
   PokemonStatsPanel,
-  PokemonSearchDropDown,
+  PokemonSearchDropdown,
   PokemonStatsEditor,
   PokemonStatInput,
   PowerDamageResult,

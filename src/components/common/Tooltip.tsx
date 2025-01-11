@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaQuestionCircle } from 'react-icons/fa';
+import { FaQuestionCircle } from '@react-icons/all-files/fa/FaQuestionCircle';
 
 export interface AbilityBoxProps {
   text: string;
