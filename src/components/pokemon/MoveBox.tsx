@@ -19,7 +19,6 @@ export interface EggMoveBoxProps {
  * @param moves 포켓몬이 배울 수 있는 기술 목록 (`MoveDataProps[]`)
  */
 export const MoveBox = ({ moves }: EggMoveBoxProps) => {
-  console.log(moves);
   const [now, setNow] = useState<number>(1);
   const [total, setTotal] = useState<number>(0);
 
