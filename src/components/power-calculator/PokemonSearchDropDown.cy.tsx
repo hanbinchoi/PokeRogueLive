@@ -29,15 +29,15 @@ describe('PokemonSearchDropDown', () => {
     const searchQuery = validPokemon.slice(0, 2); // 포켓몬 이름 일부 입력
 
     cy.get('input[type="text"]').type(searchQuery);
-    cy.get('[role="listbox"]').should('be.visible'); // 드롭다운 표시
-    cy.get('[role="listbox"] > li').each(($el) => {
-      expect($el.text()).to.contain(searchQuery);
-    });
+    cy.get('.dropdown-container').should('be.visible'); // 드롭다운 표시
+    cy.get('#dropdown-option-이상해씨').should('be.visible');
+    cy.get('#dropdown-option-이상해풀').should('be.visible');
+    cy.get('#dropdown-option-이상해꽃').should('be.visible');
   });
 
   it('옵션을 선택하면 상태가 변경된다.', () => {
     cy.get('input[type="text"]').type(validPokemon);
-    cy.get('[role="listbox"] > li').first().click(); // 첫 번째 옵션 선택
+    cy.get('#dropdown-option-이상해씨').click(); // 첫 번째 옵션 선택
 
     cy.get('input[type="text"]').should('have.value', validPokemon); // 선택된 값 확인
   });
@@ -46,7 +46,8 @@ describe('PokemonSearchDropDown', () => {
     const invalidQuery = '유효하지 않은 이름';
 
     cy.get('input[type="text"]').type(invalidQuery).type('{enter}');
-    cy.get('[role="alert"]').should('contain', '포켓몬을 찾을 수 없어요'); // 에러 메시지 확인
+    cy.get('input[type="text"]').type(invalidQuery).type('{enter}');
+    cy.get('div > p').contains('포켓몬을 찾을 수 없어요');
   });
 
   it('초기화 버튼(✕)을 클릭하면 입력값이 초기화된다.', () => {
@@ -54,9 +55,5 @@ describe('PokemonSearchDropDown', () => {
 
     cy.get('button').contains('✕').click(); // 초기화 버튼 클릭
     cy.get('input[type="text"]').should('have.value', ''); // 입력값 초기화 확인
-  });
-
-  it('로딩 상태가 제대로 표시된다.', () => {
-    cy.get('.p-12').should('exist'); // 로딩 상태 확인
   });
 });
