@@ -46,6 +46,7 @@ export const Move = ({ levelLearnedAt, url }: MoveProps) => {
   if (data) {
     const { name, accuracy, flavorText, damageClass, pp, power, type } =
       extractMove(data);
+
     const { backgroundColor, name: typeName } = POKEMON_TYPE_INFO[type];
 
     // 기술 타입에 따른 배경 색상 및 타입 이름 설정

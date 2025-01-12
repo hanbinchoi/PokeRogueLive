@@ -5556,9 +5556,9 @@ export const POKEMON_INFO_KOREAN_MAP = {
 };
 
 export const MOVE_STATUS_KOREAN_MAP = {
-  PHYSICAL: '물리',
-  SPECIAL: '특수',
-  STATUS: '상태',
+  physical: '물리',
+  special: '특수',
+  status: '상태',
 };
 
 export enum EffectMultiplier {

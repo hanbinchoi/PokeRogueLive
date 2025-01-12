@@ -16,6 +16,7 @@ export const HeaderMenu = ({
   label,
   icon: Icon,
   onClick,
+  images,
   className,
 }: MenuItemProps) => {
   return (

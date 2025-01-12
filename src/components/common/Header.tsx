@@ -24,7 +24,7 @@ export const Header = () => {
 
   return (
     <header className="w-full h-[64px] border-b border-b-gray-20  bg-white px-3 py-2">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center h-full">
         <Logo />
         <button
           onClick={() => setIsOpen(true)}
@@ -50,6 +50,7 @@ export const Header = () => {
               title={menu.title}
               label={menu.label}
               icon={menu.icon}
+              images={menu.images}
               onClick={() => setIsOpen(false)}
               className="text-lg text-gray-70"
             />

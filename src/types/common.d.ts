@@ -92,7 +92,7 @@ export type SpecialAttackAbilityType = SpecialAttackAbility;
 
 export type SpecialDefendAbilityType = SpecialDefendAbility;
 
-export type MoveStatusKey = 'PHYSICAL' | 'SPECIAL' | 'STATUS';
+export type MoveStatusKey = 'physical' | 'special' | 'status';
 
 export type StatKey =
   | 'lv'

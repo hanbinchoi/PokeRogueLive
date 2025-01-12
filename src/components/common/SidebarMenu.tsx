@@ -9,7 +9,12 @@ import { MenuItemProps } from '@/types/menus';
  * - label : 메뉴의 text (`string`)
  * - icon : 메뉴 Icon (`ICON`)
  */
-export const SidebarMenu = ({ title, label, icon: Icon }: MenuItemProps) => {
+export const SidebarMenu = ({
+  title,
+  label,
+  icon: Icon,
+  images,
+}: MenuItemProps) => {
   return (
     <li>
       <Link
