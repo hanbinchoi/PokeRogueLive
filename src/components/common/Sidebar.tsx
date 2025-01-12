@@ -22,6 +22,7 @@ export const Sidebar = ({ className }: DefaultProps) => {
           title={menu.title}
           label={menu.label}
           icon={menu.icon}
+          images={menu.images}
         />
       ))}
     </nav>

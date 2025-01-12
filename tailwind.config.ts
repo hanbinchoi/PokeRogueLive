@@ -43,5 +43,8 @@ const config: Config = {
     '2xl': '1536px',
   },
   plugins: [],
+  fontFamily: {
+    pretendard: ['var(--font-pretendard)'],
+  },
 };
 export default config;

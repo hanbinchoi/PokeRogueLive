@@ -6,6 +6,14 @@ import ReactQueryProviders from '@/hooks/useReactQuery';
 
 import { Header, Sidebar } from '@/components/common';
 
+import localFont from 'next/font/local';
+
+const pretendard = localFont({
+  src: '../fonts/PretendardVariable.woff2',
+  variable: '--font-pretendard',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: 'PokeRogue Live - 포켓몬 정보를 한눈에 확인하세요!',
   description:
@@ -63,7 +71,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="w-full h-full">
+      <body className={pretendard.className}>
         <ReactQueryProviders>
           <div className="min-h-screen w-screen flex flex-col">
             <Header />
