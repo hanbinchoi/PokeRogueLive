@@ -3,6 +3,7 @@ import { twJoin } from 'tailwind-merge';
 export interface ErrorComponentProps {
   message: string;
   size?: 'small' | 'medium' | 'xsmall';
+  description?: string;
 }
 
 /**
@@ -14,6 +15,7 @@ export interface ErrorComponentProps {
 export const ErrorComponent = ({
   message,
   size = 'medium',
+  description,
 }: ErrorComponentProps) => {
   return (
     <div
@@ -33,9 +35,16 @@ export const ErrorComponent = ({
         )}>
         {message}
       </p>
-      {size !== 'xsmall' && (
-        <>
-          <p></p>
+      {size !== 'xsmall' &&
+        (description?.length ? (
+          <p
+            className={twJoin(
+              'text-gray-50 break-words overflow-wrap break-word leading-relaxed text-center',
+              SIZE[size].desc,
+            )}>
+            {description}
+          </p>
+        ) : (
           <p
             className={twJoin(
               'text-gray-50 break-words overflow-wrap break-word leading-relaxed text-center',
@@ -45,8 +54,7 @@ export const ErrorComponent = ({
             <br /> 네트워크 상태가 불안정하다면 사용할 수 없습니다.
             <br /> 다시 한번 확인해주세요.
           </p>
-        </>
-      )}
+        ))}
     </div>
   );
 };
