@@ -28,7 +28,7 @@ export const TypeCalcAttackResult = () => {
   if (!result) return null;
 
   return (
-    <div className="flex flex-col gap-8 py-6 sm:py-8">
+    <div className="type-attack-result flex flex-col gap-8 py-6 sm:py-8">
       {Array.from(result.entries()).map(([key, types]) => (
         <div key={key} className="flex flex-col gap-2">
           <div className="text-sm sm:text-md md:text-base font-semibold">
