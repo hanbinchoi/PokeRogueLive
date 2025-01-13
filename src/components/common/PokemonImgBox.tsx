@@ -39,7 +39,11 @@ export const PokemonImgBox = ({ pokemon, usage }: PokemonImgBoxProps) => {
           tabIndex={0}
         />
       </div>
-      <img className="w-full" alt={pokemon?.name} src={pokemon?.imageUrl} />
+      <img
+        className="detail-image w-full"
+        alt={pokemon?.name}
+        src={pokemon?.imageUrl}
+      />
     </div>
   );
 
