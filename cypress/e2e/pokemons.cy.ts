@@ -4,6 +4,10 @@ describe('포켓몬 목록 페이지 테스트', () => {
     cy.visit('http://localhost:3000/pokemon');
   });
 
+  it('데이터 로딩 시 로딩 컴포넌트가 렌더링됩니다.', () => {
+    cy.get('.loading-component').should('exist');
+  });
+
   it('포켓몬 목록이 화면 크기에 비례하여 렌더링되는지 확인합니다.', () => {
     cy.get('.pokemon-card').should('have.length', 10);
 
@@ -42,6 +46,16 @@ describe('포켓몬 목록 페이지 테스트', () => {
     cy.get('input')
       .type('이상해{downarrow}{downarrow}{enter}')
       .should('have.value', '이상해풀');
+  });
+
+  it('포켓몬 검색 결과가 없으면 에러 메시지가 렌더링됩니다.', () => {
+    cy.get('input').type('123{enter}');
+    cy.get('.error-title').should('be.visible');
+  });
+
+  it('공백으로 검색 시 검증에 실패하며 에러 메시지가 렌더링됩니다.', () => {
+    cy.get('input').type('{enter}');
+    cy.get('#error-message').should('be.visible');
   });
 
   it('포켓몬 검색 중 x 버튼을 클릭하면 검색 키워드가 초기화 된 후 전체 포켓몬 목록을 렌더링합니다.', () => {
