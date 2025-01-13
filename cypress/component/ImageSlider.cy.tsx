@@ -1,4 +1,4 @@
-import ImageSlider from './ImageSlider';
+import ImageSlider from '../../src/components/common/ImageSlider';
 
 describe('ImageSlider Component', () => {
   const images = [
