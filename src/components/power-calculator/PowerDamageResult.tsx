@@ -65,7 +65,7 @@ export const PowerDamageResult = () => {
     }
   }, [damageCalculation]);
 
-  if (!defendPokemon) return null;
+  if (!defendPokemon || !damages.length) return null;
 
   if (isLoading) return <LoadingComponent />;
 
