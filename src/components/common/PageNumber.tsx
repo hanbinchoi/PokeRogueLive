@@ -24,13 +24,13 @@ export const PageNumber = ({
 
   return primary ? (
     <li
-      className="text-blue-30 font-bold cursor-pointer"
+      className="page-number-button text-blue-30 font-bold cursor-pointer"
       onClick={handleClick as MouseEventHandler}>
       {children}
     </li>
   ) : (
     <li
-      className="hover:text-blue-10 cursor-pointer"
+      className="page-number-button hover:text-blue-10 cursor-pointer"
       onClick={handleClick as MouseEventHandler}>
       {children}
     </li>

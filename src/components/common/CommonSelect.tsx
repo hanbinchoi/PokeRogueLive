@@ -1,4 +1,8 @@
-import { SelectUsage } from '@/constants/contents';
+import {
+  POKEMON_TYPE_INFO,
+  PokemonTypeName,
+  SelectUsage,
+} from '@/constants/contents';
 import useTypeCalculatorStore from '@/stores/TypeCalculatorStore';
 
 import {
@@ -28,8 +32,12 @@ export const CommonSelect = ({ label, options, usage }: CommonSelectProps) => {
     if (usage === SelectUsage.ABILITY)
       return setDefendAbility(option as SpecialDefendAbilityType);
 
-    if (usage === SelectUsage.TERATYPE)
-      return setTeraType(option as PokemonType);
+    if (usage === SelectUsage.TERATYPE) {
+      const type = Object.keys(POKEMON_TYPE_INFO).find(
+        (key) => POKEMON_TYPE_INFO[key as PokemonTypeName].name === option,
+      );
+      return setTeraType(type as PokemonTypeName);
+    }
   };
 
   return (

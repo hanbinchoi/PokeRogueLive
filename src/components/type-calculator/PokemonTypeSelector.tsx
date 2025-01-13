@@ -55,7 +55,7 @@ export const PokemonTypeSelector = ({
   };
 
   return (
-    <div className="flex flex-col gap-2 sm:gap-4">
+    <div className="type-selector flex flex-col gap-2 sm:gap-4">
       <p className="text-sm sm:text-base md:text-lg font-semibold">{title}</p>
       <div className="flex gap-x-2 gap-y-3 sm:gap-y-4 flex-wrap">
         {filteredTypes.map((type) => (

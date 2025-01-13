@@ -18,7 +18,7 @@ export const ErrorComponent = ({
   return (
     <div
       className={twJoin(
-        `overflow-hidden self-center flex flex-col  items-center w-full h-full`,
+        `overflow-hidden self-center flex flex-col justify-center items-center w-full h-full`,
         SIZE[size].div,
       )}>
       <img
@@ -66,7 +66,7 @@ const SIZE = {
   },
   xsmall: {
     div: 'gap-0 sm:gap-1',
-    img: 'max-w-[52px] sm:max-w-[70px]',
+    img: 'max-w-[92px] sm:max-w-[170px] object-contain',
     title: 'text-[14px] sm:text-base  lg:text-lg',
     desc: 'text-[10px] sm:text-[12px] lg:text-[14px]',
   },

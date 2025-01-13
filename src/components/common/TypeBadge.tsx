@@ -30,6 +30,7 @@ export const TypeBadge = ({ type, size = 'medium' }: TypeBadgeProps) => {
     return (
       <span
         className={twJoin(
+          'type-badge',
           'rainbow-bg',
           'text-white-100',
           TYPE_BADGE_SIZE[size],
@@ -42,6 +43,7 @@ export const TypeBadge = ({ type, size = 'medium' }: TypeBadgeProps) => {
   return (
     <span
       className={twJoin(
+        'type-badge',
         backgroundColor,
         'text-white-100',
         TYPE_BADGE_SIZE[size],

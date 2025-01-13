@@ -65,31 +65,40 @@ export const PowerDamageResult = () => {
     }
   }, [damageCalculation]);
 
+  if (!defendPokemon || !damages.length) return null;
+
   if (isLoading) return <LoadingComponent />;
 
   if (isError)
     return (
-      <ErrorComponent
-        size="small"
-        message="포켓몬 기술 정보를 불러올 수 없어요"
-      />
+      <div className="w-full h-full flex justify-center items-center">
+        <ErrorComponent
+          size="small"
+          message="포켓몬 기술 정보를 불러올 수 없어요"
+        />
+      </div>
     );
 
   if (MoveDetail?.damage_class.name === 'status')
     return (
-      <ErrorComponent size="xsmall" message="상태변화 기술은 표시되지 않아요" />
+      <div className="w-full h-full flex justify-center items-center">
+        <ErrorComponent
+          size="xsmall"
+          message="상태변화 기술은 표시되지 않아요"
+        />
+      </div>
     );
 
   if (damages.length)
     return (
-      <div className="py-9 flex items-center flex-col gap-3">
+      <div className="damage-result py-9 flex items-center flex-col gap-3">
         <div className="text-base lg:text-xl font-bold flex gap-1">
           데미지
           <Tooltip text={'해당 기술로 10회 타격 시 데미지 계산 결과입니다.'} />
         </div>
         <div className="text-base md:text-lg lg:text-2xl font-bold grid grid-cols-5 sm:grid-cols-10 gap-x-2">
           {damages.map((damage, i) => (
-            <PowerDamageValue key={i} damage={damage} hp={hpStat} />
+            <PowerDamageValue key={i} damage={damage} hp={Number(hpStat)} />
           ))}
         </div>
         <PowerDamageContext damageContext={damageContext} />

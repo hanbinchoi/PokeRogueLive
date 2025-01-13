@@ -102,7 +102,7 @@ export const PokemonSearchInput = ({
     <div ref={dropdownRef}>
       <input
         className={twJoin(
-          'px-2 py-1 sm:px-3 sm:py-2 rounded text-sm border min-w-[166px] min-[480px]:min-w-[244px] h-[32px] min-h-[32px] border-gray-30 focus:outline-blue-30 font-light shadow-md ',
+          'px-2 py-1 sm:px-3 sm:py-2 rounded text-sm border min-w-[166px] min-[480px]:min-w-[244px] xl:min-w-[360px] h-[32px] min-h-[32px] border-gray-30 focus:outline-blue-30 font-light shadow-md ',
           className,
         )}
         placeholder={placeholder}

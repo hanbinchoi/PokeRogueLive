@@ -58,7 +58,7 @@ export const AttackOptionButton = ({
                     ? attackMove === option
                     : attackAbility === option
                 }
-                onChange={() => handleClick(option)}
+                onClick={() => handleClick(option)}
                 className="mr-2"
               />
               {option}
