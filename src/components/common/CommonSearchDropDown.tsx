@@ -108,7 +108,7 @@ export const CommonSearchDropdown = ({
   };
 
   return (
-    <div className="w-full mb-3">
+    <div className="search-dropdown w-full mb-3">
       <label className="text-base md:text-lg" htmlFor={`dropdown-${label}`}>
         {label}
       </label>

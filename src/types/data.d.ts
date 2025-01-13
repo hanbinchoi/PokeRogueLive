@@ -70,7 +70,7 @@ export interface SpriteDataProps {
 }
 
 export interface StatDataProps {
-  base_stat: number;
+  base_stat: string;
   effort: number;
   stat: CommonDataProps;
 }
@@ -157,7 +157,7 @@ export interface PokemonDetailDataProps {
   cries: CryDataProps;
   forms: CommonDataProps[];
   height: number;
-  id: 1;
+  id: number;
   is_default: true;
   moves: MoveDataProps[];
   name: string;

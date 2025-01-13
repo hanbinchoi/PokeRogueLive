@@ -1,4 +1,4 @@
-describe('포켓몬 목록 페이지 테스트', () => {
+describe('타입 계산기 페이지 테스트', () => {
   beforeEach(() => {
     cy.viewport(1280, 1024);
     cy.visit('http://localhost:3000/type-calculator');

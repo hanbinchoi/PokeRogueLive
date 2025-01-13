@@ -28,7 +28,7 @@ export const PokemonStatInput = ({
    * 스탯 값을 업데이트하고 부모 컴포넌트의 상태를 갱신합니다.
    */
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value);
+    const value = e.target.value;
 
     // 현재 입력 된 필드의 value만 변경
     const updatedStats = pokemon.stats.map((s) =>
@@ -44,10 +44,10 @@ export const PokemonStatInput = ({
       </div>
       <input
         type="number"
-        className="w-full min-w-[43px] max-w-[158px] border rounded py-1 px-2 text-sm lg:text-md"
+        className="pokemon-stat-input w-full min-w-[43px] max-w-[158px] border rounded py-1 px-2 text-sm lg:text-md"
         value={stat.base_stat}
         onChange={handleInputChange}
-        placeholder="포켓몬 입력"
+        placeholder={POKEMON_STAT_KOREAN_MAP[stat.stat.name as StatKey]}
         autoComplete="off"
       />
     </div>
