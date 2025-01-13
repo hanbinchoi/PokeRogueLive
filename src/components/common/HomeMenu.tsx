@@ -19,7 +19,7 @@ export default function HomeMenu({ label, images, title }: MenuItemProps) {
       <div className="h-1 w-8 md:w-12 rounded bg-gray-50" />
       <Link
         href={title}
-        className="font-bold text-2xl text-blue-30 transition duration-100 ease-in-out transform hover:scale-105 hover:text-blue-50">
+        className="menu-title font-bold text-2xl text-blue-30 transition duration-100 ease-in-out transform hover:scale-105 hover:text-blue-50">
         {label}
       </Link>
       <div className="block md:hidden">
