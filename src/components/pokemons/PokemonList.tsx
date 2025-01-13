@@ -56,7 +56,7 @@ export const PokemonList = () => {
   useResponsiveLimit(setLimit);
 
   return (
-    <div className="flex-grow flex flex-col w-fullh-full">
+    <div className="w-full flex flex-col gap-10 relative ">
       {isLoading && (
         <div className="w-full h-full">
           <LoadingComponent />

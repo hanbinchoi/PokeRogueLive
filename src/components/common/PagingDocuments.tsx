@@ -6,8 +6,10 @@ import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import { FaAngleDoubleLeft } from '@react-icons/all-files/fa/FaAngleDoubleLeft';
 import { FaAngleRight } from '@react-icons/all-files/fa/FaAngleRight';
 import { FaAngleDoubleRight } from '@react-icons/all-files/fa/FaAngleDoubleRight';
+import { DefaultProps } from '@/types/common';
+import { twJoin } from 'tailwind-merge';
 
-export interface PagingDocumentsProps {
+export interface PagingDocumentsProps extends DefaultProps {
   now: number;
   setNow: (now: number) => void;
   total: number;
@@ -29,12 +31,17 @@ export const PagingDocuments = ({
   setNow,
   total,
   pageSize,
+  className,
 }: PagingDocumentsProps) => {
   const { pages, goToPage } = usePagination(total, now, pageSize, setNow);
   const lastPage = Math.ceil(total / pageSize);
 
   return (
-    <ul className="flex justify-center items-center mt-5 px-14 text-lg gap-2">
+    <ul
+      className={twJoin(
+        'flex justify-center items-center mt-5 px-14 text-lg gap-2',
+        className,
+      )}>
       {now > 1 && (
         <>
           <IconButton
