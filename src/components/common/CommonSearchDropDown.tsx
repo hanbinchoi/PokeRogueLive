@@ -32,7 +32,7 @@ export const CommonSearchDropdown = ({
   options,
 }: CommonSearchDropDownProps) => {
   const [error, setError] = useState(false);
-  const { setField, setWeather, setMove, attackPokemon } =
+  const { setField, setWeather, setMove, attackPokemon, setDamages } =
     usePowerCalculatorStore();
 
   const {
@@ -60,6 +60,8 @@ export const CommonSearchDropdown = ({
       // 기술 일 경우 한글명(옵션)으로 일치하는 기술 데이터를 검색 후 move로 설정
       const moveList =
         attackPokemon?.moves && extractMoveList(attackPokemon?.moves);
+
+      value === null && setDamages([]);
       return moveList
         ? setMove(getMoveDetailByKoreanName(moveList, value))
         : setMove(null);
@@ -108,7 +110,7 @@ export const CommonSearchDropdown = ({
   };
 
   return (
-    <div className="w-full mb-3">
+    <div className="search-dropdown w-full mb-3">
       <label className="text-base md:text-lg" htmlFor={`dropdown-${label}`}>
         {label}
       </label>

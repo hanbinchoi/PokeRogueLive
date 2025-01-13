@@ -65,7 +65,7 @@ export const EvolutionNode = ({ node, isLast }: EvolutionNodeProps) => {
     );
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="evolution-node flex flex-col items-center w-full">
       <Link href={`/pokemon/${id}`}>
         <img className="w-32 " alt={pokemon?.name} src={pokemon?.imageUrl} />
       </Link>

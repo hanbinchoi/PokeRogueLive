@@ -44,7 +44,7 @@ export const PokemonCard = ({ id }: PokemonProps) => {
 
   return (
     <Link href={`/pokemon/${id}`} className="w-full h-full flex justify-center">
-      <div className="pokemon-card w-[150px] min-w-[150px] lg:min-w-[170px] h-[202px] min-h-[202px] lg:min-h-[212px] px-6 xl:px-8 py-4 text-sm font-bold flex flex-col justify-center items-center bg-white-100 border-2 rounded-lg">
+      <div className="pokemon-card w-[150px] min-w-[150px] max-[664px]:min-w-[150px] max-[840px]:min-w-[160px] lg:min-w-[170px] max-[1080px]:min-w-[180px] h-[202px] min-h-[202px] lg:min-h-[212px] px-6 xl:px-8 py-4 text-sm font-bold flex flex-col justify-center items-center bg-white-100 border-2 rounded-lg">
         {isLoading && <LoadingComponent />}
         {isError && <ErrorComponent message="Not Found" size="xsmall" />}
         <div>{`No. ${String(id).padStart(3, '0')}`}</div>

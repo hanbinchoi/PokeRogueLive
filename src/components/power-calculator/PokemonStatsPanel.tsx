@@ -33,7 +33,7 @@ export const PokemonStatsPanel = ({ usage }: PokemonStatsPanelProps) => {
 
   if (pokemon)
     return (
-      <div className="flex flex-col items-center lg:flex-row gap-6 mb-4">
+      <div className="pokemon-stats-panel flex flex-col items-center lg:flex-row gap-6 mb-4">
         <PokemonImgBox pokemon={pokemon} usage="power" />
         <PokemonStatsEditor
           stats={pokemon.stats}

@@ -18,7 +18,7 @@ export const PokemonOverview = ({ pokemon }: PokemonBasicInfoProps) => {
     <div className="flex flex-col gap-3 text-sm min-[480px]:text-base ">
       <div className="flex justify-between">
         <div>
-          <h1 className="font-bold text-lg min-[480px]:text-2xl">{`${pokemon.name}`}</h1>{' '}
+          <h1 className="pokemon-name font-bold text-lg min-[480px]:text-2xl">{`${pokemon.name}`}</h1>{' '}
         </div>
       </div>
       <div className="flex gap-2 sm:gap-3">

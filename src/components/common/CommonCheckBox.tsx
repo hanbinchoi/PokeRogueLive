@@ -29,7 +29,7 @@ export const CommonCheckBox = ({
 
   return (
     <label
-      className="inline-flex items-center mt-2 text-base md:text-lg lg:text-md"
+      className="checkbox inline-flex items-center mt-2 text-base md:text-lg lg:text-md"
       htmlFor={`checkbox-${label}`}>
       <input
         type="checkbox"
