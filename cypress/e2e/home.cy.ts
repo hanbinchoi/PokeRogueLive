@@ -1,4 +1,4 @@
-describe('사이드바 네비게이션 테스트', () => {
+describe('홈페이지 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
   });
