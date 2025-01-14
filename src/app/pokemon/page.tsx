@@ -1,3 +1,4 @@
+import { BottomText } from '@/components/common';
 import { PokemonList, PokemonSearchForm } from '@/components/pokemons';
 
 /**
@@ -13,6 +14,7 @@ export default function Pokemon() {
         <PokemonSearchForm />
         <PokemonList />
       </div>
+      <BottomText />
     </main>
   );
 }

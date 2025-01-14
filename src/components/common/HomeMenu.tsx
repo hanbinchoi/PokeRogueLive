@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import ImageSlider from './ImageSlider';
+import { ImageSlider } from './ImageSlider';
 
 import { MenuItemProps } from '@/types/menus';
 
@@ -13,7 +13,7 @@ import { MenuItemProps } from '@/types/menus';
  * @param images - 메뉴 관련 이미지 묶음 (`string[]`)
  * @param title - url 주소 ( `pokemon` | `type-calculator` | `power-calculator` )
  */
-export default function HomeMenu({ label, images, title }: MenuItemProps) {
+export function HomeMenu({ label, images, title }: MenuItemProps) {
   return (
     <div className="flex flex-col items-center gap-4 md:gap-8">
       <div className="h-1 w-8 md:w-12 rounded bg-gray-50" />

@@ -1,5 +1,6 @@
 'use client';
 
+import { BottomText } from '@/components/common';
 import {
   TypeModeToggle,
   AttackTypeCalc,
@@ -25,6 +26,8 @@ export default function TypeCalculator() {
       </h1>
       <TypeModeToggle />
       {mode === BattleRole.ATTACK ? <AttackTypeCalc /> : <DefendTypeCalc />}
+
+      <BottomText />
     </main>
   );
 }

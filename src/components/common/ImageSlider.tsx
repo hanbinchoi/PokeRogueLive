@@ -15,7 +15,7 @@ interface ImageSliderProps {
  * @param images - 이미지 Url 묶음 (string[])
  * @returns
  */
-export default function ImageSlider({ images }: ImageSliderProps) {
+export function ImageSlider({ images }: ImageSliderProps) {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const moveToPrevSlide = () => {

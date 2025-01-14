@@ -1,3 +1,6 @@
+import { HomeMenu } from './HomeMenu';
+import { ImageSlider } from './ImageSlider';
+import { BottomText } from './BottomText';
 import { CommonButton } from './CommonButton';
 import { CommonCheckBox } from './CommonCheckBox';
 import { CommonDropdown } from './CommonDropdown';
@@ -19,6 +22,9 @@ import { TypeBadge } from './TypeBadge';
 import { ErrorMessage } from './ErrorMessage';
 
 export {
+  HomeMenu,
+  ImageSlider,
+  BottomText,
   CommonButton,
   CommonCheckBox,
   CommonDropdown,
