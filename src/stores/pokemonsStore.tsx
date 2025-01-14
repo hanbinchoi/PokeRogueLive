@@ -22,6 +22,7 @@ interface PokemonsState {
   setPokemonIdsList: (pokemonIdsList: number[] | null) => void;
   setTargetPokemon: (targetPokemon: PokemonDetailProps | null) => void;
   setIsSearch: (isSearch: boolean) => void;
+  reset: () => void;
 }
 
 /**
@@ -45,6 +46,17 @@ const usePokemonsStore = create<PokemonsState>((set) => ({
   setPokemonIdsList: (pokemonIdsList) => set(() => ({ pokemonIdsList })),
   setTargetPokemon: (targetPokemon) => set(() => ({ targetPokemon })),
   setIsSearch: (isSearch) => set(() => ({ isSearch })),
+  reset: () =>
+    set(() => ({
+      now: 1,
+      total: TOTAL_POKEMON_NUM,
+      limit: 0,
+      search: null,
+      searchIdsList: null,
+      pokemonIdsList: null,
+      targetPokemon: null,
+      isSearch: false,
+    })),
 }));
 
 export default usePokemonsStore;

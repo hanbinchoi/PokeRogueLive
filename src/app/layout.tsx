@@ -1,12 +1,11 @@
 import '../styles/globals.css';
 
 import type { Metadata } from 'next';
+import localFont from 'next/font/local';
 
 import ReactQueryProviders from '@/hooks/useReactQuery';
 
 import { Header, Sidebar } from '@/components/common';
-
-import localFont from 'next/font/local';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',
@@ -39,7 +38,7 @@ export const metadata: Metadata = {
     siteName: 'PokeRogue Live',
     images: [
       {
-        url: '/Users/choehanbin/Desktop/project/poke_rogue_live/public/assets/img/logo.png',
+        url: '/assets/img/logo.png',
         width: 1200,
         height: 630,
         alt: 'PokeRogue Live 썸네일 이미지',

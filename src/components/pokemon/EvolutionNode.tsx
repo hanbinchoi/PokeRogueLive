@@ -73,8 +73,10 @@ export const EvolutionNode = ({ node, isFirst }: EvolutionNodeProps) => {
         </div>
 
         {node.evolution_details.map((e, i) => (
-          <div className="absolute top-0 left-[65%] whitespace-nowrap flex gap-1">
-            <EvolutionDescription evolutionDetails={e} key={i} />
+          <div
+            className="absolute top-0 left-[65%] whitespace-nowrap flex gap-1"
+            key={i}>
+            <EvolutionDescription evolutionDetails={e} />
           </div>
         ))}
       </div>

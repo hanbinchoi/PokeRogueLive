@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import usePokemonsStore from '@/stores/pokemonsStore';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
+import usePageReset from '@/hooks/usePageReset';
 
 import {
   ErrorComponent,
@@ -32,6 +33,8 @@ import extractPokemonDetails from '@/utils/extractPokemonDetails';
  */
 export default function PokemonDetail() {
   const { id } = useParams();
+
+  usePageReset();
 
   const { setTargetPokemon, targetPokemon } = usePokemonsStore();
 

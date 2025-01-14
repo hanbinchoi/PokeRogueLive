@@ -23,7 +23,7 @@ interface EvolutionSliderProps {
  */
 export function EvolutionSlider({ evolutionNodes }: EvolutionSliderProps) {
   const [slideIndex, setSlideIndex] = useState(0);
-  console.log(evolutionNodes);
+
   const moveToPrevSlide = () => {
     setSlideIndex((prev) =>
       prev === 0 ? evolutionNodes.length - 1 : prev - 1,
@@ -49,7 +49,7 @@ export function EvolutionSlider({ evolutionNodes }: EvolutionSliderProps) {
         {evolutionNodes.map((nodes, index) => (
           <div key={index} className="w-full h-full flex-shrink-0">
             {nodes.map((n, i) => (
-              <EvolutionNode key={i} node={n} isFirst={i === 0} />
+              <EvolutionNode key={`${index}-${i}`} node={n} isFirst={i === 0} />
             ))}
           </div>
         ))}
