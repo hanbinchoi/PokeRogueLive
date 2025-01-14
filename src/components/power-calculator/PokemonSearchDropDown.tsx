@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import useDropdown from '@/hooks/useDropDown';
+import useDropdown from '@/hooks/useDropdown';
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
 import usePowerCalculatorPokemon from '@/hooks/usePowerCalculatorPokemon';
 
@@ -14,7 +14,7 @@ import extractPokemonDetails from '@/utils/extractPokemonDetails';
 
 import { BattleRole, POKEMON_LIST_IN_KOREAN } from '@/constants/contents';
 
-export interface PokemonSearchDropDownProps {
+export interface PokemonSearchDropdownProps {
   usage: BattleRoleType;
 }
 
@@ -25,7 +25,7 @@ export interface PokemonSearchDropDownProps {
  */
 export const PokemonSearchDropdown = ({
   usage,
-}: PokemonSearchDropDownProps) => {
+}: PokemonSearchDropdownProps) => {
   const [error, setError] = useState(false);
   const { setDamages, setMove } = usePowerCalculatorStore();
 
