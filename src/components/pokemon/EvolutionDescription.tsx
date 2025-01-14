@@ -5,7 +5,7 @@ import { getItemInfo } from '@/api/pokemon';
 import { EvolutionDetailDataProps, ItemInfoProps } from '@/types/data';
 
 export interface EvolutionDescriptionProps {
-  evolutionDetails: EvolutionDetailDataProps[];
+  evolutionDetails: EvolutionDetailDataProps;
 }
 
 /**
@@ -14,29 +14,26 @@ export interface EvolutionDescriptionProps {
  * - 진화 조건 데이터를 기반으로 조건을 텍스트로 렌더링합니다.
  * - 조건에 따라 행복도, 레벨, 아이템 사용 여부를 표시합니다.
  *
- * @param evolutionDetails 진화 조건 세부 정보 배열(`EvolutionDetailDataProps[]`)
+ * @param evolutionDetails 진화 조건 세부 정보 배열(`EvolutionDetailDataProps`)
  */
 export const EvolutionDescription = ({
   evolutionDetails,
 }: {
-  evolutionDetails: EvolutionDetailDataProps[];
+  evolutionDetails: EvolutionDetailDataProps;
 }) => {
-  return (
-    <>
-      {evolutionDetails.map((detail, index) => {
-        if (detail.min_happiness)
-          return <span key={index}>행복도 {detail.min_happiness}</span>;
+  const getDescription = () => {
+    if (evolutionDetails.min_happiness)
+      return <span>행복도 {evolutionDetails.min_happiness}</span>;
 
-        if (detail.min_level)
-          return <span key={index}>레벨 {detail.min_level}</span>;
+    if (evolutionDetails.min_level)
+      return <span>레벨 {evolutionDetails.min_level}</span>;
 
-        if (detail.item)
-          return <ItemNameComponent key={index} url={detail.item.url} />;
+    if (evolutionDetails.item)
+      return <ItemNameComponent url={evolutionDetails.item.url} />;
 
-        return null;
-      })}
-    </>
-  );
+    return null;
+  };
+  return <div className="flex flex-col gap-2">{getDescription()}</div>;
 };
 
 /**
