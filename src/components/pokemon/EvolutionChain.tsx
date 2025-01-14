@@ -10,6 +10,7 @@ import { EvolutionNode } from './EvolutionNode';
 import extractNodes from '@/utils/extractNodes';
 
 import { EvolutionChainNodeDataProps } from '@/types/data';
+import { EvolutionSlider } from './EvolutionSlider';
 
 export interface EvolutionChainProps {
   url: string;
@@ -28,7 +29,7 @@ export interface EvolutionChainProps {
  */
 export const EvolutionChain = ({ url, pokedex }: EvolutionChainProps) => {
   const [evolutionNodes, setEvolutionNodes] =
-    useState<EvolutionChainNodeDataProps[]>();
+    useState<EvolutionChainNodeDataProps[][]>();
 
   const {
     data: evolutionChain,
@@ -61,13 +62,7 @@ export const EvolutionChain = ({ url, pokedex }: EvolutionChainProps) => {
           />
         </div>
       )}
-      {evolutionNodes?.map((node, i) => (
-        <EvolutionNode
-          key={`${node.species.name}-${i}`}
-          node={node}
-          isLast={i === evolutionNodes.length - 1}
-        />
-      ))}
+      {evolutionNodes && <EvolutionSlider evolutionNodes={evolutionNodes} />}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import HomeMenu from '@/components/common/HomeMenu';
+import { BottomText, HomeMenu } from '@/components/common';
 
 import { MENUS } from '@/types/menus';
 
@@ -31,6 +31,7 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <BottomText />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import usePokemonsStore from '@/stores/pokemonsStore';
 
 import usePokemonDetailQuery from '@/hooks/usePokemonDetailQuery';
+import usePageReset from '@/hooks/usePageReset';
 
 import {
   ErrorComponent,
@@ -32,6 +33,8 @@ import extractPokemonDetails from '@/utils/extractPokemonDetails';
  */
 export default function PokemonDetail() {
   const { id } = useParams();
+
+  usePageReset();
 
   const { setTargetPokemon, targetPokemon } = usePokemonsStore();
 
@@ -67,7 +70,7 @@ export default function PokemonDetail() {
     );
 
   return (
-    <main className="bg-gray-10 flex min-h-screen flex-col items-center justify-between p-8 md:p-12 lg:p-16 xl:p-24">
+    <main className="bg-gray-10 flex min-h-screen flex-col items-center justify-between p-8 lg:p-16 xl:p-24">
       <h1 className="sr-only">{targetPokemon.name} 상세정보</h1>
       <div className="grid grid-cols-2 min-[480px]:grid-cols-3 gap-8 sm:gap-16 ">
         <div className="col-span-1 ">
@@ -80,13 +83,13 @@ export default function PokemonDetail() {
         <div className="col-span-3 block md:hidden">
           <PokemonStatInfoTable pokemon={targetPokemon} />
         </div>
-        <div className="col-span-1">
+        <div className="col-span-3 min-[700px]:col-span-1">
           <EvolutionChain
             url={targetPokemon.evolution_chain}
             pokedex={targetPokemon.pokedex}
           />
         </div>
-        <div className="col-span-1 min-[480px]:col-span-2">
+        <div className="col-span-3 min-[700px]:col-span-2 flex min-[700px]:block gap-4 sm:gap-8">
           <AbilityBox abilities={targetPokemon.abilitiesInfo} />
           <MoveBox moves={targetPokemon.moves} />
         </div>

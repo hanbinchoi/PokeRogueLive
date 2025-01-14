@@ -2,7 +2,11 @@
 
 import usePowerCalculatorStore from '@/stores/powerCalculatorStore';
 
-import { CommonCheckBox, CommonSearchDropdown } from '@/components/common';
+import {
+  BottomText,
+  CommonCheckBox,
+  CommonSearchDropdown,
+} from '@/components/common';
 import {
   PokemonStatsPanel,
   PokemonSearchDropdown,
@@ -62,6 +66,7 @@ export default function PowerCalculator() {
           <PowerDamageResult />
         </div>
       </div>
+      {attackPokemon && <BottomText />}
     </main>
   );
 }

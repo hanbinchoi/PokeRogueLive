@@ -117,13 +117,13 @@ export interface EvolutionChainNodeDataProps {
   is_baby: boolean;
   species: CommonDataProps;
   evolution_details: EvolutionDetailDataProps[];
-  evolves_to: EvolutionChainNodeProps[];
+  evolves_to: EvolutionChainNodeDataProps[];
 }
 
 export interface EvolutionChainDataProps {
   id: number;
   baby_trigger_item: string | null;
-  chain: EvolutionChainNodeProps;
+  chain: EvolutionChainNodeDataProps;
 }
 
 export interface PokemonsDataProps {
