@@ -12,8 +12,7 @@
 - **진행 기간** : 24.07.12 ~ 24.01.15
 - **서비스 URL** : [PokeRogue Live 바로가기](https://grow-story.vercel.app/)
 - **notion** : [프로젝트 노션 바로가기](https://careful-salad-60e.notion.site/PokeRogueLive-63371f0670c04bfab93df686ff5da016)
-- **figma** : [figma 바로가기](https://www.figma.com/proto/kCWsDTO1WctUZlCiyfMGed/PokeRogueLive?node-id=0-1&t=F2efG7hoaKdp9k0b-1)
-
+- **figma** : [figma 바로가기](https://www.figma.com/design/kCWsDTO1WctUZlCiyfMGed/PokeRogueLive?node-id=0-1)
 
 
 
