@@ -70,7 +70,7 @@ export interface SpriteDataProps {
 }
 
 export interface StatDataProps {
-  base_stat: string;
+  base_stat: number;
   effort: number;
   stat: CommonDataProps;
 }
