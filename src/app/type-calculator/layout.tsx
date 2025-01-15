@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: 'PokeRogue Live',
     images: [
       {
-        url: '/Users/choehanbin/Desktop/project/poke_rogue_live/public/assets/img/logo.png',
+        url: '/assets/img/logo.png',
         width: 1200,
         height: 630,
         alt: 'PokeRogue Live 썸네일 이미지',
@@ -41,14 +41,11 @@ export const metadata: Metadata = {
     title: 'PokeRogue Live - 타입 계산기!',
     description:
       '각 타입의 상성을 방어, 공격 상황에 맞게 계산해볼 수 있는 페이지입니다.',
-    images: ['public/assets/img/logo.png'],
+    images: ['/assets/img/logo.png'],
   },
   robots: {
     index: true,
     follow: true,
-  },
-  icons: {
-    icon: 'public/assets/img/icon.ico',
   },
 };
 export default function RootLayout({

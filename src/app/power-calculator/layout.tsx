@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'PokeRogue Live',
     images: [
       {
-        url: '/Users/choehanbin/Desktop/project/poke_rogue_live/public/assets/img/logo.png',
+        url: '/assets/img/logo.png',
         width: 1200,
         height: 630,
         alt: 'PokeRogue Live 썸네일 이미지',
@@ -37,14 +37,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PokeRogue Live - 기술 위력 계산기',
     description: '기술의 위력을 계산할 수 있는 페이지입니다.',
-    images: ['public/assets/img/logo.png'],
+    images: ['/assets/img/logo.png'],
   },
   robots: {
     index: true,
     follow: true,
-  },
-  icons: {
-    icon: 'public/assets/img/icon.ico',
   },
 };
 
