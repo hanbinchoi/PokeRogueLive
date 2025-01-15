@@ -16,11 +16,6 @@ export const BottomText = ({ className }: DefaultProps) => {
       )}>
       <p>서비스 관련 문의 혹은 오류제보는 아래 메일로 부탁드립니다.</p>
       <p>wkghskak@naver.com</p>
-      <p>
-        <a href="https://kr.freepik.com/icons/%ED%8F%AC%EC%BC%93%EB%AA%AC">
-          Nikita Golubev 제작 아이콘
-        </a>
-      </p>
     </div>
   );
 };
