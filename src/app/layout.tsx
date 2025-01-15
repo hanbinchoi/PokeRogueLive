@@ -52,14 +52,11 @@ export const metadata: Metadata = {
     title: 'PokeRogue Live - 포켓몬 정보를 한눈에 확인하세요!',
     description:
       '포켓몬 능력치, 타입 상성, 기술 위력을 실시간으로 확인할 수 있는 포켓몬 트레이너의 필수 도구!',
-    images: ['public/assets/img/logo.png'],
+    images: ['/assets/img/logo.png'],
   },
   robots: {
     index: true,
     follow: true,
-  },
-  icons: {
-    icon: 'public/assets/img/icon.ico',
   },
 };
 
@@ -70,6 +67,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <meta content="#4e8ff9" name="theme-color" />
+        <meta content="#4e8ff9" name="msapplication-navbutton-color" />
+        <meta content="#4e8ff9" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <link rel="icon" href="/assets/img/favicon.png" />
+      </head>
       <body className={pretendard.className}>
         <ReactQueryProviders>
           <div className="min-h-screen w-screen flex flex-col">
