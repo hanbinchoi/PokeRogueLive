@@ -45,7 +45,7 @@ export const EvolutionChain = ({ url, pokedex }: EvolutionChainProps) => {
     () => evolutionChain && setEvolutionNodes(extractNodes(evolutionChain)),
     [evolutionChain],
   );
-
+  console.log(evolutionChain, evolutionNodes);
   return (
     <div className="flex flex-col items-center">
       <p className="text-lg min-[480px]:text-xl font-bold w-full">진화 정보</p>
